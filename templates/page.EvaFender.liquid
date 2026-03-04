@@ -1,0 +1,441 @@
+{% layout none %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>EVA FENDER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/PNG.png?v=1750414896">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        body {
+          font-family: 'Red Hat Display', sans-serif;
+          background: #fff;
+          color: #111;
+        }
+        h1{
+          font-size:3.5rem;
+        }
+        h2{
+          font-size: 2.9rem
+        }
+        a{
+          text-decoration:none;
+        }
+        h1, h2 {
+          font-weight: 900;
+        }
+     h1, h2, h3, h4, h5, p, span, a{
+       color: #000
+     }
+        p, {
+          font-size:21px
+        }
+        .section, section {
+          padding-top: 60px;
+        }
+     h3 {
+    	text-transform: uppercase;
+    	margin-bottom: 2.3rem;
+    	color: #000;
+    	font-weight: 700;
+    }
+        .product-card h2 {
+    	margin-top: 20px;
+    	text-align: center;
+    	text-transform: capitalize !important;
+    }
+        .product-card h2 {
+    	font-size: 31px;
+    	font-weight: 900;
+    }
+    .product-card {
+    	background-color: #fff;
+    	border-style: solid;
+    	border-width: 1px;
+    	border-color: #e6e6e6;
+    	box-shadow: 0 4px 12px #b4b4b440;
+    	padding: 60px 35px;
+    	border-radius: 10px;
+    }
+        .product-card p {
+    	color: #000;
+    	font-weight: 700;
+    	font-size: 18px;
+    }
+       .w-claim {
+    	font-size: 16px;
+    	font-weight: 500;
+    	line-height: 1.25em;
+    	font-style: normal;
+    	color: #34538b !important;
+    	background-color: #fff !important;
+    	border-style: solid !important;
+    	border-width: 1px !important;
+    	border-color: #33528a !important;
+    }
+        .accordion-button{
+    	font-size: 20px;
+    	font-weight: 500;
+    	line-height: 1.5em;
+    	font-style: normal;
+    	text-decoration: none;
+    	letter-spacing: 0px;
+    	text-transform: none;
+    	color: #000;
+    }
+        .accordion-item {
+    	margin-bottom: 0 !important;
+    	padding: 15px 11px;
+    }
+      #faqAccordion, .accordion-button.faq-question, .accordion-item{
+    	background: #dde5f0;
+    }  
+    .accordion-item {
+    	border-top: 1px solid #fff !important;
+    }
+      .btn.btn-primary.mt-4.y-btn {
+	background: rgb(255, 216, 20);
+	color: #000;
+}
+      .btn-primary {
+	background-color: #2b4d8c;
+	color: #fff;
+	font-weight: 600;
+	border-radius: 50px;
+	padding: 10px 24px;
+	font-size: 1rem;
+	text-align: center;
+	display: inline-block;
+	transition: background-color 0.3s ease;
+	text-decoration: none;
+	border: 0px;
+	margin: 2px 0;
+}
+    .btn-primary:hover {
+      background-color: #000; /* darker shade on hover */
+      color: #fff;
+    }
+        a svg{
+    	width: 16px;
+    	height: 16px;
+    	margin-left: 6px;
+    }
+    .accordion-button:focus {
+      box-shadow: none;
+      outline: none;
+    }
+        .call-to-action a {
+    	font-size: 24px;
+    }
+        .call-to-action {
+    	text-align:center;
+    }
+      .subline {
+    	font-size: 25px;
+    	font-weight: 500;
+    	text-transform: none;
+    	font-style: normal;
+    	line-height: 1.6em;
+    	letter-spacing: 0px;
+    }
+        .video-container {
+          position: relative;
+          padding-bottom: 56.25%;
+          height: 0;
+        }
+        .video-container iframe {
+          position: absolute;
+          top: 0; left: 0;
+          width: 100%;
+          height: 100%;
+        }
+        .img-placeholder {
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #888;
+          font-size: 1.2rem;
+          border-radius: 8px;
+        }
+        
+        .img-placeholder img {
+    	max-height: 300px;
+    	width: auto;
+          border-radius: 100% !important;
+    }
+    
+      .hero-section {
+    	background: url(https://cdn.shopify.com/s/files/1/0726/1221/7115/files/ecom-no-replace-8bZgg7wp8ybg-vac-hero.png?v=1713844982) no-repeat scroll center center/cover #fff;
+    	background-size: cover;
+    	padding: 80px 20px;
+    }
+    
+      h1 {
+        font-family: 'Red Hat Display', sans-serif;
+        font-size: 50px;
+        font-weight: 900;
+        margin-bottom: 20px;
+        color:#000
+      }
+    
+      .hero-text {
+        font-size: 1.2rem;
+        line-height: 1.6;
+        color: #000;
+      }
+    #buy {
+    	background: #dde5f0;
+    	padding-bottom: 20px;
+    }
+      .accordion-body.faq-answer {
+	font-weight: 700;
+}
+      @media (max-width: 767px) {
+        h1{
+          font-size:3rem;
+        }
+        h2{
+          font-size:2rem
+        }
+        .btn-primary {
+    	padding: 9px 18px;
+    }
+        .hero-section img {
+    	padding: 30px 0;
+    }
+        #buy a {
+    	margin: 9px 0;
+    }
+        .product-card {
+	margin-top: 20px;
+}
+      }
+
+      @media(max-width: 524px){
+        .hero-banner-img img{
+          max-width: 100%!important;
+        }
+      }
+    </style>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Text Column -->
+                <div class="col-md-6">
+                    <h1 class="hero-title">WavesRx EVA FENDER</h1>
+                    <p class="hero-text"> 
+                    Telescoping Paddle with Docking Hook & Depth Gauge - Adjustable 24" to 54" Collapsible Emergency Oar for Jet Ski, Boat, PWC, Kayak, Canoe, Inflatable Dinghy- Must Have Boating Accessories
+                    </p>
+                    <a href="https://www.wavesrx.com/collections/boat-straps/products/paddle"
+                    class="btn btn-primary">EVA FENDER</a>
+                    
+                </div>
+
+                <!-- Image Column -->
+                <div class="col-md-6 text-center hero-banner-img">
+                    <img class="img-fluid w-100" style="max-width:650px height:auto"; src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Eva_Trifender.png?v=1762858830" class="img-fluid" alt="Marine Cleaner">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<section>
+    <div class="container text-center" data-aos="fade-up">
+        <h2 class="">Telescopic Safety Paddle</h2>
+        <p class="subline">With Dock Hook & Depth Gauge</p>
+        <div class="video-container">
+            <iframe src="https://cdn.shopify.com/videos/c/o/v/dc97f6a5bb9f4c5fbf6c1cb89cbec7f7.mp4" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+
+<section>
+    <div class="container text-center" data-aos="fade-up">
+        <h2 class="">Lightweight and sturdy</h2>
+        <p class="subline">Customer Review</p>
+        <div class="video-container">
+            <iframe src="https://cdn.shopify.com/videos/c/o/v/b86e1d2a294b4ffeb93406dbc7e3a564.mp4" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+</section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section mb-5">
+        <div class="container">
+            <h3 class="text-center">Frequently Asked Questions</h3>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+            Q. What is the Telescoping Safety Paddle used for?
+          </button>
+        </h2>
+                    <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body faq-answer">
+             A: It's an emergency paddle designed for small vessels like PWCs, jet skis, boats, and dinghies. Ideal for situations where your motor fails or you need manual control. Its compact design makes it easy to store and deploy when needed.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+            Q: How does the telescoping feature work?
+          </button>
+        </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body faq-answer">
+                            A: The paddle extends from 24 inches to 54 inches, allowing you to adjust its length based on your needs. This adjustability makes it versatile for various watercraft sizes and situations.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+            Q: Is it easy to store?
+          </button>
+        </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body faq-answer">
+                            A: Yes, the paddle folds down to just 24 inches, making it compact and easy to store on your watercraft without taking up much space.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+            Q: Does it float if dropped in the water?
+          </button>
+        </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body faq-answer">
+                            A: Absolutely. The paddle is designed to float, ensuring you won't lose it if it's accidentally dropped overboard.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+          <button class="accordion-button collapsed faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+            Q: What materials is the paddle made from?
+          </button>
+        </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body faq-answer">
+                            A: It features a corrosion-resistant aluminum shaft and a rugged PE blade, ensuring durability and longevity in marine environments.
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frequently Bought Together Section -->
+<section class="fbt-section mb-5">
+    <div class="container">
+        <h3 class="text-center">Frequently Bought Together</h3>
+        <div class="row text-center d-flex align-items-stretch">
+            
+            <div class="col-md-4 d-flex flex-column">
+                <div class="product-card d-flex flex-column flex-grow-1">
+                    <a href="https://www.wavesrx.com/collections/marine-ropes/products/wrx_pwctf_2pk">
+                        <div class="product-title">
+                            <h2>TRIFENDER BUMPERS</h2>
+                            <p>Protect PWC From Dock Rash</p>
+                        </div>
+                        <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/TriFender_Main_Image.png?v=1757924920" alt="Product 1">
+                    </a>
+                    <div class="mt-auto">
+                        <a href="https://www.wavesrx.com/collections/marine-ropes/products/wrx_pwctf_2pk" class="btn btn-primary mt-4 y-btn">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex flex-column">
+                <div class="product-card d-flex flex-column flex-grow-1">
+                    <a href="https://www.wavesrx.com/collections/boat-cleaning/products/wrxmbe4pk">
+                        <div class="product-title">
+                            <h2>ERASER PADS</h2>
+                            <p>Remove Scuffs, Grime & Dirt</p>
+                        </div>
+                        <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/EraserPads_Main_Image.png?v=1757927269" alt="Product 1">
+                    </a>
+                    <div class="mt-auto">
+                        <a href="https://www.wavesrx.com/collections/boat-cleaning/products/wrxmbe4pk" class="btn btn-primary mt-4 y-btn">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex flex-column">
+                <div class="product-card d-flex flex-column flex-grow-1">
+                    <a href="https://www.wavesrx.com/collections/boat-cleaning/products/soap-mixer-for-boat-and-pwc">
+                        <div class="product-title">
+                            <h2>SOAP MIXERS</h2>
+                            <p>Washing & Flushing Kit</p>
+                        </div>
+                        <img class="img-fluid" src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Soap_Mixers.png?v=1757673315" alt="Product 3">
+                    </a>
+                    <div class="mt-auto">
+                        <a href="https://www.wavesrx.com/collections/boat-cleaning/products/soap-mixer-for-boat-and-pwc" class="btn btn-primary mt-4 y-btn">Buy Now</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+    <div class="container text-center section" id="buy" data-aos="zoom-in">
+        <h2 class="mb-4">3-Year Hassle-Free Replacement Warranty!</h2>
+        <p>Confidence & Peace of Mind, Driven by Our Commitment to Quality and Innovation!</p>
+        <a href="https://www.wavesrx.com/pages/warranty" class="btn btn-primary">Register Product </a>
+        <a href="https://www.wavesrx.com/pages/warranty" class="btn btn-primary">Warranty Claim</a>
+        <!--<a href="#" class="btn btn-primary w-claim" data-bs-toggle="modal" data-bs-target="#videoModal">
+  Watch Warranty Claim Step 
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width: 1em; height: 1em; margin-left: 0.5em;">
+    <path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM176 168V344C176 352.7 180.7 360.7 188.3 364.9C195.8 369.2 205.1 369 212.5 364.5L356.5 276.5C363.6 272.1 368 264.4 368 256C368 247.6 363.6 239.9 356.5 235.5L212.5 147.5C205.1 142.1 195.8 142.8 188.3 147.1C180.7 151.3 176 159.3 176 168V168z"></path>
+  </svg>
+</a>-->
+    </div>
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="ratio ratio-16x9">
+                        <iframe id="videoFrame" src="https://www.youtube.com/embed/ncRmzsA5Bcs?si=RYWgLBn71HFEStFx" title="YouTube video" allowfullscreen allow="autoplay; encrypted-media">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <script>
+        AOS.init();
+    </script>
+
+    </body>
+
+</html>

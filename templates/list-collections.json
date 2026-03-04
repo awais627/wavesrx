@@ -1,0 +1,108 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "rich_text_MPMwfQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_KYyHd7": {
+          "type": "heading",
+          "settings": {
+            "title": "SHOP COLLECTIONS"
+          }
+        }
+      },
+      "block_order": [
+        "heading_KYyHd7"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "main": {
+      "type": "list-collections-template",
+      "blocks": {
+        "collection_czEHLV": {
+          "type": "collection",
+          "settings": {
+            "collection": "boats"
+          }
+        },
+        "collection_4ELyBM": {
+          "type": "collection",
+          "settings": {
+            "collection": "pwc"
+          }
+        },
+        "collection_MnWaJG": {
+          "type": "collection",
+          "settings": {
+            "collection": "kayak"
+          }
+        }
+      },
+      "block_order": [
+        "collection_czEHLV",
+        "collection_4ELyBM",
+        "collection_MnWaJG"
+      ],
+      "settings": {
+        "title_enable": false,
+        "display_type": "selected",
+        "sort": "date_reversed",
+        "grid": "3"
+      }
+    },
+    "rich_text_NpLQ7b": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_3CTVdH": {
+          "type": "heading",
+          "settings": {
+            "title": "SHOP CATEGORIES"
+          }
+        }
+      },
+      "block_order": [
+        "heading_3CTVdH"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "four_category_section_MWayEi": {
+      "type": "four-category-section",
+      "settings": {
+        "heading1": "Anchoring",
+        "heading2": "Docking",
+        "heading3": "CLEANING",
+        "heading4": "SAFETY",
+        "link1": "shopify://collections/beach-anchors",
+        "link1text": "Shop Now",
+        "link2": "shopify://collections/marine-ropes",
+        "link2text": "Shop Now",
+        "link3": "shopify://collections/boat-cleaning",
+        "link3text": "Shop Now",
+        "link4": "shopify://collections/boat-straps",
+        "link4text": "Shop Now"
+      }
+    }
+  },
+  "order": [
+    "rich_text_MPMwfQ",
+    "main",
+    "rich_text_NpLQ7b",
+    "four_category_section_MWayEi"
+  ]
+}

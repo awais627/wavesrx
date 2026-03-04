@@ -1,0 +1,440 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "ea344991-6c66-4194-b26d-9e6494313387": {
+          "type": "shopify://apps/appio-amazon-reviews/blocks/rating-badge/569167b3-e5d6-4314-9866-f51281b506d7",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "separator": {
+          "type": "separator",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "variant_labels": true,
+            "picker_type": "button",
+            "product_dynamic_variants_enable": true,
+            "color_swatches": false
+          }
+        },
+        "6c0c9d8e-bf84-45fb-aa86-7afd8f3a3f26": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "sales_point": {
+          "type": "sales_point",
+          "settings": {
+            "icon": "truck",
+            "text": "FREE  SHIPPING"
+          }
+        },
+        "inventory_status": {
+          "type": "inventory_status",
+          "settings": {
+            "inventory_threshold": 10,
+            "inventory_transfers_enable": true
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "surface_pickup_enable": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "6b761d03-5681-442b-bd96-39b357f1c840": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "WAVESRX PWC FENDER BUMPER WITH SOFT LOGP CLEATS ENSURES SAFEAND CONVENIENT JET SKI DOCKING. PATENTED EASY-TO-STORE FOLDINGDESIGN WITH ADJUSTABLE BUNGEE CORD PROTECTS YOUR JETSKI FROMDOCK RASH & SCRATCHES."
+          }
+        },
+        "90207345-96f0-4360-ad88-4005c3e11790": {
+          "type": "shopify://apps/se-wishlist-engine/blocks/Product-Page/8f7c0857-8e71-463d-a168-8e133094753b",
+          "settings": {}
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {
+            "is_tab": false
+          }
+        },
+        "tab": {
+          "type": "tab",
+          "disabled": true,
+          "settings": {
+            "title": "Shipping information",
+            "content": "<p>Use collapsible tabs for more detailed information that will help customers make a purchasing decision.</p><p>Ex: Shipping and return policies, size guides, and other common questions.</p>",
+            "page": ""
+          }
+        },
+        "contact": {
+          "type": "contact",
+          "disabled": true,
+          "settings": {
+            "title": "Ask a question",
+            "phone": false
+          }
+        },
+        "share": {
+          "type": "share",
+          "disabled": true,
+          "settings": {}
+        },
+        "b1f21bb1-6384-4421-9b0c-8e7a9c35c825": {
+          "type": "shopify://apps/selleasy/blocks/lb-upsell-addon-block/790c1a03-a71f-4bc1-9869-00dad526d3c2",
+          "disabled": true,
+          "settings": {}
+        },
+        "7c696504-d546-4600-b745-eba510f66f5f": {
+          "type": "trust_badge",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "ea344991-6c66-4194-b26d-9e6494313387",
+        "price",
+        "separator",
+        "variant_picker",
+        "6c0c9d8e-bf84-45fb-aa86-7afd8f3a3f26",
+        "sales_point",
+        "inventory_status",
+        "buy_buttons",
+        "6b761d03-5681-442b-bd96-39b357f1c840",
+        "90207345-96f0-4360-ad88-4005c3e11790",
+        "description",
+        "tab",
+        "contact",
+        "share",
+        "b1f21bb1-6384-4421-9b0c-8e7a9c35c825",
+        "7c696504-d546-4600-b745-eba510f66f5f"
+      ],
+      "settings": {
+        "sku_enable": false,
+        "enable_sticky_bar": true,
+        "image_position": "left",
+        "image_size": "medium",
+        "product_zoom_enable": true,
+        "thumbnail_position": "beside",
+        "thumbnail_height": "flexible",
+        "thumbnail_arrows": false,
+        "mobile_layout": "partial",
+        "enable_video_looping": true,
+        "product_video_style": "muted"
+      }
+    },
+    "sub": {
+      "type": "product-full-width",
+      "disabled": true,
+      "settings": {
+        "max_width": true
+      }
+    },
+    "3c78ebb6-71ef-47e4-a50b-14142e71f159": {
+      "type": "brand-promotion",
+      "custom_css": [],
+      "settings": {
+        "image1": "shopify://shop_images/Cash_price_tag-01.png",
+        "image2": "shopify://shop_images/icon2.jpg",
+        "image3": "shopify://shop_images/icon1_1_6ee36693-8827-4dc5-b709-6c25b2ad55cb.jpg",
+        "image4": "shopify://shop_images/icon3_1.jpg",
+        "heading1": "30 DAYS PRICE MATCH",
+        "heading2": "HASSLE-FREE RETURNS",
+        "heading3": "365 DAYS MONEY BACK",
+        "heading4": "US OWNED & OPERATED",
+        "url1": "https://www.wavesrx.com/pages/return-refund-policy",
+        "richtext1": ""
+      }
+    },
+    "ebc7666f-2014-4a86-9825-8a2d3ab8d473": {
+      "type": "featured-video",
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "video_url": "https://www.youtube.com/watch?v=yFTwV0ah0wg",
+        "divider": false
+      }
+    },
+    "product_youtube_video_hJeUb9": {
+      "type": "Product-youtube-video",
+      "settings": {
+        "productyoutubevideo": "{{ product.metafields.custom.products_youtube_video.value }}"
+      }
+    },
+    "product_first_image_text_grid_KzPDaj": {
+      "type": "Product-First-image-text-grid",
+      "settings": {}
+    },
+    "product_second_image_text_grid_nkwjmA": {
+      "type": "Product-Second-image-text-grid",
+      "settings": {}
+    },
+    "product_third_image_text_grid_qemUMQ": {
+      "type": "Product-third-image-text-grid",
+      "settings": {}
+    },
+    "product_forth_image_text_grid_yEC3pz": {
+      "type": "Product-forth-image-text-grid",
+      "settings": {}
+    },
+    "product_fifth_image_text_grid_E9HQJT": {
+      "type": "Product-fifth-image-text-grid",
+      "settings": {}
+    },
+    "text-and-image2": {
+      "type": "text-and-image",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/img1.jpg",
+        "image_mask": "none",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "FINALLY A PWC FENDER THAT ACTUALLYWORKS!",
+        "text": "<p>Are you frustrated with getting scratches on your Jet Ski every time you dock it? Have you tried other PWC bumpers that simply dont work? After struggling with this same problem for years, we designed our TriFenders as the Ultimate Solution to Safe and Convenient JetSki Docking. For Maximum Protection, we recommend using 2 fenders per PWC.&lt;span&gt;test&lt;/span&gt;</p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "50",
+        "layout": "left",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true,
+        "lazyload_images": true
+      }
+    },
+    "text-and-image": {
+      "type": "text-and-image",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/img2.jpg",
+        "image_mask": "none",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "OFFERS MAXIMUM PROTECTION FROM DOCKRASH!",
+        "text": "<p>With a Unique Patent-Pending Design, our marine fenders offer 18 in (45 cm) of horizontal as well as vertical padding which is 3 to 5 times more than other PWC fender bumpers on the market. The Extended Contact Area prevents the fenders from dislocating during wakes or tide movements and ensures maximum protection from dock rash and scratches.</p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "50",
+        "layout": "right",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true,
+        "lazyload_images": true
+      }
+    },
+    "1deb030d-24be-40e3-80dc-c85aee04ed49": {
+      "type": "text-and-image",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/img3.jpg",
+        "image_mask": "none",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "QUICK & SECURE ATTACHMENT, SOFT LOOPSSe Gp: 2 INCLUDED!",
+        "text": "<p>Two bottom-mounted U-hooks connect quickly and securely to the rub rail on any PWC. The top hook connects to a preinstalled soft loop (included) or other attachment points. The Adjustable-Length Bungee Cord provides tension to Keep the Fenders In Place and flexibility to Use Any Attachment Paint on your Jet Ski. A safety latch Prevents Accidental Decoupling & Loss.</p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "50",
+        "layout": "left",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true,
+        "lazyload_images": true
+      }
+    },
+    "7a836b54-42e5-4b3d-a4b4-addc7e38736e": {
+      "type": "text-and-image",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/img4.jpg",
+        "image_mask": "none",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "UNIQUE FOLDABLE DESIGN THAT'SEASY T0 STORE!",
+        "text": "<p> We designed the WavesRx Jet Ski TriFenders to Maximize Protection while Minimizing Storage Requirements. Simply fold the top padded section between the two bottom sections which reduces the overall size to only 18\" x 7\" x 3° and easily fits into your PWC's front storage compartment. It even comes with a free Ventilated Storage Bag.<br/></p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "50",
+        "layout": "right",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true,
+        "lazyload_images": true
+      }
+    },
+    "43210516-723a-440a-a140-2b3307dc7e8d": {
+      "type": "text-and-image",
+      "disabled": true,
+      "settings": {
+        "image": "shopify://shop_images/img5.jpg",
+        "image_mask": "none",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "BEST IN CLASS 3-YEAR WARRANTY!",
+        "text": "<p>Two bottom-mounted U-hooks connect quickly and securely to the rub rail on any PWC. The top hook connects to a preinstalled soft loop (included) or other attachment points. The Adjustable-Length Bungee Cord provides tension to Keep the Fenders In Place and flexibility to Use Any Attachment Point on your Jet Ski. A safety latch Prevents Accidental Decoupling& Loss.</p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "50",
+        "layout": "left",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true,
+        "lazyload_images": true
+      }
+    },
+    "1704698430b9c9899a": {
+      "type": "apps",
+      "blocks": {
+        "b85487ea-1691-447e-8677-c1816539004d": {
+          "type": "shopify://apps/appio-amazon-reviews/blocks/reviews-widget/569167b3-e5d6-4314-9866-f51281b506d7",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "b85487ea-1691-447e-8677-c1816539004d"
+      ],
+      "settings": {
+        "full_width": false,
+        "space_around": true
+      }
+    },
+    "22e4df16-5af5-4a63-b524-8deb9eeaeaa3": {
+      "type": "product-tiktok-section",
+      "settings": {
+        "heading1": "GET INSPIRED",
+        "heading2": "CAROLINE’S HACK test",
+        "richtext1": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+        "video1": "{{ product.metafields.custom.product_inspired_video_first.value }}",
+        "richtext2": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.",
+        "video2": "{{ product.metafields.custom.product_inspired_video_second.value }}",
+        "richtext3": "Follow @carolinewintersofficial on TikTok for more beauty hacks",
+        "video3": "{{ product.metafields.custom.product_inspired_video_third.value }}"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "testimonials-0": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+            "author": "Author's name",
+            "author_info": "Los Angeles, CA"
+          }
+        },
+        "testimonials-1": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+            "author": "Author's name",
+            "author_info": "Los Angeles, CA"
+          }
+        },
+        "testimonials-2": {
+          "type": "testimonial",
+          "settings": {
+            "icon": "5-stars",
+            "testimonial": "<p>Add customer reviews and testimonials to showcase your store’s happy customers.</p>",
+            "author": "Author's name",
+            "author_info": "Los Angeles, CA"
+          }
+        }
+      },
+      "block_order": [
+        "testimonials-0",
+        "testimonials-1",
+        "testimonials-2"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "Testimonials",
+        "align_text": "center",
+        "round_images": true,
+        "color_background": "#f9f9f9",
+        "color_text": "#1c1d1d"
+      }
+    },
+    "product-recommendations": {
+      "type": "product-recommendations",
+      "settings": {
+        "product_recommendations_heading": "Customers also bought",
+        "related_count": 4,
+        "products_per_row": 4
+      }
+    },
+    "recently-viewed": {
+      "type": "recently-viewed",
+      "disabled": true,
+      "settings": {
+        "recent_count": 4
+      }
+    },
+    "collection-return": {
+      "type": "collection-return",
+      "disabled": true,
+      "settings": {}
+    },
+    "2561eed3-e192-4886-a5d3-05ccc877b35d": {
+      "type": "prime-button",
+      "settings": {}
+    },
+    "71e4d836-6b02-4573-b8e4-f6c050c37d56": {
+      "type": "prime-button",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "sub",
+    "3c78ebb6-71ef-47e4-a50b-14142e71f159",
+    "ebc7666f-2014-4a86-9825-8a2d3ab8d473",
+    "product_youtube_video_hJeUb9",
+    "product_first_image_text_grid_KzPDaj",
+    "product_second_image_text_grid_nkwjmA",
+    "product_third_image_text_grid_qemUMQ",
+    "product_forth_image_text_grid_yEC3pz",
+    "product_fifth_image_text_grid_E9HQJT",
+    "text-and-image2",
+    "text-and-image",
+    "1deb030d-24be-40e3-80dc-c85aee04ed49",
+    "7a836b54-42e5-4b3d-a4b4-addc7e38736e",
+    "43210516-723a-440a-a140-2b3307dc7e8d",
+    "1704698430b9c9899a",
+    "22e4df16-5af5-4a63-b524-8deb9eeaeaa3",
+    "testimonials",
+    "product-recommendations",
+    "recently-viewed",
+    "collection-return",
+    "2561eed3-e192-4886-a5d3-05ccc877b35d",
+    "71e4d836-6b02-4573-b8e4-f6c050c37d56"
+  ]
+}

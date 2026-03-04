@@ -1,0 +1,11 @@
+<a href="{{ product.url | within: collection }}" data-productid="{{ product.id }}" data-producth="{{ product.handle }}"
+  data-add="{{ " wishlist.buttons_text.tooltip_add" | t }}" data-remove="{{ " wishlist.buttons_text.tooltip_remove" | t
+  }}" data-tooltip="{% if customer.id == blank %}{{ " wishlist.buttons_text.tooltip_login" | t }}{% else %}{% if wl_text
+  %}{{ "wishlist.buttons_text.tooltip_remove" | t }}{% else %}{{ "wishlist.buttons_text.tooltip_add" | t }}{% endif %}{%
+  endif %}" data-tposition="left" data-type="wishlist"
+  data-action="{% if wl_text %}wk-remove{% else %}wk-add{% endif %}"
+  class="wk-app-btn tt-btn-wishlist wlbutton-js{% if template.suffix == " wishlist" %} wk-delete-icon{% endif %}">
+  {% if template.suffix == "wishlist" %}<i class="far fa-trash-alt"></i>
+  {% else %}<i class="far fa-heart"></i>
+  {% endif %}
+</a>

@@ -1,0 +1,34 @@
+<style type="text/css">
+	.content-box {
+	display: inline-block;
+    padding: 7em 5em;
+}
+</style>
+<div class="container image-grid ">
+    <div class="row">
+        <div class="col">
+            <div class="img-box">
+                {% if product.metafields.custom.product_fifth_image_text_grid_image != blank -%}
+                  <img  src="{{ product.metafields.custom.product_fifth_image_text_grid_image | file_url  }}">
+                {%- endif %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="content-box">
+                <h2 class="product-page-heading">{{ product.metafields.custom.product_fifth_image_text_grid_heading }}</h2>
+                <p class="product-page-description">{{ product.metafields.custom.product_fifth_image_text_grid_description}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Image-Right-Text-Left",
+    "settings": [ ],
+    "presets": [
+        {
+            "name": "Product-Fifth-image-text-grid"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,84 @@
+{% assign categories = 'Anchoring Bundles,Docking Bundles,Safety Bundles,Cleaning Bundles' | split: ',' %}
+
+{% for category in categories %}
+  {% case category %}
+    {% when 'Anchoring Bundles' %}
+      {% assign collection_handle = 'anchoring-bundle' %}
+    {% when 'Docking Bundles' %}
+      {% assign collection_handle = 'docking-bundle' %}
+    {% when 'Cleaning Bundles' %}
+      {% assign collection_handle = 'cleaning-bundle' %}
+    {% when 'Safety Bundles' %}
+      {% assign collection_handle = 'safety-bundle' %}
+  {% endcase %}
+
+  {% assign bundle_collection = collections[collection_handle] %}
+
+  <div class="page-width">
+    <section class="bundle-section" id="{{ category | handle }}">
+      <div class="bundle-layout">
+        <!-- Vertical Category Title -->
+        <div class="bundle-category-vertical">
+          <span>{{ category }}</span>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="bundle-grid">
+          {% if bundle_collection and bundle_collection.products_count > 0 %}
+            {% for product in bundle_collection.products %}
+              {% render 'bundle-grid-item', product: product %}
+            {% endfor %}
+          {% else %}
+            <p class="no-products">No bundles found in {{ category }}.</p>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  </div>
+{% endfor %}
+
+<style>
+    .bundle-section { padding:50px 0; }
+    .section-header h2 { font-size:28px; margin-bottom:30px; text-align:center; }
+    .bundle-layout {
+      display: flex;
+      align-items: stretch;
+      gap: 30px;
+    }
+    /* 3-column grid */
+    .bundle-grid {
+      display:grid;
+      flex: 1;
+      grid-template-columns:repeat(1, 1fr);
+      gap:25px;
+    }
+
+  .bundle-category-vertical {
+    display: flex;
+    align-items: center;
+    justify-content: stretch;
+    min-width: 80px;
+  }
+
+  .bundle-category-vertical span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    align-self: stretch;
+    text-align: center;
+    background:rgb(221, 240, 255);              /* Light background */
+    border: 1px solidrgb(136, 188, 233);        /* Slightly darker border */
+    border-radius: 12px;
+    padding: 18px 10px;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color:rgb(0, 53, 97);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+
+
+    /* Responsive */
+    @media(max-width:992px) { .bundle-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:576px) { .bundle-grid { grid-template-columns:1fr; } }
+</style>

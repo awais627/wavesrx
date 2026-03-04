@@ -1,0 +1,23 @@
+<div class="product-you-tube-video">
+  {% if section.settings.productyoutubevideo != blank %}
+<iframe src="{{ section.settings.productyoutubevideo }}"> </iframe>
+  {% endif %}
+</div>
+{% schema %}
+{
+    "name": "Products-YouTube-Video",
+    "settings": [
+      {
+            "type": "url",
+            "id": "productyoutubevideo",
+            "label": "Video URL"
+        }
+       
+    ],
+    "presets": [
+        {
+            "name": "Products-YouTube-Video"
+        }
+    ]
+}
+{% endschema %}

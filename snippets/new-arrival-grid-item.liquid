@@ -1,0 +1,122 @@
+<style>
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      background: #eee;
+      border-radius: 15px;
+    }
+
+    .product-card .content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-card .content-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-card h4{
+        font-size: 20px;
+        text-align: left;
+        font-weight: 900;
+    }
+
+    .product-card .actions {
+      margin-top: auto;
+    }
+
+    .product-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  .product-card .actions form,
+  .product-card .actions a {
+    flex: 1;
+  }
+
+  .product-card .actions button,
+  .product-card .actions a {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+
+<article
+  class="product-card card-vertical{% if forloop.index0 >= initial_visible %} is-hidden{% endif %}"
+  data-idx="{{ forloop.index0 }}"
+>
+  <!-- Content -->
+  <div class="content">
+    <!-- Image -->
+    <a class="photo" href="{{ product.url }}">
+      {% if product.featured_image %}
+        <img
+          src="{{ product.featured_image | img_url: '700x' }}"
+          alt="{{ product.title | escape }}"
+          style="border-radius: 10px; margin-bottom: 10px;"
+        >
+      {% else %}
+        <img
+          src="{{ 'placeholder-image.png' | asset_url }}"
+          alt="{{ product.title | escape }}"
+          style="border-radius: 10px;"
+        >
+      {% endif %}
+    </a>
+
+    <div class="content-container" style="position:relative;">
+      <!-- Rating -->
+      {% assign r = product.metafields.custom.rating_count | default: 0 %}
+      {% assign rc = product.metafields.custom.review_count | default: 0 %}
+
+      {% if r > 0 %}
+        <a
+          href="{{ product.url }}"
+          class="rating-link"
+          style="text-decoration:none; color:inherit; display:inline-block; margin-bottom: 10px;"
+        >
+          <div class="rating-wrapper">
+            <div class="stars" style="color: #ffb400;">★★★★★</div>
+            <span class="reviews">({{ rc }}) reviews</span>
+          </div>
+        </a>
+      {% endif %}
+
+      <!-- Title & Subtitle -->
+      <h4 style="letter-spacing: 0.025rem;">{{ product.title }}</h4>
+      <div class="sub">
+        {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
+      </div>
+
+      <!-- Price Row -->
+      <div class="price-row">
+        <span class="price-now">{{ product.price | money }}</span>
+
+        {% if product.compare_at_price > product.price %}
+          <span class="price-compare">{{ product.compare_at_price | money }}</span><br>
+          <span
+            class="sale-percentage"
+            data-sale-price="{{ product.price | divided_by: 100.0 }}"
+            data-sale-old-price="{{ product.compare_at_price | divided_by: 100.0 }}"
+            style="position: realtive;background-color:#ff4d4f;color:#fff;font-size:10px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
+          ></span>
+        {% endif %}
+      </div>
+
+      <!-- Buttons -->
+      <div class="actions">
+        <form method="post" action="/cart/add" class="d-inline">
+          <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+          <button type="submit" class="btn-yellow" {% unless product.available %}disabled{% endunless %}>Buy Now</button>
+        </form>
+        <a class="btn-outline" href="{{ product.url }}">Learn More</a>
+      </div>
+    </div>
+  </div>
+</article>

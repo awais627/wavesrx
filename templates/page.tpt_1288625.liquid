@@ -1,0 +1,323 @@
+<script>window._tpt_anti_helmet = true</script><script>window.__tpt_full_page = 1</script><script class='tpt_dynamic'>
+function dynamicAttach(itemId, containerId, override, autoRerunMode) {
+if (!window.__tpt_everlasting_cache) {
+window.__tpt_everlasting_cache = {};
+}
+if (!window.__tpt_everlasting_tickrate) {
+window.__tpt_everlasting_tickrate = {};
+}
+var slt = '.spb-item.type_actual_statement.spb-item-id_' + itemId;
+var targetElement = document.querySelector(slt);
+var containerElement = document.querySelector('.' + containerId);
+console.log(targetElement, containerElement);
+if (containerElement && (containerElement.innerHTML).trim().length > 0) {
+ window.__tpt_everlasting_cache[slt] = containerElement.innerHTML;
+}
+if ((targetElement && (!targetElement.innerHTML.length || override)) && ((containerElement && (containerElement.innerHTML).trim() || window.__tpt_everlasting_cache[slt]))) {
+console.log('Found container element');
+console.log(itemId, containerId);
+if (containerElement && (containerElement.innerHTML).trim().length > 0) {
+var tpt_rerun = containerElement.querySelectorAll('script.tpt_rerun, script.tpt_inject_script');
+if (containerElement.childNodes) {
+Array.from(containerElement.childNodes).forEach(function(node) {
+targetElement.append(node);
+});
+}
+tpt_rerun.forEach(function(t) {
+Function(t.innerText)()
+});
+} else if (window.__tpt_everlasting_cache[slt]) {
+targetElement.innerHTML = window.__tpt_everlasting_cache[slt];
+var tpt_rerun = targetElement.querySelectorAll('script.tpt_rerun, script.tpt_inject_script');
+tpt_rerun.forEach(function(t) {
+Function(t.innerText)()
+});
+} else if (targetElement && containerElement && targetElement.innerHTML.length) {
+console.log('Already attached', slt);
+}
+} else {
+if (!targetElement) {
+window.__tpt_everlasting_tickrate[slt] = ( window.__tpt_everlasting_tickrate[slt] || 0 )+1;
+if (window.__tpt_everlasting_tickrate[slt] < 5){
+setTimeout(function () {
+dynamicAttach(itemId, containerId, override, true);
+}, 1000);
+}
+}
+}
+if(!autoRerunMode){
+ if (!window._tapita_ssr_ijt_obj) {
+window._tapita_ssr_ijt_obj = {};
+}
+window._tapita_ssr_ijt_obj[slt] = function() {
+return dynamicAttach(itemId, containerId, override)
+}; 
+}
+}
+
+</script>
+<script>window._issolate_tapita_hamburger = true;</script>
+
+<style>
+.type_actual_statement{width: 100%}
+</style>
+{% assign content = page.metafields.tapita["pgt-1288625"] %}
+
+<div id="tapita-page-main-content" style="min-height: 100px; display: block">
+<h1 class="tapita-placeholder" style="display:none;">
+"", 1
+</h1>
+</div>
+
+
+<div class='spb-customerhtml-serverrender spb-customerhtml-serverrender-3' style='display: none;'><div class="powr-form-builder" id="9c0c0d93_1587537664"></div>
+<script src="https://www.powr.io/powr.js?platform=shopify"></script></div>
+<script>
+var timmerTime = (window && window.screen && window.screen.width && window.screen.width < 1024) ? 1000: 300;
+var timer_3_counter = 0;
+var timer_3 = setInterval(function () {
+try{
+timer_3_counter++;
+let target_c = document.querySelector('.spb-item.spb-item-id_3');
+let self_c = document.getElementsByClassName('spb-customerhtml-serverrender-3');
+if (target_c && !target_c.innerHTML) {
+if(self_c.length > 0 ){
+target_c.style.setProperty('display', 'block');
+target_c.style.setProperty('overflow', 'clip');
+self_c[0].style.setProperty('display', 'unset');
+self_c[0].style.setProperty('opacity', '1');
+window.tpb_srsappended_{{ident}}3 = self_c[0];
+target_c.appendChild(self_c[0]);
+} else if (window.tpb_srsappended_{{ident}}3) {
+target_c.style.setProperty('display', 'block');
+target_c.style.setProperty('overflow', 'clip');
+window.tpb_srsappended_{{ident}}3.style.setProperty('display', 'unset');
+target_c.appendChild(window.tpb_srsappended_{{ident}}3);
+}
+} else if (!target_c) {
+if((self_c.length > 0) && (timer_3_counter > 1)){
+//self_c[0].style.setProperty('display', 'unset');
+}
+} else{
+if((timer_3_counter > 2)){
+for(var i=0;i<self_c.length;i++){
+ var m = self_c.item(i);
+ if(m && m.parentElement&& m.parentElement.classList && m.parentElement.classList.contains("spb-item")){
+m.style.setProperty('display', 'unset');
+ }else{
+m.innerHTML = '';
+m.style.setProperty('display', 'none');
+ }
+}
+}
+}
+} catch(e) {
+console.warn(e);
+clearInterval(timer_3);
+}
+}, timmerTime);
+</script>
+
+<div class='spb-customerhtml-serverrender spb-customerhtml-serverrender-4' style='display: none;'><div class="powr-form-builder" id="3b3ff8fa_1587537865"></div>
+<script src="https://www.powr.io/powr.js?platform=shopify"></script>
+</div></div>
+<script>
+var timmerTime = (window && window.screen && window.screen.width && window.screen.width < 1024) ? 1000: 300;
+var timer_4_counter = 0;
+var timer_4 = setInterval(function () {
+try{
+timer_4_counter++;
+let target_c = document.querySelector('.spb-item.spb-item-id_4');
+let self_c = document.getElementsByClassName('spb-customerhtml-serverrender-4');
+if (target_c && !target_c.innerHTML) {
+if(self_c.length > 0 ){
+target_c.style.setProperty('display', 'block');
+target_c.style.setProperty('overflow', 'clip');
+self_c[0].style.setProperty('display', 'unset');
+self_c[0].style.setProperty('opacity', '1');
+window.tpb_srsappended_{{ident}}4 = self_c[0];
+target_c.appendChild(self_c[0]);
+} else if (window.tpb_srsappended_{{ident}}4) {
+target_c.style.setProperty('display', 'block');
+target_c.style.setProperty('overflow', 'clip');
+window.tpb_srsappended_{{ident}}4.style.setProperty('display', 'unset');
+target_c.appendChild(window.tpb_srsappended_{{ident}}4);
+}
+} else if (!target_c) {
+if((self_c.length > 0) && (timer_4_counter > 1)){
+//self_c[0].style.setProperty('display', 'unset');
+}
+} else{
+if((timer_4_counter > 2)){
+for(var i=0;i<self_c.length;i++){
+ var m = self_c.item(i);
+ if(m && m.parentElement&& m.parentElement.classList && m.parentElement.classList.contains("spb-item")){
+m.style.setProperty('display', 'unset');
+ }else{
+m.innerHTML = '';
+m.style.setProperty('display', 'none');
+ }
+}
+}
+}
+} catch(e) {
+console.warn(e);
+clearInterval(timer_4);
+}
+}, timmerTime);
+</script>
+
+<div class="rte">
+<script>
+try {
+var _tpt_insigna = "54f43ec291b3cbfd12380d6d914a0a4e";
+if(!globalThis._tpt_pbds){
+globalThis._tpt_pbds = [];
+}
+}catch(e){
+console.warn(e);
+}
+var tapitacss = `#shopify-section-tapita-main-page, #shopify-section-tapita-main-home { min-height: 100vh; } .main.content { max-width: unset; } .spb-item-root {width: 100%;} h1.main-page-title.page-title {display: none;} .spb-item.type_text {overflow-y: hidden;} `;
+var tapitahead = document.head || document.getElementsByTagName("head")[0];
+var tapitastyle = document.createElement("style");
+
+tapitastyle.type = "text/css";
+if (tapitastyle.styleSheet){
+tapitastyle.styleSheet.cssText = tapitacss;
+} else {
+tapitastyle.appendChild(document.createTextNode(tapitacss));
+}
+tapitastyle.class="tapita-custom-css";
+ 
+var tapitajs = ``;
+var tapitascript = document.createElement("script");
+tapitascript.appendChild(document.createTextNode(tapitajs));
+tapitascript.defer = true;
+tapitascript.class="tapita-custom-css";
+
+tapitahead.appendChild(tapitastyle);
+tapitahead.appendChild(tapitascript);
+{% if request.page_type == "product" %}
+var kulasop= 9;
+{% endif %}
+</script>
+
+{{ 'tapita-cdn-assets-1.6.39.js' | asset_url | script_tag }}
+ 
+<script defer>
+var tapita_counter = 0;
+var possibleMainTargetQuery = [
+
+"#tapita-page-main-content",
+".normal_main_content",
+"#MainContent",
+"shopify-section-tapita-main-page",
+"shopify-section-tapita-main-home",
+"main",
+];
+{% if request.page_type == "product" %}
+var kulasop= 2;
+{% endif %}
+
+var currentMain = null;
+for (const selector of possibleMainTargetQuery) {
+currentMain = document.querySelector(selector);
+if(currentMain){
+break;
+}
+}
+var injector = setInterval(function () {
+var idToRender = false;
+var mainTarget = null;
+for (const selector of possibleMainTargetQuery) {
+mainTarget = document.querySelector(selector);
+if(mainTarget){
+break;
+}
+}
+if(currentMain && currentMain.id !=="MainContent"){
+currentMain.id = "MainContentTapita";
+idToRender = "MainContentTapita";
+} else {
+idToRender = "MainContent";
+}
+
+if (!idToRender)
+return;
+{% if request.page_type == "product" %}
+var licobioga= 97;
+{% endif %}
+tapita_counter += 1;
+if (globalThis.PageBuilderComponent) {
+var tapitaSections = document.querySelectorAll(".tapitaSection, .spb-customerhtml-serverrender");
+currentMain = null;
+function tptPBD(forcedRerender){
+var lemonadeConsumer = document.querySelector(`#${idToRender} .smpb-container`);
+if(lemonadeConsumer && lemonadeConsumer.innerHTML&& !forcedRerender){
+return;
+}
+PageBuilderComponent.renderForIdWithProps(idToRender, {
+endPoint: "https://d3lks6njuyuuik.cloudfront.net/pb/graphql/",
+mode: "shopify",
+lazyloadPlaceHolder: "",
+formatMessage: globalThis._rms_translate,
+_translateParagraph: true,
+_translateSEO: true,
+_translatePlaceholder: true,
+callback: function() { try { if (globalThis.PageBuilderComponent && globalThis._tpt_pbds && (globalThis._tpt_pbds instanceof Array)) globalThis._tpt_pbds.forEach(t => t && t()); } catch (e) { } },
+pageData: {"url_path":"\/warranty","original_url_path":"\/warranty","type_id":0,"priority":10,"entity_id":13692,"name":"Warranty","status":1,"masked_id":"3630jg0Fi1GEDlOKt3WZNg9p1665462510","custom_css":null,"custom_js":null,"keywords":null,"title":"Warranty","desc":"","is_rtl":0,"storeview_visibility":"","publish_items":"[{\"entity_id\":17,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"flexDirection\\\":\\\"column\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\",\\\"heightPixel\\\":420}\",\"data\":\"{\\\"size\\\":\\\"100%\\\",\\\"videoURL\\\":\\\"https:\\\\\\\/\\\\\\\/www.youtube.com\\\\\\\/watch?v=ncRmzsA5Bcs\\\",\\\"autoplay\\\":true,\\\"loop\\\":true,\\\"lazy\\\":true}\",\"name\":\"\",\"tag_id\":\"pbi_UEtpWVgxNzMwNzk3Njc5Mjk4_79298\",\"class_name\":\"\",\"type\":\"youtube_video\",\"visibility\":\"\",\"sort_order\":20,\"parent_id\":15,\"storeview_visibility\":0},{\"entity_id\":3,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{\\\"htmlContent\\\":\\\"\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_QXphUzUxNjY1NDYyODI5NDA4_29408\",\"class_name\":\"\",\"type\":\"custom_html\",\"visibility\":\"\",\"sort_order\":30,\"parent_id\":8,\"storeview_visibility\":0},{\"entity_id\":4,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{\\\"htmlContent\\\":\\\"\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_SlI4U1kxNjY1NDYyNzYwOTg1_60985\",\"class_name\":\"\",\"type\":\"custom_html\",\"visibility\":\"\",\"sort_order\":40,\"parent_id\":6,\"storeview_visibility\":0},{\"entity_id\":5,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"lineHeight\\\":\\\"2em\\\",\\\"fontFamily\\\":\\\"inherit\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{\\\"paragraphContent\\\":\\\"<p><\\\\\\\/p>\\\\n\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_V0FIN2oxNjY1NDYyNzE0Nzgz_14783\",\"class_name\":\"\",\"type\":\"paragraph\",\"visibility\":\"\",\"sort_order\":50,\"parent_id\":6,\"storeview_visibility\":0},{\"entity_id\":6,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"backgroundColor\\\":\\\"#ffffff\\\",\\\"minHeight\\\":100}\",\"data\":null,\"name\":\"Register your WavesRx product\",\"tag_id\":\"\",\"class_name\":\"\",\"type\":\"container\",\"visibility\":\"\",\"sort_order\":60,\"parent_id\":11,\"storeview_visibility\":0},{\"entity_id\":1,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"fontFamily\\\":\\\"inherit\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\",\\\"textAlign\\\":\\\"center\\\",\\\"fontSize\\\":\\\"26px\\\",\\\"lineHeight\\\":\\\"32px\\\"}\",\"data\":\"{\\\"textTag\\\":\\\"h1\\\"}\",\"name\":\"WARRANTY & REGISTRATION\",\"tag_id\":\"pbi_THdQNTYxNjY1NDYyNTI3NzEy_27712\",\"class_name\":\"\",\"type\":\"text\",\"visibility\":\"\",\"sort_order\":70,\"parent_id\":0,\"storeview_visibility\":0},{\"entity_id\":8,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"backgroundColor\\\":\\\"#ffffff\\\",\\\"minHeight\\\":100}\",\"data\":null,\"name\":\"Submit Warranty Claim\",\"tag_id\":\"\",\"class_name\":\"\",\"type\":\"container\",\"visibility\":\"\",\"sort_order\":80,\"parent_id\":11,\"storeview_visibility\":0},{\"entity_id\":2,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"lineHeight\\\":\\\"1.2em\\\",\\\"fontFamily\\\":\\\"inherit\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{\\\"paragraphContent\\\":\\\"<p><span style=\\\\\\\"font-size: 16px;\\\\\\\">To activate the full benefits of our 3-Year Hassle-Free Replacement Warranty, <strong>register your WavesRx product within 60 days of purchase.<\\\\\\\/strong><\\\\\\\/span><\\\\\\\/p>\\\\n<p><span style=\\\\\\\"font-size: 16px;\\\\\\\">To initiate a warranty claim for a product, click on the \\\\\\\"<strong>Submit Warranty Claim\\\\\\\"<\\\\\\\/strong> tab and fill out the short form.<\\\\\\\/span><\\\\\\\/p>\\\\n<p><\\\\\\\/p>\\\\n\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_dzBMWjkxNjY1NDYyNTYxMjMx_61231\",\"class_name\":\"\",\"type\":\"paragraph\",\"visibility\":\"\",\"sort_order\":90,\"parent_id\":0,\"storeview_visibility\":0},{\"entity_id\":11,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"backgroundColor\\\":\\\"#efefef\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\",\\\"fontSize\\\":\\\"18px\\\",\\\"color\\\":\\\"#1783c8\\\",\\\"fontWeight\\\":700,\\\"textDecoration\\\":\\\"unset\\\",\\\"lineHeight\\\":\\\"22px\\\",\\\"boxShadow\\\":\\\"0px 0px 0px 0px #141313\\\",\\\"marginTop\\\":30,\\\"marginBottom\\\":60,\\\"m_fontSize\\\":\\\"10-px\\\",\\\"m_fontWeight\\\":400}\",\"data\":\"{\\\"tabTitleNavPos\\\":\\\"top\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_T25VS0UxNjY1NDYyNjM1MzA0_35304\",\"class_name\":\"\",\"type\":\"tabs\",\"visibility\":\"\",\"sort_order\":100,\"parent_id\":0,\"storeview_visibility\":0},{\"entity_id\":13,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"lineHeight\\\":\\\"1.2em\\\",\\\"fontFamily\\\":\\\"inherit\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{\\\"paragraphContent\\\":\\\"<p><span style=\\\\\\\"font-size: 16px;\\\\\\\"><strong>Warranty Information:<\\\\\\\/strong><\\\\\\\/span><br><br><span style=\\\\\\\"font-size: 16px;\\\\\\\">We take pride in the quality of our products and stand behind them. Our warranty covers defects in materials and workmanship. If you encounter any issues with your product due to a manufacturing defect during the warrantied period, we are here to help.<\\\\\\\/span><br><br><span style=\\\\\\\"font-size: 16px;\\\\\\\"><strong>What&#39;s Covered:<\\\\\\\/strong><\\\\\\\/span><\\\\\\\/p><ol><li><span style=\\\\\\\"font-size: 16px;\\\\\\\">Defects in materials and workmanship<\\\\\\\/span><\\\\\\\/li><\\\\\\\/ol><p><span style=\\\\\\\"font-size: 16px;\\\\\\\"><br><strong>What&#39;s Not Covered:<\\\\\\\/strong><\\\\\\\/span><\\\\\\\/p><ol><li><span style=\\\\\\\"font-size: 16px;\\\\\\\">Damage caused by misuse or accidents<\\\\\\\/span><\\\\\\\/li><li><span style=\\\\\\\"font-size: 16px; font-weight: var(--p-font-weight-regular); background-color: transparent; letter-spacing: initial;\\\\\\\">Normal wear and tear<\\\\\\\/span><\\\\\\\/li><\\\\\\\/ol><p><br><\\\\\\\/p><p><br><\\\\\\\/p>\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_RG04dW4xNzA3NzI3ODgxNDg2_81486\",\"class_name\":\"\",\"type\":\"paragraph\",\"visibility\":\"\",\"sort_order\":110,\"parent_id\":0,\"storeview_visibility\":0},{\"entity_id\":15,\"page_id\":\"13692\",\"status\":1,\"styles\":\"{\\\"display\\\":\\\"block\\\",\\\"flexDirection\\\":\\\"column\\\",\\\"widthPercent\\\":100,\\\"flexShrink\\\":1,\\\"paddingTop\\\":\\\"20px\\\",\\\"paddingBottom\\\":\\\"20px\\\",\\\"paddingLeft\\\":\\\"15px\\\",\\\"paddingRight\\\":\\\"15px\\\",\\\"minHeight\\\":100,\\\"justifyContent\\\":\\\"center\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"t_maxWidth\\\":\\\"1024px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{}\",\"name\":\"\",\"tag_id\":\"pbi_Q3dobnYxNzMwNzk3NDQ3NzIy_47722\",\"class_name\":\"\",\"type\":\"container\",\"visibility\":\"\",\"sort_order\":120,\"parent_id\":0,\"storeview_visibility\":0}]","updated_at":"2024-11-05 09:46:40","image":null}
+});
+}
+globalThis._tpt_pbds.push(tptPBD);
+tptPBD();
+
+function _tapita_ssr_cti(){window._tapita_ssr_ijt_obj && Object.values(window._tapita_ssr_ijt_obj||{}).forEach(function (t){t&&t()})};
+_tapita_ssr_cti();
+if(!globalThis._tpt_pbds){globalThis._tpt_pbds=[]};
+globalThis._tpt_pbds.push(_tapita_ssr_cti);
+window.addEventListener("resize", ()=>{_tapita_ssr_cti()});
+;
+var documentFragment = document.createDocumentFragment();
+tapitaSections.forEach(function(el){documentFragment.appendChild(el)});
+document.querySelector("#" + idToRender).appendChild(documentFragment);
+tapitaSections = null;
+clearInterval(injector);
+if (window.location && window.location.hash) {
+var tptHashFound = window.location.hash;
+tptHashFound = hash.replace("#", "");
+tptHashFound = document.getElementById(tptHashFound);
+if (tptHashFound) {
+tptHashFound.scrollIntoView();
+}
+}
+} else if (tapita_counter > 60) {
+clearInterval(injector);
+}
+}, 100);
+</script>
+</div>
+
+<div class="tel">
+{% for field in content.value %}
+{% if field.type == "product_grid" %}
+{% render 'tapita-product-grid',
+product_target_ident: field.settings.product_target_ident,
+product_handle: field.settings.product-handle,
+product_handles: field.settings.product-handles,
+product_ident: field.settings.product_ident,
+product_title: field.settings.product-title,
+product_limit: field.settings.product-limit,
+evenlyHeight: field.settings.evenlyHeight
+%}
+{% elsif field.type == "product_scroll" %}
+{% render 'tapita-product-list',
+product_target_ident: field.settings.product_target_ident,
+product_handle: field.settings.product-handle,
+product_handles: field.settings.product-handles,
+product_ident: field.settings.product_ident,
+product_title: field.settings.product-title,
+product_limit: field.settings.product-limit,
+%}
+{% endif %}
+{% endfor %}
+</div>

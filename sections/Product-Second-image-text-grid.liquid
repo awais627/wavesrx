@@ -1,0 +1,28 @@
+<div class="container image-grid">
+    <div class="row">
+        <div class="col order-text">
+            <div class="content-box">
+                <h2 class="product-page-heading">{{ product.metafields.custom.product_second_image_text_grid_heading }}</h2>
+                <p class="product-page-description">{{ product.metafields.custom.product_second_image_text_grid_description }}</p>
+            </div>
+        </div>
+        <div class="col order-image">
+            <div class="img-box">
+                {% if product.metafields.custom.product_second_image_text_grid_image != blank -%}
+                    <img  src="{{ product.metafields.custom.product_second_image_text_grid_image | file_url  }}">
+                {%- endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Second-image-text-grid",
+    "settings": [ ],
+    "presets": [
+        {
+            "name": "Product-Second-image-text-grid"
+        }
+    ]
+}
+{% endschema %}

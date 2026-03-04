@@ -1,0 +1,37 @@
+<style type="text/css">
+	.content-box {
+	display: inline-block;
+    padding: 7em 5em;
+}
+  .image-grid {
+    margin-top: 50px;
+}
+</style>
+<div class="container image-grid">
+    <div class="row first-grid">
+        <div class="col">
+            <div class="img-box">
+                {% if product.metafields.custom.product_image_first != blank -%}
+                  <img  src="{{ product.metafields.custom.product_image_first | file_url  }}">
+                {%- endif %}
+            </div>
+        </div>
+        <div class="col">
+            <div class="content-box">
+                <h2 class="product-page-heading">{{ product.metafields.custom.product_image_text_grid_heading }}</h2>
+                <p class="product-page-description">{{ product.metafields.custom.product_image_text_grid_description}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Image-Right-Text-Left",
+    "settings": [ ],
+    "presets": [
+        {
+            "name": "Product-First-image-text-grid"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,23 @@
+/*********************** Custom CSS for Boost AI Search & Discovery  ************************/
+.boost-sd__product-item .wishlist-engine {
+
+  display: block !important;
+
+  position: absolute;
+
+  z-index: 3;
+
+  top: 5px;
+
+  left: 5px;
+
+}
+.boost-sd__product-item .wishlist-icon svg{
+  margin-top: 0px !important;
+}
+.boost-sd__product-item .wishlist-engine-button, .boost-sd__product-item .wishlist-engine-button:hover,.boost-sd__product-item .wishlist-engine-button:focus{
+  border-radius: 50%;
+  box-shadow: 1px 1px 12px #0000001a;
+line-height: 0;
+   padding: 10px !important;
+}

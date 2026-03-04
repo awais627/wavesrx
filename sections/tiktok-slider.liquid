@@ -1,0 +1,337 @@
+<style>
+    .swiper-slide.swiper-slide-active video {
+        height: 500px;
+    }
+
+    .swiper-slide video {
+        height: 400px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .swiper-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    .swiper-container.swiper-container-horizontal {
+        cursor: grab;
+    }
+
+    .swiper-button-next_1,
+    .swiper-button-prev_1 {
+        display: none;
+    }
+
+    .active-slide video {
+        animation: playVideo 1s forwards;
+    }
+
+    @keyframes playVideo {
+        to {
+            opacity: 1;
+            pointer-events: auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .swiper-button-next_1,
+        .swiper-button-prev_1 {
+            display: block;
+        }
+
+        .swiper-button-next_1 svg {
+            position: absolute;
+            bottom: 0;
+            height: 53px;
+            position: absolute;
+            z-index: 99;
+            fill: white;
+            right: -4px;
+            top: 44%;
+            background: black;
+            padding: 16px 5px;
+        }
+
+        .swiper-button-prev_1 svg {
+            position: absolute;
+            bottom: 0;
+            height: 53px;
+            position: absolute;
+            z-index: 99;
+            fill: white;
+            left: -7px;
+            top: 44%;
+            background: black;
+            padding: 16px 5px;
+        }
+        .swiper-slide video {
+            height: 400px;
+            width: 89%;
+            object-fit: cover;
+            margin-left: 25px;
+        }
+    }
+    @media (max-width: 500px) {
+        .swiper-slide video {
+            width: 86%;
+        }
+    }
+    @media (max-width: 400px) {
+        .swiper-slide video {
+            width: 84%;
+        }
+    }
+  @media (max-width: 380px) {
+        .swiper-slide video {
+            width: 80%;
+          margin-left: 34px;
+        }
+    }
+    @media (max-width: 350px) {
+        .swiper-slide video {
+            width: 83%;
+        }
+    }
+    @media (max-width: 330px) {
+        .swiper-slide video {
+            width: 82%;
+        }
+    }
+  @media only screen 
+    and (width: 393px) 
+    and (height: 852px) 
+    and (-webkit-device-pixel-ratio: 3) {
+    .swiper-slide video {
+            width: 70%;
+          margin-left: 34px;
+        }
+    }
+  /* 1284×2778 pixels at 460ppi */
+@media only screen 
+    and (width: 430px) 
+    and (height: 932px) 
+    and (-webkit-device-pixel-ratio: 3) {
+  .swiper-slide video {
+            width: 70%;
+          margin-left: 34px;
+        }
+    }
+</style>
+
+<div class="container">
+    <!-- Slider main container -->
+    <div class="swiper-container">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+            <!-- Slides -->
+           {% if section.settings.video1 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop id="video1">
+                    <source src="{{ section.settings.video1 }}" type="video/mp4">
+                </video>
+            </div>
+            {% endif %}
+            {% if section.settings.video2 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop id="video2">
+                    <source src="{{ section.settings.video2 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+              {% if section.settings.video3 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop id="video3">
+                    <source src="{{ section.settings.video3 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+                {% if section.settings.video4 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop autoplay="" id="video4">
+                    <source src="{{ section.settings.video4 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+          {% if section.settings.video5 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop autoplay="" id="video5">
+                    <source src="{{ section.settings.video5 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+          {% if section.settings.video6 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop autoplay="" id="video6">
+                    <source src="{{ section.settings.video6 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+          {% if section.settings.video7 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop autoplay="" id="video7">
+                    <source src="{{ section.settings.video7 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+          {% if section.settings.video8 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop autoplay="" id="video8">
+                    <source src="{{ section.settings.video8 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+           {% if section.settings.video9 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop autoplay="" id="video9">
+                    <source src="{{ section.settings.video9 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+         
+          {% if section.settings.video10 != blank %}
+            <div class="swiper-slide">
+                <video class="background-video" controls="" muted="" loop autoplay="" id="video10">
+                    <source src="{{ section.settings.video10 }}" type="video/mp4">
+                </video>
+            </div>
+          {% endif %}
+        </div>
+        <!-- If we need navigation buttons -->
+        <div class="swiper-button-next_1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+            </svg>
+        </div>
+        <div class="swiper-button-prev_1">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z"></path>
+            </svg>
+        </div>
+    </div>
+  
+</div>
+
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        slidesPerView: 5,
+        spaceBetween: 0,
+        initialSlide: 5,
+        watchOverflow: true,
+        centeredSlides: true,
+        loop: true,
+        breakpoints: {
+            1100: {
+                slidesPerView: 5,
+                spaceBetween: 0,
+            },
+            768: {
+                slidesPerView: 1,
+                spaceBetween: 0,
+            },
+            250: {
+                slidesPerView: 1,
+                spaceBetween: 50,
+            },
+        },
+        navigation: {
+            nextEl: '.swiper-button-next_1',
+            prevEl: '.swiper-button-prev_1',
+        },
+    });
+
+    mySwiper.on('slideChange', function () {
+        var videos = document.querySelectorAll('video');
+        videos.forEach((video) => video.pause());
+        var activeVideo = document.querySelector('.swiper-slide.swiper-slide-active video');
+        if (activeVideo) {
+            activeVideo.play();
+            activeVideo.parentElement.classList.add('active-slide');
+        }
+    });
+
+    mySwiper.on('transitionEnd', function () {
+        var videos = document.querySelectorAll('video');
+        videos.forEach((video) => {
+            video.parentElement.classList.remove('active-slide');
+            video.pause();
+        });
+        var activeVideo = document.querySelector('.swiper-slide.swiper-slide-active video');
+        if (activeVideo) {
+            activeVideo.play();
+            activeVideo.parentElement.classList.add('active-slide');
+        }
+    });
+  $(document).ready(function(){
+  var screenWidth = $(window).width();
+  if (screenWidth < 800){
+		$('.background-video').removeAttr('autoplay');
+  } else {
+  	$('background-video').attr('autoplay');
+  }
+});
+</script>
+
+{% schema %}
+{
+    "name": "tiktok-slider",
+    "settings": [
+        {
+            "type": "url",
+            "id": "video1",
+            "label": "Video 1"
+           
+        },
+        {
+            "type": "url",
+            "id": "video2",
+            "label": "Video 2"
+        },
+        {
+            "type": "url",
+            "id": "video3",
+            "label": "Video 3"
+        },
+        {
+            "type": "url",
+            "id": "video4",
+            "label": "Video 4" 
+        },
+      {
+            "type": "url",
+            "id": "video5",
+            "label": "Video 5" 
+        },
+      {
+            "type": "url",
+            "id": "video6",
+            "label": "Video 6" 
+        },
+      {
+            "type": "url",
+            "id": "video7",
+            "label": "Video 7" 
+        },
+      {
+            "type": "url",
+            "id": "video8",
+            "label": "Video 8" 
+        },
+      {
+            "type": "url",
+            "id": "video9",
+            "label": "Video 9" 
+        },
+      {
+            "type": "url",
+            "id": "video10",
+            "label": "Video 10" 
+        }
+    ],
+    "presets": [
+        {
+            "name": "tiktok-slider"
+        }
+    ]
+}
+{% endschema %}

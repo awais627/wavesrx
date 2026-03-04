@@ -1,0 +1,98 @@
+<style>
+    .container.main-page {
+        text-align: center;
+          margin-top: 20px;
+
+    }
+    .applicatiton-section p {
+        font-size: 20px;
+        color: #fff;
+        font-weight: 700;
+    }
+    .applicatiton-section {
+    background-color: #1074ca;
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px 10px 36px 10px;
+    border-radius: 10px;
+}
+ .applicatiton-section a {
+    background-color: #fff;
+    padding: 10px 25px 10px 25px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #1074ca;
+}
+  .main-page img {
+    display: inline;
+}
+  .main-page h1 {
+    color: #005dab;
+    font-weight: 600;
+}
+  @media only screen and (max-width: 767px) {
+  .applicatiton-section {
+    background-color: #1074ca;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px 10px 36px 10px;
+    border-radius: 10px;
+}
+}
+</style>
+
+<div class="container main-page">
+    <h1>{{ section.settings.heading1 }}</h1>
+    <a href="https://www.seminolepowersports.com/" target="_blank"><img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/MemLogo_seminolepowersports_c1b55091-bc0c-4027-ae95-7f87a94ddc38.jpg?v=1707143030"></a>
+    <p>{{ section.settings.richtext1 }}</p>
+    <div class="applicatiton-section">
+        {{ section.settings.richtext2 }}
+        <a hfer="#" href="{{ section.settings.link1 }}" target="_blank">{{ section.settings.link1text }}</a>
+    </div>
+</div>
+{% schema %}
+{
+    "name": "Retailer",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image1",
+            "label": "Image 1"
+        },
+        {
+            "type": "text",
+            "id": "heading1",
+            "label": "Heading 1",
+            "default": "AUTHORIZED DEALERS"
+        },
+        {
+            "type": "richtext",
+            "id": "richtext1",
+            "label": "Richtext 1",
+            "default": "<p>1200 RINEHART RD\nSANFORD FL 32771</p>"
+        },
+        {
+            "type": "richtext",
+            "id": "richtext2",
+            "label": "Richtext 2",
+            "default": "<p>Become an authrized WavesRx Dealer!</p>"
+        },
+        {
+            "type": "url",
+            "id": "link1",
+            "label": "Link 1"
+        },
+        {
+            "type": "text",
+            "id": "link1text",
+            "label": "Link 1 text",
+            "default": "Dealer Application"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Retailer"
+        }
+    ]
+}
+{% endschema %}

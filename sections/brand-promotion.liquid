@@ -1,0 +1,128 @@
+<style>
+  .main-outer img {
+    display: inline;
+}
+  </style>
+<div class="container w-100" style="margin-left: -40px;">
+  <a href="{{ section.settings.url1 }}" target="_blank">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="main-outer text-center pt-3">
+              <!-- <a href="{{ section.settings.url1 }}"> -->
+                {% if section.settings.image1 != blank -%}
+                    {{- section.settings.image1 | image_url: width: 50  | image_tag: class: '', loading: 'lazy' -}}
+                {%- endif %}
+               <h5 style="margin-top: 10px;">{{ section.settings.heading1 }}</h5>
+                <!-- <span>on All Rhino Products</span> -->
+              <!-- </a> -->
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="main-outer text-center pt-3">
+              <!-- <a href="{{ section.settings.url2 }}"> -->
+                {% if section.settings.image2 != blank -%}
+                    {{- section.settings.image2 | image_url: width: 50  | image_tag: class: '', loading: 'lazy' -}}
+                {%- endif %}
+                <h5 style="margin-top: 10px;">{{ section.settings.heading2 }}</h5>
+                <!-- <span>Based in California</span> -->
+                <!-- </a> -->
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="main-outer text-center pt-3">
+              <!-- <a href="{{ section.settings.url3 }}"> -->
+                {% if section.settings.image3 != blank -%}
+                    {{- section.settings.image3 | image_url: width: 50 | image_tag: class: '', loading: 'lazy' -}}
+                {%- endif %}
+                <h5 style="margin-top: 10px;">{{ section.settings.heading3 }}</h5>
+                <!-- <span>Ships within 48 hours</span> -->
+                <!-- </a> -->
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="main-outer text-center pt-3">
+              <!-- <a href="{{ section.settings.url4 }}"> -->
+                {% if section.settings.image4 != blank -%}
+                    {{- section.settings.image4 | image_url: width: 50 | image_tag: class: '', loading: 'lazy' -}}
+                {%- endif %}
+                <!-- <h5 style="margin-top: 10px;">{{ section.settings.heading4 }}</h5> -->
+                {% assign heading4 = section.settings.heading4 %}
+                {% assign headingSplit = heading4 | split: '&' %}
+                <h5 style="margin-top: 10px;">{{ headingSplit[0] }}<br>&{{ headingSplit[1] }}</h5>
+
+                <!-- <span>Ships within 48 hours</span> -->
+                <!-- </a> -->
+            </div>
+        </div>
+    </div>
+  </a>
+    <p class="pt-4">{{ section.settings.richtext1 }}</p>
+</div>
+{% schema %}
+{
+    "name": "brand-promotion",
+    "settings": [
+        {
+            "type": "image_picker",
+            "id": "image1",
+            "label": "Image 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "image2",
+            "label": "Image 2"
+        },
+        {
+            "type": "image_picker",
+            "id": "image3",
+            "label": "Image 3"
+        },
+        {
+            "type": "image_picker",
+            "id": "image4",
+            "label": "Image 4"
+        },
+        {
+            "type": "text",
+            "id": "heading1",
+            "label": "Heading 1",
+            "default": "LIFETIME WARRANTY"
+        },
+        {
+            "type": "text",
+            "id": "heading2",
+            "label": "Heading 2",
+            "default": "AMERICAN OPERATED"
+        },
+        {
+            "type": "text",
+            "id": "heading3",
+            "label": "Heading 3",
+            "default": "FAST SHIPPING"
+        },
+        {
+            "type": "text",
+            "id": "heading4",
+            "label": "Heading 4",
+            "default": "FAST SHIPPING"
+        },
+        {
+            "type": "text",
+            "id": "url1",
+            "label": "URL 1",
+            "default": "www.wavesrx.com"
+        },
+        {
+            "type": "richtext",
+            "id": "richtext1",
+            "label": "Richtext 1",
+            "default": "<p>The Rhino USA Kinetic Energy Recovery Rope is the safest and most efficient way to recover a stuck vehicle. Because it’s able to stretch and store 4x more energy than a tow strap, it provides a much smoother and safer recovery. Backed by a LIFETIME warranty and world-class customer service from a family-owned company, it’s worth every penny.</p>"
+        }
+    ],
+    "presets": [
+        {
+            "name": "brand-promotion"
+        }
+    ]
+}
+{% endschema %}

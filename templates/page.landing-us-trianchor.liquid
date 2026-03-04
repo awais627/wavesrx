@@ -1,0 +1,1802 @@
+{% assign best_sellers = collections['best-selling-2'] %}
+{% assign new_arrivals = collections['new-arrivals'] %}
+{% assign main_product = all_products.wrx_ssta_7 %}
+{% assign variant_id = main_product.metafields.custom.hero_variant_id %}
+
+{% if variant_id %}
+  {% assign featured_variant = main_product.variants | where: 'id', variant_id | first %}
+{% endif %}
+
+{% if featured_variant %}
+  {% assign hero_variant = featured_variant %}
+{% else %}
+  {% assign hero_variant = main_product.first_available_variant %}
+{% endif %}
+
+{% assign hero_price = hero_variant.price %}
+{% assign hero_compare_price = hero_variant.compare_at_price %}
+{% assign hero_cart_id = hero_variant.id %}
+{% assign hero_url = main_product.url | append: '?variant=' | append: hero_variant.id %}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
+
+<style>
+    header.site-header,
+  .shopify-section-header,
+  .header-wrapper,
+  .shopify-section-group-header-group,
+  #shopify-section-header {
+    display: none !important;
+  }
+
+  /* Generic sections */
+  .section-pad {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 48px;
+  }
+
+  .section-sub {
+    margin-top: 6px;
+    text-align: center;
+    color: #666;
+    font-weight: 600;
+  }
+
+  /* Product grids */
+  .product-grid {
+    display: grid;
+    gap: 22px;
+  }
+
+  @media (min-width: 992px) {
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Cards */
+  .card-wrx {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 22px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .card-wrx .media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 160px;
+  }
+
+  .card-wrx .media img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .card-wrx h4 {
+    font-weight: 900;
+    font-size: 20px;
+    margin: 16px 0 6px;
+    text-align: left;
+  }
+
+  .card-wrx p.small {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    min-height: 1.2em;
+  }
+
+  .wrx-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-yellow {
+    background: #FFD200;
+    border: 0;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .btn-outline {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+  }
+
+  .btn-yellow:hover {
+    filter: brightness(.95);
+  }
+
+  .btn-outline:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Rating stars */
+  .rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .reviews {
+    color: #8c8c8c;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* View more */
+  .view-more-wrap {
+    text-align: center;
+    margin-top: 26px;
+  }
+
+  .btn-view-more {
+    background: #FFD200;
+    border-radius: 26px;
+    padding: 12px 26px;
+    font-weight: 900;
+    color: #000;
+    display: inline-block;
+  }
+
+  /* Logo Bar */
+  .custom-logo-bar {
+    text-align: center;
+    padding: 22px 0 0;
+  }
+
+  .custom-logo-bar img {
+    max-width: 200px;
+    height: auto;
+  }
+
+  /* Card wide */
+  .card-wide {
+    display: grid;
+    grid-template-columns: 1.05fr 1.2fr;
+    gap: 24px;
+    background: #EEEEEE;
+    border: 1px solid #e6e6e6;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    padding: 24px;
+    height: 100%;
+  }
+
+  .card-wide .photo {
+    background: #fff;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-wide .photo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 260px;
+  }
+</style>
+
+<div class="custom-logo-bar">
+  <a href="{{ routes.root_url }}">
+    <img
+      src="{{ shop.brand.logo | default: settings.logo | img_url: '300x' }}"
+      alt="{{ shop.name }}"
+      loading="lazy"
+      style="display:block;margin:0 auto;width:35%;max-width:180px;height:auto;"
+    >
+  </a>
+</div>
+
+<!-- =================== HERO BANNER =================== -->
+<style>
+    .hero-landing {
+      padding: 22px 20px 50px;
+      background: #EEEEEE;
+    }
+
+    .hero-header {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .hero-header h1 {
+      font-size: 36px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hero-header p {
+      font-size: 18px;
+      color: #555;
+      font-weight: 600;
+    }
+
+    /* Banner */
+    .hero-banner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+      max-width: 1300px;
+      margin: auto;
+    }
+
+    /* Left video */
+    .hero-left {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .hero-left iframe,
+    .hero-video {
+      width: 100%;
+      height: 400px;
+      border-radius: 14px;
+    }
+
+    /* Right info */
+    .hero-right {
+      flex: 1;
+      min-width: 300px;
+      position: relative;
+    }
+
+    .hero-right h2 {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-right ul {
+      margin-bottom: 20px;
+      padding-left: 24px;
+      font-weight: 600;
+      list-style-type: disc;
+      list-style-position: outside;
+    }
+
+    .hero-right ul li {
+      margin: 8px 0;
+      line-height: 1.4;
+    }
+
+    /* Price */
+    .hero-price {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .sale-price {
+      color: #e60023;
+      margin-right: 10px;
+    }
+
+    .compare-price {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    /* Buttons */
+    .hero-buy-btn,
+    .hero-right .btn-yellow,
+    .hero-right .btn-outline {
+      text-align: center;
+      box-sizing: border-box;
+      display: inline-block;
+      font-weight: 700;
+      border-radius: 100px;
+      padding: 14px 26px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .hero-buy-btn,
+    .hero-right .btn-yellow {
+      background: #ffb800;
+      color: #000;
+    }
+
+    .hero-buy-btn:hover,
+    .hero-right .btn-yellow:hover {
+      background: #ffc933;
+    }
+
+    .hero-right .btn-outline {
+      background: #fff;
+      border: 1px solid #e6e6e6;
+      color: #000;
+    }
+
+    .hero-right .btn-outline:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .hero-right .btn-yellow {
+      margin-right: 7px;
+    }
+
+    .hero-right .btn-outline {
+      margin-left: 7px;
+    }
+
+    /* Reviews */
+    .rating-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .stars-outer {
+      position: relative;
+      display: inline-block;
+      color: #ddd;
+      overflow: hidden;
+      width: 90px;
+      white-space: nowrap;
+      font-size: 20px;
+    }
+
+    .stars-outer::before{
+      content: "★★★★★";
+    }
+
+    .stars-inner::before {
+      content: "★★★★★";
+    }
+
+    .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc(var(--rating) * 20%); /* Correct width calculation */
+    color: #f5a623;
+  }
+
+    .rating-link:hover .stars-inner {
+      filter: brightness(1.1);
+    }
+
+    .rating-link:hover .reviews {
+      color: #ffc933;
+      font-weight: bold;
+    }
+
+    /* Sale badge */
+    .sale-percentage {
+      background: #ff4d4f;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 14px;
+      display: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero-banner {
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner {
+        flex-direction: column;
+        gap: 25px;
+      }
+
+      .hero-left,
+      .hero-right {
+        flex: 1 1 100% !important;
+        min-width: 100% !important;
+      }
+
+      .hero-left iframe,
+      .hero-video {
+        height: 300px;
+      }
+
+      .hero-header h1 {
+        font-size: 28px;
+      }
+
+      .hero-header p {
+        font-size: 16px;
+      }
+
+      .hero-right h2 {
+        font-size: 24px;
+      }
+
+      .hero-right ul {
+        padding-left: 20px;
+      }
+
+      .hero-price {
+        font-size: 20px;
+      }
+
+      /* Stack buttons on mobile */
+      .hero-right form,
+      .hero-right .btn-outline {
+        width: 100%;
+      }
+
+      .hero-right .btn-yellow {
+        width: 100%;
+      }
+
+      .hero-right div[style*="display:flex"] {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      /* Sale badge smaller and moved */
+      .sale-percentage {
+        font-size: 11px;
+        padding: 5px 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-header h1 {
+        font-size: 22px;
+      }
+
+      .hero-header p {
+        font-size: 14px;
+      }
+
+      .hero-right h2 {
+        font-size: 20px;
+      }
+
+      .hero-price {
+        font-size: 18px;
+      }
+
+      .hero-left iframe,
+      .hero-video {
+        height: 220px;
+      }
+    }
+</style>
+<section class="hero-landing">
+  <!-- Heclasseader -->
+  <div class="hero-header" style="text-align:center; margin-bottom:25px;">
+    <h1 style="font-size:36px; font-weight:900; margin-bottom:12px; line-height:1.15;">
+      Premium Gear <br class="mobile-break">
+      for Boats &amp; PWC
+    </h1>
+
+    <style>
+      .mobile-break { display: none; }
+      @media (max-width: 749px){
+        .mobile-break { display: block; }
+      }
+    </style>
+    <p style="font-size:18px; color:#555; font-weight:600;">Amazon Top-Rated Marine Products</p>
+  </div>
+
+  <div
+    class="hero-banner"
+    style="display:flex; flex-wrap:wrap; gap:40px; align-items:center; max-width:1300px; margin:auto;"
+  >
+    <!-- LEFT: Video -->
+    <div class="hero-left" style="flex:1; min-width:300px;">
+      {% if main_product.metafields.custom.ads_short_video %}
+        {% assign video_url = main_product.metafields.custom.ads_short_video %}
+        {% if video_url contains '?' %}
+          {% assign joiner = '&' %}
+        {% else %}
+          {% assign joiner = '?' %}
+        {% endif %}
+
+        <iframe
+          src="{{ video_url }}{{ joiner }}playsinline=1&controls=1&rel=0"
+          frameborder="0"
+          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+          allowfullscreen
+          style="width:100%; height:400px; border-radius:14px;"
+        ></iframe>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: Info -->
+    <div class="hero-right" style="flex:1; min-width:300px; position:relative;">
+      <!-- Reviews -->
+      {% assign r = main_product.metafields.custom.rating_count | default: 0 %}
+      {% assign rc = main_product.metafields.custom.review_count | default: 0 %}
+
+      {% if r > 0 %}
+        <div style="margin-bottom:20px; font-size:16px; font-weight:600;">
+          <a
+            href="{{ hero_url }}"
+            class="rating-link"
+            style="text-decoration:none; color:inherit; display:inline-block;"
+          >
+            <div class="rating-wrapper">
+              <div class="stars" style="color: #ffb400;">★★★★★</div>
+              <span class="reviews">({{ rc }}) reviews</span>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Title -->
+      <h2 style="font-size:28px; font-weight:900; margin-bottom:6px;">
+        <a href="https://www.wavesrx.com/collections/deep-anchors/products/wrx_ssta_7">7LB FOLDING TRIANCHOR</a>
+      </h2>
+
+      <!-- Sub Title -->
+      <p style="margin:0 0 16px; font-size:20px; font-weight:600; opacity:0.85;">Compact Anchor for Medium Boats</p>
+
+      <!-- Features -->
+      {% if main_product.metafields.custom.ads_features_list %}
+        {% assign features = main_product.metafields.custom.ads_features_list.value %}
+        {% if features and features.size > 0 %}
+          <ul style="margin-bottom:20px; padding-left:24px; font-weight:600; list-style-type:disc; list-style-position:outside;">
+            {% for feature in features %}
+              <li style="display:list-item; list-style-type:disc; margin:8px 0;">
+                {{ feature }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endif %}
+      <!-- Price -->
+      <p style="font-size:22px; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        {% if hero_compare_price > hero_price %}
+          <span style="color:#e60023;">
+            {{ hero_price | money }}
+          </span>
+
+          <span style="text-decoration:line-through; color:#999; font-size:16px;">
+            {{ hero_compare_price | money }}
+          </span>
+
+          <!-- SAVE badge (moved here) -->
+          <span
+            class="sale-percentage"
+            data-sale-price="{{ hero_price | divided_by: 100.0 }}"
+            data-sale-old-price="{{ hero_compare_price | divided_by: 100.0 }}"
+            style="
+              background:#ff4d4f;
+              color:#fff;
+              font-size:12px;
+              font-weight:700;
+              padding:6px 10px;
+              border-radius:14px;
+              display:none;
+              line-height:1;
+            "
+          >
+            SAVE
+          </span>
+
+          <script>
+            document.querySelectorAll('.sale-percentage').forEach((badge) => {
+              const p = parseFloat(badge.dataset.salePrice);
+              const o = parseFloat(badge.dataset.saleOldPrice);
+              if (o > p) {
+                badge.textContent = `SAVE ${Math.round(((o - p) / o) * 100)}%`;
+                badge.style.display = 'inline-block';
+              }
+            });
+          </script>
+        {% else %}
+          <span>{{ hero_price | money }}</span>
+        {% endif %}
+      </p>
+
+      <!-- Buttons -->
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ hero_cart_id }}">
+          <button type="submit" class="btn-yellow">BUY NOW</button>
+        </form>
+
+        <a href="{{ hero_url }}" class="btn-outline"> LEARN MORE </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== BADGES =================== -->
+<style>
+  .icons-lists {
+    border-top: 2px solid #ccc;
+    border-bottom: 2px solid #ccc;
+    margin: 20px 0;
+  }
+
+  .icon-shop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .icon-shop .icons img {
+    width: 70%;
+    max-width: 70px;
+    height: auto;
+  }
+
+  .icon-text h4 {
+    margin: 0;
+    line-height: 1.2;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: normal;
+  }
+
+  /* Make the row flex and wrap on smaller screens */
+  .icons-lists .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Columns flex */
+  .icons-lists .col-sm-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 991px) {
+    .icons-lists .col-sm-3 {
+      flex: 0 0 50%;
+      max-width: 50%;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .icons-lists .col-sm-3 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* Optional: add subtle border between stacked items on mobile */
+  @media (max-width: 575px) {
+    .icon-shop {
+      width: 100%;
+      justify-content: flex-start;
+      border-bottom: 1px solid #ccc;
+      padding: 12px 10px;
+    }
+
+    .icon-shop:last-child {
+      border-bottom: none;
+    }
+
+    .icon-text h4 {
+      text-align: left;
+      font-size: 14px;
+    }
+  }
+</style>
+
+<div id="shopify-section-template--16192486637746__54193021-7121-4d26-ba0f-39b6dfdfd3ac" class="shopify-section">
+  <div class="container">
+    <div
+      class="icons-lists"
+      style="border-top: 2px solid #ccc;margin: 20px 0;border-bottom: 2px solid #ccc;"
+    >
+      <a href="https://www.wavesrx.com/pages/return-refund-policy" target="_blank">
+        <div class="row">
+          <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+            <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+              <div class="icons">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/1-icon.png?v=1733299573"
+                  style="width:70%;"
+                  alt="price tag icon"
+                >
+              </div>
+              <div class="icon-text">
+                <h4 style="margin: 0px; line-height: 35px;">30 DAYS PRICE MATCH</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+            <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+              <div class="icons">
+                <img
+                  src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/anniversary-clip.png?v=1701433826"
+                  style="width:70%;"
+                  alt="return tag icon"
+                >
+              </div>
+              <div class="icon-text">
+                <h4 style="margin: 0px; line-height: 35px;">HASSLE FREE RETURNS</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+            <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+              <div class="icons">
+                <img
+                  alt="moneyback tag icon"
+                  src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/cash_money_icon_c35ac111-de1c-4e87-a9a7-df5ac8b73ea5.png?v=1701433824"
+                  style="width:70%;"
+                >
+              </div>
+              <div class="icon-text">
+                <h4 style="margin: 0px; line-height: 35px;">365 DAYS MONEY BACK</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+            <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+              <div class="icons">
+                <img
+                  alt="us flag tag icon"
+                  src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/USA_flag_045.png?v=1703916600"
+                  style="width:70%;"
+                >
+              </div>
+              <div class="icon-text">
+                <h4 style="margin: 0px; line-height: 35px;">AMERICAN OPERATED</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- =================== REVIEW SECTION =================== -->
+<style>
+  .reviews-section {
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  .reviews-wrap {
+    max-width: 1240px;
+    margin: auto;
+    display: flex;
+    flex-direction: column; /* stack badge + slider */
+    gap: 30px;
+    align-items: center;
+  }
+
+  /* Badge */
+  .reviews-badge {
+    background: transparent;
+    color: #111;
+    padding: 20px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .reviews-badge .rating {
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: 10px;
+  }
+
+  .reviews-badge h3 {
+    font-size: 1.875rem; /* 30px */
+    font-weight: bold;
+  }
+
+  /* Slider */
+  .reviews-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .reviews-slider {
+    width: 100%;
+  }
+
+  .reviews-track {
+    display: flex;
+    transition: transform 0.35s ease;
+  }
+
+  /* Review card */
+  .review {
+    min-width: 100%;
+    background: #e9e9e9;
+    padding: 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  /* 1st row: Flag | Name | Date | Verified */
+  .review .review-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    justify-content: center;
+  }
+
+  .review .review-header img.flag {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  .review .verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem; /* 12px */
+    font-weight: 600;
+    color: #1da1f2;
+  }
+
+  .review .verified-icon {
+    flex-shrink: 0;
+  }
+
+  /* 2nd row: stars */
+  .review .stars {
+    color: #ffb400;
+    font-size: 1.125rem; /* 18px */
+  }
+
+  /* 3rd row: review title */
+  .review h4 {
+    font-size: 1rem; /* 16px */
+    font-weight: 900;
+    margin: 0;
+    letter-spacing: normal;
+  }
+
+  /* Review content */
+  .review p {
+    font-size: 18px;
+    color: #444;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Product title */
+  .review .product-title {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 700;
+    color: #333;
+    margin-top: 10px;
+  }
+
+  /* Nav buttons */
+  .reviews-slider .nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .reviews-slider .nav button {
+    background: #111;
+    color: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .review .review-header {
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .review .verified-badge {
+      margin-left: 0;
+    }
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 1024px) {
+    .reviews-wrap {
+      flex-wrap: wrap;
+    }
+
+    .reviews-badge {
+      padding: 20px;
+      text-align: center;
+      flex: 1 1 100%;
+    }
+
+    .reviews-badge h3 {
+      font-size: 1.5rem; /* 24px */
+      line-height: 1.3;
+    }
+
+    .reviews-badge .rating {
+      font-size: 1rem; /* 16px */
+      justify-content: center;
+    }
+
+    .review h4 {
+      font-size: 1rem; /* 16px */
+    }
+
+    .review p {
+      font-size: 0.9375rem; /* 15px */
+    }
+
+    .reviews-slider {
+      width: 100%;
+    }
+
+    /* Move nav buttons to bottom center */
+    .reviews-slider .nav {
+      position: relative;
+      top: auto;
+      transform: none;
+      justify-content: center;
+      margin-top: 15px;
+      gap: 15px;
+    }
+  }
+</style>
+
+<section class="reviews-section">
+  <div class="reviews-wrap">
+    <!-- Left badge -->
+    <div class="reviews-badge">
+      <h3 style="text-transform: capitalize;">Trusted by Over 100,000 Customers</h3>
+
+      <div class="rating" style="justify-content: center;">
+        <div class="stars" style="color: #ffb400;">★★★★★ 4.8</div>
+        Average Rating
+      </div>
+    </div>
+
+    <!-- Slider -->
+    <div class="reviews-container">
+      <div class="reviews-slider">
+        <div class="reviews-track">
+          <!-- OBXGreg's review first -->
+          <div class="review">
+            <div class="review-header">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <span class="author">OBXGreg</span>
+              <span class="date">February 12, 2026</span>
+              <span class="verified-badge">
+                <svg class="verified-icon" viewBox="0 0 24 24" width="14" height="14" fill="#1DA1F2">
+                  <path d="M22.5 12l-2.1 2.4.3 3.2-3.1.7-1.6 2.8-2.9-1.3-2.9 1.3-1.6-2.8-3.1-.7.3-3.2L1.5 12l2.1-2.4-.3-3.2 3.1-.7 1.6-2.8 2.9 1.3 2.9-1.3 1.6 2.8 3.1.7-.3 3.2L22.5 12z"/>
+                  <path d="M10 14.5l-2-2 1.2-1.2L10 12.1l4-4 1.2 1.2z" fill="#fff"/>
+                </svg>
+                Verified
+              </span>
+            </div>
+            <div class="stars">★★★★★</div>
+            <h4>The IDEAL anchor!</h4>
+            <p>
+              This anchor is the perfect set up for our Yamaha AR220! On the sandy bottom of the Albermarle Sound here
+              in the Outer Banks, it holds our boat with no problem, and is easy to pull back up. Even our local Coast
+              Guard Auxiliary Inspector was impressed with it--his first time seeing one.
+            </p>
+            <div style="display:flex;justify-content:center;margin-top:18px;">
+              <a
+                href="https://www.wavesrx.com/collections/deep-anchors/products/wrx_ssta_7"
+                style="display:inline-flex;align-items:center;justify-content:center;font-family:Jost, sans-serif;font-size:13px;line-height:1;font-weight:500;padding:10px 22px;border-radius:999px;border:2px solid #F9A211;color:#F9A211;text-decoration:none;text-transform:uppercase;letter-spacing:1px;background:rgba(255,255,255,.35);"
+              >
+                7LB Folding TriAnchor
+              </a>
+            </div>
+          </div>
+
+          <!-- MamaMartinez's review second -->
+          <div class="review">
+            <div class="review-header">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <span class="author">Mama Martinez</span>
+              <span class="date">June 23, 2025</span>
+              <span class="verified-badge">
+                <svg class="verified-icon" viewBox="0 0 24 24" width="14" height="14" fill="#1DA1F2">
+                  <path d="M22.5 12l-2.1 2.4.3 3.2-3.1.7-1.6 2.8-2.9-1.3-2.9 1.3-1.6-2.8-3.1-.7.3-3.2L1.5 12l2.1-2.4-.3-3.2 3.1-.7 1.6-2.8 2.9 1.3 2.9-1.3 1.6 2.8 3.1.7-.3 3.2L22.5 12z"/>
+                  <path d="M10 14.5l-2-2 1.2-1.2L10 12.1l4-4 1.2 1.2z" fill="#fff"/>
+                </svg>
+                Verified
+              </span>
+            </div>
+            <div class="stars">★★★★★</div>
+            <h4>Its a solid anchor</h4>
+            <p>
+              Super happy with this anchor, it held our 23ft wake boat in place anywhere we dropped it. The bungee
+              section is solid and the whole anchor package feels very well made. Comes in a nice heavy duty plastic
+              case that is easy to reinstall once you are done for the day, I did buy the chain section and even that
+              fit in the case with everything else. My kids said I bought it because it was chrome and shiny, they are
+              correct.
+              <br>
+              Build quality: Excellent, Functionality: Works great
+            </p>
+            <div style="display:flex;justify-content:center;margin-top:18px;">
+              <a
+                href="https://www.wavesrx.com/collections/deep-anchors/products/wrx_ssta_7"
+                style="display:inline-flex;align-items:center;justify-content:center;font-family:Jost, sans-serif;font-size:13px;line-height:1;font-weight:500;padding:10px 22px;border-radius:999px;border:2px solid #F9A211;color:#F9A211;text-decoration:none;text-transform:uppercase;letter-spacing:1px;background:rgba(255,255,255,.35);"
+              >
+                7LB Folding TriAnchor
+              </a>
+            </div>
+          </div>
+
+          <!-- Eroc's review third -->
+          <div class="review">
+            <div class="review-header">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <span class="author">Eroc</span>
+              <span class="date">June 13, 2025</span>
+              <span class="verified-badge">
+                <svg class="verified-icon" viewBox="0 0 24 24" width="14" height="14" fill="#1DA1F2">
+                  <path d="M22.5 12l-2.1 2.4.3 3.2-3.1.7-1.6 2.8-2.9-1.3-2.9 1.3-1.6-2.8-3.1-.7.3-3.2L1.5 12l2.1-2.4-.3-3.2 3.1-.7 1.6-2.8 2.9 1.3 2.9-1.3 1.6 2.8 3.1.7-.3 3.2L22.5 12z"/>
+                  <path d="M10 14.5l-2-2 1.2-1.2L10 12.1l4-4 1.2 1.2z" fill="#fff"/>
+                </svg>
+                Verified
+              </span>
+            </div>
+            <div class="stars">★★★★★</div>
+            <h4>Great buy</h4>
+            <p>
+              Absolutely worth it. We have 2 of these. <br> We have a 5lbs for jetskis. This thing will hold 4 skis in heavy
+              wind on a bungee anchor rope. <br> We also have a 7lbs for out pontoon. We did add the 5ft stainless chain and
+              use 2 bungee anchor ropes linked together.
+            </p>
+            <div style="display:flex;justify-content:center;margin-top:18px;">
+              <a
+                href="https://www.wavesrx.com/collections/deep-anchors/products/wrx_ssta_7"
+                style="display:inline-flex;align-items:center;justify-content:center;font-family:Jost, sans-serif;font-size:13px;line-height:1;font-weight:500;padding:10px 22px;border-radius:999px;border:2px solid #F9A211;color:#F9A211;text-decoration:none;text-transform:uppercase;letter-spacing:1px;background:rgba(255,255,255,.35);"
+              >
+                7LB Folding TriAnchor
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button id="prev">‹</button>
+          <button id="next">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector('.reviews-track');
+  const slides = document.querySelectorAll('.review');
+  let i = 0;
+
+  function updateSlide() {
+    const slideWidth = slides[0].offsetWidth;
+    track.style.transform = `translateX(-${i * slideWidth}px)`;
+  }
+
+  document.getElementById('next').onclick = () => {
+    i = (i + 1) % slides.length;
+    updateSlide();
+  };
+
+  document.getElementById('prev').onclick = () => {
+    i = (i - 1 + slides.length) % slides.length;
+    updateSlide();
+  };
+
+  window.addEventListener('resize', updateSlide); // Keep responsive
+  updateSlide(); // Initial position
+</script>
+
+<!-- =================== COMMON CSS =================== -->
+<style>
+  .product-grid h4{
+    font-weight:900; font-size:20px; text-align:left;
+  }
+</style>
+
+<!-- =================== OUR BEST SELLERS =================== -->
+<style>
+  .section-pad {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 48px;
+  }
+
+  .section-sub {
+    margin-top: 6px;
+    text-align: center;
+    color: #666;
+    font-weight: 600;
+  }
+
+  /* Product grid */
+  .product-grid {
+    display: grid;
+    gap: 22px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 992px) {
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card wide */
+  .card-wide {
+    display: grid;
+    grid-template-columns: 1.05fr 1.2fr;
+    gap: 24px;
+    background: #EEEEEE;
+    border: 1px solid #e6e6e6;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    padding: 24px;
+    height: 100%;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Card image */
+  .card-wide .photo {
+    background: #fff;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-wide .photo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+  }
+
+  /* Card content */
+  .card-wide .content h4 {
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.025rem;
+    margin: 10px 0 6px;
+  }
+
+  .card-wide .content .sub {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  /* Price row */
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .price-now {
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .price-compare {
+    color: #8c8c8c;
+    text-decoration: line-through;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* Sale badge */
+  .sale-percentage {
+    background-color: #ff4d4f;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Buttons */
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-yellow {
+    background: #FFD200;
+    border: 0;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-outline {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-yellow:hover {
+    filter: brightness(.95);
+  }
+
+  .btn-outline:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Rating stars */
+  .rating-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .stars-outer {
+    position: relative;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    color: #ddd;
+    overflow: hidden;
+    width: 90px;
+    white-space: nowrap;
+  }
+
+  .stars-outer::before {
+    content: "★★★★★";
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc(var(--rating) * 20%); /* Correct width calculation */
+    color: #f5a623;
+  }
+
+  .stars-inner::before {
+    content: "★★★★★";
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  /* Reviews count */
+  .reviews {
+    color: #8c8c8c;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 991.98px) {
+    .card-wide {
+      grid-template-columns: 1fr;
+      padding: 18px;
+    }
+    .card-wide .photo img {
+      max-height: 220px;
+    }
+    .content h4 {
+      font-size: 18px;
+    }
+    .content .sub {
+      font-size: 14px;
+    }
+    .price-now,
+    .price-compare {
+      font-size: 16px;
+    }
+  }
+</style>
+<section class="section-pad">
+  <div class="container">
+    <h2 class="section-title">BEST SELLERS</h2>
+    {% comment %} <div class="section-sub">LOVED BY RIDERS LIKE YOU</div> {% endcomment %}
+
+    <div class="product-grid grid-2 mt-4">
+      {%- for product in best_sellers.products limit: 4 -%}
+        {% if product.id == main_product.id %}
+          {% continue %}
+        {% endif %}
+
+        <article class="card-wide" style="align-items:center; position: relative;">
+          <a class="photo" href="{{ product.url }}">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}">
+            {% else %}
+              <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}">
+            {% endif %}
+          </a>
+
+          <div class="content">
+            <!-- Rating -->
+            {% assign r = product.metafields.custom.rating_count | default: 0 %}
+            {% assign rc = product.metafields.custom.review_count | default: 0 %}
+
+            {% if r > 0 %}
+              <a href="{{ product.url }}" class="rating-link" style="text-decoration:none; color:inherit;">
+                <div class="rating-wrapper">
+                  <div class="stars" style="color: #ffb400;">★★★★★</div>
+                  <span class="reviews">({{ rc }}) reviews</span>
+                </div>
+              </a>
+            {% endif %}
+
+            <h4 style="letter-spacing: 0.025rem;">{{ product.title }}</h4>
+            <div class="sub">
+              {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
+            </div>
+
+            {% assign v = product.first_available_variant %}
+
+            <div class="price-row">
+              <span class="price-now">{{ v.price | money }}</span>
+
+              {% if v.compare_at_price > v.price %}
+                <span class="price-compare">{{ v.compare_at_price | money }}</span>
+                <span
+                  class="sale-percentage"
+                  data-sale-price="{{ v.price | divided_by: 100.0 }}"
+                  data-sale-old-price="{{ v.compare_at_price | divided_by: 100.0 }}"
+                  style="position: absolute; top: 16px; right: 20px; background-color:#ff4d4f;color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
+                ></span>
+              {% endif %}
+            </div>
+
+            <div class="actions">
+              <form method="post" action="/cart/add" class="d-inline">
+                <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+                <button type="submit" class="btn-yellow">ADD TO CART</button>
+              </form>
+              <a class="btn-outline" href="{{ product.url }}">LEARN MORE</a>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- =================== NEW ARRIVALS with SMART LOAD MORE =================== -->
+<style>
+    #new-arrivals .product-card {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      background: #eee;
+      border-radius: 15px;
+    }
+
+    #new-arrivals .product-card .content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    #new-arrivals .product-card .content-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    #new-arrivals .product-card .actions {
+      margin-top: auto;
+    }
+
+    #new-arrivals .product-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  #new-arrivals .product-card .actions form,
+  #new-arrivals .product-card .actions a {
+    flex: 1;
+  }
+
+  #new-arrivals .product-card .actions button,
+  #new-arrivals .product-card .actions a {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+<section class="section-pad" id="new-arrivals">
+  <div class="container">
+    <h2 class="section-title">NEW ARRIVALS</h2>
+
+    <style>
+      #new-arrivals .product-card.is-hidden { display: none !important; }
+    </style>
+
+    {%- assign initial_visible = 4 -%}
+    <div class="product-grid grid-4 mt-4 new-arrivals-grid">
+      {%- for product in new_arrivals.products -%}
+        {% if product.id == main_product.id %}
+          {% continue %}
+        {% endif %}
+
+        <article
+          class="product-card card-vertical{% if forloop.index0 >= initial_visible %} is-hidden{% endif %}"
+          data-idx="{{ forloop.index0 }}"
+        >
+          <!-- Content -->
+          <div class="content">
+            <!-- Image -->
+            <a class="photo" href="{{ product.url }}">
+              {% if product.featured_image %}
+                <img
+                  src="{{ product.featured_image | img_url: '700x' }}"
+                  alt="{{ product.title | escape }}"
+                  style="border-radius: 10px; margin-bottom: 10px;"
+                >
+              {% else %}
+                <img
+                  src="{{ 'placeholder-image.png' | asset_url }}"
+                  alt="{{ product.title | escape }}"
+                  style="border-radius: 10px;"
+                >
+              {% endif %}
+            </a>
+
+            <div class="content-container" style="position:relative;">
+              <!-- Rating -->
+              {% assign r = product.metafields.custom.rating_count | default: 0 %}
+              {% assign rc = product.metafields.custom.review_count | default: 0 %}
+
+              {% if r > 0 %}
+                <a
+                  href="{{ product.url }}"
+                  class="rating-link"
+                  style="text-decoration:none; color:inherit; display:inline-block; margin-bottom: 10px;"
+                >
+                  <div class="rating-wrapper">
+                    <div class="stars" style="color: #ffb400;">★★★★★</div>
+                    <span class="reviews">({{ rc }}) reviews</span>
+                  </div>
+                </a>
+              {% endif %}
+
+              <!-- Title & Subtitle -->
+              <h4 style="letter-spacing: 0.025rem;">{{ product.title }}</h4>
+              <div class="sub">
+                {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
+              </div>
+
+              <!-- Price Row -->
+              {% assign first_v = product.first_available_variant %}
+
+              <div class="price-row">
+                <span class="price-now">{{ first_v.price | money }}</span>
+
+                {% if first_v.compare_at_price > first_v.price %}
+                  <span class="price-compare">{{ first_v.compare_at_price | money }}</span><br>
+                  <span
+                    class="sale-percentage"
+                    data-sale-price="{{ first_v.price | divided_by: 100.0 }}"
+                    data-sale-old-price="{{ first_v.compare_at_price | divided_by: 100.0 }}"
+                    style="position: absolute; top: 0; right: 0;background-color:#ff4d4f;color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
+                  ></span>
+                {% endif %}
+              </div>
+
+              <!-- Buttons -->
+              <div class="actions">
+                <form method="post" action="/cart/add" class="d-inline">
+                  <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+                  <button type="submit" class="btn-yellow">Buy Now</button>
+                </form>
+                <a class="btn-outline" href="{{ product.url }}">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const step = 4;
+        const container = document.querySelector('#new-arrivals');
+        if (!container) return;
+
+        const button = container.querySelector('#load-more-new-arrivals');
+        if (!button) return;
+
+        function updateButton() {
+          const hiddenCount = container.querySelectorAll('.new-arrivals-grid .product-card.is-hidden').length;
+          button.style.display = hiddenCount > 0 ? 'inline-block' : 'none';
+        }
+
+        button.addEventListener('click', () => {
+          const hiddenCards = container.querySelectorAll('.new-arrivals-grid .product-card.is-hidden');
+          const revealCount = Math.min(step, hiddenCards.length);
+          for (let i = 0; i < revealCount; i++) {
+            hiddenCards[i].classList.remove('is-hidden');
+          }
+          updateButton();
+        });
+
+        updateButton();
+      });
+    </script>
+  </div>
+</section>
+
+<!-- =================== STORY =================== -->
+<style>
+  .wavesrx-story {
+    padding: 80px 20px;
+    background: #fff;
+  }
+
+  .wavesrx-story .container {
+    max-width: 1200px;
+    margin: auto;
+  }
+
+  .story-title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 800;
+    margin-bottom: 60px;
+  }
+
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .story-text p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #000;
+    margin-bottom: 20px;
+  }
+
+  /* Image stack */
+  .story-images {
+    position: relative;
+    width: 100%;
+  }
+
+  .story-images .image {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    max-width: 270px;
+  }
+
+  .story-images img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Top image */
+  .image-1 {
+    width: 100%;
+  }
+
+  /* Bottom image (overlapping) */
+  .image-2 {
+    width: 75%;
+    margin-top: -80px;
+    margin-left: auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .story-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .image-1,
+    .image-2 {
+      width: 100%;
+      margin: 0 0 20px 0;
+    }
+  }
+</style>
+<section class="wavesrx-story">
+  <div class="container">
+    <!-- Title -->
+    <h2 class="story-title">OUR STORY</h2>
+
+    <div class="story-grid">
+      <!-- LEFT: Text -->
+      <div class="story-text">
+        <p>
+          We are two friends from sunny Sarasota, Florida, bonded by a deep passion for open waters and a genuine
+          appreciation for the freedom that comes with riding a boat or jet ski.
+        </p>
+
+        <p>
+          We love tinkering with our water toys, always coming up with new product ideas to make our boating and riding
+          experiences safer and more enjoyable.
+        </p>
+
+        <p>
+          It was during a 2019 brainstorming session, while developing a lighter, more compact, and efficient beach
+          anchor, that we realized our innovations could benefit others. That is when WavesRx was born.
+        </p>
+
+        <p>
+          If you share the same passion for adventure and want to join us on this exhilarating journey, it would be a
+          privilege to have you on board.
+        </p>
+      </div>
+
+      <!-- RIGHT: Images -->
+      <div class="story-images">
+        <div class="image image-1">
+          <img src="https://www.wavesrx.com/cdn/shop/files/f-img1.jpg?v=1747907805&width=540" alt="Boat lifestyle">
+        </div>
+
+        <div class="image image-2">
+          <img
+            src="https://www.wavesrx.com/cdn/shop/files/Untitled-1kk.jpg?v=1744021742&width=750"
+            alt="Jet ski action"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.appio.so/v1/appio.js';
+    script.async = true;
+
+    script.onload = function () {
+      if (window.Appio && typeof Appio.loadBadges === 'function') {
+        Appio.loadBadges();
+      }
+    };
+
+    document.head.appendChild(script);
+  })();
+
+  window.getPercentage = function (oldPrice, price) {
+    if (typeof oldPrice !== 'number' || typeof price !== 'number' || oldPrice <= 0 || oldPrice <= price) {
+      return { valid: false, value: 0 };
+    }
+    const percentageDifference = Math.round(((oldPrice - price) / oldPrice) * 100);
+    return { valid: true, value: percentageDifference };
+  };
+
+  // Auto-update all badges on page
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-sale-price]').forEach((badge) => {
+      const price = parseFloat(badge.dataset.salePrice);
+      const oldPrice = parseFloat(badge.dataset.saleOldPrice);
+      const discount = getPercentage(oldPrice, price);
+
+      if (discount.valid) {
+        badge.textContent = `Save ${discount.value}%`;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    });
+  });
+</script>

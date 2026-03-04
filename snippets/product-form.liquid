@@ -1,0 +1,98 @@
+{%- form 'product', product, id: form_id, class: 'product-single__form' -%}
+
+  {%- liquid
+    assign gift_card_recipient_feature_active = false
+    if block.settings.show_gift_card_recipient and product.gift_card?
+      assign gift_card_recipient_feature_active = true
+    endif
+
+    assign enable_dynamic_buttons = false
+    if show_dynamic_checkout and template != 'product.preorder' and gift_card_recipient_feature_active == false
+      assign enable_dynamic_buttons = true
+    endif
+  -%}
+
+  {%- if gift_card_recipient_feature_active -%}
+    {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
+  {%- endif -%}
+
+  {%- if enable_dynamic_buttons -%}
+    <div class="payment-buttons">
+  {%- endif -%}
+ {% if product.title contains "T-Shirt" or product.title contains "Jersey" %}
+                    <div class="custom-personalization">
+                      <label for="custom-name">Enter Your Name On T-Shirt (Optional)</label>
+                      <input type="text" name="properties[Name]" id="custom-name" placeholder="Your Name">
+                    </div><br>
+                    {% endif %}
+    {%- liquid
+      assign default_text = 'products.product.add_to_cart' | t
+      assign button_text = 'products.product.add_to_cart' | t
+      if template contains 'preorder'
+        assign default_text = 'products.product.preorder' | t
+        assign button_text = 'products.product.preorder' | t
+      endif
+      unless current_variant.available
+        assign button_text = 'products.product.sold_out' | t
+      endunless
+    -%}
+
+    <button
+      {% if product.empty? %}type="button"{% else %}type="submit"{% endif %}
+      name="add"
+      data-add-to-cart
+      class="btn btn--full add-to-cart{% if enable_dynamic_buttons and product.selling_plan_groups == empty %} btn--secondary{% endif %}"
+      {% unless current_variant.available %} disabled="disabled"{% endunless %}>
+      <span data-add-to-cart-text data-default-text="{{ default_text }}">
+        {{ button_text }}
+      </span>
+    </button>
+
+    {%- if enable_dynamic_buttons -%}
+      {{ form | payment_button }}
+    {%- endif -%}
+<!-- Beginning of Buy With Prime Widget -->
+<script defer src='https://code.buywithprime.amazon.com/default.variant.selector.shopify.js'></script>
+<script async fetchpriority='high' src='https://code.buywithprime.amazon.com/bwp.v1.js'></script>
+{% if product.sku %}
+    <div
+        id="amzn-buy-now"
+        data-site-id="ryf6p6vta5"
+        data-widget-id="w-ec4V588O7j9ieShIjCfl50"
+        data-sku="{{product.sku}}"
+    ></div>
+{% else %}
+    <div
+        id="amzn-buy-now"
+        data-site-id="ryf6p6vta5"
+        data-widget-id="w-ec4V588O7j9ieShIjCfl50"
+        data-sku="{{product.selected_or_first_available_variant.sku}}"
+    ></div>
+{% endif %}
+<!-- End of Buy With Prime Widget -->
+  {%- if enable_dynamic_buttons -%}
+    </div>
+  {%- endif -%}
+
+  <div class="shopify-payment-terms product__policies">{{ form | payment_terms }}</div>
+
+  <select name="id" data-product-select class="product-single__variants no-js">
+    {%- for variant in product.variants -%}
+      {%- if variant.available -%}
+        <option {% if variant == product.selected_or_first_available_variant %}
+          selected="selected"{% endif %}
+          value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money_with_currency }}
+        </option>
+      {%- else -%}
+        <option disabled="disabled">
+          {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+        </option>
+      {%- endif -%}
+    {%- endfor -%}
+  </select>
+{%- endform -%}
+<!-- BEGIN SPT.WISHLIST -->
+<div class="spt-wishlist-button__wrapper"><button class="spt-wishlist-button"><span class="spt-wishlist-element spt-std spt-icon spt-icon-heart-empty" data-spt-params="{productId:{{product.id}},urlName:'{{product.handle}}'}"></span></button></div>
+<!-- END SPT.WISHLIST -->
+

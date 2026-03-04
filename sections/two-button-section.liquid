@@ -1,0 +1,77 @@
+<style>
+    .main-column {
+        text-align: center;
+    }
+    a.two-button-section {
+        background: #277eb9;
+    padding: 10px 23px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    }
+  .main-row{
+    width: 500px;
+    margin: auto;
+  }
+  @media only screen and (max-width: 767px) {
+  .main-row{
+    width: 350px;
+    margin: auto;
+  }
+    a.two-button-section {
+        background: #277eb9;
+    padding: 10px 23px;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    }
+}
+</style>
+
+<div>
+    <div class="row main-row">
+        <div class="col main-column">
+            <a class="two-button-section" href="{{ section.settings.link1 }}">{{ section.settings.link1text }}</a>
+        </div>
+        <div class="col main-column">
+            <a class="two-button-section" href="{{ section.settings.link2 }}">{{ section.settings.link2text }}</a>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "Two- Button-Section",
+    "settings": [
+      {
+            "type": "text",
+            "id": "link1text",
+            "label": "First Button Text",
+            "default": "Shop All"
+        },
+        {
+            "type": "url",
+            "id": "link1",
+            "label": "First Button Link"
+        },
+        
+        
+        {
+            "type": "text",
+            "id": "link2text",
+            "label": "Second Button Text",
+            "default": "Shop PWC"
+        },
+      {
+            "type": "url",
+            "id": "link2",
+            "label": "Second Button Link"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Two- Button-Section"
+        }
+    ]
+}
+{% endschema %}

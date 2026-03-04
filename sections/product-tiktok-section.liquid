@@ -1,0 +1,151 @@
+<style>
+    .tiktok-outer {
+        background: #f8f8f8;
+    }
+    .bg-primary {
+        background-color: #277eb900 !important;
+    }
+  .inspired-outer h2 {
+    display: flex;
+    margin: 0 auto;
+    font-size: 25px;
+    font-weight: 600;
+}
+  .inspired-outer h2 span {
+    padding: 10px;
+}
+  .inspired-outer {
+    display: flex;
+}
+    @media only screen and (max-width: 768px) {
+        .tiktok-outer .row.pt-5.w-75.m-auto {
+            width: 100% !important;
+        }
+    }
+    @media only screen and (max-width: 425px) {
+        .inspired-post p,
+        .inspired-post h5 {
+            text-align: center !important;
+        }
+        .tiktok-outer .row.pt-5.w-75.m-auto {
+            width: 100% !important;
+        }
+    }
+</style>
+<section class="tiktok-outer pb-5">
+    <div class="container-full">
+        <div class="container">
+            <div class="inspired-outer text-center pt-5">
+              <h2><img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/icons8-youtube-48.svg?v=1697717231"><span>{{ section.settings.heading1 }}</span><img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/icons8-youtube-48.svg?v=1697717231"></h2>
+            </div>
+            <div class="row pt-5 w-75 m-auto">
+                <div class="col-sm-4">
+                    <div class="inspired-post text-center">
+                       {% unless product.metafields.custom.product_inspired_video_first  == blank %}
+                        <iframe
+                            class="elementor-video w-100 rounded-3"
+                            src="{{ section.settings.video1 }}?autoplay=1&mute=0&controls=1&loop=1"
+                            autoplay=""
+                            loop=""
+                            controls=""
+                            muted="muted"
+                            playsinline=""
+                            controlslist="nodownload"
+                          allowfullscreen="allowfullscreen"
+                        ></iframe>
+                          {% endunless %}
+                        <p class="text-start pt-3">{{ product.metafields.custom.product_inspired_description_first }}</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="inspired-post text-center pt-5 order-text">
+                        {% comment %} <h5 class="text-start">{{ product.metafields.custom.product_inspired_heading_second }}</h5> {% endcomment %}
+                        <p class="text-center order-text">{{ product.metafields.custom.product_inspired_description_second }}</p>
+                      {% unless product.metafields.custom.product_inspired_video_second  == blank %}
+                        <iframe
+                            class="elementor-video w-100 rounded-3"
+                            src="{{ section.settings.video2 }}?autoplay=1&mute=0&controls=1&loop=1"
+                            autoplay=""
+                            loop=""
+                            controls=""
+                            muted="muted"
+                            playsinline=""
+                            controlslist="nodownload"
+                          allowfullscreen="allowfullscreen"
+                        ></iframe>
+                       {% endunless %}
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="inspired-post text-center">
+                        {% unless product.metafields.custom.product_inspired_video_third  == blank %}
+                        <iframe
+                            class="elementor-video w-100 rounded-3"
+                            src="{{ section.settings.video3 }}?autoplay=1&mute=0&controls=1&loop=1"
+                          allowfullscreen="allowfullscreen"
+                        ></iframe>
+                           {% endunless %}
+                        <p class="text-end bg-primary mt-4 p-0 text-black">{{ product.metafields.custom.product_inspired_description_third }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+{
+    "name": "product-tiktok-section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading1",
+            "label": "Section Main Heading",
+            "default": "BE INSPIRED"
+        },
+        {
+            "type": "text",
+            "id": "heading2",
+            "label": "Video Heading",
+            "default": "CAROLINE’S HACK"
+        },
+        {
+            "type": "text",
+            "id": "richtext1",
+            "label": "First Video Description",
+            "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+        },
+      {
+            "type": "url",
+            "id": "video1",
+            "label": "Video URL"
+        },
+        {
+            "type": "text",
+            "id": "richtext2",
+            "label": "Second Video Description",
+            "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua."
+        },
+      {
+            "type": "url",
+            "id": "video2",
+            "label": "Video URL"
+        },
+        {
+            "type": "text",
+            "id": "richtext3",
+            "label": "Follow Us Description",
+            "default": "Follow @carolinewintersofficial on TikTok for more beauty hacks"
+        },
+        {
+            "type": "url",
+            "id": "video3",
+            "label": "Video URL"
+        }
+    ],
+    "presets": [
+        {
+            "name": "Product Tiktok Section"
+        }
+    ]
+}
+{% endschema %}

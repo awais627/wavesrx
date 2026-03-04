@@ -1,0 +1,226 @@
+<script>window._tpt_anti_helmet = true</script><script>window.__tpt_full_page = 1</script><script class='tpt_dynamic'>
+function dynamicAttach(itemId, containerId, override, autoRerunMode) {
+if (!window.__tpt_everlasting_cache) {
+window.__tpt_everlasting_cache = {};
+}
+if (!window.__tpt_everlasting_tickrate) {
+window.__tpt_everlasting_tickrate = {};
+}
+var slt = '.spb-item.type_actual_statement.spb-item-id_' + itemId;
+var targetElement = document.querySelector(slt);
+var containerElement = document.querySelector('.' + containerId);
+console.log(targetElement, containerElement);
+if (containerElement && (containerElement.innerHTML).trim().length > 0) {
+ window.__tpt_everlasting_cache[slt] = containerElement.innerHTML;
+}
+if ((targetElement && (!targetElement.innerHTML.length || override)) && ((containerElement && (containerElement.innerHTML).trim() || window.__tpt_everlasting_cache[slt]))) {
+console.log('Found container element');
+console.log(itemId, containerId);
+if (containerElement && (containerElement.innerHTML).trim().length > 0) {
+var tpt_rerun = containerElement.querySelectorAll('script.tpt_rerun, script.tpt_inject_script');
+if (containerElement.childNodes) {
+Array.from(containerElement.childNodes).forEach(function(node) {
+targetElement.append(node);
+});
+}
+tpt_rerun.forEach(function(t) {
+Function(t.innerText)()
+});
+} else if (window.__tpt_everlasting_cache[slt]) {
+targetElement.innerHTML = window.__tpt_everlasting_cache[slt];
+var tpt_rerun = targetElement.querySelectorAll('script.tpt_rerun, script.tpt_inject_script');
+tpt_rerun.forEach(function(t) {
+Function(t.innerText)()
+});
+} else if (targetElement && containerElement && targetElement.innerHTML.length) {
+console.log('Already attached', slt);
+}
+} else {
+if (!targetElement) {
+window.__tpt_everlasting_tickrate[slt] = ( window.__tpt_everlasting_tickrate[slt] || 0 )+1;
+if (window.__tpt_everlasting_tickrate[slt] < 5){
+setTimeout(function () {
+dynamicAttach(itemId, containerId, override, true);
+}, 1000);
+}
+}
+}
+if(!autoRerunMode){
+ if (!window._tapita_ssr_ijt_obj) {
+window._tapita_ssr_ijt_obj = {};
+}
+window._tapita_ssr_ijt_obj[slt] = function() {
+return dynamicAttach(itemId, containerId, override)
+}; 
+}
+}
+
+</script>
+<script>window._issolate_tapita_hamburger = true;</script>
+
+<style>
+.type_actual_statement{width: 100%}
+</style>
+{% assign content = page.metafields.tapita["pgt-bab0f74"] %}
+
+<div id="tapita-page-main-content" style="min-height: 100px; display: block">
+<h1 class="tapita-placeholder" style="display:none;">
+"", 1
+</h1>
+</div>
+
+
+<div class="rte">
+<script>
+try {
+var _tpt_insigna = "dbd9ee99db38b6348a75decd96032369";
+if(!globalThis._tpt_pbds){
+globalThis._tpt_pbds = [];
+}
+}catch(e){
+console.warn(e);
+}
+var tapitacss = `#shopify-section-tapita-main-page, #shopify-section-tapita-main-home { min-height: 100vh; } .main.content { max-width: unset; } .spb-item-root {width: 100%;} h1.main-page-title.page-title {display: none;} .spb-item.type_text {overflow-y: hidden;} `;
+var tapitahead = document.head || document.getElementsByTagName("head")[0];
+var tapitastyle = document.createElement("style");
+
+tapitastyle.type = "text/css";
+if (tapitastyle.styleSheet){
+tapitastyle.styleSheet.cssText = tapitacss;
+} else {
+tapitastyle.appendChild(document.createTextNode(tapitacss));
+}
+tapitastyle.class="tapita-custom-css";
+ 
+var tapitajs = ``;
+var tapitascript = document.createElement("script");
+tapitascript.appendChild(document.createTextNode(tapitajs));
+tapitascript.defer = true;
+tapitascript.class="tapita-custom-css";
+
+tapitahead.appendChild(tapitastyle);
+tapitahead.appendChild(tapitascript);
+{% if request.page_type == "product" %}
+var kulasop= 9;
+{% endif %}
+</script>
+
+{{ 'tapita-cdn-assets-1.6.39.js' | asset_url | script_tag }}
+ 
+<script defer>
+var tapita_counter = 0;
+var possibleMainTargetQuery = [
+
+"#tapita-page-main-content",
+".normal_main_content",
+"#MainContent",
+"shopify-section-tapita-main-page",
+"shopify-section-tapita-main-home",
+"main",
+];
+{% if request.page_type == "product" %}
+var kulasop= 2;
+{% endif %}
+
+var currentMain = null;
+for (const selector of possibleMainTargetQuery) {
+currentMain = document.querySelector(selector);
+if(currentMain){
+break;
+}
+}
+var injector = setInterval(function () {
+var idToRender = false;
+var mainTarget = null;
+for (const selector of possibleMainTargetQuery) {
+mainTarget = document.querySelector(selector);
+if(mainTarget){
+break;
+}
+}
+if(currentMain && currentMain.id !=="MainContent"){
+currentMain.id = "MainContentTapita";
+idToRender = "MainContentTapita";
+} else {
+idToRender = "MainContent";
+}
+
+if (!idToRender)
+return;
+{% if request.page_type == "product" %}
+var licobioga= 97;
+{% endif %}
+tapita_counter += 1;
+if (globalThis.PageBuilderComponent) {
+var tapitaSections = document.querySelectorAll(".tapitaSection, .spb-customerhtml-serverrender");
+currentMain = null;
+function tptPBD(forcedRerender){
+var lemonadeConsumer = document.querySelector(`#${idToRender} .smpb-container`);
+if(lemonadeConsumer && lemonadeConsumer.innerHTML&& !forcedRerender){
+return;
+}
+PageBuilderComponent.renderForIdWithProps(idToRender, {
+endPoint: "https://d3lks6njuyuuik.cloudfront.net/pb/graphql/",
+mode: "shopify",
+lazyloadPlaceHolder: "",
+formatMessage: globalThis._rms_translate,
+_translateParagraph: true,
+_translateSEO: true,
+_translatePlaceholder: true,
+callback: function() { try { if (globalThis.PageBuilderComponent && globalThis._tpt_pbds && (globalThis._tpt_pbds instanceof Array)) globalThis._tpt_pbds.forEach(t => t && t()); } catch (e) { } },
+pageData: {"url_path":"\/wavesrx-5-years","original_url_path":"\/wavesrx-5-years","type_id":0,"priority":10,"entity_id":38337,"name":"wavesrx-5-years","status":1,"masked_id":"36303FOj6YRsm4dqwZlyhCoK1729747952","custom_css":"#pbitm-id-49.hvr-sweep-to-right:before{\r\n background: #7e878b26 !important;\r\n}\r\n#pbitm-id-50.hvr-sweep-to-left:before{\r\n background: #7e878b26 !important;\r\n}\r\n#pbitm-id-66.hvr-rectangle-out:before{\r\n background: #7e878b26 !important;\r\n}\r\n#pbitm-id-74.hvr-rectangle-out:before{\r\n background: #7e878b26 !important;\r\n}\r\n#pbitm-id-72.hvr-rectangle-out:before{\r\n background: #7e878b26 !important;\r\n}\r\n#pbitm-id-70.hvr-rectangle-out:before{\r\n background: #7e878b26 !important;\r\n}","custom_js":" var link_hover = document.createElement('link');link_hover.rel = 'stylesheet';link_hover.href = 'https:\/\/tapita.io\/pb\/pub\/media\/hover.css';document.head.appendChild(link_hover);","keywords":null,"title":"New Page","desc":"New Page","is_rtl":0,"storeview_visibility":"","publish_items":"[{\"entity_id\":12,\"page_id\":\"38337\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"fontFamily\\\":\\\"Georgia\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\",\\\"textAlign\\\":\\\"center\\\",\\\"fontWeight\\\":700,\\\"m_paddingLeft\\\":0,\\\"m_paddingRight\\\":0,\\\"fontSize\\\":\\\"30px\\\",\\\"m_textAlign\\\":\\\"center\\\",\\\"m_fontFamily\\\":\\\"Arial Black\\\",\\\"m_fontSize\\\":\\\"10px\\\"}\",\"data\":\"{\\\"textTag\\\":\\\"h1\\\"}\",\"name\":\"\\ud83c\\udf89 WavesRx 5-Year Anniversary Celebration! \\ud83d\\udea4\\ud83c\\udf0a\",\"tag_id\":\"pbi_cE1ubUMxNjc2MzY0OTI1NDcz_25473\",\"class_name\":\"\",\"type\":\"text\",\"visibility\":\"\",\"sort_order\":20,\"parent_id\":36,\"storeview_visibility\":0},{\"entity_id\":38,\"page_id\":\"38337\",\"status\":1,\"styles\":\"{\\\"flexDirection\\\":\\\"column\\\",\\\"widthPercent\\\":100,\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{\\\"openUrl\\\":\\\"https:\\\\\\\/\\\\\\\/www.wavesrx.com\\\\\\\/collections\\\",\\\"openUrlInNewTab\\\":1,\\\"image\\\":\\\"https:\\\\\\\/\\\\\\\/cdn.shopify.com\\\\\\\/s\\\\\\\/files\\\\\\\/1\\\\\\\/0269\\\\\\\/9198\\\\\\\/4729\\\\\\\/t\\\\\\\/25\\\\\\\/assets\\\\\\\/17388270575-1_jpg.jpeg?v=1738827058\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_YzliOXYxNjc2MzY0OTkyMjQy_92242\",\"class_name\":\"\",\"type\":\"image\",\"visibility\":\"\",\"sort_order\":30,\"parent_id\":36,\"storeview_visibility\":0},{\"entity_id\":39,\"page_id\":\"38337\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"fontFamily\\\":\\\"Arial\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\",\\\"paddingTop\\\":0,\\\"color\\\":\\\"#020202\\\",\\\"m_paddingLeft\\\":0,\\\"m_paddingRight\\\":0,\\\"backgroundColor\\\":\\\"#f4f4f4\\\",\\\"m_marginTop\\\":5,\\\"m_marginLeft\\\":5,\\\"m_marginRight\\\":5,\\\"m_borderTopWidth\\\":\\\"0px\\\",\\\"m_borderRadius\\\":\\\"0px\\\",\\\"m_backgroundColor\\\":\\\"#f4f4f4\\\",\\\"lineHeight\\\":\\\"-2px\\\"}\",\"data\":\"{\\\"paragraphContent\\\":\\\"<p>&nbsp;<br>Five years ago, WavesRx set out on a mission to elevate the jet ski and boating experience by creating unique, high-quality products that make your time on the water less stressful and more enjoyable. <strong>Today, we&rsquo;re beyond grateful to celebrate this milestone with YOU<\\\\\\\/strong> - our amazing customers, friends, and fellow water enthusiasts.<\\\\\\\/p><p><br><\\\\\\\/p><p>From day one, <strong>your trust, feedback, and support have driven us to continuously innovate and improve.<\\\\\\\/strong> Whether it&rsquo;s through our versatile anchor systems, durable docking ropes, or innovative PWC fenders, we are dedicated to enhancing the boating and jet ski experience with products that truly make a difference.<\\\\\\\/p><p><br><\\\\\\\/p><p>This journey wouldn&rsquo;t have been possible without you. To show our appreciation, we&rsquo;re launching this special 5-Year Anniversary Raffle - because what&rsquo;s a celebration without<strong>&nbsp;a reward for the people who made it all happen? \\\\ud83d\\\\ude4c And here&rsquo;s the best part &ndash; EVERY participant is guaranteed a prize!<\\\\\\\/strong><\\\\\\\/p><p><br><\\\\\\\/p><p><strong>\\\\ud83c\\\\udf81Raffle Prizes:<\\\\\\\/strong><\\\\\\\/p><p>\\\\ud83c\\\\udfc6 <strong>GRAND PRIZE:<\\\\\\\/strong> One lucky participant will win our<strong>&nbsp;Ultimate Watercraft Cleaning Bundle&nbsp;<\\\\\\\/strong>($250 value) &ndash; including<strong>&nbsp;a secret, brand-new product<\\\\\\\/strong> that hasn&rsquo;t been unveiled yet! \\\\ud83c\\\\udf89<\\\\\\\/p><p>\\\\u2705<strong>&nbsp;EVERYONE WINS!<\\\\\\\/strong> Simply by entering, you&rsquo;ll receive a mystery prize &ndash; guaranteed!<\\\\\\\/p><p><br><br><strong>\\\\ud83d\\\\ude80 How to Enter:<\\\\\\\/strong><\\\\\\\/p><p>\\\\u2705 <strong>Make a purchase at<\\\\\\\/strong> <a href=\\\\\\\"http:\\\\\\\/\\\\\\\/www.wavesrx.com\\\\\\\" target=\\\\\\\"_blank\\\\\\\"><u>www.wavesrx.com<\\\\\\\/u><\\\\\\\/a> between<strong>&nbsp;02\\\\\\\/06\\\\\\\/2025 and 02\\\\\\\/14\\\\\\\/2025<\\\\\\\/strong><\\\\\\\/p><p>\\\\u2705 <strong>Share on social media&nbsp;<\\\\\\\/strong>&ndash; the more people enter, the bigger the mystery prize!<\\\\\\\/p><p><br><\\\\\\\/p><p>\\\\ud83d\\\\udcb0 <strong>BONUS<\\\\\\\/strong>: Stack your savings with our <strong>pre-season BUY MORE &amp; SAVE MORE promotion.<\\\\\\\/strong> Orders over<strong>&nbsp;$100<\\\\\\\/strong> automatically get an <strong>extra 15% off!<\\\\\\\/strong><\\\\\\\/p><p><br><br>Thank you for being part of the WavesRx family! We wouldn&rsquo;t be here without you, and we can&rsquo;t wait to celebrate many more years of smooth rides, exciting adventures, and unforgettable memories on the water.<\\\\\\\/p><p><br><\\\\\\\/p><p>\\\\ud83c\\\\udfaf<a href=\\\\\\\"https:\\\\\\\/\\\\\\\/www.wavesrx.com\\\\\\\/collections\\\\\\\" rel=\\\\\\\"noopener noreferrer\\\\\\\" target=\\\\\\\"_blank\\\\\\\"><u>SHOP NOW &amp; ENTER TO WIN!<\\\\\\\/u><\\\\\\\/a> \\\\ud83c\\\\udfaf<\\\\\\\/p><p><br><br><\\\\\\\/p><p>Best regards,<br>The WavesRx Team<\\\\\\\/p><p><br><\\\\\\\/p><p><br><\\\\\\\/p><p><br><\\\\\\\/p><p><br><\\\\\\\/p>\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_ZUp0OFkxNjc2MzY1OTAyOTc1_02975\",\"class_name\":\"\",\"type\":\"paragraph\",\"visibility\":\"\",\"sort_order\":40,\"parent_id\":36,\"storeview_visibility\":0},{\"entity_id\":123,\"page_id\":\"38337\",\"status\":1,\"styles\":\"{\\\"flexDirection\\\":\\\"column\\\",\\\"widthPercent\\\":100,\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\"}\",\"data\":\"{}\",\"name\":\"\",\"tag_id\":\"pbi_WWxMOGYxNzI0NzUyNTEyNTQ4_12548\",\"class_name\":\"\",\"type\":\"image\",\"visibility\":\"\",\"sort_order\":50,\"parent_id\":36,\"storeview_visibility\":0},{\"entity_id\":36,\"page_id\":\"38337\",\"status\":1,\"styles\":\"{\\\"display\\\":\\\"block\\\",\\\"flexDirection\\\":\\\"row\\\",\\\"widthPercent\\\":100,\\\"flexShrink\\\":1,\\\"paddingTop\\\":25,\\\"paddingBottom\\\":25,\\\"paddingLeft\\\":\\\"15px\\\",\\\"paddingRight\\\":\\\"15px\\\",\\\"minHeight\\\":100,\\\"justifyContent\\\":\\\"center\\\",\\\"backgroundColor\\\":\\\"#f4f4f4\\\",\\\"m_paddingLeft\\\":20,\\\"m_paddingRight\\\":20,\\\"marginTop\\\":20,\\\"borderTopWidth\\\":\\\"1px\\\",\\\"borderRightWidth\\\":\\\"1px\\\",\\\"borderBottomWidth\\\":\\\"1px\\\",\\\"borderLeftWidth\\\":\\\"1px\\\"}\",\"data\":\"{}\",\"name\":\"\",\"tag_id\":\"pbi_ZWN1ZGIxNjc2MzY0ODkzMDM0_93034\",\"class_name\":\"\",\"type\":\"container\",\"visibility\":\"\",\"sort_order\":60,\"parent_id\":0,\"storeview_visibility\":0},{\"entity_id\":37,\"page_id\":\"38337\",\"status\":1,\"styles\":\"{\\\"widthPercent\\\":100,\\\"lineHeight\\\":\\\"2em\\\",\\\"fontFamily\\\":\\\"Georgia\\\",\\\"maxWidth\\\":\\\"1280px\\\",\\\"marginLeft\\\":\\\"auto\\\",\\\"marginRight\\\":\\\"auto\\\",\\\"paddingTop\\\":0,\\\"m_paddingLeft\\\":0,\\\"m_paddingRight\\\":0}\",\"data\":\"{\\\"paragraphContent\\\":\\\"<p style=\\\\\\\"text-align:center;\\\\\\\"><\\\\\\\/p>\\\\n\\\"}\",\"name\":\"\",\"tag_id\":\"pbi_d1NLQmwxNjc2MzY0OTUwODE3_50817\",\"class_name\":\"\",\"type\":\"paragraph\",\"visibility\":\"\",\"sort_order\":70,\"parent_id\":36,\"storeview_visibility\":0}]","updated_at":"2025-02-06 13:11:46","image":"https:\/\/tapita.io\/pb\/pub\/media\/spb\/usr\/1\/19353\/PBPAGEIMAGE.png"}
+});
+}
+globalThis._tpt_pbds.push(tptPBD);
+tptPBD();
+
+function _tapita_ssr_cti(){window._tapita_ssr_ijt_obj && Object.values(window._tapita_ssr_ijt_obj||{}).forEach(function (t){t&&t()})};
+_tapita_ssr_cti();
+if(!globalThis._tpt_pbds){globalThis._tpt_pbds=[]};
+globalThis._tpt_pbds.push(_tapita_ssr_cti);
+window.addEventListener("resize", ()=>{_tapita_ssr_cti()});
+;
+var documentFragment = document.createDocumentFragment();
+tapitaSections.forEach(function(el){documentFragment.appendChild(el)});
+document.querySelector("#" + idToRender).appendChild(documentFragment);
+tapitaSections = null;
+clearInterval(injector);
+if (window.location && window.location.hash) {
+var tptHashFound = window.location.hash;
+tptHashFound = hash.replace("#", "");
+tptHashFound = document.getElementById(tptHashFound);
+if (tptHashFound) {
+tptHashFound.scrollIntoView();
+}
+}
+} else if (tapita_counter > 60) {
+clearInterval(injector);
+}
+}, 100);
+</script>
+</div>
+
+<div class="tel">
+{% for field in content.value %}
+{% if field.type == "product_grid" %}
+{% render 'tapita-product-grid',
+product_target_ident: field.settings.product_target_ident,
+product_handle: field.settings.product-handle,
+product_handles: field.settings.product-handles,
+product_ident: field.settings.product_ident,
+product_title: field.settings.product-title,
+product_limit: field.settings.product-limit,
+evenlyHeight: field.settings.evenlyHeight
+%}
+{% elsif field.type == "product_scroll" %}
+{% render 'tapita-product-list',
+product_target_ident: field.settings.product_target_ident,
+product_handle: field.settings.product-handle,
+product_handles: field.settings.product-handles,
+product_ident: field.settings.product_ident,
+product_title: field.settings.product-title,
+product_limit: field.settings.product-limit,
+%}
+{% endif %}
+{% endfor %}
+</div>

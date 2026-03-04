@@ -1,0 +1,117 @@
+<style>
+    @media only screen and (max-width: 425px) {
+        .icon-shop {
+            width: 100%;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+        .icons-lists {
+            border-bottom: inherit !important;
+            border-top: 1px solid #ccc !important;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="icons-lists" style="border-top: 2px solid #ccc;margin: 20px 0;border-bottom: 2px solid #ccc;padding: 12px 0;">
+      <a href="{{ section.settings.url1 }}" target="_blank">
+        <div class="row">
+            <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+                <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+                    <div class="icons">
+                        <img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/1-icon.png?v=1733299573" style="width:70%;" alt="price tag icon">
+                    </div>
+                    <div class="icon-text">
+                        <h4 style="margin: 0px; line-height: 35px;">
+                            {{ section.settings.heading1 }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+                <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+                    <div class="icons">
+                        <img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/anniversary-clip.png?v=1701433826" style="width:70%;" alt="return tag icon">
+                    </div>
+                    <div class="icon-text">
+                        <h4 style="margin: 0px; line-height: 35px;">
+                            {{ section.settings.heading2 }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+                <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+                    <div class="icons">
+                        <img alt="moneyback tag icon" src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/cash_money_icon_c35ac111-de1c-4e87-a9a7-df5ac8b73ea5.png?v=1701433824" style="width:70%;">
+                    </div>
+                    <div class="icon-text">
+                        <h4 style="margin: 0px; line-height: 35px;">
+                            {{ section.settings.heading3 }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3" style="text-align: center; margin: 0 auto;">
+                <div class="icon-shop" style="display: inline-flex;grid-column-gap: 10px;">
+                    <div class="icons">
+                       <img alt="us flag tag icon" src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/USA_flag_045.png?v=1703916600" style="width:70%;">
+                    </div>
+                    <div class="icon-text">
+                        <h4 style="margin: 0px; line-height: 35px;">
+                            {{ section.settings.heading4 }}
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </a>
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "promotional-section",
+    "settings": [
+       
+        {
+            "type": "text",
+            "id": "heading1",
+            "label": "Heading 1",
+            "default": "FREE US SHIPPING"
+        },
+        
+        {
+            "type": "text",
+            "id": "heading2",
+            "label": "Heading 2",
+            "default": "30 DAYS MONEY BACK"
+        },
+        
+        {
+            "type": "text",
+            "id": "heading3",
+            "label": "Heading 3",
+            "default": "HASSLE FREE RETURNS"
+        },
+        {
+            "type": "text",
+            "id": "url1",
+            "label": "URL 1",
+            "default": "www.wavesrx.com"
+        },
+        {
+            "type": "text",
+            "id": "heading4",
+            "label": "Heading 4",
+            "default": "3 YEAR WARRANTY"
+        }
+        
+    ],
+    "presets": [
+        {
+            "name": "promotional-section"
+        }
+    ]
+}
+{% endschema %}

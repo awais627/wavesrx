@@ -1,0 +1,71 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "settings": {}
+    },
+    "085f5619-fd84-42a4-934a-64ad11f2a2e2": {
+      "type": "background-image-text",
+      "disabled": true,
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "image": "shopify://shop_images/Anchored-sunset_1.jpg",
+        "layout": "left",
+        "height": 450,
+        "framed": false,
+        "parallax": false,
+        "parallax_direction": "top",
+        "lazyload_images": true
+      }
+    },
+    "f2365400-d403-425a-a677-b3d1e19401f4": {
+      "type": "advanced-content",
+      "blocks": {
+        "template--16192486834354__f2365400-d403-425a-a677-b3d1e19401f4-liquid-1": {
+          "type": "liquid",
+          "settings": {
+            "code": "<h2>OUR STORY</h2><p style=\"text-align: justify\">Have you ever found yourself lost in the endless blue open waters, feeling the cool breeze gently touching your face and perfectly complementing the warmth of the summer sun?<br><br>\n\nHave you ever gazed at a perfect sunset over the water while letting your daily stress and worries give way to a true feeling of awe and appreciation?<br><br>\n\nIf you had, you may be one of us, looking for any opportunity to spend more time on the water. Be it sailing, fishing, or some adrenaline-filled Jet Ski fun.<br><br>\n\nWe are two friends from sunny Sarasota Florida, that share a passion for open waters and the freedom and excitement that comes from riding on a Boat or Jet Ski. <br><br>\n\nWe always loved tinkering with our ”water toys” and coming up with new ideas for making our boating experience safer and more enjoyable. One day, while brainstorming how to make a better beach anchor, we decided to share our ideas with the world and founded WavesRx.<br><br>\n\nSo if you’d love to join us on this journey, it would be a privilege to have you on-board!<br><br>\n\nRemember, boat is nothing without water and man without his dreams!</p>",
+            "width": "50%",
+            "alignment": "top-middle"
+          }
+        },
+        "template--16192486834354__f2365400-d403-425a-a677-b3d1e19401f4-image-1": {
+          "type": "image",
+          "settings": {
+            "link": "",
+            "width": "50%",
+            "alignment": "center"
+          }
+        }
+      },
+      "block_order": [
+        "template--16192486834354__f2365400-d403-425a-a677-b3d1e19401f4-liquid-1",
+        "template--16192486834354__f2365400-d403-425a-a677-b3d1e19401f4-image-1"
+      ],
+      "disabled": true,
+      "settings": {
+        "full_width": false,
+        "space_around": true,
+        "lazyload_images": true
+      }
+    }
+  },
+  "order": [
+    "main",
+    "085f5619-fd84-42a4-934a-64ad11f2a2e2",
+    "f2365400-d403-425a-a677-b3d1e19401f4"
+  ]
+}

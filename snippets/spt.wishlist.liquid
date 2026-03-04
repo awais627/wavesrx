@@ -1,0 +1,21 @@
+<script>window._spt_wishlistTheme={
+    id:132946591922,
+    name:"Impulse",
+    version:"7.4.0",
+    vendor:"Archetype Themes",
+    applied:1,
+    assetUrl:"{{ 'spt.wishlist-boot.js' | asset_url }}"
+};
+window._sptCustomer = {
+    id: {{customer.id | json }},
+    tags: {{customer.tags | json }},
+    email: {{customer.email | json }},
+    firstName: {{customer.first_name | json }},
+    lastName: {{customer.last_name | json }},
+};
+window.spt_wishlist = {
+  settings: {{ shop.metafields.spt_wishlist.settings }},
+  currencyFormat: {{ shop.money_format | json }}
+}
+</script>
+<script src="{{ 'spt.wishlist-boot.js' | asset_url }}" defer="defer"></script><link href="{{ 'spt.wishlist-boot.css' | asset_url }}" rel ="stylesheet" type="text/css" />

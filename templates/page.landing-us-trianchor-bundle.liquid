@@ -1,0 +1,1624 @@
+{% assign best_sellers = collections['best-selling-bundle'] %}
+{% assign new_arrivals = collections['new-arrivals'] %}
+{% assign main_product = all_products.wrx_ssta_5 %}
+{% assign variant_id = main_product.metafields.custom.featured_variant_id %}
+{% comment %} {% assign bundle_product_1 = main_product %}
+{% assign bundle_product_2 = all_products.wrxbal14ft_blk_tr %}
+{% assign bundle_product_3 = all_products.WRX516X5SSAC %} {% endcomment %}
+
+{% if variant_id %}
+  {% assign featured_variant = main_product.variants | where: 'id', variant_id | first %}
+{% endif %}
+
+{% if featured_variant %}
+  {% assign hero_variant = featured_variant %}
+{% else %}
+  {% assign hero_variant = main_product.first_available_variant %}
+{% endif %}
+
+{% assign hero_price = hero_variant.price %}
+{% assign hero_compare_price = hero_variant.compare_at_price %}
+{% assign hero_cart_id = hero_variant.id %}
+{% assign hero_url = main_product.url | append: '?variant=' | append: hero_variant.id %}
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
+
+<style>
+    header.site-header, .shopify-section-header, .header-wrapper,.shopify-section-group-header-group, #shopify-section-header {
+      display: none !important;
+    }
+    .section-pad{padding:60px 0} .section-title {
+        font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
+        font-weight: 700; /* Extra-Bold */
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        font-size: 48px;
+    }
+    .section-sub{margin-top:6px; text-align:center; color:#666; font-weight:600}
+    .product-grid{display:grid; gap:22px}
+    @media(min-width:992px){ .grid-2{grid-template-columns:repeat(2,1fr)} .grid-4{grid-template-columns:repeat(4,1fr)} }
+    @media(max-width:991.98px){ .grid-2,.grid-4{grid-template-columns:repeat(2,1fr)} }
+    @media(max-width:575.98px){ .grid-2,.grid-4{grid-template-columns:1fr} }
+
+    .card-wrx{
+      background:#fff; border:1px solid #e6e6e6; border-radius:14px;
+      box-shadow:0 4px 12px rgba(0,0,0,.08); padding:22px; height:100%;
+      display:flex; flex-direction:column; justify-content:space-between
+    }
+    .card-wrx .media{display:flex; align-items:center; justify-content:center; min-height:160px}
+    .card-wrx .media img{max-width:100%; height:auto}
+    .card-wrx h4{font-weight:900; font-size:20px; margin:16px 0 6px; text-align:left}
+    .card-wrx p.small{font-weight:600; color:#333; margin-bottom:12px; min-height:1.2em}
+    .price-row{display:flex; align-items:baseline; gap:10px; margin-bottom:12px}
+    .price-now{font-size:1rem; font-weight:900}
+    .price-compare{color:#8c8c8c; text-decoration:line-through; font-weight:700}
+    .wrx-actions{display:flex; gap:10px; flex-wrap:wrap}
+    .btn-yellow{background:#FFD200; border:0; color:#000; font-weight:700; border-radius:26px; padding:10px 18px; font-size: 14px;}
+    .btn-outline{background:#fff; border:1px solid #e6e6e6; color:#000; font-weight:700; border-radius:26px; padding:10px 18px; font-size: 14px;}
+    .btn-yellow:hover{filter:brightness(.95)}
+    .btn-outline:hover{background:#000; color:#fff}
+    .rating{display:flex; align-items:center; gap:8px}
+    .rating-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .stars-outer {
+      position: relative;
+      display: inline-block;
+      font-family: 'Font Awesome 5 Free';
+      color: #ddd;
+      overflow: hidden;
+      width: 90px;
+      white-space: nowrap;
+    }
+
+    .stars-outer::before {
+      content: "★★★★★";
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+    .stars-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0%;
+      color: #f5a623;
+    }
+
+    .stars-inner::before {
+      content: "★★★★★";
+      font-size: 20px;
+      line-height: 20px;
+    }
+
+      .reviews{color:#8c8c8c; font-weight:700; font-size:13px}
+      .view-more-wrap{text-align:center; margin-top:26px}
+      .btn-view-more{background:#FFD200; border-radius:26px; padding:12px 26px; font-weight:900; color:#000; display:inline-block}
+      .custom-logo-bar {
+        text-align: center;
+        padding: 30px 0 10px;
+      }
+      .custom-logo-bar img {
+        max-width: 200px;
+        height: auto;
+      }
+      .card-wide{
+        display:grid; grid-template-columns: 1.05fr 1.2fr; gap:24px;
+        background:#EEEEEE; border:1px solid #e6e6e6; border-radius:24px;
+        box-shadow:0 4px 12px rgba(0,0,0,.08); padding:24px; height:100%;
+      }
+      .card-wide .photo{
+        background:#fff; border-radius:18px; padding:16px;
+        display:flex; align-items:center; justify-content:center;
+      }
+      .card-wide .photo img{max-width:100%; height:auto; max-height:260px}
+      /* Text side */
+      .card-wide .meta-top{display:flex; align-items:center; gap:8px; margin-bottom:6px}
+      /* Only apply this “star bar” styling inside product cards */
+  .card-wide .stars{
+    --pct: calc(var(--rating,0) / 5 * 100%);
+    width:90px;
+    height:18px;
+    display:inline-block;
+    background:linear-gradient(90deg,#f5a623 var(--pct), #ddd var(--pct));
+  }
+
+      .card-wide .reviews{color:#7a7a7a; font-weight:700; font-size:13px}
+      .card-wide h4{
+        margin:6px 0 4px; font-size:22px; font-weight:900; text-transform:uppercase;
+      }
+      .card-wide .sub{color:#333; font-weight:600; margin-bottom:10px}
+      .card-wide .price-row{display:flex; align-items:baseline; gap:12px; margin:6px 0 14px}
+      .card-wide .price-now{line-height:1; font-weight:900; font-size: 1rem;}
+      .card-wide .price-compare{color:#8c8c8c; text-decoration:line-through; font-weight:700; font-size: 1rem;}
+      .card-wide .actions{display:flex; gap:10px; flex-wrap:wrap}
+      .btn-yellow{background:#FFD200; border:0; color:#000; font-weight:800; border-radius:26px; padding:12px 22px}
+      .btn-outline{background:#fff; border:1px solid #e6e6e6; color:#000; font-weight:800; border-radius:26px; padding:12px 22px}
+      .btn-yellow:hover{filter:brightness(.95)} .btn-outline:hover{background:#000;color:#fff}
+
+      .card-vertical {
+        display: flex;
+        flex-direction: column;
+        background: #EEEEEE;
+        border: 1px solid #e6e6e6;
+        border-radius: 14px;
+        box-shadow: 0 4px 12px rgba(0,0,0,.08);
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .card-vertical .photo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        margin-bottom: 12px;
+      }
+
+      .card-vertical .photo img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      .card-vertical .meta-top {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+
+      .card-vertical h4 {
+        font-size: 20px;
+        font-weight: 900;
+        margin: 6px 0 4px;
+      }
+
+      .card-vertical .sub {
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+      }
+
+      .card-vertical .price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .card-vertical .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+        /* Mobile */
+        @media(max-width:767.98px){
+          .card-wide{grid-template-columns:1fr; padding:18px}
+          .card-wide .photo img{max-height:220px}
+          .card-wide .price-now{font-size:24px}
+        }
+
+        .hero-banner {
+          padding: 50px 0;
+          background: #f7f7f7;
+        }
+
+        .hero-container {
+          display: flex;
+          gap: 40px;
+          max-width: 1300px;
+          margin: auto;
+          align-items: center;
+        }
+
+        .hero-left {
+          flex: 1;
+        }
+
+        .hero-video {
+          width: 100%;
+          height: 380px;
+          border-radius: 14px;
+        }
+
+        .hero-right {
+          flex: 1;
+        }
+
+        .hero-title {
+          font-size: 35px;
+          font-weight: 700;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+          margin-bottom: 20px;
+          color: #444;
+        }
+
+        .hero-product-title {
+          font-size: 28px;
+          margin-bottom: 10px;
+        }
+
+        .hero-price {
+          margin: 10px 0;
+          font-size: 22px;
+          font-weight: 600;
+        }
+
+        .sale-price {
+          color: #e60023;
+          margin-right: 10px;
+        }
+
+        .compare-price {
+          text-decoration: line-through;
+          color: #999;
+        }
+
+        .hero-reviews {
+          margin: 10px 0 20px;
+          font-size: 18px;
+        }
+
+        .hero-buy-btn {
+          display: inline-block;
+          padding: 14px 26px;
+          background: #ffb800;
+          color: #000;
+          font-weight: 700;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: 0.2s;
+        }
+
+        .hero-buy-btn:hover {
+          background: #ffc933;
+        }
+
+        .rating-link:hover .stars-inner {
+        filter: brightness(1.1);
+      }
+      .rating-link:hover .reviews {
+        text-decoration: none;
+        color: #ffc933;
+        font-weight: bold;
+      }
+
+    .wavesrx-story {
+      padding: 80px 20px;
+      background: #fff;
+    }
+
+    .wavesrx-story .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .story-title {
+      text-align: center;
+      font-size: 48px;
+      font-weight: 800;
+      margin-bottom: 60px;
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .story-text p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #000;
+      margin-bottom: 20px;
+    }
+
+    /* Image stack */
+    .story-images {
+      position: relative;
+      width: 100%;
+    }
+
+    .story-images .image {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      max-width: 270px;
+    }
+
+    .story-images img {
+      width: 100%;
+      display: block;
+    }
+
+    /* Top image */
+    .image-1 {
+      width: 100%;
+    }
+
+    /* Bottom image (overlapping) */
+    .image-2 {
+      width: 75%;
+      margin-top: -80px;
+      margin-left: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .image-1,
+      .image-2 {
+        width: 100%;
+        margin: 0 0 20px 0;
+      }
+    }
+</style>
+
+<div class="custom-logo-bar">
+  <a href="{{ routes.root_url }}">
+    <img
+      src="{{ shop.brand.logo | default: settings.logo | img_url: '300x' }}"
+      alt="{{ shop.name }}"
+      loading="lazy"
+      style="display:block;margin:0 auto;width:35%;max-width:180px;height:auto;"
+    >
+  </a>
+</div>
+
+<!-- =================== HERO BANNER =================== -->
+<section class="hero-landing">
+  <!-- Header -->
+  <div class="hero-header" style="text-align:center; margin-bottom:40px;">
+    <h1 style="font-size:36px; font-weight:900; margin-bottom:12px;">Premium Gear Purpose-Built for Boats and PWCs</h1>
+    <p style="font-size:18px; color:#555; font-weight:600;">Amazon Top-Rated Marine Products</p>
+  </div>
+
+  <div
+    class="hero-banner"
+    style="display:flex; flex-wrap:wrap; gap:40px; align-items:center; max-width:1300px; margin:auto;"
+  >
+    <!-- LEFT: Video -->
+    <div class="hero-left" style="flex:1; min-width:300px;">
+      {% if main_product.metafields.custom.ads_short_video %}
+        <div style="position:relative; width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden;">
+          <iframe
+            src="{{ main_product.metafields.custom.ads_short_video }}"
+            frameborder="0"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            style="position:absolute; inset:0; width:100%; height:100%;"
+          ></iframe>
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT: Info -->
+    <div class="hero-right" style="flex:1; min-width:300px; position:relative;">
+      <!-- Reviews -->
+      {% assign r = main_product.metafields.custom.rating_count | default: 0 %}
+      {% assign rc = main_product.metafields.custom.review_count | default: 0 %}
+
+      {% if r > 0 %}
+        <div style="margin-bottom:20px; font-size:16px; font-weight:600;">
+          <a href="{{ hero_url }}" style="text-decoration:none; color:inherit;">
+            <div class="rating-wrapper">
+              <div class="stars-outer">
+                <div
+                  class="stars-inner"
+                  style="width: {{ r | divided_by: 5.0 | times: 100 }}%;"
+                ></div>
+              </div>
+              <span class="reviews">({{ rc }}+ reviews)</span>
+            </div>
+          </a>
+        </div>
+      {% endif %}
+
+      <!-- Title -->
+      <h2 style="font-size:28px; font-weight:900; margin-bottom:16px;">
+        {{ hero_variant.title }}
+      </h2>
+
+      <!-- Sale badge -->
+      {% if hero_compare_price > hero_price %}
+        <span
+          class="sale-percentage"
+          data-sale-price="{{ hero_price | divided_by: 100.0 }}"
+          data-sale-old-price="{{ hero_compare_price | divided_by: 100.0 }}"
+          style="
+            position:absolute;
+            top:0;
+            right:0;
+            background:#ff4d4f;
+            color:#fff;
+            font-size:12px;
+            font-weight:700;
+            padding:6px 10px;
+            border-radius:14px;
+            display:none;
+          "
+        >
+          SAVE
+        </span>
+      {% endif %}
+
+      <script>
+        document.querySelectorAll('.sale-percentage').forEach((badge) => {
+          const p = parseFloat(badge.dataset.salePrice);
+          const o = parseFloat(badge.dataset.saleOldPrice);
+          if (o > p) {
+            badge.textContent = `SAVE ${Math.round(((o - p) / o) * 100)}%`;
+            badge.style.display = 'inline-block';
+          }
+        });
+      </script>
+
+      <!-- Features -->
+      {% if main_product.metafields.custom.ads_features_list %}
+        {% assign features = main_product.metafields.custom.ads_features_list.value %}
+        {% if features and features.size > 0 %}
+          <ul style="margin-bottom:20px; padding-left:24px; font-weight:600; list-style-type:disc; list-style-position:outside;">
+            {% for feature in features %}
+              <li style="display:list-item; list-style-type:disc; margin:8px 0;">
+                {{ feature }}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% endif %}
+
+      <!-- Price -->
+      <p style="font-size:22px; font-weight:700; margin-bottom:16px;">
+        {% if hero_compare_price > hero_price %}
+          <span style="color:#e60023; margin-right:10px;">
+            {{ hero_price | money }}
+          </span>
+          <span style="text-decoration:line-through; color:#999;">
+            {{ hero_compare_price | money }}
+          </span>
+        {% else %}
+          <span>{{ hero_price | money }}</span>
+        {% endif %}
+      </p>
+
+      <!-- Buttons -->
+      <div style="display:flex; gap:14px; flex-wrap:wrap;">
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ hero_cart_id }}">
+          <button type="submit" class="btn-yellow">BUY NOW</button>
+        </form>
+
+        <a href="{{ hero_url }}" class="btn-outline"> LEARN MORE </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% comment %} <style>
+  .bundle-section {
+    padding: 60px 20px;
+    background: #f7f7f7;
+  }
+
+  .bundle-items {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .bundle-item {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 14px;
+    padding: 15px;
+    width: 220px;
+    text-align: center;
+  }
+
+  .bundle-item img {
+    max-width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+  }
+
+  .bundle-item input {
+    margin-bottom: 10px;
+  }
+
+  .bundle-summary {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 20px;
+  }
+</style>
+<section class="bundle-section">
+  <div class="container">
+    <h2 class="section-title">FREQUENTLY BOUGHT TOGETHER</h2>
+
+    <form id="bundle-form">
+      <div class="bundle-items">
+
+        {% assign products = 
+          bundle_product_1 | append: ',' | 
+          append: bundle_product_2 | append: ',' | 
+          append: bundle_product_3 
+        %}
+
+        {% for product in products %}
+          {% assign variant = product.first_available_variant %}
+          <div class="bundle-item">
+            <label>
+              <input 
+                type="checkbox"
+                class="bundle-checkbox"
+                data-price="{{ variant.price | divided_by: 100.0 }}"
+                value="{{ variant.id }}"
+                checked
+              >
+              <img src="{{ product.featured_image | image_url: '200x' }}" height="200px" width="200px">
+              <div class="bundle-info">
+                <h4>{{ product.title }}</h4>
+                <p>{{ variant.price | money }}</p>
+              </div>
+            </label>
+          </div>
+        {% endfor %}
+
+      </div>
+
+      <div class="bundle-summary">
+        <p>Total Price: <strong id="bundle-total"></strong></p>
+        <button type="button" id="bundle-add" class="btn-yellow">
+          BUNDLE & SAVE
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+
+    const checkboxes = document.querySelectorAll(".bundle-checkbox");
+    const totalEl = document.getElementById("bundle-total");
+    const addBtn = document.getElementById("bundle-add");
+
+    const discountPercent = 15; // change bundle discount %
+
+    function updateTotal() {
+      let total = 0;
+
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          total += parseFloat(cb.dataset.price);
+        }
+      });
+
+      let discounted = total - (total * discountPercent / 100);
+
+      totalEl.innerHTML = 
+        "$" + discounted.toFixed(2) + 
+        ` <span style="text-decoration:line-through;color:#999;font-size:16px;">$${total.toFixed(2)}</span>`;
+    }
+
+    updateTotal();
+
+    checkboxes.forEach(cb => cb.addEventListener("change", updateTotal));
+
+    addBtn.addEventListener("click", function() {
+
+      let items = [];
+
+      checkboxes.forEach(cb => {
+        if (cb.checked) {
+          items.push({
+            id: cb.value,
+            quantity: 1
+          });
+        }
+      });
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items })
+      })
+      .then(response => response.json())
+      .then(() => {
+        window.location.href = '/cart';
+      });
+
+    });
+
+  });
+</script> {% endcomment %}
+
+<!-- =================== REVIEW SECTION =================== -->
+<style>
+    .reviews-section {
+    padding: 50px 20px;
+    background: #EEEEEE;
+    text-align: center;
+  }
+
+  .reviews-wrap {
+    max-width: 900px; /* narrower for center alignment */
+    margin: auto;
+    display: flex;
+    flex-direction: column; /* stack badge + slider */
+    gap: 30px;
+    align-items: center;
+  }
+
+  /* Badge */
+  .reviews-badge {
+    background: transparent;
+    color: #111;
+    padding: 20px;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .reviews-badge .rating {
+    font-size: 1.125rem; /* 18px */
+    margin-bottom: 10px;
+  }
+
+  .reviews-badge h3 {
+    font-size: 1.875rem; /* 30px */
+    font-weight: bold;
+  }
+
+  /* Slider */
+  .reviews-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .reviews-slider {
+    width: 100%;
+  }
+
+  .reviews-track {
+    display: flex;
+    transition: transform 0.35s ease;
+  }
+
+  /* Review card */
+  .review {
+    min-width: 100%;
+    background: #e9e9e9;
+    padding: 20px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  /* 1st row: Flag | Name | Date | Verified */
+  .review .review-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    justify-content: center;
+  }
+
+  .review .review-header img.flag {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+  }
+
+  .review .verified-badge {
+    background: #0070f3;
+    color: #fff;
+    font-size: 0.625rem; /* 10px */
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 8px;
+  }
+
+  /* 2nd row: stars */
+  .review .stars {
+    color: #ffb400;
+    font-size: 1.125rem; /* 18px */
+  }
+
+  /* 3rd row: review title */
+  .review h4 {
+    font-size: 1rem; /* 16px */
+    font-weight: 900;
+    margin: 0;
+  }
+
+  /* Review content */
+  .review p {
+    font-size: 0.9375rem; /* 15px */
+    color: #444;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Product title */
+  .review .product-title {
+    font-size: 0.875rem; /* 14px */
+    font-weight: 700;
+    color: #333;
+    margin-top: 10px;
+  }
+
+  /* Nav buttons */
+  .reviews-slider .nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .reviews-slider .nav button {
+    background: #111;
+    color: #fff;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .review .review-header {
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .review .verified-badge {
+      margin-left: 0;
+    }
+  }
+    /* Mobile responsive */
+    @media (max-width: 1024px) {
+      .reviews-wrap {
+        flex-wrap: wrap;
+      }
+
+      .reviews-badge {
+        padding: 20px;
+        text-align: center;
+        flex: 1 1 100%;
+      }
+
+      .reviews-badge h3 {
+        font-size: 1.5rem; /* 24px */
+        line-height: 1.3;
+      }
+
+      .reviews-badge .rating {
+        font-size: 1rem; /* 16px */
+        justify-content: center;
+      }
+
+      .review h4 {
+        font-size: 1rem; /* 16px */
+      }
+
+      .review p {
+        font-size: 0.9375rem; /* 15px */
+      }
+
+      .reviews-slider{
+        width: 100%;
+      }
+
+      /* Move nav buttons to bottom center */
+      .reviews-slider .nav {
+        position: relative;
+        top: auto;
+        transform: none;
+        justify-content: center;
+        margin-top: 15px;
+        gap: 15px;
+      }
+    }
+</style>
+
+<section class="reviews-section">
+  <div class="reviews-wrap">
+    <!-- Left badge -->
+    <div class="reviews-badge">
+      <div class="rating" style="justify-content: center;">
+        <div class="stars" style="color: #ffb400;">★★★★★ 4.8</div>
+        Average Rating
+      </div>
+      <h3 style="text-transform: uppercase;">Trusted by Over 100,000 Customers</h3>
+    </div>
+
+    <!-- Slider -->
+    <div class="reviews-container">
+      <div class="reviews-slider">
+        <div class="reviews-track">
+          <div class="review">
+            <!-- 1st row: Flag | Name | Date | Verified -->
+            <div class="review-header">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <span class="author">Jeff Leech</span>
+              <span class="date">Dec 01, 2025</span>
+              <span class="verified-badge">Verified</span>
+            </div>
+
+            <!-- 2nd row: stars -->
+            <div class="stars">★★★★★</div>
+
+            <!-- 3rd row: review title -->
+            <h4>Amazing quality!</h4>
+
+            <!-- Review content -->
+            <p>
+              I was a little concerned about the condition of the anchor case, having read some reviews where the caes
+              have been damaged in shipment. Mine arrived in perfect condition with not even a scratch on it. The anchor
+              itself is really a feat of engineering and I say that as an engineer. The 7 Lb. anchor is almost 1/4"
+              thick stainless steel with a sliding locking system and stainless steel pin. The finish is highly
+              polished...mirror like! I ordered it without the chain rode for my 22 foot pontoon boat which weighs about
+              3500 lbs including the engine and without gear. WavesRx says this size anchor will work, we'll see in the
+              Spring but I have high confidence it will. If I have to, I'll get the chain rode to go with it. Overall,
+              very satisfied.
+            </p>
+
+            <!-- Product title -->
+            {% comment %} <div class="product-title">TurboJet 5000</div> {% endcomment %}
+
+            <div style="display:flex;justify-content:center;margin-top:18px;">
+              <a
+                href="https://www.wavesrx.com/products/wrx_ssta_7"
+                style="
+                  display:inline-flex;
+                  align-items:center;
+                  justify-content:center;
+
+                  font-family:Jost, sans-serif;
+                  font-size:13px;
+                  line-height:1;
+                  font-weight:500;
+
+                  padding:10px 22px;
+                  border-radius:999px;
+                  border:2px solid #F9A211;
+
+                  color:#F9A211;
+                  text-decoration:none;
+                  text-transform:uppercase;
+                  letter-spacing:1px;
+
+                  background:rgba(255,255,255,.35);
+                "
+              >
+                7LB FOLDING TRIANCHOR
+              </a>
+            </div>
+          </div>
+
+          <div class="review">
+            <!-- 1st row: Flag | Name | Date | Verified -->
+            <div class="review-header">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <span class="author">Richard Sutrop</span>
+              <span class="date">Nov 17, 2025</span>
+              <span class="verified-badge">Verified</span>
+            </div>
+            <div class="stars">★★★★★</div>
+            <h4>Great quality anchor and great design.</h4>
+            <p>
+              Great light weight beach anchor, it has a Velcro belt on the top so you can use your foot to push it in to
+              the sand.
+            </p>
+            {% comment %} <span class="author">— Michael T.</span> {% endcomment %}
+            <div style="display:flex;justify-content:center;margin-top:18px;">
+              <a
+                href="https://www.wavesrx.com/collections/boats/products/wrxba18gm"
+                style="
+                  display:inline-flex;
+                  align-items:center;
+                  justify-content:center;
+
+                  font-family:Jost, sans-serif;
+                  font-size:13px;
+                  line-height:1;
+                  font-weight:500;
+
+                  padding:10px 22px;
+                  border-radius:999px;
+                  border:2px solid #F9A211;
+
+                  color:#F9A211;
+                  text-decoration:none;
+                  text-transform:uppercase;
+                  letter-spacing:1px;
+
+                  background:rgba(255,255,255,.35);
+                "
+              >
+                WAVECOBRA 18 ANCHOR
+              </a>
+            </div>
+          </div>
+
+          <div class="review">
+            <!-- 1st row: Flag | Name | Date | Verified -->
+            <div class="review-header">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <span class="author">Dan</span>
+              <span class="date">Nov 21, 2025</span>
+              <span class="verified-badge">Verified</span>
+            </div>
+            <div class="stars">★★★★★</div>
+            <h4>Stay in place and offer great protection for your wave runner or a boat</h4>
+            <p>
+              Works great so much better than the round bumpers I bought for my wave runner. These fit my Yamaha VX
+              perfectly stay secured in place and protect the gunwele because of the triangular shape…highly recommend.
+            </p>
+            {% comment %} <span class="author">— Sarah K.</span> {% endcomment %}
+            <div style="display:flex;justify-content:center;margin-top:18px;">
+              <a
+                href="https://www.wavesrx.com/collections/marine-ropes/products/wrx_pwctf_2pk"
+                style="
+                  display:inline-flex;
+                  align-items:center;
+                  justify-content:center;
+
+                  font-family:Jost, sans-serif;
+                  font-size:13px;
+                  line-height:1;
+                  font-weight:500;
+
+                  padding:10px 22px;
+                  border-radius:999px;
+                  border:2px solid #F9A211;
+
+                  color:#F9A211;
+                  text-decoration:none;
+                  text-transform:uppercase;
+                  letter-spacing:1px;
+
+                  background:rgba(255,255,255,.35);
+                "
+              >
+                TRIFENDER BUMPERS
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="nav">
+          <button id="prev">‹</button>
+          <button id="next">›</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.querySelector('.reviews-track');
+  const slides = document.querySelectorAll('.review');
+  let i = 0;
+
+  function updateSlide() {
+    const slideWidth = slides[0].offsetWidth;
+    track.style.transform = `translateX(-${i * slideWidth}px)`;
+  }
+
+  document.getElementById('next').onclick = () => {
+    i = (i + 1) % slides.length;
+    updateSlide();
+  };
+
+  document.getElementById('prev').onclick = () => {
+    i = (i - 1 + slides.length) % slides.length;
+    updateSlide();
+  };
+
+  window.addEventListener('resize', updateSlide); // Keep responsive
+  updateSlide(); // Initial position
+</script>
+
+<!-- =================== COMMON CSS =================== -->
+<style>
+  .product-grid h4{
+    font-weight:900; font-size:20px; text-align:left;
+  }
+</style>
+
+<!-- =================== OUR BEST SELLERS =================== -->
+<style>
+    .section-pad {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 48px;
+  }
+
+  .section-sub {
+    margin-top: 6px;
+    text-align: center;
+    color: #666;
+    font-weight: 600;
+  }
+
+  /* Product grid */
+  .product-grid {
+    display: grid;
+    gap: 22px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 992px) {
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card wide */
+  .card-wide {
+    display: grid;
+    grid-template-columns: 1.05fr 1.2fr;
+    gap: 24px;
+    background: #EEEEEE;
+    border: 1px solid #e6e6e6;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    padding: 24px;
+    height: 100%;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Card image */
+  .card-wide .photo {
+    background: #fff;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-wide .photo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+  }
+
+  /* Card content */
+  .card-wide .content h4 {
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.025rem;
+    margin: 10px 0 6px;
+  }
+
+  .card-wide .content .sub {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  /* Price row */
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .price-now {
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .price-compare {
+    color: #8c8c8c;
+    text-decoration: line-through;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* Sale badge */
+  .sale-percentage {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    background-color: #ff4d4f;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Buttons */
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-yellow {
+    background: #FFD200;
+    border: 0;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-outline {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-yellow:hover {
+    filter: brightness(.95);
+  }
+
+  .btn-outline:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Rating stars */
+  .rating-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .stars-outer {
+    position: relative;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    color: #ddd;
+    overflow: hidden;
+    width: 90px;
+    white-space: nowrap;
+  }
+
+  .stars-outer::before {
+    content: "★★★★★";
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0%;
+    color: #f5a623;
+  }
+
+  .stars-inner::before {
+    content: "★★★★★";
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  /* Reviews count */
+  .reviews {
+    color: #8c8c8c;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 991.98px) {
+    .card-wide {
+      grid-template-columns: 1fr;
+      padding: 18px;
+    }
+    .card-wide .photo img {
+      max-height: 220px;
+    }
+    .content h4 {
+      font-size: 18px;
+    }
+    .content .sub {
+      font-size: 14px;
+    }
+    .price-now,
+    .price-compare {
+      font-size: 16px;
+    }
+  }
+</style>
+<section class="section-pad">
+  <div class="container">
+    <h2 class="section-title">BEST SELLERS</h2>
+    {% comment %} <div class="section-sub">LOVED BY RIDERS LIKE YOU</div> {% endcomment %}
+
+    <div class="product-grid grid-2 mt-4">
+      {%- for product in best_sellers.products limit: 4 -%}
+        
+        <article class="card-wide" style="align-items:center; position: relative;">
+          <a class="photo" href="{{ product.url }}">
+            {% if product.featured_image %}
+              <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}">
+            {% else %}
+              <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}">
+            {% endif %}
+          </a>
+
+          <div class="content">
+            <!-- Rating -->
+            {% assign r = product.metafields.custom.rating_count | default: 0 %}
+            {% assign rc = product.metafields.custom.review_count | default: 0 %}
+
+            {% if r > 0 %}
+              <a href="{{ product.url }}" class="rating-link" style="text-decoration:none; color:inherit;">
+                <div class="rating-wrapper">
+                  <div class="stars-outer">
+                    <div
+                      class="stars-inner"
+                      style="width: {{ r | divided_by: 5.0 | times: 100 }}%;"
+                    ></div>
+                  </div>
+                  <span class="reviews">({{ rc }}) reviews</span>
+                </div>
+              </a>
+            {% endif %}
+
+            <h4 style="letter-spacing: 0.025rem;">{{ product.title }}</h4>
+            <div class="sub">
+              {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
+            </div>
+
+            {% assign v = product.first_available_variant %}
+
+            <div class="price-row">
+              <span class="price-now">{{ v.price | money }}</span>
+
+              {% if v.compare_at_price > v.price %}
+                <span class="price-compare">{{ v.compare_at_price | money }}</span>
+                <span
+                  class="sale-percentage"
+                  data-sale-price="{{ v.price | divided_by: 100.0 }}"
+                  data-sale-old-price="{{ v.compare_at_price | divided_by: 100.0 }}"
+                  style="position: absolute; top: 16px; right: 20px; background-color:#ff4d4f;color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
+                ></span>
+              {% endif %}
+            </div>
+
+            <div class="actions">
+              <form method="post" action="/cart/add" class="d-inline">
+                <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+                <button type="submit" class="btn-yellow">ADD TO CART</button>
+              </form>
+              <a class="btn-outline" href="{{ product.url }}">LEARN MORE</a>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- =================== NEW ARRIVALS with SMART LOAD MORE =================== -->
+<style>
+    #new-arrivals .product-card {
+      display: flex;
+      flex-direction: column;
+      padding: 15px;
+      background: #eee;
+      border-radius: 15px;
+    }
+
+    #new-arrivals .product-card .content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    #new-arrivals .product-card .content-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    #new-arrivals .product-card .actions {
+      margin-top: auto;
+    }
+
+    #new-arrivals .product-card .actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+  }
+
+  #new-arrivals .product-card .actions form,
+  #new-arrivals .product-card .actions a {
+    flex: 1;
+  }
+
+  #new-arrivals .product-card .actions button,
+  #new-arrivals .product-card .actions a {
+    width: 100%;
+    text-align: center;
+  }
+</style>
+<section class="section-pad" id="new-arrivals">
+  <div class="container">
+    <h2 class="section-title">NEW ARRIVALS</h2>
+
+    <style>
+      #new-arrivals .product-card.is-hidden { display: none !important; }
+    </style>
+
+    {%- assign initial_visible = 4 -%}
+    <div class="product-grid grid-4 mt-4 new-arrivals-grid">
+      {%- for product in new_arrivals.products -%}
+        {% if product.id == main_product.id %}
+          {% continue %}
+        {% endif %}
+
+        <article
+          class="product-card card-vertical{% if forloop.index0 >= initial_visible %} is-hidden{% endif %}"
+          data-idx="{{ forloop.index0 }}"
+        >
+          <!-- Content -->
+          <div class="content">
+            <!-- Image -->
+            <a class="photo" href="{{ product.url }}">
+              {% if product.featured_image %}
+                <img
+                  src="{{ product.featured_image | img_url: '700x' }}"
+                  alt="{{ product.title | escape }}"
+                  style="border-radius: 10px; margin-bottom: 10px;"
+                >
+              {% else %}
+                <img
+                  src="{{ 'placeholder-image.png' | asset_url }}"
+                  alt="{{ product.title | escape }}"
+                  style="border-radius: 10px;"
+                >
+              {% endif %}
+            </a>
+
+            <div class="content-container" style="position:relative;">
+              <!-- Rating -->
+              {% assign r = product.metafields.custom.rating_count | default: 0 %}
+              {% assign rc = product.metafields.custom.review_count | default: 0 %}
+
+              {% if r > 0 %}
+                <a
+                  href="{{ product.url }}"
+                  class="rating-link"
+                  style="text-decoration:none; color:inherit; display:inline-block; margin-bottom: 10px;"
+                >
+                  <div class="rating-wrapper">
+                    <div class="stars-outer">
+                      <div class="stars-inner" style="width: {{ r | divided_by: 5.0 | times: 100 }}%;"></div>
+                    </div>
+                    <span class="reviews">({{ rc }}) reviews</span>
+                  </div>
+                </a>
+              {% endif %}
+
+              <!-- Title & Subtitle -->
+              <h4 style="letter-spacing: 0.025rem;">{{ product.title }}</h4>
+              <div class="sub">
+                {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
+              </div>
+
+              <!-- Price Row -->
+              {% assign first_v = product.first_available_variant %}
+
+              <div class="price-row">
+                <span class="price-now">{{ first_v.price | money }}</span>
+
+                {% if first_v.compare_at_price > first_v.price %}
+                  <span class="price-compare">{{ first_v.compare_at_price | money }}</span><br>
+                  <span
+                    class="sale-percentage"
+                    data-sale-price="{{ first_v.price | divided_by: 100.0 }}"
+                    data-sale-old-price="{{ first_v.compare_at_price | divided_by: 100.0 }}"
+                    style="position: absolute; top: 0; right: 0;background-color:#ff4d4f;color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
+                  ></span>
+                {% endif %}
+              </div>
+
+              <!-- Buttons -->
+              <div class="actions">
+                <form method="post" action="/cart/add" class="d-inline">
+                  <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+                  <button type="submit" class="btn-yellow">Buy Now</button>
+                </form>
+                <a class="btn-outline" href="{{ product.url }}">Learn More</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+
+    <!-- Load More Button -->
+    <div class="view-more-wrap">
+      <button id="load-more-new-arrivals" class="btn-view-more" type="button">View More</button>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const step = 4;
+        const container = document.querySelector('#new-arrivals');
+        if (!container) return;
+
+        const button = container.querySelector('#load-more-new-arrivals');
+        if (!button) return;
+
+        function updateButton() {
+          const hiddenCount = container.querySelectorAll('.new-arrivals-grid .product-card.is-hidden').length;
+          button.style.display = hiddenCount > 0 ? 'inline-block' : 'none';
+        }
+
+        button.addEventListener('click', () => {
+          const hiddenCards = container.querySelectorAll('.new-arrivals-grid .product-card.is-hidden');
+          const revealCount = Math.min(step, hiddenCards.length);
+          for (let i = 0; i < revealCount; i++) {
+            hiddenCards[i].classList.remove('is-hidden');
+          }
+          updateButton();
+        });
+
+        updateButton();
+      });
+    </script>
+  </div>
+</section>
+
+<section class="wavesrx-story">
+  <div class="container">
+    <!-- Title -->
+    <h2 class="story-title">THE WAVESRX STORY</h2>
+
+    <div class="story-grid">
+      <!-- LEFT: Text -->
+      <div class="story-text">
+        <p>
+          We are two friends from sunny Sarasota, Florida, bonded by a deep passion for open waters and a genuine
+          appreciation for the freedom one experiences when riding a boat or jet ski. We love tinkering with our “water
+          toys”, always coming up with new product ideas to make our boating and riding experiences safer and more
+          enjoyable.
+        </p>
+
+        <p>
+          It was during a 2019 brainstorming session, while developing a lighter, more compact, and efficient beach
+          anchor, that we realized our innovations could benefit others and founded WavesRx.
+        </p>
+
+        <p>
+          So if you share the same passion for adventure and want to join us on this exhilarating journey, it would be a
+          privilege to have you on-board!
+        </p>
+      </div>
+
+      <!-- RIGHT: Images -->
+      <div class="story-images">
+        <div class="image image-1">
+          <img src="https://www.wavesrx.com/cdn/shop/files/f-img1.jpg?v=1747907805&width=540" alt="Boat lifestyle">
+        </div>
+
+        <div class="image image-2">
+          <img
+            src="https://www.wavesrx.com/cdn/shop/files/Untitled-1kk.jpg?v=1744021742&width=750"
+            alt="Jet ski action"
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const script = document.createElement('script');
+    script.src = 'https://cdn.appio.so/v1/appio.js';
+    script.async = true;
+
+    script.onload = function () {
+      if (window.Appio && typeof Appio.loadBadges === 'function') {
+        Appio.loadBadges();
+      }
+    };
+
+    document.head.appendChild(script);
+  })();
+
+  window.getPercentage = function (oldPrice, price) {
+    if (typeof oldPrice !== 'number' || typeof price !== 'number' || oldPrice <= 0 || oldPrice <= price) {
+      return { valid: false, value: 0 };
+    }
+    const percentageDifference = Math.round(((oldPrice - price) / oldPrice) * 100);
+    return { valid: true, value: percentageDifference };
+  };
+
+  // Auto-update all badges on page
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-sale-price]').forEach((badge) => {
+      const price = parseFloat(badge.dataset.salePrice);
+      const oldPrice = parseFloat(badge.dataset.saleOldPrice);
+      const discount = getPercentage(oldPrice, price);
+
+      if (discount.valid) {
+        badge.textContent = `Save ${discount.value}%`;
+        badge.style.display = 'inline-block';
+      } else {
+        badge.style.display = 'none';
+      }
+    });
+  });
+</script>

@@ -1,0 +1,308 @@
+<!-- =================== OUR BEST SELLERS =================== -->
+<style>
+  .section-pad {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 48px;
+  }
+
+  .section-sub {
+    margin-top: 6px;
+    text-align: center;
+    color: #666;
+    font-weight: 600;
+  }
+
+  /* Product grid */
+  .product-grid {
+    display: grid;
+    gap: 22px;
+    margin-top: 20px;
+  }
+
+  @media (min-width: 992px) {
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  @media (max-width: 991.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .grid-2,
+    .grid-4 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Card wide */
+  .card-wide {
+    display: grid;
+    grid-template-columns: 1.05fr 1.2fr;
+    gap: 24px;
+    background: #EEEEEE;
+    border: 1px solid #e6e6e6;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+    padding: 24px;
+    height: 100%;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Card image */
+  .card-wide .photo {
+    background: #fff;
+    border-radius: 18px;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .card-wide .photo img {
+    max-width: 100%;
+    height: auto;
+    max-height: 260px;
+    object-fit: contain;
+  }
+
+  /* Card content */
+  .card-wide .content h4 {
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: 0.025rem;
+    margin: 10px 0 6px;
+  }
+
+  .card-wide .content .sub {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 12px;
+    font-size: 14px;
+  }
+
+  /* Price row */
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .price-now {
+    font-size: 1rem;
+    font-weight: 900;
+  }
+
+  .price-compare {
+    color: #8c8c8c;
+    text-decoration: line-through;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+
+  /* Sale badge */
+  .sale-percentage {
+    background-color: #ff4d4f;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  /* Buttons */
+  .actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .btn-yellow {
+    background: #FFD200;
+    border: 0;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-outline {
+    background: #fff;
+    border: 1px solid #e6e6e6;
+    color: #000;
+    font-weight: 700;
+    border-radius: 26px;
+    padding: 10px 18px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .btn-yellow:hover {
+    filter: brightness(.95);
+  }
+
+  .btn-outline:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Rating stars */
+  .rating-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .stars-outer {
+    position: relative;
+    display: inline-block;
+    font-family: 'Font Awesome 5 Free';
+    color: #ddd;
+    overflow: hidden;
+    width: 90px;
+    white-space: nowrap;
+  }
+
+  .stars-outer::before {
+    content: "★★★★★";
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc(var(--rating) * 20%); /* Correct width calculation */
+    color: #f5a623;
+  }
+
+  .stars-inner::before {
+    content: "★★★★★";
+    font-size: 20px;
+    line-height: 20px;
+  }
+
+  /* Reviews count */
+  .reviews {
+    color: #8c8c8c;
+    font-weight: 700;
+    font-size: 13px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 991.98px) {
+    .card-wide {
+      grid-template-columns: 1fr;
+      padding: 18px;
+    }
+    .card-wide .photo img {
+      max-height: 220px;
+    }
+    .content h4 {
+      font-size: 18px;
+    }
+    .content .sub {
+      font-size: 14px;
+    }
+    .price-now,
+    .price-compare {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<article class="card-wide" style="align-items:center; position: relative;">
+  <a class="photo" href="{{ product.url }}">
+    {% if product.featured_image %}
+      <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}" height="" width="">
+    {% else %}
+      <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}" height="" width="">
+    {% endif %}
+  </a>
+
+  <div class="content">
+    <!-- Rating -->
+    {% assign r = product.metafields.custom.rating_count | default: 0 %}
+    {% assign rc = product.metafields.custom.review_count | default: 0 %}
+
+    {% if r > 0 %}
+      <a href="{{ product.url }}" class="rating-link" style="text-decoration:none; color:inherit;">
+        <div class="rating-wrapper">
+          <div class="stars" style="color: #ffb400;">★★★★★</div>
+          <span class="reviews">({{ rc }}) reviews</span>
+        </div>
+      </a>
+    {% endif %}
+
+    <h4 style="letter-spacing: 0.025rem;">{{ product.title }}</h4>
+    {% comment %} <div class="sub">
+      {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
+    </div> {% endcomment %}
+
+      <!-- Features -->
+{% if product.metafields.custom.ads_features_list %}
+  {% assign features = product.metafields.custom.ads_features_list.value %}
+  {% if features and features.size > 0 %}
+    <ul style="margin-bottom:10px; padding-left:24px; font-weight:normal; list-style-type:disc; list-style-position:outside; line-height:1.4;">
+      {% for feature in features %}
+        <li style="display:list-item; list-style-type:disc; margin:4px 0;">
+          {{ feature }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endif %}
+
+    {% assign v = product.first_available_variant %}
+
+    <div class="price-row">
+      <span class="price-now">{{ product.price | money }}</span>
+
+      {% if product.compare_at_price > product.price %}
+        <span class="price-compare">{{ product.compare_at_price | money }}</span>
+        <span
+          class="sale-percentage"
+          data-sale-price="{{ product.price | divided_by: 100.0 }}"
+          data-sale-old-price="{{ product.compare_at_price | divided_by: 100.0 }}"
+          style="position: relative; background-color:#ff4d4f;color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
+        ></span>
+      {% endif %}
+    </div>
+
+    <div class="actions">
+      <form method="post" action="/cart/add" class="d-inline">
+        <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
+        <button type="submit" class="btn-yellow">ADD TO CART</button>
+      </form>
+      <a class="btn-outline" href="{{ product.url }}">CUSTOMIZE</a>
+    </div>
+  </div>
+</article>

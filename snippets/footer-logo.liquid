@@ -1,0 +1,40 @@
+{%- if block.settings.logo -%}
+  {%- style -%}
+    .footer__logo a {
+      height: {{ block.settings.desktop_logo_height }}px;
+    }
+  {%- endstyle -%}
+  <div class="footer__logo">
+    <a href="{{ routes.root_url }}" aria-label="Url To Homepage">
+      {%- assign width = block.settings.desktop_logo_height | times: block.settings.logo.aspect_ratio | times: 2 -%}
+      {%- assign height = block.settings.desktop_logo_height -%}
+      {%- capture sizes -%}{{ block.settings.desktop_logo_height | times: block.settings.logo.aspect_ratio }}px{%- endcapture -%}
+      {%- capture widths -%}{{ block.settings.desktop_logo_height | times: block.settings.logo.aspect_ratio }}, {{ block.settings.desktop_logo_height | times: block.settings.logo.aspect_ratio | times: 2 }}{%- endcapture -%}
+      {%- capture style -%}max-width: {{ block.settings.desktop_logo_height | times: block.settings.logo.aspect_ratio }}px;max-height: {{ block.settings.desktop_logo_height }}px;{%- endcapture -%}
+
+      {%- render 'image-element',
+        img: block.settings.logo,
+        img_width: width,
+        img_height: height,
+        sizes: sizes,
+        widths: widths,
+        style: style,
+        alt: block.settings.logo.alt | default: shop.name,
+      -%}
+    </a>
+  </div>
+  <div class="footer-contact-info">
+    <!-- <a class="custom-footer-email" href="mailto:{{ section.settings.footer_email }}"><i class="fas fa-envelope"></i> {{ section.settings.footer_email }}</a><br> -->
+    <a class="custom-footer-phone" href="tel:{{ section.settings.footer_phone }}"><i class="fas fa-phone-alt"></i> {{ section.settings.footer_phone }}</a>
+  </div>
+  <div class="custom-footer-social">
+    {% render 'social-icons', additional_classes: 'footer__social' %}
+  </div>
+  <!-- <div class="footer-contact-button">
+    <a class="custom-contact-button" href="{{ section.settings.footer_button }}">Send Us A Message</a>
+  </div> -->
+  
+{%- endif -%}
+
+
+

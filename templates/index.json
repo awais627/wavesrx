@@ -1,0 +1,391 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "73e1f8b8-90c9-4aab-8c1e-545bec7ebb15": {
+      "type": "hero-video",
+      "custom_css": [
+        "a {color: #fff !important;}"
+      ],
+      "settings": {
+        "title": "",
+        "title_size": 80,
+        "subheading": "",
+        "link_text": "SHOP BOAT",
+        "link": "shopify://collections/boats",
+        "link_text_second": "SHOP PWC",
+        "link_second": "shopify://collections/pwc",
+        "link_text_third": "SHOP KAYAK",
+        "link_third": "shopify://collections/kayak",
+        "color_accent": "#277eb9",
+        "text_align": "vertical-bottom horizontal-center",
+        "video_url": "https://cdn.shopify.com/videos/c/o/v/ccc02a6fea9b45c0af2771f96bd3a9a0.mp4",
+        "overlay_opacity": 0,
+        "section_height": "650px",
+        "mobile_height": "auto"
+      }
+    },
+    "c817f3c5-afbb-4d72-a4d6-7313cdfb7d8b": {
+      "type": "background-video-text",
+      "disabled": true,
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "text": "",
+        "button_label": "",
+        "button_link": "",
+        "video_url": "https://www.youtube.com/watch?v=yFTwV0ah0wg",
+        "color_border": "#f4f4f4",
+        "layout": "left",
+        "height": 750
+      }
+    },
+    "9852bc6b-2cb6-49c9-905a-521c26424bc8": {
+      "type": "logo-list",
+      "blocks": {
+        "da3441b6-b549-41dd-935c-ce40ce1efe85": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Alvean_Logo_10b92b2a-8628-4f34-bab7-c4812efc5327.png",
+            "link": "https://www.youtube.com/watch?v=_lnCCo9CWjk"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-3": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/DrDemp_Transparent_Logo_6c7b0921-b14a-4ffe-9012-129e6b0856e0.png",
+            "link": "https://www.youtube.com/watch?v=4Zr1aZjs0_4"
+          }
+        },
+        "207d0e9f-d341-45cb-9655-289d2ac789dd": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/JD_s_WaterWorld_0ca71350-e4fa-46ce-bff1-fd615ebfdf24.png",
+            "link": "https://youtu.be/T1ytIkJ2l6s?si=e55v8NCYgLYKC7Yw"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-1": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/channels4_profile1.png",
+            "link": "https://youtu.be/emRRuv0ekhM?si=FRCHQR8GIZHy8QHx&t=235"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-2": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/THE_ADVENTURE_CREWS_LOGO_490434f0-821d-4802-bea1-1d00bbd17554.png",
+            "link": "https://youtu.be/42Mogj56INg?si=qcUt2OgdDZLJc-wE&t=596"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-4": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Tommy_T_s_Adventures_098bb85d-a042-46e0-bdb6-e95eb0fed71a.png",
+            "link": "https://www.youtube.com/watch?v=0bhEw2KuKd0"
+          }
+        },
+        "314c9042-3720-4565-993c-2f80cb19c0b0": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/WatercraftShack.png",
+            "link": "https://www.youtube.com/watch?v=NITuuGQFqc8"
+          }
+        }
+      },
+      "block_order": [
+        "da3441b6-b549-41dd-935c-ce40ce1efe85",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-3",
+        "207d0e9f-d341-45cb-9655-289d2ac789dd",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-1",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-2",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-4",
+        "314c9042-3720-4565-993c-2f80cb19c0b0"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.logo-bar__item {margin: 10px; }}"
+      ],
+      "settings": {
+        "title": "",
+        "logo_opacity": 100,
+        "divider": false
+      }
+    },
+    "5716dab2-dfd5-4901-a9ab-0478d62aebb3": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16192486637746__5716dab2-dfd5-4901-a9ab-0478d62aebb3-heading-1": {
+          "type": "heading",
+          "settings": {
+            "title": "BOAT AND PWC GEAR"
+          }
+        }
+      },
+      "block_order": [
+        "template--16192486637746__5716dab2-dfd5-4901-a9ab-0478d62aebb3-heading-1"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "7234bd63-4e77-418c-b202-8679c0569061": {
+      "type": "four-category-section",
+      "settings": {
+        "heading1": "Anchoring",
+        "heading2": "Docking",
+        "heading3": "Cleaning",
+        "heading4": "sAFETY",
+        "link1": "shopify://collections/beach-anchors",
+        "link1text": "Shop Now",
+        "link2": "shopify://collections/marine-ropes",
+        "link2text": "Shop Now",
+        "link3": "shopify://collections/boat-cleaning",
+        "link3text": "Shop Now",
+        "link4": "shopify://collections/boat-straps",
+        "link4text": "Shop Now"
+      }
+    },
+    "featured-collections": {
+      "type": "featured-collections",
+      "blocks": {
+        "featured-collections-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "beach-anchors",
+            "title": "",
+            "focal_point": "bottom center"
+          }
+        },
+        "collection_cMr6Nb": {
+          "type": "collection",
+          "settings": {
+            "collection": "",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "featured-collections-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "marine-ropes",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "featured-collections-2": {
+          "type": "collection",
+          "settings": {
+            "collection": "boat-cleaning",
+            "title": "",
+            "focal_point": "center center"
+          }
+        },
+        "featured-collections-3": {
+          "type": "collection",
+          "settings": {
+            "collection": "boat-straps",
+            "title": "",
+            "focal_point": "center center"
+          }
+        }
+      },
+      "block_order": [
+        "featured-collections-0",
+        "collection_cMr6Nb",
+        "featured-collections-1",
+        "featured-collections-2",
+        "featured-collections-3"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "OUR PRODUCTS",
+        "divider": false,
+        "per_row": 4,
+        "enable_gutter": true
+      }
+    },
+    "cafcff97-901a-476d-ac02-6040a3a9b082": {
+      "type": "two-button-section",
+      "disabled": true,
+      "settings": {
+        "link1text": "SHOP BOATING",
+        "link1": "shopify://collections/boats",
+        "link2text": "SHOP PWC",
+        "link2": "shopify://collections/pwc"
+      }
+    },
+    "0b73b726-ea38-4c1f-a16d-d2ad48528ca4": {
+      "type": "single-button",
+      "disabled": true,
+      "settings": {
+        "button_text": "All Products",
+        "button_link": "shopify://collections"
+      }
+    },
+    "16992648767b6d4cdd": {
+      "type": "apps",
+      "blocks": {
+        "5d447e38-2610-4ad2-85c9-c947d520287f": {
+          "type": "shopify://apps/appio-product-reviews/blocks/featured-review/569167b3-e5d6-4314-9866-f51281b506d7",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "5d447e38-2610-4ad2-85c9-c947d520287f"
+      ],
+      "settings": {
+        "full_width": true,
+        "space_around": true
+      }
+    },
+    "featured-collection": {
+      "type": "featured-collection",
+      "custom_css": [
+        "#CollectionSection-template--16192486637746__featured-collection .section-header__title {text-align: center;}"
+      ],
+      "settings": {
+        "title": "BEST SELLERS",
+        "home_featured_products": "best-selling",
+        "per_row": 4,
+        "rows": 1,
+        "mobile_scrollable": false,
+        "view_all": false,
+        "divider": true
+      }
+    },
+    "54193021-7121-4d26-ba0f-39b6dfdfd3ac": {
+      "type": "promotional-section",
+      "settings": {
+        "heading1": "30 DAYS PRICE MATCH",
+        "heading2": "HASSLE FREE RETURNS",
+        "heading3": "365 DAYS MONEY BACK",
+        "url1": "https://www.wavesrx.com/pages/return-refund-policy",
+        "heading4": "AMERICAN OPERATED"
+      }
+    },
+    "b2e2bb32-7f41-4716-b733-9effabe45301": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16192486637746__b2e2bb32-7f41-4716-b733-9effabe45301-heading-1": {
+          "type": "heading",
+          "settings": {
+            "title": "GET INSPIRED"
+          }
+        }
+      },
+      "block_order": [
+        "template--16192486637746__b2e2bb32-7f41-4716-b733-9effabe45301-heading-1"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "5e5b47e1-9afe-4a6c-8fa1-69269e691ac7": {
+      "type": "tiktok-slider",
+      "settings": {
+        "video1": "https://cdn.shopify.com/videos/c/o/v/bcf7003aa583459bb2d14c78985c8fc8.mp4",
+        "video2": "https://cdn.shopify.com/videos/c/o/v/bcf7003aa583459bb2d14c78985c8fc8.mp4",
+        "video3": "https://cdn.shopify.com/videos/c/o/v/b0c973bb58ae46f3af8248818934c263.mp4",
+        "video4": "https://cdn.shopify.com/videos/c/o/v/e5db6e8574d04324a50a0afe7a347b13.mp4",
+        "video5": "https://cdn.shopify.com/videos/c/o/v/bcf7003aa583459bb2d14c78985c8fc8.mp4",
+        "video6": "https://cdn.shopify.com/videos/c/o/v/5caf31ed8570475cba13a96656a289a6.mp4",
+        "video7": "https://cdn.shopify.com/videos/c/o/v/df4244d39c444016b6d155cd2eccb1ca.mp4",
+        "video8": "",
+        "video9": "",
+        "video10": ""
+      }
+    },
+    "rich_text_4JkYUp": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_BXqKyr": {
+          "type": "heading",
+          "settings": {
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "heading_BXqKyr"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "63bca261-4e8c-4df8-a05f-1c2f9f2a03e6": {
+      "type": "rich-text",
+      "blocks": {
+        "template--16192486637746__63bca261-4e8c-4df8-a05f-1c2f9f2a03e6-heading-1": {
+          "type": "heading",
+          "settings": {
+            "title": "THE WAVESRX STORY"
+          }
+        }
+      },
+      "block_order": [
+        "template--16192486637746__63bca261-4e8c-4df8-a05f-1c2f9f2a03e6-heading-1"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "71215e60-7155-47d9-a008-e42284fcd09f": {
+      "type": "text-and-image",
+      "custom_css": [
+        ".feature-row__item--overlap-images > :first-child {transform: translate(60px, -127px) !important;}"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/f-img1.jpg",
+        "image_mask": "none",
+        "image2": "shopify://shop_images/Untitled-1kk.jpg",
+        "image2_mask": "none",
+        "subtitle": "",
+        "title": "",
+        "text": "<p>We are two friends from sunny Sarasota, Florida, bonded by a deep passion for open waters and a genuine appreciation for the freedom one experiences when riding a boat or jet ski. We love tinkering with our \"water toys\", always coming up with new product ideas to make our boating and riding experiences safer and more enjoyable.</p><p>It was during a 2019 brainstorming session, while developing a lighter, more compact, and efficient beach anchor, that we realized our innovations could benefit others and founded WavesRx.</p><p>So if you share the same passion for adventure and want to join us on this exhilarating journey, it would be a privilege to have you on-board!”</p>",
+        "button_label": "",
+        "button_link": "",
+        "button_style": "primary",
+        "align_text": "left",
+        "image_width": "66",
+        "layout": "right",
+        "divider": false,
+        "top_padding": true,
+        "bottom_padding": true,
+        "lazyload_images": false
+      }
+    }
+  },
+  "order": [
+    "73e1f8b8-90c9-4aab-8c1e-545bec7ebb15",
+    "c817f3c5-afbb-4d72-a4d6-7313cdfb7d8b",
+    "9852bc6b-2cb6-49c9-905a-521c26424bc8",
+    "5716dab2-dfd5-4901-a9ab-0478d62aebb3",
+    "7234bd63-4e77-418c-b202-8679c0569061",
+    "featured-collections",
+    "cafcff97-901a-476d-ac02-6040a3a9b082",
+    "0b73b726-ea38-4c1f-a16d-d2ad48528ca4",
+    "16992648767b6d4cdd",
+    "featured-collection",
+    "54193021-7121-4d26-ba0f-39b6dfdfd3ac",
+    "b2e2bb32-7f41-4716-b733-9effabe45301",
+    "5e5b47e1-9afe-4a6c-8fa1-69269e691ac7",
+    "rich_text_4JkYUp",
+    "63bca261-4e8c-4df8-a05f-1c2f9f2a03e6",
+    "71215e60-7155-47d9-a008-e42284fcd09f"
+  ]
+}

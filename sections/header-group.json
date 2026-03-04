@@ -1,0 +1,93 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "type": "header",
+  "name": "t:sections.header-group.name",
+  "sections": {
+    "bd775d32-2025-452f-9e8e-fddd3a67c990": {
+      "type": "scrolling-text",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "text": "FREE SHIPPING FOR US & CANADA FOR $30             FREE BEAUTY SPONGE ON ALL ORDERS OVER $45        FREE INTERNATIONAL SHIPPING FOR ORDERS OVER $60",
+        "link": "",
+        "text_size": 20,
+        "text_spacing": true,
+        "direction": "left",
+        "speed": 300
+      }
+    },
+    "announcement": {
+      "type": "announcement",
+      "blocks": {
+        "announcement-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "PRE-SEASON SAVINGS are here",
+            "link_text": "",
+            "link": "shopify://collections"
+          }
+        }
+      },
+      "block_order": [
+        "announcement-0"
+      ],
+      "custom_css": [
+        ".announcement-bar {background-color: #800000 !important; color: #000 !important; font-size: 18px !important; text-align: center !important; line-height: 1.4 !important;}",
+        "@media screen and (max-width: 400px) {.announcement-bar .page-width {display: block; }}"
+      ],
+      "settings": {
+        "announcement_compact": true
+      }
+    },
+    "header": {
+      "type": "header",
+      "blocks": {
+        "header-0": {
+          "type": "logo",
+          "settings": {
+            "logo": "shopify://shop_images/PNG.png",
+            "desktop_logo_width": 150,
+            "mobile_logo_width": 90
+          }
+        }
+      },
+      "block_order": [
+        "header-0"
+      ],
+      "custom_css": [
+        "input[name=\"cd-dropdown\"] {display: none !important;}"
+      ],
+      "settings": {
+        "main_menu_link_list": "main-menus-new",
+        "hover_menu": true,
+        "mega_menu_images": true,
+        "main_menu_alignment": "center",
+        "header_style": "sticky",
+        "sticky_index": false,
+        "sticky_collection": false,
+        "toolbar_menu": "",
+        "toolbar_social": true,
+        "show_locale_selector": false,
+        "show_currency_selector": false,
+        "show_currency_flags": false,
+        "header_email_text": "",
+        "footer_email": "",
+        "header_phone_text": "",
+        "footer_phone": ""
+      }
+    }
+  },
+  "order": [
+    "bd775d32-2025-452f-9e8e-fddd3a67c990",
+    "announcement",
+    "header"
+  ]
+}

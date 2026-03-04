@@ -1,0 +1,258 @@
+<style>
+    :root{
+      --default-font-sizeX: 44px;
+      --default-anchor-size: 14px;
+    }
+    .box-container{
+        width: 100%;
+        min-height: 298px;
+        text-align: left;
+        background-repeat: no-repeat;
+        background-position: right;
+        padding: 1.2em 2em;
+        vertical-align: bottom;
+        border-radius: 10px;
+        background-size: contain;
+        display: flex;
+        background-size: cover;
+        left: 0;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+      
+    .box-shop h3, .box-shop1 h3, .box-shop1-buttom h3, .box-shop2-buttom h3, .box-shop-buttom h3 {
+        text-transform: uppercase;
+        font-weight: 900;
+        color: #fff;
+        font-size: var(--default-font-sizeX);
+        margin-bottom: 0;
+    }
+    .box-shop a, .box-shop1 a, .box-shop-buttom a, .box-shop1-buttom a {
+        background: #0d6efd;
+        padding: 10px 20px;
+        text-decoration: none;
+        margin: 10px 0 0;
+        display: inline-block;
+        color: #fff;
+        font-weight: 600;
+        font-size: var(--default-anchor-size);
+    }
+    .box-shop {
+        background-image: url(https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Artboard_1_13.jpg?v=1745496496), linear-gradient(180deg, #0479a6, #00c3d0);
+    }
+    .box-shop1 {
+        background-image: url(https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Artboard_1_copy_3.jpg?v=1745496328), linear-gradient(180deg, #0479a6, #00c3d0);
+    }
+    .box-shop-buttom {
+        background-image: url(https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Artboard_1_copy_2_4.jpg?v=1745496328), linear-gradient(180deg, #00c3d0, #0479a6);
+    }
+    .box-shop1-buttom {
+        background-image: url(https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Artboard_2_1_1.jpg?v=1745496496), linear-gradient(180deg, #00c3d0, #0479a6);
+    }
+    .box-shop2-buttom {
+        background-image: url(https://cdn.shopify.com/s/files/1/0269/9198/4729/files/01_b813dbfb-8c61-4bd5-b96c-dedff2de6d3e.jpg?v=1772559817), linear-gradient(180deg, #00c3d0, #0479a6);
+    }
+    @media(max-width: 320px){
+      .box-shop a, .box-shop1 a, .box-shop-buttom a, .box-shop1-buttom a {
+        font-size: calc(var(--default-anchor-size) - 1px);
+      }
+      .box-shop h3, .box-shop1 h3, .box-shop1-buttom h3, .box-shop-buttom h3 {
+        font-size: calc(var(--default-font-sizeX) - 10px);
+      }  
+    }
+    @media(min-width:575px) and (max-width:767px){
+      .box-shop a, .box-shop1 a, .box-shop-buttom a, .box-shop1-buttom a {
+        font-size: calc(var(--default-anchor-size) - 1px);
+      }
+      .box-shop h3, .box-shop1 h3, .box-shop1-buttom h3, .box-shop-buttom h3 {
+        font-size: calc(var(--default-font-sizeX) - 10px)!important;
+      }  
+      .box-container{
+        background-size: contain!important;
+      }
+    }
+    @media(max-width:767px){
+      .box-container{
+        background-size: contain!important;
+      }
+    }
+    @include media-breakpoint-up(sm) { 
+      .box-container{
+        background-position: center left;
+      }
+      .box-shop a, .box-shop1 a, .box-shop-buttom a, .box-shop1-buttom a {
+        font-size: calc(var(--default-anchor-size) - 1px);
+      }
+      .box-shop h3, .box-shop1 h3, .box-shop1-buttom h3, .box-shop-buttom h3 {
+        font-size: calc(var(--default-font-sizeX) - 4px);
+      }  
+    }
+    @include media-breakpoint-up(md) {
+      .box-shop a, .box-shop1 a, .box-shop-buttom a, .box-shop1-buttom a {
+        font-size: calc(var(--default-anchor-size) - 1px);
+      }
+      .box-shop h3, .box-shop1 h3, .box-shop1-buttom h3, .box-shop-buttom h3 {
+        font-size: calc(var(--default-font-sizeX) - 2px);
+      }
+    }
+    @include media-breakpoint-up(lg) { .box-shop a, .box-shop1 a, .box-shop-buttom a, .box-shop1-buttom a {
+        font-size: var(--default-anchor-size);
+      }
+      .box-shop h3, .box-shop1 h3, .box-shop1-buttom h3, .box-shop-buttom h3 {
+        font-size: var(--default-font-sizeX);
+      } }
+    @include media-breakpoint-up(xl) {
+      .box-shop a, .box-shop1 a, .box-shop-buttom a, .box-shop1-buttom a {
+        font-size: var(--default-anchor-size);
+      }
+      .box-shop h3, .box-shop1 h3, .box-shop1-buttom h3, .box-shop-buttom h3 {
+        font-size: var(--default-font-sizeX);
+      }
+    }
+    .category-itemx:hover .box-container{
+      transform: scale(1.03);
+      transition: all .8s ease;
+    }
+  .category-itemx{
+    overflow: hidden;
+  }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="{{ section.settings.link1 }}" class="category-itemx">
+              <div class ="box-container box-shop mt-4" style= "padding-inline:0 !important">
+                  <h3 style="background:#0000007a ; padding-inline:5% ; width:100%" >{{ section.settings.heading1 }}</h3>
+              </div>
+            </a>
+        </div>
+        <div class="col-sm-6">
+            <a href="{{ section.settings.link2 }}" class="category-itemx">
+              <div class="box-container box-shop1 mt-4" style= "padding-inline:0 !important">
+                  <h3 style = "background:#0000007a ; padding-inline:5% ; width:100%" >{{ section.settings.heading2 }}</h3>
+              </div>
+            </a>
+        </div>
+        <div class="col-sm-6">
+            <a href="{{ section.settings.link3 }}" class="category-itemx">
+              <div class="box-container box-shop-buttom mt-4"style= "padding-inline:0 !important">
+                  <h3  style = "background:#0000007a ; padding-inline:5% ; width:100%">{{ section.settings.heading3 }}</h3>
+              </div>
+            </a>
+        </div>
+        <div class="col-sm-6">
+            <a href="{{ section.settings.link4 }}" class="category-itemx">
+              <div class="box-container box-shop1-buttom mt-4"style= "padding-inline:0 !important">
+                  <h3  style = "background:#0000007a ; padding-inline:5% ; width:100%">{{ section.settings.heading4 }}</h3>
+              </div>
+            </a>
+        </div>
+        {% comment %} <div class="col-sm-12">
+          <a href="https://www.wavesrx.com/pages/us-value-bundle" class="category-itemx">
+              <div class="box-container box-shop2-buttom mt-4" style="padding-inline:0 !important">
+                  <h3 style="background:#0000007a ; padding-inline:5% ; width:100%" >{{ section.settings.heading5 }}</h3>
+              </div>
+          </a>
+        </div> {% endcomment %}
+    </div>
+</div>
+
+{% schema %}
+{
+    "name": "four-category-section",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading1",
+            "label": "Heading 1",
+            "default": "Anchoring"
+        },
+        {
+            "type": "text",
+            "id": "heading2",
+            "label": "Heading 2",
+            "default": "Docking"
+        },
+        {
+            "type": "text",
+            "id": "heading3",
+            "label": "Heading 3",
+            "default": "Anchoring"
+        },
+        {
+            "type": "text",
+            "id": "heading4",
+            "label": "Heading 4",
+            "default": "Docking"
+        },
+        {
+            "type": "text",
+            "id": "heading5",
+            "label": "Heading 5",
+            "default": "Value Bundle"
+        },
+        {
+            "type": "url",
+            "id": "link1",
+            "label": "Link 1"
+        },
+        {
+            "type": "text",
+            "id": "link1text",
+            "label": "Link 1 text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "link2",
+            "label": "Link 2"
+        },
+        {
+            "type": "text",
+            "id": "link2text",
+            "label": "Link 2 text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "link3",
+            "label": "Link 3"
+        },
+        {
+            "type": "text",
+            "id": "link3text",
+            "label": "Link 3 text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "link4",
+            "label": "Link 4"
+        },
+        {
+            "type": "text",
+            "id": "link4text",
+            "label": "Link 4 text",
+            "default": "Shop Now"
+        },
+        {
+            "type": "url",
+            "id": "link5",
+            "label": "Link 5"
+        },
+        {
+            "type": "text",
+            "id": "link5text",
+            "label": "Link 5 text",
+            "default": "Shop Now"
+        }
+    ],
+    "presets": [
+        {
+            "name": "four-category-section"
+        }
+    ]
+}
+{% endschema %}
