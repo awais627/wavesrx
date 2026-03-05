@@ -44,6 +44,9 @@
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.gstatic.com">
+    {% comment %} <link rel="preconnect" href="https://static.zevi.ai" crossorigin> {% endcomment %}
+    <link rel="preconnect" href="https://static.hotjar.com" crossorigin>
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
     {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> {% endcomment %}
     <link
       rel="stylesheet"
@@ -55,7 +58,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     </noscript>
 
-    {{ 'fontawesome-590.css' | asset_url | stylesheet_tag }}
+    {% comment %} fontawesome-590.css removed — returns MIME type text/html (missing from CDN). FA 6.5.1 from cdnjs is already loaded above. {% endcomment %}
     {% comment %} {{ 'fontawesome-651.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
     {{ 'swiper.css' | asset_url | stylesheet_tag }}
@@ -72,12 +75,14 @@
       <noscript>{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}</noscript>
     {% endcomment %}
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
     {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.js"></script> {% endcomment %}
     <script src="{{ 'swiper.js' | asset_url }}"></script>
 
     {%- if settings.favicon != blank -%}
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- else -%}
+      <link rel="icon" href="data:," type="image/x-icon">
     {%- endif -%}
 
     {%- render 'seo-title' -%}
@@ -267,10 +272,11 @@
     </template>
 
     {% include 'globo.filter.action' %}
-    <script src="https://static.zevi.ai/scripts/suggestions-overlay.js"></script>
-    <script src="https://static.zevi.ai/scripts/metrics.js"></script>
+    {% comment %} Zevi AI scripts removed — static.zevi.ai returning ERR_CONNECTION_REFUSED. Re-enable when service is restored. {% endcomment %}
+    {% comment %} <script src="https://static.zevi.ai/scripts/suggestions-overlay.js" defer crossorigin="anonymous"></script> {% endcomment %}
+    {% comment %} <script src="https://static.zevi.ai/scripts/metrics.js" defer crossorigin="anonymous"></script> {% endcomment %}
     {%- render 'ecom_footer' -%}
-    {{ '//cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23' | script_tag }}
+    <script src="https://cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23" defer crossorigin="anonymous"></script>
 
     <script type="application/ld+json">
       {

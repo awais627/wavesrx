@@ -5,7 +5,7 @@
 var descendingPath = ["heratica", "tapita-inner-temple", "tapita-section-body"];
 
 window.addEventListener("shopify:section:load", function (event) {
-    console.log("triggered", event.target, "version 1.1.0");
+
     if (event.target.childNodes.length > 0) {
         var ttlScripts = [];
 
@@ -16,7 +16,7 @@ window.addEventListener("shopify:section:load", function (event) {
             if (el1 instanceof HTMLElement) {
                 var cur = el1.querySelector(chosenSelector);
                 if (cur) {
-                    console.log("cur", cur);
+
                     if (cur.childNodes.length > 0) {
                         cur.childNodes.forEach(function (el) {
                             if (el instanceof HTMLElement && el.nodeName === "SCRIPT") {

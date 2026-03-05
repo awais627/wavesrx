@@ -39,7 +39,10 @@ const customize = {
 
           let productItem = document.querySelector('[data-product-id="'+ data.id +'"]');
 
-          productItem.querySelector('.boost-sd__product-image-wrapper').appendChild(wishlistHtml);
+          if (productItem) {
+            var wrapper = productItem.querySelector('.boost-sd__product-image-wrapper');
+            if (wrapper) wrapper.appendChild(wishlistHtml);
+          }
 
         }
 

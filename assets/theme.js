@@ -31,9 +31,7 @@ if (theme.config.isTouch) {
   document.documentElement.className += ' supports-touch';
 }
 
-if (console && console.log) {
-  console.log('Impulse theme ('+theme.settings.themeVersion+') by ARCHΞTYPE | Learn more at https://archetypethemes.co');
-}
+// Theme version info removed from console
 
 theme.recentlyViewed = {
   recent: {}, // will store handle+url of recent products
@@ -2128,10 +2126,12 @@ theme.recentlyViewed = {
       _setupListeners: function() {
         this.eventHandlers = this._setupEventHandlers();
   
-        this.cache.disclosureToggle.addEventListener(
-          'click',
-          this.eventHandlers.toggleList
-        );
+        if (this.cache.disclosureToggle) {
+          this.cache.disclosureToggle.addEventListener(
+            'click',
+            this.eventHandlers.toggleList
+          );
+        }
   
         this.cache.disclosureOptions.forEach(function(disclosureOption) {
           disclosureOption.addEventListener(
@@ -2145,15 +2145,19 @@ theme.recentlyViewed = {
           this.eventHandlers.onDisclosureKeyUp
         );
   
-        this.cache.disclosureList.addEventListener(
-          'focusout',
-          this.eventHandlers.onDisclosureListFocusOut
-        );
+        if (this.cache.disclosureList) {
+          this.cache.disclosureList.addEventListener(
+            'focusout',
+            this.eventHandlers.onDisclosureListFocusOut
+          );
+        }
   
-        this.cache.disclosureToggle.addEventListener(
-          'focusout',
-          this.eventHandlers.onDisclosureToggleFocusOut
-        );
+        if (this.cache.disclosureToggle) {
+          this.cache.disclosureToggle.addEventListener(
+            'focusout',
+            this.eventHandlers.onDisclosureToggleFocusOut
+          );
+        }
   
         document.body.addEventListener('click', this.eventHandlers.onBodyClick);
       },
@@ -2934,6 +2938,7 @@ theme.recentlyViewed = {
       modelViewerContainers.forEach(function(container, index) {
         var mediaId = container.dataset.mediaId;
         var modelViewerElement = container.querySelector('model-viewer');
+        if (!modelViewerElement) return;
         var modelId = modelViewerElement.dataset.modelId;
   
         if (index === 0) {
@@ -3261,19 +3266,25 @@ theme.recentlyViewed = {
       // Prevent dragging on the product slider from triggering a zoom on product images
       if (el.dataset.zoom && el.dataset.zoom === 'true') {
         this.slideshow.on('dragStart', () => {
-          this.slideshow.slider.style.pointerEvents = 'none';
+          if (this.slideshow.slider) {
+            this.slideshow.slider.style.pointerEvents = 'none';
   
-          // With fade enabled, we also need to adjust the pointerEvents on the selected slide
-          if (this.slideshow.options.fade) {
-            this.slideshow.slider.querySelector('.is-selected').style.pointerEvents = 'none';
+            // With fade enabled, we also need to adjust the pointerEvents on the selected slide
+            if (this.slideshow.options.fade) {
+              var selected = this.slideshow.slider.querySelector('.is-selected');
+              if (selected) selected.style.pointerEvents = 'none';
+            }
           }
         });
         this.slideshow.on('dragEnd', () => {
-          this.slideshow.slider.style.pointerEvents = 'auto';
+          if (this.slideshow.slider) {
+            this.slideshow.slider.style.pointerEvents = 'auto';
   
-          // With fade enabled, we also need to adjust the pointerEvents on the selected slide
-          if (this.slideshow.options.fade) {
-            this.slideshow.slider.querySelector('.is-selected').style.pointerEvents = 'auto';
+            // With fade enabled, we also need to adjust the pointerEvents on the selected slide
+            if (this.slideshow.options.fade) {
+              var selected = this.slideshow.slider.querySelector('.is-selected');
+              if (selected) selected.style.pointerEvents = 'auto';
+            }
           }
         });
       }
@@ -3929,10 +3940,12 @@ theme.recentlyViewed = {
       document.addEventListener(`modalClose.${this.newsletterId}`, () => this.show());
       document.addEventListener(`newsletter:openReminder`, () => this.show(0));
   
-      this.closeBtn.addEventListener('click', () => {
-        this.hide();
-        Cookies.set(this.cookieName, 'opened', { path: '/', expires: this.expiry });
-      });
+      if (this.closeBtn) {
+        this.closeBtn.addEventListener('click', () => {
+          this.hide();
+          Cookies.set(this.cookieName, 'opened', { path: '/', expires: this.expiry });
+        });
+      }
   
       this.popupTrigger.addEventListener('click', () => {
         const reminderOpen = new CustomEvent('reminder:openNewsletter', { bubbles: true });
@@ -4058,8 +4071,12 @@ theme.recentlyViewed = {
       // Close events
       document.addEventListener('predictive-search:close', () => { this.close(); });
       document.addEventListener('keydown', (event) => { if (event.keyCode === 27) this.close(); });
-      this.closeBtn.addEventListener('click', e => { e.preventDefault(); this.close(); });
-      this.screen.addEventListener('click', () => { this.close(); });
+      if (this.closeBtn) {
+        this.closeBtn.addEventListener('click', e => { e.preventDefault(); this.close(); });
+      }
+      if (this.screen) {
+        this.screen.addEventListener('click', () => { this.close(); });
+      }
     }
   
     onChange() {
@@ -7195,13 +7212,17 @@ theme.recentlyViewed = {
               savings = theme.Currency.formatMoney(savings, theme.settings.moneyFormat);
             }
   
-            this.cache.savePrice.classList.remove(classes.hidden);
-            this.cache.savePrice.innerHTML = theme.strings.savePrice.replace('[saved_amount]', savings);
+            if (this.cache.savePrice) {
+              this.cache.savePrice.classList.remove(classes.hidden);
+              this.cache.savePrice.innerHTML = theme.strings.savePrice.replace('[saved_amount]', savings);
+            }
           } else {
             if (this.cache.priceWrapper) {
               this.cache.priceWrapper.classList.add(classes.hidden);
             }
-            this.cache.savePrice.classList.add(classes.hidden);
+            if (this.cache.savePrice) {
+              this.cache.savePrice.classList.add(classes.hidden);
+            }
             this.cache.price.classList.remove(classes.onSale);
             if (this.cache.comparePriceA11y) {
               this.cache.comparePriceA11y.setAttribute('aria-hidden', 'true');
@@ -7713,8 +7734,10 @@ theme.recentlyViewed = {
               cancelable: true
             })
           );
-          slide.querySelector('.shopify-model-viewer-ui__button').setAttribute('tabindex', 0);
-          slide.querySelector('.product-single__close-media').setAttribute('tabindex', 0);
+          var modelBtn = slide.querySelector('.shopify-model-viewer-ui__button');
+          if (modelBtn) modelBtn.setAttribute('tabindex', 0);
+          var closeMediaBtn = slide.querySelector('.product-single__close-media');
+          if (closeMediaBtn) closeMediaBtn.setAttribute('tabindex', 0);
         }
       },
   
