@@ -7,13 +7,10 @@ function dynamicAttach(itemId, containerId, override) {
     var slt = '.spb-item.type_actual_statement.spb-item-id_' + itemId;
     var targetElement = document.querySelector(slt);
     var containerElement = document.querySelector('.' + containerId);
-    console.log(targetElement, containerElement);
     if (containerElement && (containerElement.innerHTML).trim().length > 0) {
             window.__tpt_everlasting_cache[slt] = containerElement.innerHTML;
     }
     if ((targetElement && (!targetElement.innerHTML.length || override)) && ((containerElement && (containerElement.innerHTML).trim() || window.__tpt_everlasting_cache[slt]))) {
-        console.log('Found container element');
-    console.log(itemId, containerId);    
         if (containerElement && (containerElement.innerHTML).trim().length > 0) {
             var tpt_rerun = containerElement.querySelectorAll('script.tpt_rerun, script.tpt_inject_script');
             if (containerElement.childNodes) {
@@ -22,16 +19,16 @@ function dynamicAttach(itemId, containerId, override) {
                 });
             }
             tpt_rerun.forEach(function(t) {
-                Function(t.innerText)()
+                var s = document.createElement('script'); s.textContent = t.innerText; document.head.appendChild(s); document.head.removeChild(s);
             });
         } else if (window.__tpt_everlasting_cache[slt]) {
             targetElement.innerHTML = window.__tpt_everlasting_cache[slt];
             var tpt_rerun = targetElement.querySelectorAll('script.tpt_rerun, script.tpt_inject_script');
             tpt_rerun.forEach(function(t) {
-                Function(t.innerText)()
+                var s = document.createElement('script'); s.textContent = t.innerText; document.head.appendChild(s); document.head.removeChild(s);
             });
         } else if (targetElement && containerElement && targetElement.innerHTML.length) {
-            console.log('Already attached', slt);
+            // Already attached
     }
 }
         if (!window._tapita_ssr_ijt_obj) {

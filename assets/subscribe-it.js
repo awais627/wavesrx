@@ -43,7 +43,7 @@
           $(function() {
             var endingTime = new Date().getTime();
             var tookTime = endingTime - startingTime;
-            console.log("jQuery is loaded, after " + tookTime + " milliseconds!");
+            // jQuery loaded
         });
     });
 
@@ -2259,10 +2259,10 @@ function getRandomSubscribeAPIPath() {
     window.SIConfig = SI.Config;
 
       if(SI.Config.button.selected_selector !== "" && !document.querySelector(SI.Config.button.selected_selector)){
-        console.log("BIS: button not found. Wrong selector")
+        // BIS: button not found
       }
       else{
-        console.log("BIS: button found.")
+        // BIS: button found
       }
 
     SI.domReady().then(SI.init);

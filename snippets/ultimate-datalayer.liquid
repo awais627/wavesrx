@@ -196,7 +196,7 @@
             return originalFetch.apply(this, arguments).then((response) => {
               if (response.ok) {
                 let cloneResponse = response.clone();
-                let requestURL = arguments[0];
+                let requestURL = typeof arguments[0] === 'string' ? arguments[0] : (arguments[0] && arguments[0].url ? arguments[0].url : '');
                 
                 if(/.*\/search\/?.*\?.*q=.+/.test(requestURL) && !requestURL.includes('&requestFrom=uldt')) {   
                   const queryString = requestURL.split('?')[1];
@@ -967,7 +967,7 @@
         try{
           new Ultimate_Shopify_DataLayer();
         }catch(error) {
-          console.log(error);
+          // error logged silently
         }
       });
     
