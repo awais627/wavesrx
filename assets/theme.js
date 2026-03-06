@@ -1873,7 +1873,8 @@ theme.recentlyViewed = {
         Update elements of the cart
       ==============================================================================*/
       updateSubtotal: function(subtotal) {
-        this.form.querySelector(selectors.subTotal).innerHTML = theme.Currency.formatMoney(subtotal, theme.settings.moneyFormat);
+        var subTotalEl = this.form.querySelector(selectors.subTotal);
+        if (subTotalEl) subTotalEl.innerHTML = theme.Currency.formatMoney(subtotal, theme.settings.moneyFormat);
       },
   
       updateSavings: function(savings) {
@@ -2306,7 +2307,8 @@ theme.recentlyViewed = {
           openBtn.addEventListener('click', this.open.bind(this));
         });
   
-        this.drawer.querySelector(this.config.close).addEventListener('click', this.close.bind(this));
+        var drawerCloseBtn = this.drawer.querySelector(this.config.close);
+        if (drawerCloseBtn) drawerCloseBtn.addEventListener('click', this.close.bind(this));
   
         // Close modal if a drawer is opened
         document.addEventListener('modalOpen', function() {
@@ -3947,12 +3949,14 @@ theme.recentlyViewed = {
         });
       }
   
-      this.popupTrigger.addEventListener('click', () => {
-        const reminderOpen = new CustomEvent('reminder:openNewsletter', { bubbles: true });
-        this.dispatchEvent(reminderOpen);
-  
-        this.hide();
-      });
+      if (this.popupTrigger) {
+        this.popupTrigger.addEventListener('click', () => {
+          const reminderOpen = new CustomEvent('reminder:openNewsletter', { bubbles: true });
+          this.dispatchEvent(reminderOpen);
+
+          this.hide();
+        });
+      }
     }
   
     show(time = this.secondsBeforeShow, forceOpen = false) {
@@ -4598,7 +4602,8 @@ theme.recentlyViewed = {
       if (parentNextSibling && parentNextSibling.classList.contains('shopify-section-group-header-group')) {
         // get height of announcement bar and set header wrapper top to that value
         const nextSiblingHeight = parentNextSibling.offsetHeight;
-        document.querySelector(selectors.wrapper).style.top = nextSiblingHeight + 'px';
+        var wrapperEl = document.querySelector(selectors.wrapper);
+        if (wrapperEl) wrapperEl.style.top = nextSiblingHeight + 'px';
       }
     }
   
@@ -4683,7 +4688,8 @@ theme.recentlyViewed = {
           }));
   
           // add is-active class to .site-header__search-container
-          document.querySelector(selectors.searchContainer).classList.add('is-active');
+          var searchContainerEl = document.querySelector(selectors.searchContainer);
+          if (searchContainerEl) searchContainerEl.classList.add('is-active');
         });
       });
   
@@ -5622,7 +5628,8 @@ theme.recentlyViewed = {
   
     removeActiveColorImage(swatch) {
       const id = swatch.dataset.variantId;
-      this.el.querySelector(`.grid-product__color-image--${id}`).classList.remove('is-active');
+      var colorImg = this.el.querySelector(`.grid-product__color-image--${id}`);
+      if (colorImg) colorImg.classList.remove('is-active');
     }
   }
   
@@ -6026,7 +6033,8 @@ theme.recentlyViewed = {
   
     _removeActiveColorImage(swatch) {
       const id = swatch.dataset.variantId;
-      this.querySelector(`.grid-product__color-image--${id}`).classList.remove('is-active');
+      var colorImg = this.querySelector(`.grid-product__color-image--${id}`);
+      if (colorImg) colorImg.classList.remove('is-active');
     }
   
     /* Setup event listeners */
@@ -6439,12 +6447,15 @@ theme.recentlyViewed = {
             var id = swatch.dataset.variantId;
             var image = swatch.dataset.variantImage;
             var el = this.container.querySelector('.grid-product__color-image--' + id);
-            el.style.backgroundImage = 'url(' + image + ')';
-            el.classList.add('is-active');
+            if (el) {
+              el.style.backgroundImage = 'url(' + image + ')';
+              el.classList.add('is-active');
+            }
           });
           swatch.addEventListener('mouseleave', () => {
             var id = swatch.dataset.variantId;
-            this.container.querySelector('.grid-product__color-image--' + id).classList.remove('is-active');
+            var el = this.container.querySelector('.grid-product__color-image--' + id);
+            if (el) el.classList.remove('is-active');
           });
         });
       },
@@ -6656,8 +6667,11 @@ theme.recentlyViewed = {
       },
   
       setFilterStickyPosition: function() {
-        var headerHeight = document.querySelector('.site-header').offsetHeight;
-        document.querySelector(selectors.filters).style.top = headerHeight + 10 + 'px';
+        var headerEl = document.querySelector('.site-header');
+        if (!headerEl) return;
+        var headerHeight = headerEl.offsetHeight;
+        var filtersEl = document.querySelector(selectors.filters);
+        if (filtersEl) filtersEl.style.top = headerHeight + 10 + 'px';
   
         // Also update top position of sticky sidebar
         var stickySidebar = document.querySelector('.grid__item--sidebar');
@@ -6671,7 +6685,8 @@ theme.recentlyViewed = {
       },
   
       startLoading: function() {
-        document.querySelector(selectors.collectionGrid).classList.add('unload');
+        var gridEl = document.querySelector(selectors.collectionGrid);
+        if (gridEl) gridEl.classList.add('unload');
       },
     });
   
@@ -7227,20 +7242,33 @@ theme.recentlyViewed = {
             if (this.cache.comparePriceA11y) {
               this.cache.comparePriceA11y.setAttribute('aria-hidden', 'true');
             }
-            this.cache.priceA11y.setAttribute('aria-hidden', 'true');
+            if (this.cache.priceA11y) {
+              this.cache.priceA11y.setAttribute('aria-hidden', 'true');
+            }
           }
         }
       },
   
       updateUnitPrice: function(evt) {
         var variant = evt.detail.variant;
-  
+        var unitWrapper = this.container.querySelector(this.selectors.unitWrapper);
+
         if (variant && variant.unit_price) {
-          this.container.querySelector(this.selectors.unitPrice).innerHTML = theme.Currency.formatMoney(variant.unit_price, theme.settings.moneyFormat);
-          this.container.querySelector(this.selectors.unitPriceBaseUnit).innerHTML = theme.Currency.getBaseUnit(variant);
-          this.container.querySelector(this.selectors.unitWrapper).classList.remove(classes.hidden);
+          var unitPriceEl = this.container.querySelector(this.selectors.unitPrice);
+          var unitBaseEl = this.container.querySelector(this.selectors.unitPriceBaseUnit);
+          if (unitPriceEl) {
+            unitPriceEl.innerHTML = theme.Currency.formatMoney(variant.unit_price, theme.settings.moneyFormat);
+          }
+          if (unitBaseEl) {
+            unitBaseEl.innerHTML = theme.Currency.getBaseUnit(variant);
+          }
+          if (unitWrapper) {
+            unitWrapper.classList.remove(classes.hidden);
+          }
         } else {
-          this.container.querySelector(this.selectors.unitWrapper).classList.add(classes.hidden);
+          if (unitWrapper) {
+            unitWrapper.classList.add(classes.hidden);
+          }
         }
       },
   
