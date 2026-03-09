@@ -127,63 +127,63 @@
             <!-- Slides -->
            {% if section.settings.video1 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop id="video1">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video1">
                     <source src="{{ section.settings.video1 }}" type="video/mp4">
                 </video>
             </div>
             {% endif %}
             {% if section.settings.video2 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop id="video2">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video2">
                     <source src="{{ section.settings.video2 }}" type="video/mp4">
                 </video>
             </div>
           {% endif %}
               {% if section.settings.video3 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop id="video3">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video3">
                     <source src="{{ section.settings.video3 }}" type="video/mp4">
                 </video>
             </div>
           {% endif %}
                 {% if section.settings.video4 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop autoplay="" id="video4">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video4">
                     <source src="{{ section.settings.video4 }}" type="video/mp4">
                 </video>
             </div>
           {% endif %}
           {% if section.settings.video5 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop autoplay="" id="video5">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video5">
                     <source src="{{ section.settings.video5 }}" type="video/mp4">
                 </video>
             </div>
           {% endif %}
           {% if section.settings.video6 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop autoplay="" id="video6">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video6">
                     <source src="{{ section.settings.video6 }}" type="video/mp4">
                 </video>
             </div>
           {% endif %}
           {% if section.settings.video7 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop autoplay="" id="video7">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video7">
                     <source src="{{ section.settings.video7 }}" type="video/mp4">
                 </video>
             </div>
           {% endif %}
           {% if section.settings.video8 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop autoplay="" id="video8">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video8">
                     <source src="{{ section.settings.video8 }}" type="video/mp4">
                 </video>
             </div>
           {% endif %}
            {% if section.settings.video9 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop autoplay="" id="video9">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video9">
                     <source src="{{ section.settings.video9 }}" type="video/mp4">
                 </video>
             </div>
@@ -191,7 +191,7 @@
          
           {% if section.settings.video10 != blank %}
             <div class="swiper-slide">
-                <video class="background-video" controls="" muted="" loop autoplay="" id="video10">
+                <video class="background-video" controls="" muted="" loop preload="none" id="video10">
                     <source src="{{ section.settings.video10 }}" type="video/mp4">
                 </video>
             </div>
@@ -240,19 +240,9 @@
         },
     });
 
-    mySwiper.on('slideChange', function () {
-        var videos = document.querySelectorAll('video');
-        videos.forEach((video) => video.pause());
-        var activeVideo = document.querySelector('.swiper-slide.swiper-slide-active video');
-        if (activeVideo) {
-            activeVideo.play();
-            activeVideo.parentElement.classList.add('active-slide');
-        }
-    });
-
-    mySwiper.on('transitionEnd', function () {
-        var videos = document.querySelectorAll('video');
-        videos.forEach((video) => {
+    function playActiveVideo() {
+        var videos = document.querySelectorAll('.swiper-slide video');
+        videos.forEach(function(video) {
             video.parentElement.classList.remove('active-slide');
             video.pause();
         });
@@ -261,15 +251,30 @@
             activeVideo.play();
             activeVideo.parentElement.classList.add('active-slide');
         }
+    }
+
+    mySwiper.on('slideChange', function () {
+        var videos = document.querySelectorAll('.swiper-slide video');
+        videos.forEach(function(video) { video.pause(); });
     });
-  $(document).ready(function(){
-  var screenWidth = $(window).width();
-  if (screenWidth < 800){
-		$('.background-video').removeAttr('autoplay');
-  } else {
-  	$('background-video').attr('autoplay');
-  }
-});
+
+    mySwiper.on('transitionEnd', playActiveVideo);
+
+    // Lazy-load: only start playing when slider section is visible
+    if ('IntersectionObserver' in window) {
+        var swiperEl = document.querySelector('.swiper-container');
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    playActiveVideo();
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.1 });
+        if (swiperEl) observer.observe(swiperEl);
+    } else {
+        playActiveVideo();
+    }
 </script>
 
 {% schema %}

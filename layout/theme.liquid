@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="{{ settings.color_button }}">
 
-    {% render 'ultimate-datalayer' %}
-
+    <script>window.dataLayer = window.dataLayer || [];</script>
     <script>
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -41,12 +40,12 @@
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
-    <link rel="dns-prefetch" href="https://ajax.googleapis.com">
+    <link rel="preconnect" href="https://ajax.googleapis.com" crossorigin>
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.gstatic.com">
     {% comment %} <link rel="preconnect" href="https://static.zevi.ai" crossorigin> {% endcomment %}
-    <link rel="preconnect" href="https://static.hotjar.com" crossorigin>
-    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+    <link rel="dns-prefetch" href="https://static.hotjar.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
     {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> {% endcomment %}
     <link
       rel="stylesheet"
@@ -61,23 +60,14 @@
     {% comment %} fontawesome-590.css removed — returns MIME type text/html (missing from CDN). FA 6.5.1 from cdnjs is already loaded above. {% endcomment %}
     {% comment %} {{ 'fontawesome-651.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
-    {{ 'swiper.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'swiper.css' | asset_url | stylesheet_tag }}</noscript>
+
     {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
 
-    {% comment %}
-      <link rel="preload" href="{{ 'fontawesome.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript>{{ 'fontawesome.css' | asset_url | stylesheet_tag }}</noscript>
-
-      <link rel="preload" href="{{ 'swiper.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript>{{ 'swiper.css' | asset_url | stylesheet_tag }}</noscript>
-
-      <link rel="preload" href="{{ 'bootstrap.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript>{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}</noscript>
-    {% endcomment %}
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer crossorigin="anonymous"></script>
     {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.js"></script> {% endcomment %}
-    <script src="{{ 'swiper.js' | asset_url }}"></script>
+    <script src="{{ 'swiper.js' | asset_url }}" defer></script>
 
     {%- if settings.favicon != blank -%}
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
@@ -147,6 +137,7 @@
 
     <style>
       #powrIframeLoader{display: none!important;}
+      .flickity-viewport{transition:none!important;}
     </style>
 
     {% render 'boost-sd-fallback' %}
@@ -156,7 +147,8 @@
     <script src="{{ 'vendor-scripts-v11.js' | asset_url | split: '?' | first }}" defer="defer"></script>
 
     {%- if shop.enabled_currencies.size > 1 -%}
-      <link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}">
+      <link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}" media="print" onload="this.media='all'">
+      <noscript><link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}"></noscript>
     {%- endif -%}
 
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
@@ -331,5 +323,6 @@
         }
       }
     </script>
+  {% render 'ultimate-datalayer' %}
   {% include 'subscribe-it-helper' %}</body>
 </html>

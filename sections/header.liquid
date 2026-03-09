@@ -435,13 +435,19 @@
 }
 {% endschema %}
 <script type="text/javascript">
-  $(document).ready(function () {
-    $('.select-label').click(function () {
-      $('.dropdown').toggleClass('active');
-    });
-    $('.dropdown-list li').click(function () {
-      $('.select-label').text($(this).text());
-      $('.dropdown').removeClass('active');
-    });
+  document.addEventListener('DOMContentLoaded', function () {
+    var selectLabel = document.querySelector('.select-label');
+    var dropdown = document.querySelector('.dropdown');
+    if (selectLabel && dropdown) {
+      selectLabel.addEventListener('click', function () {
+        dropdown.classList.toggle('active');
+      });
+      dropdown.querySelectorAll('.dropdown-list li').forEach(function (item) {
+        item.addEventListener('click', function () {
+          selectLabel.textContent = this.textContent;
+          dropdown.classList.remove('active');
+        });
+      });
+    }
   });
 </script>
