@@ -213,6 +213,7 @@
 </div>
 
 <script>
+document.addEventListener('DOMContentLoaded', function() {
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 5,
         spaceBetween: 0,
@@ -240,41 +241,54 @@
         },
     });
 
-    function playActiveVideo() {
+    function loadAndPlayAll() {
         var videos = document.querySelectorAll('.swiper-slide video');
         videos.forEach(function(video) {
-            video.parentElement.classList.remove('active-slide');
-            video.pause();
+            video.preload = 'auto';
+            video.load();
+            var p = video.play();
+            if (p !== undefined) {
+                p.catch(function() {
+                    video.addEventListener('canplay', function handler() {
+                        video.play();
+                        video.removeEventListener('canplay', handler);
+                    });
+                });
+            }
         });
         var activeVideo = document.querySelector('.swiper-slide.swiper-slide-active video');
         if (activeVideo) {
-            activeVideo.play();
             activeVideo.parentElement.classList.add('active-slide');
         }
     }
 
-    mySwiper.on('slideChange', function () {
+    mySwiper.on('transitionEnd', function () {
         var videos = document.querySelectorAll('.swiper-slide video');
-        videos.forEach(function(video) { video.pause(); });
+        videos.forEach(function(video) {
+            video.parentElement.classList.remove('active-slide');
+        });
+        var activeVideo = document.querySelector('.swiper-slide.swiper-slide-active video');
+        if (activeVideo) {
+            activeVideo.parentElement.classList.add('active-slide');
+        }
     });
 
-    mySwiper.on('transitionEnd', playActiveVideo);
-
-    // Lazy-load: only start playing when slider section is visible
+    // Lazy-load: only start all videos when slider section is visible
     if ('IntersectionObserver' in window) {
         var swiperEl = document.querySelector('.swiper-container');
         var observer = new IntersectionObserver(function(entries) {
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
-                    playActiveVideo();
+                    loadAndPlayAll();
                     observer.disconnect();
                 }
             });
         }, { threshold: 0.1 });
         if (swiperEl) observer.observe(swiperEl);
     } else {
-        playActiveVideo();
+        loadAndPlayAll();
     }
+});
 </script>
 
 {% schema %}

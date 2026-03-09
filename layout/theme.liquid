@@ -60,8 +60,7 @@
     {% comment %} fontawesome-590.css removed — returns MIME type text/html (missing from CDN). FA 6.5.1 from cdnjs is already loaded above. {% endcomment %}
     {% comment %} {{ 'fontawesome-651.css' | asset_url | stylesheet_tag }} {% endcomment %}
 
-    <link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" media="print" onload="this.media='all'">
-    <noscript>{{ 'swiper.css' | asset_url | stylesheet_tag }}</noscript>
+    {{ 'swiper.css' | asset_url | stylesheet_tag }}
 
     {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
 
@@ -137,7 +136,6 @@
 
     <style>
       #powrIframeLoader{display: none!important;}
-      .flickity-viewport{transition:none!important;}
     </style>
 
     {% render 'boost-sd-fallback' %}
