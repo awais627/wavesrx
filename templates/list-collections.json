@@ -83,11 +83,16 @@
     },
     "four_category_section_MWayEi": {
       "type": "four-category-section",
+      "custom_css": [
+        ".container {padding-bottom: 20px;}",
+        ".mt-4 {margin-top: 0 !important; }"
+      ],
       "settings": {
         "heading1": "Anchoring",
         "heading2": "Docking",
         "heading3": "CLEANING",
         "heading4": "SAFETY",
+        "heading5": "Value Bundle",
         "link1": "shopify://collections/beach-anchors",
         "link1text": "Shop Now",
         "link2": "shopify://collections/marine-ropes",
@@ -95,7 +100,9 @@
         "link3": "shopify://collections/boat-cleaning",
         "link3text": "Shop Now",
         "link4": "shopify://collections/boat-straps",
-        "link4text": "Shop Now"
+        "link4text": "Shop Now",
+        "link5": "",
+        "link5text": "Shop Now"
       }
     }
   },
