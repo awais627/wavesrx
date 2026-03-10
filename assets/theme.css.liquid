@@ -13866,10 +13866,6 @@ div[id*="__featured-collection"] .medium-up--one-quarter.grid-product__has-quick
     margin-top: 30px !important;
 }
 .template-collection .custom-subtitle {
-    position: absolute !important;
-    top: 25px;
-  left:0;
-  right:0;
   padding-left: 10px;
     padding-right: 10px;
 }
@@ -14039,11 +14035,6 @@ div[id*="__featured-collection"] .medium-up--one-quarter.grid-product__has-quick
   .template-index .custom-subtitle {
     position: absolute!important;
     top: 44px;
-    right: 0px !important;
-}
-  .template-collection .custom-subtitle {
-    position: absolute !important;
-    top: 25px;
     right: 0px !important;
 }
   .template-collection .medium-up--one-fifth {
@@ -14350,17 +14341,16 @@ option::after {
     text-transform: uppercase;
 }
 .dropdown .select-label:after {
-    /* content: "/xf039"; */
+    content: "";
     position: absolute;
-    top: 0;
-    right: 13px;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    font-size: 20px;
-    font-family: "FontAwesome";
-    content: "\f0c9";
-    display: inline-block;
+    top: 50%;
+    right: 16px;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512' fill='%23000'%3E%3Cpath d='M16 132h416c8.8 0 16-7.2 16-16V76c0-8.8-7.2-16-16-16H16C7.2 60 0 67.2 0 76v40c0 8.8 7.2 16 16 16zm0 160h416c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16zm0 160h416c8.8 0 16-7.2 16-16v-40c0-8.8-7.2-16-16-16H16c-8.8 0-16 7.2-16 16v40c0 8.8 7.2 16 16 16z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .dropdown-list {
   width: 60%;
@@ -14399,7 +14389,8 @@ option::after {
 .dropdown-list li:nth-child(4){z-index:1;}
 
 .dropdown .select-label:active:after {
-  content: '\f00d';
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512' fill='%23000'%3E%3Cpath d='M242.7 256l100.1-100.1c12.3-12.3 12.3-32.2 0-44.5l-22.2-22.2c-12.3-12.3-32.2-12.3-44.5 0L176 189.3 75.9 89.2c-12.3-12.3-32.2-12.3-44.5 0L9.2 111.5c-12.3 12.3-12.3 32.2 0 44.5L109.3 256 9.2 356.1c-12.3 12.3-12.3 32.2 0 44.5l22.2 22.2c12.3 12.3 32.2 12.3 44.5 0L176 322.7l100.1 100.1c12.3 12.3 32.2 12.3 44.5 0l22.2-22.2c12.3-12.3 12.3-32.2 0-44.5L242.7 256z'/%3E%3C/svg%3E");
 }
 .dropdown.active .dropdown-list li {
     border-radius: inherit;
@@ -14409,7 +14400,8 @@ option::after {
     border-bottom-right-radius: inherit;
 }
 .dropdown.active .select-label:after {
-  content: '\f00d';
+  content: "";
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 352 512' fill='%23000'%3E%3Cpath d='M242.7 256l100.1-100.1c12.3-12.3 12.3-32.2 0-44.5l-22.2-22.2c-12.3-12.3-32.2-12.3-44.5 0L176 189.3 75.9 89.2c-12.3-12.3-32.2-12.3-44.5 0L9.2 111.5c-12.3 12.3-12.3 32.2 0 44.5L109.3 256 9.2 356.1c-12.3 12.3-12.3 32.2 0 44.5l22.2 22.2c12.3 12.3 32.2 12.3 44.5 0L176 322.7l100.1 100.1c12.3 12.3 32.2 12.3 44.5 0l22.2-22.2c12.3-12.3 12.3-32.2 0-44.5L242.7 256z'/%3E%3C/svg%3E");
 }
 .dropdown.active .dropdown-list li {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
@@ -14469,14 +14461,17 @@ option::after {
 } */
 .collection-grid__wrapper .grid-product__meta {
     text-align: left;
-  padding-left: 10px;
-    padding-right: 10px;
+    padding: 6px 10px 4px;
 }
 .grid-product__title {
     font-weight: 600;
 }
+.template-collection .grid-product__price {
+    margin-top: 2px;
+}
 .collection-grid__wrapper .grid-product__meta p.subtitle {
-    padding-top: 15px;
+    padding-top: 2px;
+    margin-bottom: 2px;
 }
 .grid-product__link {
     text-align: center;
@@ -14724,12 +14719,12 @@ h3.section-header__title {
     font-weight: 700;
 }
 .template-collection .grid-product__title.grid-product__title--heading {
-    height: 50px;
-  overflow: hidden;
+    min-height: 50px;
    display: -webkit-box;
-   -webkit-line-clamp: 2; /* number of lines to show */
-    line-clamp: 2; 
+   -webkit-line-clamp: 2;
+    line-clamp: 2;
    -webkit-box-orient: vertical;
+   overflow: hidden;
 }
 .template-collection .grid__item--sidebar {
     max-height: inherit;
