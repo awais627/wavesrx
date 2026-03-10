@@ -61,10 +61,8 @@
   data-aos="hero__animation"
 >
   <div class="hero__media hero__media--{{ section.id }}">
-    {%- comment -%} Preload LCP resources for hero video {%- endcomment -%}
-    {% if section.settings.video_url contains '.mp4' or section.settings.video_url contains '.MP4' %}
-      <link rel="preload" as="fetch" href="{{ section.settings.video_url }}" crossorigin="anonymous" type="video/mp4">
-    {% elsif section.settings.video_url contains 'youtube.com/watch' %}
+    {%- comment -%} Preload removed for MP4 — as="fetch" caused duplicate download (37MB+15MB). Video element handles loading with preload="auto". {%- endcomment -%}
+    {% if section.settings.video_url contains 'youtube.com/watch' %}
       {%- assign video_id = section.settings.video_url | split: 'v=' | last | split: '&' | first -%}
       <link rel="preload" as="image" href="https://img.youtube.com/vi/{{ video_id }}/maxresdefault.jpg">
     {% elsif section.settings.video_url contains 'youtu.be/' %}
@@ -131,7 +129,7 @@
           playsinline
           autoplay
           poster="{{ section.settings.poster_image | default: '' }}"
-          preload="metadata"
+          preload="auto"
         ></video>
       {%- endif -%}
     </div>
