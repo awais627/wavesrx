@@ -43,7 +43,6 @@
             "cta_link1": "shopify://collections/pwc",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify://shop_images/81rwVxfm0PL_1.jpg",
             "video_url": "",
             "width": "50",
             "height": 500,
@@ -261,6 +260,9 @@
         "collection_description",
         "subcollections",
         "product_grid"
+      ],
+      "custom_css": [
+        ".template-collection .grid__item.grid-product.small--one-half.medium-up--one-third.grid-product__has-quick-shop.aos-init.aos-animate {box-shadow: -2px 0 3px 1px #ccc; height: 540px; margin: 0 9px 25px; display: flow; width: 32.6% !important; padding: 0; border-radius: 15px; position: relative;}"
       ],
       "settings": {
         "enable_sidebar": true,
