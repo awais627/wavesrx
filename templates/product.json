@@ -13,7 +13,7 @@
       "type": "main-product",
       "blocks": {
         "ea344991-6c66-4194-b26d-9e6494313387": {
-          "type": "shopify://apps/appio-amazon-reviews/blocks/rating-badge/569167b3-e5d6-4314-9866-f51281b506d7",
+          "type": "shopify://apps/amazon-reviews-by-appio/blocks/rating-badge/569167b3-e5d6-4314-9866-f51281b506d7",
           "settings": {}
         },
         "price": {
@@ -313,7 +313,7 @@
       "type": "apps",
       "blocks": {
         "b85487ea-1691-447e-8677-c1816539004d": {
-          "type": "shopify://apps/appio-amazon-reviews/blocks/reviews-widget/569167b3-e5d6-4314-9866-f51281b506d7",
+          "type": "shopify://apps/amazon-reviews-by-appio/blocks/reviews-widget/569167b3-e5d6-4314-9866-f51281b506d7",
           "settings": {}
         }
       },
