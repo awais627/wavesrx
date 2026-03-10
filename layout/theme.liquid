@@ -46,27 +46,15 @@
     {% comment %} <link rel="preconnect" href="https://static.zevi.ai" crossorigin> {% endcomment %}
     <link rel="dns-prefetch" href="https://static.hotjar.com">
     <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> {% endcomment %}
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      media="print"
-      onload="this.media='all'"
-    >
-    <noscript>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </noscript>
+    {% comment %} Font Awesome removed — only 3 icons used, replaced with inline SVGs to save ~140KB {% endcomment %}
+    {% comment %} fontawesome-590.css, fontawesome-651.css — unused asset files {% endcomment %}
 
-    {% comment %} fontawesome-590.css removed — returns MIME type text/html (missing from CDN). FA 6.5.1 from cdnjs is already loaded above. {% endcomment %}
-    {% comment %} {{ 'fontawesome-651.css' | asset_url | stylesheet_tag }} {% endcomment %}
-
-    {{ 'swiper.css' | asset_url | stylesheet_tag }}
+    {% comment %} swiper.css moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
 
     {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer crossorigin="anonymous"></script>
-    {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.js"></script> {% endcomment %}
-    <script src="{{ 'swiper.js' | asset_url }}" defer></script>
+    {% comment %} swiper.js moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
 
     {%- if settings.favicon != blank -%}
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
