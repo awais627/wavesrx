@@ -12,7 +12,7 @@
         <div class="col">
             <div class="img-box">
                 {% if product.metafields.custom.product_image_first != blank -%}
-                  <img  src="{{ product.metafields.custom.product_image_first | file_url  }}">
+                  <img src="{{ product.metafields.custom.product_image_first | file_url }}" width="600" height="400" loading="lazy" alt="{{ product.title | escape }}">
                 {%- endif %}
             </div>
         </div>
