@@ -51,7 +51,8 @@
 
     {% comment %} swiper.css moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
 
-    {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}"></noscript>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer crossorigin="anonymous"></script>
     {% comment %} swiper.js moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
