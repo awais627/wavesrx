@@ -38,6 +38,11 @@
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+    {% comment %} Early preload for hero poster (LCP element) — discovered in <head> instead of waiting for body parse {% endcomment %}
+    {%- if request.page_type == 'index' -%}
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800" fetchpriority="high" imagesrcset="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=400 400w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800 800w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=1200 1200w" imagesizes="100vw">
+    {%- endif -%}
     <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
@@ -71,8 +76,25 @@
     {%- render 'social-meta-tags' -%}
 
     {%- render 'font-face' -%}
+    {% comment %} Preload theme fonts to prevent FOIT and Speed Index delay {% endcomment %}
+    {%- assign header_font = settings.type_header_font_family -%}
+    {%- assign base_font = settings.type_base_font_family -%}
+    {%- if header_font.system? != true -%}
+      <link rel="preload" as="font" href="{{ header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endif -%}
+    {%- if base_font.system? != true and base_font != header_font -%}
+      <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endif -%}
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
     {%- render 'css-variables' -%}
+
+    {% comment %} Speed Index: skip rendering of below-fold sections until scrolled into view {% endcomment %}
+    <style>
+      .main-content > .shopify-section ~ .shopify-section {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 500px;
+      }
+    </style>
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');

@@ -1,4 +1,6 @@
-{{ 'swiper.css' | asset_url | stylesheet_tag }}
+{% comment %} Defer swiper.css — this section is #13 on homepage, well below fold {% endcomment %}
+<link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"></noscript>
 
 <style>
     .swiper-slide.swiper-slide-active video {
