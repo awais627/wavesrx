@@ -963,13 +963,19 @@
       } 
       // end Ultimate_Shopify_DataLayer
 
-      document.addEventListener('DOMContentLoaded', function() {
-        try{
+      // Defer initialization until idle to avoid blocking TTI
+      function _initDataLayer() {
+        try {
           new Ultimate_Shopify_DataLayer();
-        }catch(error) {
+        } catch(error) {
           // error logged silently
         }
-      });
+      }
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(_initDataLayer, { timeout: 5000 });
+      } else {
+        window.addEventListener('load', function() { setTimeout(_initDataLayer, 2000); });
+      }
     
   })();
 </script>

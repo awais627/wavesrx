@@ -23,10 +23,10 @@
           {%- if block.settings.image != blank -%}
             {%- render 'image-element',
               img: block.settings.image,
-              widths: '180, 360',
+              widths: '80, 160, 320',
               classes: 'logo-bar__image',
-              sizeVariable: '160px',
-              fallback: '110px',
+              sizeVariable: '80px',
+              fallback: '80px',
             -%}
           {%- else -%}
             {{ 'logo' | placeholder_svg_tag: 'placeholder-svg' }}

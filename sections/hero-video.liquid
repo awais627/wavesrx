@@ -89,9 +89,10 @@
       {% endif %}
     {% elsif section.settings.video_url contains '.mp4' or section.settings.video_url contains '.MP4' %}
       {%- if section.settings.poster_image -%}
-        <link rel="preload" as="image" href="{{ section.settings.poster_image | image_url: width: 1200 }}" fetchpriority="high">
+        <link rel="preload" as="image" href="{{ section.settings.poster_image | image_url: width: 800 }}" fetchpriority="high" imagesrcset="{{ section.settings.poster_image | image_url: width: 400 }} 400w, {{ section.settings.poster_image | image_url: width: 800 }} 800w, {{ section.settings.poster_image | image_url: width: 1200 }} 1200w" imagesizes="100vw">
       {%- else -%}
-        <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310" fetchpriority="high">
+        {%- assign poster_fallback_base = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310' -%}
+        <link rel="preload" as="image" href="{{ poster_fallback_base }}&width=800" fetchpriority="high" imagesrcset="{{ poster_fallback_base }}&width=400 400w, {{ poster_fallback_base }}&width=800 800w, {{ poster_fallback_base }}&width=1200 1200w" imagesizes="100vw">
       {%- endif -%}
     {% endif %}
 
@@ -139,16 +140,21 @@
       {%- endif -%}
 
       {%- if section.settings.video_url contains '.mp4' or section.settings.video_url contains '.MP4' -%}
-        {%- comment -%} Poster overlay: becomes LCP instead of the 15MB video. Loads in ~200ms. {%- endcomment -%}
+        {%- comment -%} Poster overlay: becomes LCP instead of the 15MB video. Responsive srcset saves ~80KB on mobile. {%- endcomment -%}
         {%- if section.settings.poster_image -%}
-          {%- assign poster_src = section.settings.poster_image | image_url: width: 1200 -%}
+          {%- assign poster_src = section.settings.poster_image | image_url: width: 800 -%}
+          {%- capture poster_srcset -%}{{ section.settings.poster_image | image_url: width: 400 }} 400w, {{ section.settings.poster_image | image_url: width: 800 }} 800w, {{ section.settings.poster_image | image_url: width: 1200 }} 1200w{%- endcapture -%}
         {%- else -%}
-          {%- assign poster_src = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310' -%}
+          {%- assign poster_fallback = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310' -%}
+          {%- assign poster_src = poster_fallback | append: '&width=800' -%}
+          {%- capture poster_srcset -%}{{ poster_fallback }}&width=400 400w, {{ poster_fallback }}&width=800 800w, {{ poster_fallback }}&width=1200 1200w{%- endcapture -%}
         {%- endif -%}
         <img
           id="PosterOverlay-{{ section.id }}"
           class="hero__poster-overlay"
           src="{{ poster_src }}"
+          srcset="{{ poster_srcset }}"
+          sizes="100vw"
           alt="{{ section.settings.title | escape | default: 'Hero video poster' }}"
           loading="eager"
           fetchpriority="high"
@@ -183,9 +189,9 @@
             }
 
             if ('requestIdleCallback' in window) {
-              requestIdleCallback(loadVideo, { timeout: 1500 });
+              requestIdleCallback(loadVideo, { timeout: 4000 });
             } else {
-              setTimeout(loadVideo, 100);
+              setTimeout(loadVideo, 3000);
             }
           })();
         </script>
