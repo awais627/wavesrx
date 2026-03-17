@@ -262,7 +262,9 @@
         "product_grid"
       ],
       "custom_css": [
-        ".template-collection .grid__item.grid-product.small--one-half.medium-up--one-third.grid-product__has-quick-shop.aos-init.aos-animate {box-shadow: -2px 0 3px 1px #ccc; height: 540px; margin: 0 9px 25px; display: flow; width: 32.6% !important; padding: 0; border-radius: 15px; position: relative;}"
+        ".mb-4 {margin-bottom: 0rem !important;}",
+        ".custom-subtitle {padding: 0px;}",
+        ".grid-product__price {margin-top: 8px;}"
       ],
       "settings": {
         "enable_sidebar": true,
