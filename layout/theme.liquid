@@ -182,6 +182,10 @@
         style="display:none;visibility:hidden"
       ></iframe
     ></noscript>
+    {% comment %} Fix: add title to Shopify Preview Bar iframe for accessibility {% endcomment %}
+    <script>
+      (function(){var f=document.getElementById('PBarNextFrame');if(f)f.title='Shopify preview bar';})();
+    </script>
     <a class="in-page-link visually-hidden skip-link" href="#MainContent">
       {{- 'general.accessibility.skip_to_content' | t -}}
     </a>
