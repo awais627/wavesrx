@@ -1,3 +1,7 @@
+{% comment %} Defer swiper.css — this section is #13 on homepage, well below fold {% endcomment %}
+<link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="{{ 'swiper.css' | asset_url }}"></noscript>
+
 <style>
     .swiper-slide.swiper-slide-active video {
         height: 500px;
@@ -213,7 +217,13 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
+    var script = document.createElement('script');
+    script.src = "{{ 'swiper.js' | asset_url }}";
+    script.onload = function() { initTikTokSlider(); };
+    document.head.appendChild(script);
+
+    function initTikTokSlider() {
     var mySwiper = new Swiper('.swiper-container', {
         slidesPerView: 5,
         spaceBetween: 0,
@@ -288,7 +298,8 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         loadAndPlayAll();
     }
-});
+    } // end initTikTokSlider
+})();
 </script>
 
 {% schema %}

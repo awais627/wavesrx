@@ -36,7 +36,7 @@
     <div class="container-full">
         <div class="container">
             <div class="inspired-outer text-center pt-5">
-              <h2><img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/icons8-youtube-48.svg?v=1697717231"><span>{{ section.settings.heading1 }}</span><img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/icons8-youtube-48.svg?v=1697717231"></h2>
+              <h2><img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/icons8-youtube-48.svg?v=1697717231" width="48" height="48" loading="lazy" alt="YouTube"><span>{{ section.settings.heading1 }}</span><img src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/icons8-youtube-48.svg?v=1697717231" width="48" height="48" loading="lazy" alt="YouTube"></h2>
             </div>
             <div class="row pt-5 w-75 m-auto">
                 <div class="col-sm-4">
@@ -52,6 +52,7 @@
                             playsinline=""
                             controlslist="nodownload"
                           allowfullscreen="allowfullscreen"
+                            loading="lazy"
                         ></iframe>
                           {% endunless %}
                         <p class="text-start pt-3">{{ product.metafields.custom.product_inspired_description_first }}</p>
@@ -72,6 +73,7 @@
                             playsinline=""
                             controlslist="nodownload"
                           allowfullscreen="allowfullscreen"
+                            loading="lazy"
                         ></iframe>
                        {% endunless %}
                     </div>
@@ -83,6 +85,7 @@
                             class="elementor-video w-100 rounded-3"
                             src="{{ section.settings.video3 }}?autoplay=1&mute=0&controls=1&loop=1"
                           allowfullscreen="allowfullscreen"
+                            loading="lazy"
                         ></iframe>
                            {% endunless %}
                         <p class="text-end bg-primary mt-4 p-0 text-black">{{ product.metafields.custom.product_inspired_description_third }}</p>

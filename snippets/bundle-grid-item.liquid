@@ -242,9 +242,9 @@
 <article class="card-wide" style="align-items:center; position: relative;">
   <a class="photo" href="{{ product.url }}">
     {% if product.featured_image %}
-      <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}" height="" width="">
+      <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}" height="700" width="700" loading="lazy">
     {% else %}
-      <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}" height="" width="">
+      <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}" height="700" width="700" loading="lazy">
     {% endif %}
   </a>
 

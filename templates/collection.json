@@ -43,7 +43,6 @@
             "cta_link1": "shopify://collections/pwc",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify://shop_images/81rwVxfm0PL_1.jpg",
             "video_url": "",
             "width": "50",
             "height": 500,
@@ -261,6 +260,11 @@
         "collection_description",
         "subcollections",
         "product_grid"
+      ],
+      "custom_css": [
+        ".mb-4 {margin-bottom: 0rem !important;}",
+        ".custom-subtitle {padding: 0px;}",
+        ".grid-product__price {margin-top: 8px;}"
       ],
       "settings": {
         "enable_sidebar": true,
