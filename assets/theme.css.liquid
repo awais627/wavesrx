@@ -13764,6 +13764,17 @@ header#SiteHeader {
     background: #005DAB;
     /* overflow: hidden;*/
 }
+/* CLS fix: stabilize header height so font-swap doesn't push hero down */
+@media only screen and (min-width:769px) {
+  .site-header .page-width {
+    flex-wrap: nowrap;
+    align-items: center;
+    min-height: 90px;
+  }
+  .site-header .text-center {
+    flex-shrink: 0;
+  }
+}
 .toolbar {
     background: inherit;
 }
