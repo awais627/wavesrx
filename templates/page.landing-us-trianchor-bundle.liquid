@@ -574,7 +574,7 @@
                 value="{{ variant.id }}"
                 checked
               >
-              <img src="{{ product.featured_image | image_url: '200x' }}" height="200px" width="200px">
+              <img src="{{ product.featured_image | image_url: '200x' }}" height="200px" width="200px" loading="lazy">
               <div class="bundle-info">
                 <h4>{{ product.title }}</h4>
                 <p>{{ variant.price | money }}</p>
@@ -866,7 +866,7 @@
           <div class="review">
             <!-- 1st row: Flag | Name | Date | Verified -->
             <div class="review-header">
-              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px" loading="lazy">
               <span class="author">Jeff Leech</span>
               <span class="date">Dec 01, 2025</span>
               <span class="verified-badge">Verified</span>
@@ -926,7 +926,7 @@
           <div class="review">
             <!-- 1st row: Flag | Name | Date | Verified -->
             <div class="review-header">
-              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px" loading="lazy">
               <span class="author">Richard Sutrop</span>
               <span class="date">Nov 17, 2025</span>
               <span class="verified-badge">Verified</span>
@@ -971,7 +971,7 @@
           <div class="review">
             <!-- 1st row: Flag | Name | Date | Verified -->
             <div class="review-header">
-              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px" loading="lazy">
               <span class="author">Dan</span>
               <span class="date">Nov 21, 2025</span>
               <span class="verified-badge">Verified</span>
@@ -1308,9 +1308,9 @@
         <article class="card-wide" style="align-items:center; position: relative;">
           <a class="photo" href="{{ product.url }}">
             {% if product.featured_image %}
-              <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}">
+              <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}" loading="lazy" width="400" height="400">
             {% else %}
-              <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}">
+              <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="400" height="400">
             {% endif %}
           </a>
 
@@ -1439,12 +1439,14 @@
                   src="{{ product.featured_image | img_url: '700x' }}"
                   alt="{{ product.title | escape }}"
                   style="border-radius: 10px; margin-bottom: 10px;"
+                loading="lazy" width="400" height="400"
                 >
               {% else %}
                 <img
                   src="{{ 'placeholder-image.png' | asset_url }}"
                   alt="{{ product.title | escape }}"
                   style="border-radius: 10px;"
+                loading="lazy" width="400" height="400"
                 >
               {% endif %}
             </a>
@@ -1569,13 +1571,14 @@
       <!-- RIGHT: Images -->
       <div class="story-images">
         <div class="image image-1">
-          <img src="https://www.wavesrx.com/cdn/shop/files/f-img1.jpg?v=1747907805&width=540" alt="Boat lifestyle">
+          <img src="https://www.wavesrx.com/cdn/shop/files/f-img1.jpg?v=1747907805&width=360" alt="Boat lifestyle" loading="lazy" width="360" height="270">
         </div>
 
         <div class="image image-2">
           <img
             src="https://www.wavesrx.com/cdn/shop/files/Untitled-1kk.jpg?v=1744021742&width=750"
             alt="Jet ski action"
+          loading="lazy" width="400" height="400"
           >
         </div>
       </div>

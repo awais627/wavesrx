@@ -144,6 +144,7 @@
         "heading2": "Docking",
         "heading3": "Cleaning",
         "heading4": "sAFETY",
+        "heading5": "Value Bundle",
         "link1": "shopify://collections/beach-anchors",
         "link1text": "Shop Now",
         "link2": "shopify://collections/marine-ropes",
@@ -151,7 +152,9 @@
         "link3": "shopify://collections/boat-cleaning",
         "link3text": "Shop Now",
         "link4": "shopify://collections/boat-straps",
-        "link4text": "Shop Now"
+        "link4text": "Shop Now",
+        "link5": "",
+        "link5text": "Shop Now"
       }
     },
     "featured-collections": {
@@ -235,7 +238,7 @@
       "type": "apps",
       "blocks": {
         "5d447e38-2610-4ad2-85c9-c947d520287f": {
-          "type": "shopify://apps/appio-product-reviews/blocks/featured-review/569167b3-e5d6-4314-9866-f51281b506d7",
+          "type": "shopify://apps/amazon-reviews-by-appio/blocks/featured-review/569167b3-e5d6-4314-9866-f51281b506d7",
           "settings": {}
         }
       },
@@ -250,7 +253,7 @@
     "featured-collection": {
       "type": "featured-collection",
       "custom_css": [
-        "#CollectionSection-template--16192486637746__featured-collection .section-header__title {text-align: center;}"
+        ".section-header__title {text-align: center;}"
       ],
       "settings": {
         "title": "BEST SELLERS",

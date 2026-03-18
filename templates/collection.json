@@ -43,7 +43,6 @@
             "cta_link1": "shopify://collections/pwc",
             "cta_text2": "",
             "cta_link2": "",
-            "image": "shopify://shop_images/81rwVxfm0PL_1.jpg",
             "video_url": "",
             "width": "50",
             "height": 500,
@@ -72,16 +71,11 @@
       "type": "apps",
       "blocks": {
         "d9252492-f6be-49d8-9e04-bf81c5247c32": {
-          "type": "shopify://apps/boost-ai-search-discovery/blocks/product-filter/7fc998ae-a150-4367-bab8-505d8a4503f7",
-          "settings": {}
-        },
-        "755c2d4a-d14c-418a-91b3-1fb731af3fcd": {
-          "type": "shopify://apps/zevi-ai-search-filter/blocks/product_list/6c637240-c4a7-47cd-a068-92f869e4e5ef",
+          "type": "shopify://apps/boost-ai-search-filter/blocks/product-filter/7fc998ae-a150-4367-bab8-505d8a4503f7",
           "settings": {}
         }
       },
       "block_order": [
-        "755c2d4a-d14c-418a-91b3-1fb731af3fcd",
         "d9252492-f6be-49d8-9e04-bf81c5247c32"
       ],
       "disabled": true,
@@ -266,6 +260,11 @@
         "collection_description",
         "subcollections",
         "product_grid"
+      ],
+      "custom_css": [
+        ".mb-4 {margin-bottom: 0rem !important;}",
+        ".custom-subtitle {padding: 0px;}",
+        ".grid-product__price {margin-top: 8px;}"
       ],
       "settings": {
         "enable_sidebar": true,

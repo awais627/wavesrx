@@ -2,6 +2,20 @@
     .ytp-chrome-top.ytp-show-cards-title {
       display: none !important;
   }
+  .hero__poster-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    transition: opacity 0.4s ease;
+  }
+  .hero__poster-overlay.is-hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
 </style>
 {%- style -%}
   .hero--{{ section.id }} .hero__title {
@@ -61,10 +75,8 @@
   data-aos="hero__animation"
 >
   <div class="hero__media hero__media--{{ section.id }}">
-    {%- comment -%} Preload LCP resources for hero video {%- endcomment -%}
-    {% if section.settings.video_url contains '.mp4' or section.settings.video_url contains '.MP4' %}
-      <link rel="preload" as="video" href="{{ section.settings.video_url }}" crossorigin="anonymous">
-    {% elsif section.settings.video_url contains 'youtube.com/watch' %}
+    {%- comment -%} Preload removed for MP4 — as="fetch" caused duplicate download (37MB+15MB). Video element handles loading with preload="auto". {%- endcomment -%}
+    {% if section.settings.video_url contains 'youtube.com/watch' %}
       {%- assign video_id = section.settings.video_url | split: 'v=' | last | split: '&' | first -%}
       <link rel="preload" as="image" href="https://img.youtube.com/vi/{{ video_id }}/maxresdefault.jpg">
     {% elsif section.settings.video_url contains 'youtu.be/' %}
@@ -75,6 +87,13 @@
       {% if section.settings.poster_image %}
         <link rel="preload" as="image" href="{{ section.settings.poster_image | img_url: 'master' }}">
       {% endif %}
+    {% elsif section.settings.video_url contains '.mp4' or section.settings.video_url contains '.MP4' %}
+      {%- if section.settings.poster_image -%}
+        <link rel="preload" as="image" href="{{ section.settings.poster_image | image_url: width: 800 }}" fetchpriority="high" imagesrcset="{{ section.settings.poster_image | image_url: width: 400 }} 400w, {{ section.settings.poster_image | image_url: width: 800 }} 800w, {{ section.settings.poster_image | image_url: width: 1200 }} 1200w" imagesizes="100vw">
+      {%- else -%}
+        {%- assign poster_fallback_base = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310' -%}
+        <link rel="preload" as="image" href="{{ poster_fallback_base }}&width=800" fetchpriority="high" imagesrcset="{{ poster_fallback_base }}&width=400 400w, {{ poster_fallback_base }}&width=800 800w, {{ poster_fallback_base }}&width=1200 1200w" imagesizes="100vw">
+      {%- endif -%}
     {% endif %}
 
     <div class="hero__media-container">
@@ -121,18 +140,61 @@
       {%- endif -%}
 
       {%- if section.settings.video_url contains '.mp4' or section.settings.video_url contains '.MP4' -%}
+        {%- comment -%} Poster overlay: becomes LCP instead of the 15MB video. Responsive srcset saves ~80KB on mobile. {%- endcomment -%}
+        {%- if section.settings.poster_image -%}
+          {%- assign poster_src = section.settings.poster_image | image_url: width: 800 -%}
+          {%- capture poster_srcset -%}{{ section.settings.poster_image | image_url: width: 400 }} 400w, {{ section.settings.poster_image | image_url: width: 800 }} 800w, {{ section.settings.poster_image | image_url: width: 1200 }} 1200w{%- endcapture -%}
+        {%- else -%}
+          {%- assign poster_fallback = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310' -%}
+          {%- assign poster_src = poster_fallback | append: '&width=800' -%}
+          {%- capture poster_srcset -%}{{ poster_fallback }}&width=400 400w, {{ poster_fallback }}&width=800 800w, {{ poster_fallback }}&width=1200 1200w{%- endcapture -%}
+        {%- endif -%}
+        <img
+          id="PosterOverlay-{{ section.id }}"
+          class="hero__poster-overlay"
+          src="{{ poster_src }}"
+          srcset="{{ poster_srcset }}"
+          sizes="100vw"
+          alt="{{ section.settings.title | escape | default: 'Hero video poster' }}"
+          loading="eager"
+          fetchpriority="high"
+          width="1200"
+          height="675"
+        >
         <video
           id="Mp4Video-{{ section.id }}"
           class="video-div"
           data-type="mp4"
-          src="{{ section.settings.video_url }}"
+          data-src="{{ section.settings.video_url }}"
           loop
           muted
           playsinline
-          autoplay
-          poster="{{ section.settings.poster_image | default: '' }}"
-          preload="auto"
+          preload="none"
         ></video>
+        <script>
+          (function() {
+            var video = document.getElementById('Mp4Video-{{ section.id }}');
+            var poster = document.getElementById('PosterOverlay-{{ section.id }}');
+            if (!video) return;
+
+            function loadVideo() {
+              if (video.src && video.src !== window.location.href) return;
+              video.src = video.getAttribute('data-src');
+              video.preload = 'auto';
+              video.play().catch(function() {});
+
+              video.addEventListener('playing', function() {
+                poster.classList.add('is-hidden');
+              }, { once: true });
+            }
+
+            if ('requestIdleCallback' in window) {
+              requestIdleCallback(loadVideo, { timeout: 4000 });
+            } else {
+              setTimeout(loadVideo, 3000);
+            }
+          })();
+        </script>
       {%- endif -%}
     </div>
 
@@ -407,6 +469,12 @@
       "label": "t:sections.hero-video.settings.video_url.label",
       "default": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
       "info": "t:sections.hero-video.settings.video_url.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster_image",
+      "label": "Poster image",
+      "info": "Shown while video loads. Critical for LCP performance — use a screenshot of the first video frame."
     },
     {
       "type": "range",

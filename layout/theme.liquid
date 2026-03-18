@@ -8,76 +8,70 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="{{ settings.color_button }}">
 
-    {% render 'ultimate-datalayer' %}
+    {% comment %} GTM & Hotjar deferred — loads on first user interaction OR 8s after load.
+         Using requestIdleCallback(3s) caused TBT spike (3760ms) because the timeout fired
+         while main thread was busy with Shopify scripts, dumping the entire GTM cascade
+         (Clarity, Facebook, Google Ads, ShareThis) into the critical period.
+         Interaction-based loading ensures analytics only start after the user engages. {% endcomment %}
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.hj = window.hj || function() { (window.hj.q = window.hj.q || []).push(arguments); };
+      window._hjSettings = { hjid: 3833078, hjsv: 6 };
 
-    <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
+      function _loadGTM() {
+        if (window._gtmLoaded) return;
+        window._gtmLoaded = true;
+        dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var j = document.createElement('script');
         j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-WW44S75X');
-    </script>
-    <script>
-      (function (h, o, t, j, a, r) {
-        h.hj =
-          h.hj ||
-          function () {
-            (h.hj.q = h.hj.q || []).push(arguments);
-          };
-        h._hjSettings = { hjid: 3833078, hjsv: 6 };
-        a = o.getElementsByTagName('head')[0];
-        r = o.createElement('script');
-        r.async = 1;
-        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WW44S75X';
+        document.head.appendChild(j);
+        var r = document.createElement('script');
+        r.async = true;
+        r.src = 'https://static.hotjar.com/c/hotjar-3833078.js?sv=6';
+        document.head.appendChild(r);
+      }
+
+      var _evts = ['scroll', 'click', 'touchstart', 'keydown'];
+      function _onInteract() {
+        _evts.forEach(function(e) { document.removeEventListener(e, _onInteract); });
+        setTimeout(_loadGTM, 0);
+      }
+      _evts.forEach(function(e) { document.addEventListener(e, _onInteract, { once: true, passive: true }); });
+      {% comment %} Homepage gets longer fallback (12s) to keep GTM/Hotjar/Clarity cascade
+           off the critical path on slow mobile devices. Other pages keep 8s. {% endcomment %}
+      window.addEventListener('load', function() { setTimeout(_loadGTM, {% if request.page_type == 'index' %}12000{% else %}8000{% endif %}); });
     </script>
     <link rel="canonical" href="{{ canonical_url }}">
     <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
+    {% comment %} Early preload for hero poster (LCP element) — discovered in <head> instead of waiting for body parse {% endcomment %}
+    {%- if request.page_type == 'index' -%}
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800" fetchpriority="high" imagesrcset="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=400 400w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800 800w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=1200 1200w" imagesizes="100vw">
+    {%- endif -%}
     <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.googleapis.com">
     <link rel="dns-prefetch" href="https://maps.gstatic.com">
-    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> {% endcomment %}
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-      media="print"
-      onload="this.media='all'"
-    >
-    <noscript>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </noscript>
+    {% comment %} <link rel="preconnect" href="https://static.zevi.ai" crossorigin> {% endcomment %}
+    <link rel="dns-prefetch" href="https://static.hotjar.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    {% comment %} Font Awesome removed — only 3 icons used, replaced with inline SVGs to save ~140KB {% endcomment %}
+    {% comment %} fontawesome-590.css, fontawesome-651.css — unused asset files {% endcomment %}
 
-    {{ 'fontawesome-590.css' | asset_url | stylesheet_tag }}
-    {% comment %} {{ 'fontawesome-651.css' | asset_url | stylesheet_tag }} {% endcomment %}
+    {% comment %} swiper.css moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
 
-    {{ 'swiper.css' | asset_url | stylesheet_tag }}
-    {{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}
+    <link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}"></noscript>
 
-    {% comment %}
-      <link rel="preload" href="{{ 'fontawesome.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript>{{ 'fontawesome.css' | asset_url | stylesheet_tag }}</noscript>
-
-      <link rel="preload" href="{{ 'swiper.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript>{{ 'swiper.css' | asset_url | stylesheet_tag }}</noscript>
-
-      <link rel="preload" href="{{ 'bootstrap.min.css' | asset_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript>{{ 'bootstrap.min.css' | asset_url | stylesheet_tag }}</noscript>
-    {% endcomment %}
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    {% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.js"></script> {% endcomment %}
-    <script src="{{ 'swiper.js' | asset_url }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer crossorigin="anonymous"></script>
+    {% comment %} swiper.js moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
 
     {%- if settings.favicon != blank -%}
       <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- else -%}
+      <link rel="icon" href="data:," type="image/x-icon">
     {%- endif -%}
 
     {%- render 'seo-title' -%}
@@ -89,8 +83,25 @@
     {%- render 'social-meta-tags' -%}
 
     {%- render 'font-face' -%}
+    {% comment %} Preload theme fonts to prevent FOIT and Speed Index delay {% endcomment %}
+    {%- assign header_font = settings.type_header_font_family -%}
+    {%- assign base_font = settings.type_base_font_family -%}
+    {%- if header_font.system? != true -%}
+      <link rel="preload" as="font" href="{{ header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endif -%}
+    {%- if base_font.system? != true and base_font != header_font -%}
+      <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endif -%}
     {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
     {%- render 'css-variables' -%}
+
+    {% comment %} Speed Index: skip rendering of below-fold sections until scrolled into view {% endcomment %}
+    <style>
+      .main-content > .shopify-section ~ .shopify-section {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 500px;
+      }
+    </style>
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
@@ -144,14 +155,79 @@
       #powrIframeLoader{display: none!important;}
     </style>
 
-    {% render 'boost-sd-fallback' %}
+    {% comment %} boost-sd-fallback only loads its JS on collection/search pages.
+         On homepage it just sets 2 global vars — skip to avoid a sync script in <head>. {% endcomment %}
+    {%- if request.page_type == 'collection' or request.page_type == 'search' -%}
+      {% render 'boost-sd-fallback' %}
+    {%- endif -%}
+
+    {% comment %} Third-party script deferral (homepage only).
+         Intercepts appendChild/insertBefore for dynamically-created script elements
+         from non-essential third-party domains. Scripts are NOT removed — they load
+         after user interaction or 12s post-load, outside the critical TBT window.
+         Estimated savings: ~2,000ms TBT from clarity (814ms), boost (726ms),
+         PageFly gtag (620ms), Facebook (304ms), pop-convert (269ms), etc. {% endcomment %}
+    {%- if request.page_type == 'index' -%}
+    <script>
+      (function(){
+        var Q=[], R=false;
+        var OA=Node.prototype.appendChild;
+        var OI=Node.prototype.insertBefore;
+
+        function D(n){
+          if(R||!n||n.tagName!=='SCRIPT'||!n.src) return false;
+          var s=n.src;
+          return s.indexOf('clarity.ms')>-1||
+                 s.indexOf('connect.facebook.net')>-1||
+                 s.indexOf('pop-convert.com')>-1||
+                 s.indexOf('one.store/javascript')>-1||
+                 s.indexOf('powr.io')>-1||
+                 s.indexOf('sharethis.com')>-1||
+                 s.indexOf('uppromote')>-1||
+                 s.indexOf('shareasale.com')>-1||
+                 s.indexOf('boost-cdn-prod')>-1||
+                 s.indexOf('pagefly.io/pagefly/core/analytics')>-1;
+        }
+
+        Node.prototype.appendChild=function(c){
+          if(D(c)){Q.push(c);return c;}
+          return OA.call(this,c);
+        };
+        Node.prototype.insertBefore=function(n,r){
+          if(D(n)){Q.push(n);return n;}
+          return OI.call(this,n,r);
+        };
+
+        function X(){
+          if(R) return; R=true;
+          Node.prototype.appendChild=OA;
+          Node.prototype.insertBefore=OI;
+          var i=0, ric='requestIdleCallback' in window;
+          (function L(){
+            if(i>=Q.length) return;
+            function run(){try{OA.call(document.head,Q[i]);}catch(e){}i++;setTimeout(L,100);}
+            ric ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,150);
+          })();
+        }
+
+        ['scroll','click','touchstart','keydown','mousemove'].forEach(function(e){
+          document.addEventListener(e,function h(){
+            document.removeEventListener(e,h);setTimeout(X,0);
+          },{once:true,passive:true});
+        });
+        window.addEventListener('load',function(){setTimeout(X,12000);});
+      })();
+    </script>
+    {%- endif -%}
+
     {{ content_for_header }}
     {% render 'usf' %}
 
     <script src="{{ 'vendor-scripts-v11.js' | asset_url | split: '?' | first }}" defer="defer"></script>
 
     {%- if shop.enabled_currencies.size > 1 -%}
-      <link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}">
+      <link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}" media="print" onload="this.media='all'">
+      <noscript><link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}"></noscript>
     {%- endif -%}
 
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
@@ -199,6 +275,10 @@
         style="display:none;visibility:hidden"
       ></iframe
     ></noscript>
+    {% comment %} Fix: add title to Shopify Preview Bar iframe for accessibility {% endcomment %}
+    <script>
+      (function(){var f=document.getElementById('PBarNextFrame');if(f)f.title='Shopify preview bar';})();
+    </script>
     <a class="in-page-link visually-hidden skip-link" href="#MainContent">
       {{- 'general.accessibility.skip_to_content' | t -}}
     </a>
@@ -267,10 +347,11 @@
     </template>
 
     {% include 'globo.filter.action' %}
-    <script src="https://static.zevi.ai/scripts/suggestions-overlay.js"></script>
-    <script src="https://static.zevi.ai/scripts/metrics.js"></script>
+    {% comment %} Zevi AI scripts removed — static.zevi.ai returning ERR_CONNECTION_REFUSED. Re-enable when service is restored. {% endcomment %}
+    {% comment %} <script src="https://static.zevi.ai/scripts/suggestions-overlay.js" defer crossorigin="anonymous"></script> {% endcomment %}
+    {% comment %} <script src="https://static.zevi.ai/scripts/metrics.js" defer crossorigin="anonymous"></script> {% endcomment %}
     {%- render 'ecom_footer' -%}
-    {{ '//cdn.shopify.com/s/files/1/0194/1736/6592/t/1/assets/booster-page-speed-optimizer.js?23' | script_tag }}
+    {% comment %} booster-page-speed-optimizer.js removed — loaded from wrong store (1/0194/1736/6592), not WavesRx {% endcomment %}
 
     <script type="application/ld+json">
       {
@@ -325,5 +406,12 @@
         }
       }
     </script>
-  {% include 'subscribe-it-helper' %}</body>
+  {% render 'ultimate-datalayer' %}
+  {% comment %} subscribe-it-helper (Back in Stock notify button) only has product context
+       on product pages. On homepage it just sets empty config + 53KB of inline Bootstrap CSS
+       — skip it to reduce parse time and TBT on mobile homepage. {% endcomment %}
+  {%- if request.page_type == 'product' or request.page_type == 'collection' -%}
+    {% include 'subscribe-it-helper' %}
+  {%- endif -%}
+  </body>
 </html>

@@ -754,6 +754,7 @@
                   src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/1-icon.png?v=1733299573"
                   style="width:70%;"
                   alt="price tag icon"
+                loading="lazy" width="50" height="50"
                 >
               </div>
               <div class="icon-text">
@@ -768,6 +769,7 @@
                   src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/anniversary-clip.png?v=1701433826"
                   style="width:70%;"
                   alt="return tag icon"
+                loading="lazy" width="50" height="50"
                 >
               </div>
               <div class="icon-text">
@@ -782,6 +784,7 @@
                   alt="moneyback tag icon"
                   src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/cash_money_icon_c35ac111-de1c-4e87-a9a7-df5ac8b73ea5.png?v=1701433824"
                   style="width:70%;"
+                loading="lazy" width="50" height="50"
                 >
               </div>
               <div class="icon-text">
@@ -796,6 +799,7 @@
                   alt="us flag tag icon"
                   src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/USA_flag_045.png?v=1703916600"
                   style="width:70%;"
+                loading="lazy" width="50" height="50"
                 >
               </div>
               <div class="icon-text">
@@ -1030,7 +1034,7 @@
           <!-- OBXGreg's review first -->
           <div class="review">
             <div class="review-header">
-              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px" loading="lazy">
               <span class="author">OBXGreg</span>
               <span class="date">February 12, 2026</span>
               <span class="verified-badge">
@@ -1061,7 +1065,7 @@
           <!-- MamaMartinez's review second -->
           <div class="review">
             <div class="review-header">
-              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px" loading="lazy">
               <span class="author">Mama Martinez</span>
               <span class="date">June 23, 2025</span>
               <span class="verified-badge">
@@ -1096,7 +1100,7 @@
           <!-- Eroc's review third -->
           <div class="review">
             <div class="review-header">
-              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px">
+              <img class="flag" src="https://flagcdn.com/us.svg" alt="US Flag" width="30px" height="30px" loading="lazy">
               <span class="author">Eroc</span>
               <span class="date">June 13, 2025</span>
               <span class="verified-badge">
@@ -1419,9 +1423,9 @@
         <article class="card-wide" style="align-items:center; position: relative;">
           <a class="photo" href="{{ product.url }}">
             {% if product.featured_image %}
-              <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}">
+              <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}" loading="lazy" width="400" height="400">
             {% else %}
-              <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}">
+              <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}" loading="lazy" width="400" height="400">
             {% endif %}
           </a>
 
@@ -1545,12 +1549,14 @@
                   src="{{ product.featured_image | img_url: '700x' }}"
                   alt="{{ product.title | escape }}"
                   style="border-radius: 10px; margin-bottom: 10px;"
+                loading="lazy" width="400" height="400"
                 >
               {% else %}
                 <img
                   src="{{ 'placeholder-image.png' | asset_url }}"
                   alt="{{ product.title | escape }}"
                   style="border-radius: 10px;"
+                loading="lazy" width="400" height="400"
                 >
               {% endif %}
             </a>
@@ -1747,13 +1753,14 @@
       <!-- RIGHT: Images -->
       <div class="story-images">
         <div class="image image-1">
-          <img src="https://www.wavesrx.com/cdn/shop/files/f-img1.jpg?v=1747907805&width=540" alt="Boat lifestyle">
+          <img src="https://www.wavesrx.com/cdn/shop/files/f-img1.jpg?v=1747907805&width=360" alt="Boat lifestyle" loading="lazy" width="360" height="270">
         </div>
 
         <div class="image image-2">
           <img
             src="https://www.wavesrx.com/cdn/shop/files/Untitled-1kk.jpg?v=1744021742&width=750"
             alt="Jet ski action"
+          loading="lazy" width="400" height="400"
           >
         </div>
       </div>

@@ -196,7 +196,7 @@
             return originalFetch.apply(this, arguments).then((response) => {
               if (response.ok) {
                 let cloneResponse = response.clone();
-                let requestURL = arguments[0];
+                let requestURL = typeof arguments[0] === 'string' ? arguments[0] : (arguments[0] && arguments[0].url ? arguments[0].url : '');
                 
                 if(/.*\/search\/?.*\?.*q=.+/.test(requestURL) && !requestURL.includes('&requestFrom=uldt')) {   
                   const queryString = requestURL.split('?')[1];
@@ -963,13 +963,25 @@
       } 
       // end Ultimate_Shopify_DataLayer
 
-      document.addEventListener('DOMContentLoaded', function() {
-        try{
+      // Defer initialization until user interaction to avoid blocking TBT on mobile.
+      // requestIdleCallback(5s) caused TBT spikes because timeout fired while main thread
+      // was busy with Shopify scripts. Interaction-based loading matches the GTM pattern.
+      function _initDataLayer() {
+        if (window._dlLoaded) return;
+        window._dlLoaded = true;
+        try {
           new Ultimate_Shopify_DataLayer();
-        }catch(error) {
-          console.log(error);
+        } catch(error) {
+          // error logged silently
         }
-      });
+      }
+      var _dlEvts = ['scroll', 'click', 'touchstart', 'keydown'];
+      function _onDLInteract() {
+        _dlEvts.forEach(function(e) { document.removeEventListener(e, _onDLInteract); });
+        setTimeout(_initDataLayer, 0);
+      }
+      _dlEvts.forEach(function(e) { document.addEventListener(e, _onDLInteract, { once: true, passive: true }); });
+      window.addEventListener('load', function() { setTimeout(_initDataLayer, 10000); });
     
   })();
 </script>

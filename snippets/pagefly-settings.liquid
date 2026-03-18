@@ -85,10 +85,10 @@
       scriptPFAnalytic.async = true;
       scriptPFAnalytic.defer = false;
       scriptPFAnalytic.onload = () => {
-        console.log("load analytics new version sucessfully")
+
       };
       scriptPFAnalytic.onerror = () => {
-        console.log("load analytics new version unsuccessfully")
+
       };
       document.body.appendChild(scriptPFAnalytic);
       };
@@ -105,4 +105,4 @@
   </script>
   
 {% if shop.metafields.pagefly.globalSetting %}{{ shop.metafields.pagefly.globalSetting }}{% endif %}
-{{ 'pagefly-main.css' | asset_url | stylesheet_tag: preload: true }}
+{{ 'pagefly-main.css' | asset_url | stylesheet_tag }}
