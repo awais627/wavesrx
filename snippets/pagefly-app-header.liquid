@@ -1,7 +1,7 @@
 {% if page and page.metafields.pagefly.html_meta %}
   {{page.metafields.pagefly.html_meta}}
 {% endif %}
-{% if request.path == '/a/pf_preview' %}
+{% if request.path == '/apps/pagefly' %}
   <meta name="robots" content="noindex">
 {% endif %}
 {%- liquid
@@ -50,6 +50,7 @@
           echo '<!-- PageFly begins loading Google fonts -->'
           echo '<link rel="preconnect" href="https://fonts.googleapis.com">'
           echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+          echo refined_google_font_url | prepend: '<link rel="preload" as="style" fetchpriority="low" href="' | append: '&display=block">'
           echo refined_google_font_url | prepend: '<link rel="stylesheet" href="' | append: '&display=block" media="(min-width: 640px)">'
           echo refined_google_font_url | prepend: '<link rel="stylesheet" href="' | append: '&display=block" media="print" onload="this.onload=null;this.media=__PF_GOOGLE_FONT_MEDIA_ALL__">' | replace: '__PF_GOOGLE_FONT_MEDIA_ALL__', "'all'"
           echo '<!-- PageFly ends loading Google fonts -->'

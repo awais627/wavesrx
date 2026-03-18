@@ -4,146 +4,273 @@ If you plan to remove PageFly, please see the guide in our help center first: ht
 {% endcomment %}
 <!doctype html>
 <html class="no-js" lang="{{ request.locale.iso_code }}" dir="{{ settings.text_direction }}">
-<head>
- {%- render 'ecom_header' -%}
-  <meta name="google-site-verification" content="Biwfuu-m78JucT7tBXgKUXeTJk5lc5Nv8tKFaUnE4Z4" />
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="{{ settings.color_button }}">
+  <head>
+    {%- render 'ecom_header' -%}
+    <meta name="google-site-verification" content="Biwfuu-m78JucT7tBXgKUXeTJk5lc5Nv8tKFaUnE4Z4">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_button }}">
 
-  {% comment %} ultimate-datalayer moved to end of body to avoid blocking head parsing {% endcomment %}
-  {% comment %} GTM & Hotjar deferred — loads on user interaction or after 8s to reduce TBT {% endcomment %}
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    window.hj = window.hj || function() { (window.hj.q = window.hj.q || []).push(arguments); };
-    window._hjSettings = { hjid: 3833078, hjsv: 6 };
+    {% comment %} GTM & Hotjar deferred — loads on first user interaction OR 8s after load.
+         Using requestIdleCallback(3s) caused TBT spike (3760ms) because the timeout fired
+         while main thread was busy with Shopify scripts, dumping the entire GTM cascade
+         (Clarity, Facebook, Google Ads, ShareThis) into the critical period.
+         Interaction-based loading ensures analytics only start after the user engages. {% endcomment %}
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      window.hj = window.hj || function() { (window.hj.q = window.hj.q || []).push(arguments); };
+      window._hjSettings = { hjid: 3833078, hjsv: 6 };
 
-    function _loadGTM() {
-      if (window._gtmLoaded) return;
-      window._gtmLoaded = true;
-      dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-      var j = document.createElement('script');
-      j.async = true;
-      j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WW44S75X';
-      document.head.appendChild(j);
-      var r = document.createElement('script');
-      r.async = true;
-      r.src = 'https://static.hotjar.com/c/hotjar-3833078.js?sv=6';
-      document.head.appendChild(r);
-    }
-    var _evts = ['scroll','click','touchstart','keydown'];
-    function _onInteract() {
-      _evts.forEach(function(e) { document.removeEventListener(e, _onInteract); });
-      setTimeout(_loadGTM, 0);
-    }
-    _evts.forEach(function(e) { document.addEventListener(e, _onInteract, { once: true, passive: true }); });
-    window.addEventListener('load', function() { setTimeout(_loadGTM, 8000); });
-  </script>
+      function _loadGTM() {
+        if (window._gtmLoaded) return;
+        window._gtmLoaded = true;
+        dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var j = document.createElement('script');
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WW44S75X';
+        document.head.appendChild(j);
+        var r = document.createElement('script');
+        r.async = true;
+        r.src = 'https://static.hotjar.com/c/hotjar-3833078.js?sv=6';
+        document.head.appendChild(r);
+      }
 
-  <link rel="canonical" href="{{ canonical_url }}">
-  <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
-  <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-  <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
-  <link rel="dns-prefetch" href="https://ajax.googleapis.com">
-  <link rel="dns-prefetch" href="https://maps.googleapis.com">
-  <link rel="dns-prefetch" href="https://maps.gstatic.com">
-  {% comment %} Font Awesome removed — only 3 icons used site-wide, replaced with inline SVGs {% endcomment %}
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/css/swiper.css" media="print" onload="this.media='all'">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.2/js/swiper.js" defer></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
-  {%- if settings.favicon != blank -%}
-    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
-  {%- endif -%}
+      var _evts = ['scroll', 'click', 'touchstart', 'keydown'];
+      function _onInteract() {
+        _evts.forEach(function(e) { document.removeEventListener(e, _onInteract); });
+        setTimeout(_loadGTM, 0);
+      }
+      _evts.forEach(function(e) { document.addEventListener(e, _onInteract, { once: true, passive: true }); });
+      {% comment %} Homepage gets longer fallback (12s) to keep GTM/Hotjar/Clarity cascade
+           off the critical path on slow mobile devices. Other pages keep 8s. {% endcomment %}
+      window.addEventListener('load', function() { setTimeout(_loadGTM, {% if request.page_type == 'index' %}12000{% else %}8000{% endif %}); });
+    </script>
+    <link rel="canonical" href="{{ canonical_url }}">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
-  {%- render 'seo-title' -%}
+    {% comment %} Early preload for hero poster (LCP element) — discovered in <head> instead of waiting for body parse {% endcomment %}
+    {%- if request.page_type == 'index' -%}
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800" fetchpriority="high" imagesrcset="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=400 400w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800 800w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=1200 1200w" imagesizes="100vw">
+    {%- endif -%}
+    <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
+    <link rel="dns-prefetch" href="https://ajax.googleapis.com">
+    <link rel="dns-prefetch" href="https://maps.googleapis.com">
+    <link rel="dns-prefetch" href="https://maps.gstatic.com">
+    {% comment %} <link rel="preconnect" href="https://static.zevi.ai" crossorigin> {% endcomment %}
+    <link rel="dns-prefetch" href="https://static.hotjar.com">
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    {% comment %} Font Awesome removed — only 3 icons used, replaced with inline SVGs to save ~140KB {% endcomment %}
+    {% comment %} fontawesome-590.css, fontawesome-651.css — unused asset files {% endcomment %}
 
-  {%- if page_description -%}
-  <meta name="description" content="{{ page_description | escape }}">
-  {%- endif -%}
+    {% comment %} swiper.css moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
 
-  {%- render 'social-meta-tags' -%}
+    <link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="{{ 'bootstrap.min.css' | asset_url }}"></noscript>
 
-  {%- render 'font-face' -%}
-  {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
-  {%- render 'css-variables' -%}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer crossorigin="anonymous"></script>
+    {% comment %} swiper.js moved to tiktok-slider.liquid — only needed on homepage {% endcomment %}
 
-  <script>
-    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+    {%- if settings.favicon != blank -%}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {%- else -%}
+      <link rel="icon" href="data:," type="image/x-icon">
+    {%- endif -%}
 
-    window.theme = window.theme || {};
-    theme.routes = {
-      home: "{{ routes.root_url }}",
-      cart: "{{ routes.cart_url | append: '.js' }}",
-      cartPage: "{{ routes.cart_url }}",
-      cartAdd: "{{ routes.cart_add_url | append: '.js' }}",
-      cartChange: "{{ routes.cart_change_url | append: '.js' }}",
-      search: "{{ routes.search_url }}",
-      predictiveSearch: "{{ routes.predictive_search_url }}"
-    };
-    theme.strings = {
-      soldOut: {{ 'products.product.sold_out' | t | json }},
-      unavailable: {{ 'products.product.unavailable' | t | json }},
-      inStockLabel: {{ 'products.product.in_stock_label' | t | json }},
-      oneStockLabel: {{ 'products.product.stock_label.one' | t: count: '[count]' | json }},
-      otherStockLabel: {{ 'products.product.stock_label.other' | t: count: '[count]' | json }},
-      willNotShipUntil: {{ 'products.product.will_not_ship_until' | t: date: '[date]' | json }},
-      willBeInStockAfter: {{ 'products.product.will_be_in_stock_after' | t: date: '[date]' | json }},
-      waitingForStock: {{ 'products.product.waiting_for_stock' | t | json }},
-      savePrice: {{ 'products.general.save_html' | t: saved_amount: '[saved_amount]' | json }},
-      cartEmpty: {{ 'cart.general.empty' | t | json }},
-      cartTermsConfirmation: {{ 'cart.general.terms_confirm' | t | json }},
-      searchCollections: {{ 'general.search.collections' | t | json }},
-      searchPages: {{ 'general.search.pages' | t | json }},
-      searchArticles: {{ 'general.search.articles' | t | json }},
-      productFrom: {{ 'products.general.from_text_html' | t: price: '' | json }},
-      maxQuantity: {{ 'cart.general.max_quantity' | t: quantity: '[quantity]', title: '[title]' | json }}
-    };
-    theme.settings = {
-      cartType: {{ settings.cart_type | json }},
-      isCustomerTemplate: {% if request.page_type contains 'customers/' %}true{% else %}false{% endif %},
-      moneyFormat: {{ shop.money_format | json }},
-      saveType: {{ settings.product_save_type | json }},
-      productImageSize: {{ settings.product_grid_image_size | json }},
-      productImageCover: {{ settings.product_grid_image_fill }},
-      predictiveSearch: {{ settings.predictive_search_enabled }},
-      predictiveSearchType: {{ settings.search_type | json }},
-      predictiveSearchVendor: {{ settings.predictive_search_show_vendor | json }},
-      predictiveSearchPrice: {{ settings.predictive_search_show_price | json }},
-      quickView: {{ settings.quick_shop_enable }},
-      themeName: 'Impulse',
-      themeVersion: "7.4.0"
-    };
-  </script>
+    {%- render 'seo-title' -%}
 
-  {% render 'boost-sd-fallback' %}
+    {%- if page_description -%}
+      <meta name="description" content="{{ page_description | escape }}">
+    {%- endif -%}
+
+    {%- render 'social-meta-tags' -%}
+
+    {%- render 'font-face' -%}
+    {% comment %} Preload theme fonts to prevent FOIT and Speed Index delay {% endcomment %}
+    {%- assign header_font = settings.type_header_font_family -%}
+    {%- assign base_font = settings.type_base_font_family -%}
+    {%- if header_font.system? != true -%}
+      <link rel="preload" as="font" href="{{ header_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endif -%}
+    {%- if base_font.system? != true and base_font != header_font -%}
+      <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
+    {%- endif -%}
+    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {%- render 'css-variables' -%}
+
+    {% comment %} Speed Index: skip rendering of below-fold sections until scrolled into view {% endcomment %}
+    <style>
+      .main-content > .shopify-section ~ .shopify-section {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 500px;
+      }
+    </style>
+
+    <script>
+      document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+      window.theme = window.theme || {};
+      theme.routes = {
+        home: "{{ routes.root_url }}",
+        cart: "{{ routes.cart_url | append: '.js' }}",
+        cartPage: "{{ routes.cart_url }}",
+        cartAdd: "{{ routes.cart_add_url | append: '.js' }}",
+        cartChange: "{{ routes.cart_change_url | append: '.js' }}",
+        search: "{{ routes.search_url }}",
+        predictiveSearch: "{{ routes.predictive_search_url }}"
+      };
+      theme.strings = {
+        soldOut: {{ 'products.product.sold_out' | t | json }},
+        unavailable: {{ 'products.product.unavailable' | t | json }},
+        inStockLabel: {{ 'products.product.in_stock_label' | t | json }},
+        oneStockLabel: {{ 'products.product.stock_label.one' | t: count: '[count]' | json }},
+        otherStockLabel: {{ 'products.product.stock_label.other' | t: count: '[count]' | json }},
+        willNotShipUntil: {{ 'products.product.will_not_ship_until' | t: date: '[date]' | json }},
+        willBeInStockAfter: {{ 'products.product.will_be_in_stock_after' | t: date: '[date]' | json }},
+        waitingForStock: {{ 'products.product.waiting_for_stock' | t | json }},
+        savePrice: {{ 'products.general.save_html' | t: saved_amount: '[saved_amount]' | json }},
+        cartEmpty: {{ 'cart.general.empty' | t | json }},
+        cartTermsConfirmation: {{ 'cart.general.terms_confirm' | t | json }},
+        searchCollections: {{ 'general.search.collections' | t | json }},
+        searchPages: {{ 'general.search.pages' | t | json }},
+        searchArticles: {{ 'general.search.articles' | t | json }},
+        productFrom: {{ 'products.general.from_text_html' | t: price: '' | json }},
+        maxQuantity: {{ 'cart.general.max_quantity' | t: quantity: '[quantity]', title: '[title]' | json }}
+      };
+      theme.settings = {
+        cartType: {{ settings.cart_type | json }},
+        isCustomerTemplate: {% if request.page_type contains 'customers/' %}true{% else %}false{% endif %},
+        moneyFormat: {{ shop.money_format | json }},
+        saveType: {{ settings.product_save_type | json }},
+        productImageSize: {{ settings.product_grid_image_size | json }},
+        productImageCover: {{ settings.product_grid_image_fill }},
+        predictiveSearch: {{ settings.predictive_search_enabled }},
+        predictiveSearchType: {{ settings.search_type | json }},
+        predictiveSearchVendor: {{ settings.predictive_search_show_vendor | json }},
+        predictiveSearchPrice: {{ settings.predictive_search_show_price | json }},
+        quickView: {{ settings.quick_shop_enable }},
+        themeName: 'Impulse',
+        themeVersion: "7.4.0"
+      };
+    </script>
+
+    <style>
+      #powrIframeLoader{display: none!important;}
+    </style>
+
+    {% comment %} boost-sd-fallback only loads its JS on collection/search pages.
+         On homepage it just sets 2 global vars — skip to avoid a sync script in <head>. {% endcomment %}
+    {%- if request.page_type == 'collection' or request.page_type == 'search' -%}
+      {% render 'boost-sd-fallback' %}
+    {%- endif -%}
+
+    {% comment %} Third-party script deferral (homepage only).
+         Intercepts appendChild/insertBefore for dynamically-created script elements
+         from non-essential third-party domains. Scripts are NOT removed — they load
+         after user interaction or 12s post-load, outside the critical TBT window.
+         Estimated savings: ~2,000ms TBT from clarity (814ms), boost (726ms),
+         PageFly gtag (620ms), Facebook (304ms), pop-convert (269ms), etc. {% endcomment %}
+    {%- if request.page_type == 'index' -%}
+    <script>
+      (function(){
+        var Q=[], R=false;
+        var OA=Node.prototype.appendChild;
+        var OI=Node.prototype.insertBefore;
+
+        function D(n){
+          if(R||!n||n.tagName!=='SCRIPT'||!n.src) return false;
+          var s=n.src;
+          return s.indexOf('clarity.ms')>-1||
+                 s.indexOf('connect.facebook.net')>-1||
+                 s.indexOf('pop-convert.com')>-1||
+                 s.indexOf('one.store/javascript')>-1||
+                 s.indexOf('powr.io')>-1||
+                 s.indexOf('sharethis.com')>-1||
+                 s.indexOf('uppromote')>-1||
+                 s.indexOf('shareasale.com')>-1||
+                 s.indexOf('boost-cdn-prod')>-1||
+                 s.indexOf('pagefly.io/pagefly/core/analytics')>-1;
+        }
+
+        Node.prototype.appendChild=function(c){
+          if(D(c)){Q.push(c);return c;}
+          return OA.call(this,c);
+        };
+        Node.prototype.insertBefore=function(n,r){
+          if(D(n)){Q.push(n);return n;}
+          return OI.call(this,n,r);
+        };
+
+        function X(){
+          if(R) return; R=true;
+          Node.prototype.appendChild=OA;
+          Node.prototype.insertBefore=OI;
+          var i=0, ric='requestIdleCallback' in window;
+          (function L(){
+            if(i>=Q.length) return;
+            function run(){try{OA.call(document.head,Q[i]);}catch(e){}i++;setTimeout(L,100);}
+            ric ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,150);
+          })();
+        }
+
+        ['scroll','click','touchstart','keydown','mousemove'].forEach(function(e){
+          document.addEventListener(e,function h(){
+            document.removeEventListener(e,h);setTimeout(X,0);
+          },{once:true,passive:true});
+        });
+        window.addEventListener('load',function(){setTimeout(X,12000);});
+      })();
+    </script>
+    {%- endif -%}
+
     {{ content_for_header }}
-{% render 'usf' %}
+    {% render 'usf' %}
 
- 
+    <script src="{{ 'vendor-scripts-v11.js' | asset_url | split: '?' | first }}" defer="defer"></script>
 
+    {%- if shop.enabled_currencies.size > 1 -%}
+      <link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}" media="print" onload="this.media='all'">
+      <noscript><link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}"></noscript>
+    {%- endif -%}
 
-  <script src="{{ 'vendor-scripts-v11.js' | asset_url | split: '?' | first }}" defer="defer"></script>
+    <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
-  {%- if shop.enabled_currencies.size > 1 -%}
-    <link rel="stylesheet" href="{{ 'country-flags.css' | asset_url | split: '?' | first }}">
-  {%- endif -%}
+    {%- if request.page_type contains 'customers/' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
 
-  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+    {% if request.design_mode %}
+      <script src="https://api.archetypethemes.co/design-mode.js" defer="defer"></script>
+    {% endif %}
+    
+    {% if handle contains 'bigsale' or handle contains '6-years' %}
+      <style>
+        /* TARGETING the semantic header and footer elements here */
+        .site-header, .site-footer {
+          display: none !important;
+        }
 
-  {%- if request.page_type contains 'customers/' -%}
-    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
-  {%- endif -%}
+        .spb-item{
+          margin-top: 0px!important;
+          margin-bottom: 0px!important;
+        }
+      </style>
+    {% endif %}
+  {% include 'pagefly-app-header' %}</head>
 
-  {% if request.design_mode %}
-    <script src="https://api.archetypethemes.co/design-mode.js" defer="defer"></script>
-  {% endif %}
-{% include 'pagefly-app-header' %}</head>
-
-<body class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if request.path == '/challenge' %} template-challange{% endif %}" data-center-text="{{ settings.type_body_align_text }}" data-button_style="{{ settings.button_style }}" data-type_header_capitalize="{{ settings.type_header_capitalize }}" data-type_headers_align_text="{{ settings.type_headers_align_text }}" data-type_product_capitalize="{{ settings.type_product_capitalize }}" data-swatch_style="{{ settings.swatch_style }}" {% if settings.disable_animations %}data-disable-animations="true"{% endif %}><div class="pagefly-container">
+  <body
+    class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if request.path == '/challenge' %} template-challange{% endif %}"
+    data-center-text="{{ settings.type_body_align_text }}"
+    data-button_style="{{ settings.button_style }}"
+    data-type_header_capitalize="{{ settings.type_header_capitalize }}"
+    data-type_headers_align_text="{{ settings.type_headers_align_text }}"
+    data-type_product_capitalize="{{ settings.type_product_capitalize }}"
+    data-swatch_style="{{ settings.swatch_style }}"
+    {% if settings.disable_animations %}
+      data-disable-animations="true"
+    {% endif %}
+  ><div class="pagefly-container">
               {{ content_for_layout }}
-            </div>
-  {%render'ultimate-datalayer'%}
-</body>
+            </div></body>
 </html>

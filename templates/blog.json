@@ -11,6 +11,9 @@
   "sections": {
     "main": {
       "type": "blog-template",
+      "custom_css": [
+        ".page-content {padding-bottom: 75px; padding-top: 75px; }"
+      ],
       "settings": {
         "blog_show_tag_filter": false,
         "blog_show_rss": false,

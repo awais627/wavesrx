@@ -239,7 +239,7 @@
     {% if request.design_mode %}
       <script src="https://api.archetypethemes.co/design-mode.js" defer="defer"></script>
     {% endif %}
-    {% include 'pagefly-app-header' %}
+    
     {% if handle contains 'bigsale' or handle contains '6-years' %}
       <style>
         /* TARGETING the semantic header and footer elements here */
@@ -253,7 +253,7 @@
         }
       </style>
     {% endif %}
-  </head>
+  {% include 'pagefly-app-header' %}</head>
 
   <body
     class="template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}{% if request.path == '/challenge' %} template-challange{% endif %}"
