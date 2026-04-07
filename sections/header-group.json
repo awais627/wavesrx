@@ -30,9 +30,9 @@
         "announcement-0": {
           "type": "announcement",
           "settings": {
-            "text": "PRE-SEASON SAVINGS are here",
+            "text": "Trailer Safety Cables - Available Now",
             "link_text": "",
-            "link": "shopify://collections"
+            "link": "https://www.wavesrx.com/products/safety-cables"
           }
         }
       },
@@ -41,7 +41,8 @@
       ],
       "custom_css": [
         ".announcement-bar {background-color: #800000 !important; color: #000 !important; font-size: 18px !important; text-align: center !important; line-height: 1.4 !important;}",
-        "@media screen and (max-width: 400px) {.announcement-bar .page-width {display: block; }}"
+        ".page-width {display: block;}",
+        ".page-width {flex-wrap: nowrap; align-items: center; min-height: 0px;}"
       ],
       "settings": {
         "announcement_compact": true
@@ -63,7 +64,8 @@
         "header-0"
       ],
       "custom_css": [
-        "input[name=\"cd-dropdown\"] {display: none !important;}"
+        "input[name=\"cd-dropdown\"] {display: none !important;}",
+        ".pt-4 {align-items: baseline;}"
       ],
       "settings": {
         "main_menu_link_list": "main-menus-new",

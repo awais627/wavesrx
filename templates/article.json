@@ -11,6 +11,9 @@
   "sections": {
     "main": {
       "type": "article-template",
+      "custom_css": [
+        ".page-width{padding: 50px 40px; }"
+      ],
       "settings": {
         "image_hero": false,
         "blog_show_tags": true,

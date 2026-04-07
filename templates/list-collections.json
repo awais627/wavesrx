@@ -85,7 +85,8 @@
       "type": "four-category-section",
       "custom_css": [
         ".container {padding-bottom: 20px;}",
-        ".mt-4 {margin-top: 0 !important; }"
+        ".mt-4 {margin-top: 0 !important;}",
+        ".mt-4 {margin-top: 16px !important;}"
       ],
       "settings": {
         "heading1": "Anchoring",

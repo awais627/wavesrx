@@ -11,6 +11,9 @@
   "sections": {
     "main": {
       "type": "main-cart",
+      "custom_css": [
+        ".page-full, .page-width {padding: 40px 40px; }"
+      ],
       "settings": {}
     },
     "recently-viewed": {

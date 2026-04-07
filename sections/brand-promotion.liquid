@@ -1,128 +1,212 @@
-<style>
-  .main-outer img {
-    display: inline;
-}
-  </style>
-<div class="container w-100" style="margin-left: -40px;">
-  <a href="{{ section.settings.url1 }}" target="_blank">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="main-outer text-center pt-3">
-              <!-- <a href="{{ section.settings.url1 }}"> -->
-                {% if section.settings.image1 != blank -%}
-                    {{- section.settings.image1 | image_url: width: 50  | image_tag: class: '', loading: 'lazy' -}}
-                {%- endif %}
-               <h5 style="margin-top: 10px;">{{ section.settings.heading1 }}</h5>
-                <!-- <span>on All Rhino Products</span> -->
-              <!-- </a> -->
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="main-outer text-center pt-3">
-              <!-- <a href="{{ section.settings.url2 }}"> -->
-                {% if section.settings.image2 != blank -%}
-                    {{- section.settings.image2 | image_url: width: 50  | image_tag: class: '', loading: 'lazy' -}}
-                {%- endif %}
-                <h5 style="margin-top: 10px;">{{ section.settings.heading2 }}</h5>
-                <!-- <span>Based in California</span> -->
-                <!-- </a> -->
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="main-outer text-center pt-3">
-              <!-- <a href="{{ section.settings.url3 }}"> -->
-                {% if section.settings.image3 != blank -%}
-                    {{- section.settings.image3 | image_url: width: 50 | image_tag: class: '', loading: 'lazy' -}}
-                {%- endif %}
-                <h5 style="margin-top: 10px;">{{ section.settings.heading3 }}</h5>
-                <!-- <span>Ships within 48 hours</span> -->
-                <!-- </a> -->
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="main-outer text-center pt-3">
-              <!-- <a href="{{ section.settings.url4 }}"> -->
-                {% if section.settings.image4 != blank -%}
-                    {{- section.settings.image4 | image_url: width: 50 | image_tag: class: '', loading: 'lazy' -}}
-                {%- endif %}
-                <!-- <h5 style="margin-top: 10px;">{{ section.settings.heading4 }}</h5> -->
-                {% assign heading4 = section.settings.heading4 %}
-                {% assign headingSplit = heading4 | split: '&' %}
-                <h5 style="margin-top: 10px;">{{ headingSplit[0] }}<br>&{{ headingSplit[1] }}</h5>
 
-                <!-- <span>Ships within 48 hours</span> -->
-                <!-- </a> -->
-            </div>
-        </div>
-    </div>
-  </a>
-    <p class="pt-4">{{ section.settings.richtext1 }}</p>
+<style>
+/* Section alignment (right side like your screenshot) */
+#shopify-section-{{ section.id }} {
+  display: flex;
+  width: 46%;
+  margin: 10px 0 20px auto;
+  justify-content: flex-end;
+  clear: both;
+}
+
+/* Icon container */
+.icon-wrapper {
+  width: 100%;
+  max-width: 520px; /* adjust to match button width */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-align: center;
+  gap: 10px;
+}
+
+/* Each icon block */
+.icon-item {
+  flex: 1;
+}
+
+/* Icon image */
+.icon-item img {
+  width: 40px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Heading text */
+.icon-item h5 {
+  font-size: 11px;
+  margin-top: 10px;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+
+/* Prevent images breaking layout */
+.main-outer img {
+  display: inline;
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 768px) {
+
+  #shopify-section-{{ section.id }} {
+    width: 100%;
+    margin: 20px auto;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    flex-direction: column; /* stack items vertically */
+    gap: 15px;
+  }
+
+  .icon-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;    /* 🔥 stack icon above text */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 5px;                  /* space between icon and text */
+    padding-bottom: 10px;
+  }
+
+  .icon-item img {
+    width: 30px;
+    margin: 0;
+  }
+
+  .icon-item h5 {
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin: 0;
+  }
+
+}
+</style>
+
+<div class="container margin-l">
+
+<a href="{{ section.settings.url1 }}" target="_blank">
+
+<div class="icon-wrapper">
+
+<div class="icon-item">
+{% if section.settings.image1 != blank %}
+{{ section.settings.image1 | image_url: width: 50 | image_tag: loading: 'lazy' }}
+{% endif %}
+<h5>{{ section.settings.heading1 }}</h5>
 </div>
+
+<div class="icon-item">
+{% if section.settings.image2 != blank %}
+{{ section.settings.image2 | image_url: width: 50 | image_tag: loading: 'lazy' }}
+{% endif %}
+<h5>{{ section.settings.heading2 }}</h5>
+</div>
+
+<div class="icon-item">
+{% if section.settings.image3 != blank %}
+{{ section.settings.image3 | image_url: width: 50 | image_tag: loading: 'lazy' }}
+{% endif %}
+<h5>{{ section.settings.heading3 }}</h5>
+</div>
+
+<div class="icon-item">
+{% if section.settings.image4 != blank %}
+{{ section.settings.image4 | image_url: width: 50 | image_tag: loading: 'lazy' }}
+{% endif %}
+
+{% assign heading4 = section.settings.heading4 %}
+{% assign headingSplit = heading4 | split: '&' %}
+
+<h5>
+{{ headingSplit[0] }}<br>
+{% if headingSplit.size > 1 %}
+&{{ headingSplit[1] }}
+{% endif %}
+</h5>
+
+</div>
+
+</div>
+
+</a>
+
+<p class="pt-4">{{ section.settings.richtext1 }}</p>
+
+</div>
+
 {% schema %}
 {
-    "name": "brand-promotion",
-    "settings": [
-        {
-            "type": "image_picker",
-            "id": "image1",
-            "label": "Image 1"
-        },
-        {
-            "type": "image_picker",
-            "id": "image2",
-            "label": "Image 2"
-        },
-        {
-            "type": "image_picker",
-            "id": "image3",
-            "label": "Image 3"
-        },
-        {
-            "type": "image_picker",
-            "id": "image4",
-            "label": "Image 4"
-        },
-        {
-            "type": "text",
-            "id": "heading1",
-            "label": "Heading 1",
-            "default": "LIFETIME WARRANTY"
-        },
-        {
-            "type": "text",
-            "id": "heading2",
-            "label": "Heading 2",
-            "default": "AMERICAN OPERATED"
-        },
-        {
-            "type": "text",
-            "id": "heading3",
-            "label": "Heading 3",
-            "default": "FAST SHIPPING"
-        },
-        {
-            "type": "text",
-            "id": "heading4",
-            "label": "Heading 4",
-            "default": "FAST SHIPPING"
-        },
-        {
-            "type": "text",
-            "id": "url1",
-            "label": "URL 1",
-            "default": "www.wavesrx.com"
-        },
-        {
-            "type": "richtext",
-            "id": "richtext1",
-            "label": "Richtext 1",
-            "default": "<p>The Rhino USA Kinetic Energy Recovery Rope is the safest and most efficient way to recover a stuck vehicle. Because it’s able to stretch and store 4x more energy than a tow strap, it provides a much smoother and safer recovery. Backed by a LIFETIME warranty and world-class customer service from a family-owned company, it’s worth every penny.</p>"
-        }
-    ],
-    "presets": [
-        {
-            "name": "brand-promotion"
-        }
-    ]
+"name": "brand-promotion",
+"settings": [
+
+{
+"type": "image_picker",
+"id": "image1",
+"label": "Image 1"
+},
+{
+"type": "image_picker",
+"id": "image2",
+"label": "Image 2"
+},
+{
+"type": "image_picker",
+"id": "image3",
+"label": "Image 3"
+},
+{
+"type": "image_picker",
+"id": "image4",
+"label": "Image 4"
+},
+
+{
+"type": "text",
+"id": "heading1",
+"label": "Heading 1",
+"default": "30 DAYS PRICE MATCH"
+},
+{
+"type": "text",
+"id": "heading2",
+"label": "Heading 2",
+"default": "HASSLE-FREE RETURNS"
+},
+{
+"type": "text",
+"id": "heading3",
+"label": "Heading 3",
+"default": "365 DAYS MONEY BACK"
+},
+{
+"type": "text",
+"id": "heading4",
+"label": "Heading 4",
+"default": "US OWNED & OPERATED"
+},
+
+{
+"type": "url",
+"id": "url1",
+"label": "Link URL"
+},
+
+{
+"type": "richtext",
+"id": "richtext1",
+"label": "Richtext",
+"default": "<p>The Rhino USA Kinetic Energy Recovery Rope is the safest and most efficient way to recover a stuck vehicle. Because it stretches and stores energy it provides a smoother recovery.</p>"
+}
+
+],
+
+"presets": [
+{
+"name": "brand-promotion"
+}
+]
 }
 {% endschema %}

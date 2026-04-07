@@ -11,6 +11,9 @@
   "sections": {
     "main": {
       "type": "main-page",
+      "custom_css": [
+        ".page-width{padding: 50px 40px; }"
+      ],
       "settings": {}
     },
     "085f5619-fd84-42a4-934a-64ad11f2a2e2": {

@@ -175,6 +175,7 @@
     },
     "product_youtube_video_hJeUb9": {
       "type": "Product-youtube-video",
+      "custom_css": [],
       "settings": {
         "productyoutubevideo": "{{ product.metafields.custom.products_youtube_video.value }}"
       }
@@ -385,6 +386,14 @@
     },
     "product-recommendations": {
       "type": "product-recommendations",
+      "custom_css": [
+        ".mb-4 {margin-bottom: 0px !important;}",
+        "form.custom-add-to-cart {order: 3 !important; position: relative !important; bottom: 0 !important; text-align: center !important;}",
+        ".grid__item-image-wrapper {height: 460px;}",
+        ".medium-up--one-quarter {width: 23.7%;}",
+        ".grid__item {margin-left: 15px; background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.1); border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); padding-bottom: 15px; margin-bottom: 20px; padding-left: 0px;}",
+        ".grid-product__colors {margin-top: -37px; position: absolute;}"
+      ],
       "settings": {
         "product_recommendations_heading": "Customers also bought",
         "related_count": 4,
