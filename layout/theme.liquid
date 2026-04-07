@@ -51,10 +51,9 @@
     {%- if request.page_type == 'index' -%}
       <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800&format=pjpg" fetchpriority="high" imagesrcset="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=400&format=pjpg 400w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800&format=pjpg 800w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=1200&format=pjpg 1200w" imagesizes="100vw">
     {%- endif -%}
-    <link rel="dns-prefetch" href="https://ajax.googleapis.com">
-    {% comment %} maps dns-prefetch only needed on pages with a map section {% endcomment %}
-    {% comment %} hotjar/GTM dns-prefetch removed — they load deferred via interaction trigger,
-         dns-prefetch wastes a connection on the critical path for something loaded 8-12s later {% endcomment %}
+    {% comment %} dns-prefetch hints removed — jQuery (ajax.googleapis.com) loads deferred,
+         GTM/Hotjar load on interaction, maps only needed on map pages.
+         Each dns-prefetch costs a connection on mobile critical path. {% endcomment %}
     {% comment %} Font Awesome removed — only 3 icons used, replaced with inline SVGs to save ~140KB {% endcomment %}
     {% comment %} fontawesome-590.css, fontawesome-651.css — unused asset files {% endcomment %}
 
@@ -90,16 +89,63 @@
     {%- if base_font.system? != true and base_font != header_font -%}
       <link rel="preload" as="font" href="{{ base_font | font_url }}" type="font/woff2" crossorigin>
     {%- endif -%}
-    {{ 'theme.css' | asset_url | stylesheet_tag: preload: true }}
+    {% comment %} Critical CSS inlined — lets the browser paint the above-fold skeleton
+         (header, hero, layout) immediately without waiting for theme.css download.
+         theme.css is then deferred with media="print" to load non-blocking. {% endcomment %}
     {%- render 'css-variables' -%}
-
-    {% comment %} Speed Index: skip rendering of below-fold sections until scrolled into view {% endcomment %}
     <style>
-      .main-content > .shopify-section ~ .shopify-section {
-        content-visibility: auto;
-        contain-intrinsic-size: auto 500px;
+      :root{
+        --colorAnnouncement:{{ settings.color_announcement | default: "#1c1d1d" }};
+        --colorAnnouncementText:{{ settings.color_announcement_text | default: "#fff" }};
+        --colorBody:{{ settings.color_body_bg | default: "#fff" }};
+        --colorBorder:{{ settings.color_borders | default: "#1c1d1d" }};
+        --colorBtnPrimary:{{ settings.color_button | default: "#000" }};
+        --colorBtnPrimaryText:{{ settings.color_button_text | default: "#fff" }};
+        --colorCartDot:{{ settings.color_cart_dot | default: "#ff4f33" }};
+        --colorDrawers:{{ settings.color_drawer_background | default: "#1c1d1d" }};
+        --colorDrawerText:{{ settings.color_drawer_text | default: "#fff" }};
+        --colorNav:{{ settings.color_header | default: "#fff" }};
+        --colorNavText:{{ settings.color_header_text | default: "#000" }};
+        --colorTextBody:{{ settings.color_body_text | default: "#1c1d1d" }};
+        --colorHeroText:{{ settings.color_image_text | default: "#fff" }};
+        --colorImageOverlay:{{ settings.color_image_overlay | default: "#000" }};
+        --colorImageOverlayOpacity:{{ settings.color_image_overlay_opacity | divided_by: 100.0 }};
+        --colorPrice:{{ settings.color_price | default: "#1c1d1d" }};
+        --colorLink:{{ settings.color_body_text | default: "#1c1d1d" }};
+        --colorFooter:{{ settings.color_footer | default: "#111" }};
+        --colorFooterText:{{ settings.color_footer_text | default: "#fff" }};
+        --colorSmallImageBg:{{ settings.color_small_image_bg | default: "#eee" }};
+        --colorLargeImageBg:{{ settings.color_large_image_bg | default: "#1c1d1d" }};
+        --grid-gutter:17px;
+        --drawer-gutter:20px;
+        --color-body-text:{{ settings.color_body_text | default: "#1c1d1d" }};
+        --color-body:{{ settings.color_body_bg | default: "#fff" }};
+        --color-bg:{{ settings.color_body_bg | default: "#fff" }};
       }
+      *,*::before,*::after{box-sizing:border-box;}
+      html{height:100%;font-size:calc(var(--typeBaseSize, 16px) * 0.92);}
+      body{background-color:var(--colorBody);color:var(--colorTextBody);margin:0;
+        font-family:var(--typeBasePrimary),var(--typeBaseFallback);font-weight:var(--typeBaseWeight);
+        font-size:calc(var(--typeBaseSize)*0.92);line-height:var(--typeBaseLineHeight);
+        -webkit-font-smoothing:antialiased;-webkit-text-size-adjust:100%;}
+      @media only screen and (min-width:769px){body{font-size:var(--typeBaseSize);}}
+      img{border:0;height:auto;max-width:100%;}
+      .visually-hidden{clip:rect(0 0 0 0);border:0;height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;}
+      @media only screen and (max-width:768px){.small--hide{display:none !important;}}
+      @media only screen and (min-width:769px){.medium-up--hide{display:none !important;}}
+      .page-width{max-width:var(--grid-maxWidth,1280px);margin:0 auto;padding:0 var(--grid-gutter);}
+      .main-content{display:block;min-height:300px;}
+      .header-layout{display:flex;justify-content:space-between;}
+      .header-layout--center{align-items:center;}
+      .header-item{align-items:center;display:flex;flex:1 1 auto;}
+      .header-item--logo{flex:0 0 auto;}
+      .header-item--icons{flex:0 1 auto;justify-content:flex-end;}
+      .hero__media-container{height:100%;left:0;position:absolute;top:0;width:100%;}
+      .hero__poster-overlay{display:block;width:100%;height:auto;object-fit:cover;}
+      .main-content > .shopify-section ~ .shopify-section{content-visibility:auto;contain-intrinsic-size:auto 500px;}
     </style>
+    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}" media="print" onload="this.media='all'">
+    <noscript>{{ 'theme.css' | asset_url | stylesheet_tag }}</noscript>
 
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
