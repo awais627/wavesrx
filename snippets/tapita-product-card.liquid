@@ -12,7 +12,8 @@
             Usage:
             {% render 'tapita-product-card', show_vendor: section.settings.show_vendor %}
         {% endcomment %}
-        {{ 'tapita-component-rating.css' | asset_url | stylesheet_tag }}
+        <link rel="stylesheet" href="{{ 'tapita-component-rating.css' | asset_url }}" media="print" onload="this.media='all'">
+        <noscript>{{ 'tapita-component-rating.css' | asset_url | stylesheet_tag }}</noscript>
         
         {% assign asc_vendor_t = 'accessibility.vendor' | t %}
         {% assign asc_vendor_prefix = asc_vendor_t | slice: 0,20 | downcase %}

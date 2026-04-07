@@ -49,15 +49,12 @@
 
     {% comment %} Early preload for hero poster (LCP element) — discovered in <head> instead of waiting for body parse {% endcomment %}
     {%- if request.page_type == 'index' -%}
-      <link  as="image" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800" fetchpriority="high" imagesrcset="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=400 400w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800 800w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=1200 1200w" imagesizes="100vw">
+      <link rel="preload" as="image" href="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800&format=pjpg" fetchpriority="high" imagesrcset="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=400&format=pjpg 400w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=800&format=pjpg 800w, https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&width=1200&format=pjpg 1200w" imagesizes="100vw">
     {%- endif -%}
-    <link rel="dns-prefetch" href="https://productreviews.shopifycdn.com">
     <link rel="dns-prefetch" href="https://ajax.googleapis.com">
-    <link rel="dns-prefetch" href="https://maps.googleapis.com">
-    <link rel="dns-prefetch" href="https://maps.gstatic.com">
-    {% comment %} <link rel="preconnect" href="https://static.zevi.ai" crossorigin> {% endcomment %}
-    <link rel="dns-prefetch" href="https://static.hotjar.com">
-    <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+    {% comment %} maps dns-prefetch only needed on pages with a map section {% endcomment %}
+    {% comment %} hotjar/GTM dns-prefetch removed — they load deferred via interaction trigger,
+         dns-prefetch wastes a connection on the critical path for something loaded 8-12s later {% endcomment %}
     {% comment %} Font Awesome removed — only 3 icons used, replaced with inline SVGs to save ~140KB {% endcomment %}
     {% comment %} fontawesome-590.css, fontawesome-651.css — unused asset files {% endcomment %}
 
@@ -222,6 +219,17 @@
     {%- endif -%}
 
     {{ content_for_header }}
+    {% comment %} Defer render-blocking CSS injected by apps via content_for_header
+         (appio-reviews.min.css etc.) — convert to media="print" async pattern {% endcomment %}
+    <script>
+      (function(){
+        var ss=document.querySelectorAll('link[rel="stylesheet"][href*="appio-reviews"]');
+        for(var i=0;i<ss.length;i++){
+          ss[i].media='print';
+          ss[i].onload=function(){this.media='all';};
+        }
+      })();
+    </script>
     {% render 'usf' %}
 
     <script src="{{ 'vendor-scripts-v11.js' | asset_url | split: '?' | first }}" defer="defer"></script>

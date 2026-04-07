@@ -1,11 +1,19 @@
 
             <div class="tapitaSection">
-                {{ 'tapita-template-collection.css' | asset_url | stylesheet_tag }}
-                {{ 'tapita-component-loading-overlay.css' | asset_url | stylesheet_tag }}
-                {{ 'tapita-component-card.css' | asset_url | stylesheet_tag }}
-                {{ 'tapita-component-price.css' | asset_url | stylesheet_tag }}
-                {{ 'tapita-component-product-grid.css' | asset_url | stylesheet_tag }}
-                {{ 'tapita-product-list-extra.css' | asset_url | stylesheet_tag }}
+                <link rel="stylesheet" href="{{ 'tapita-template-collection.css' | asset_url }}" media="print" onload="this.media='all'">
+                <link rel="stylesheet" href="{{ 'tapita-component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
+                <link rel="stylesheet" href="{{ 'tapita-component-card.css' | asset_url }}" media="print" onload="this.media='all'">
+                <link rel="stylesheet" href="{{ 'tapita-component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+                <link rel="stylesheet" href="{{ 'tapita-component-product-grid.css' | asset_url }}" media="print" onload="this.media='all'">
+                <link rel="stylesheet" href="{{ 'tapita-product-list-extra.css' | asset_url }}" media="print" onload="this.media='all'">
+                <noscript>
+                  {{ 'tapita-template-collection.css' | asset_url | stylesheet_tag }}
+                  {{ 'tapita-component-loading-overlay.css' | asset_url | stylesheet_tag }}
+                  {{ 'tapita-component-card.css' | asset_url | stylesheet_tag }}
+                  {{ 'tapita-component-price.css' | asset_url | stylesheet_tag }}
+                  {{ 'tapita-component-product-grid.css' | asset_url | stylesheet_tag }}
+                  {{ 'tapita-product-list-extra.css' | asset_url | stylesheet_tag }}
+                </noscript>
                 
                 {% assign real_product-handle = product_handle | default: "all" %}
                 {% assign filter_product-handles = product_handles | default: "" | split: "," %}

@@ -1,0 +1,372 @@
+
+Largest Contentful Paint (LCP)
+1.2 s
+
+Interaction to Next Paint (INP)
+80 ms
+
+Cumulative Layout Shift (CLS)
+0.01
+
+Other Notable Metrics
+First Contentful Paint (FCP)
+1 s
+
+Time to First Byte (TTFB)
+0.4 s
+
+Latest 28-day period
+(
+history
+)
+Various mobile devices
+
+Many samples (
+Chrome UX Report
+)
+Full visit durations
+Various network connections
+
+All Chrome versions
+
+Diagnose performance issues
+50
+Performance
+95
+Accessibility
+73
+Best Practices
+100
+SEO
+50
+FCP
++1
+LCP
++0
+TBT
++22
+CLS
++25
+SI
++2
+Performance
+Values are estimated and may vary. The performance score is calculated directly from these metrics.See calculator.
+0–49
+50–89
+90–100
+Final Screenshot
+
+Metrics
+Collapse view
+First Contentful Paint
+5.0 s
+First Contentful Paint marks the time at which the first text or image is painted. Learn more about the First Contentful Paint metric.
+Largest Contentful Paint
+18.4 s
+Largest Contentful Paint marks the time at which the largest text or image is painted. Learn more about the Largest Contentful Paint metric
+Total Blocking Time
+340 ms
+Sum of all time periods between FCP and Time to Interactive, when task length exceeded 50ms, expressed in milliseconds. Learn more about the Total Blocking Time metric.
+Cumulative Layout Shift
+0.037
+Cumulative Layout Shift measures the movement of visible elements within the viewport. Learn more about the Cumulative Layout Shift metric.
+Speed Index
+8.5 s
+Speed Index shows how quickly the contents of a page are visibly populated. Learn more about the Speed Index metric.
+Captured at Apr 7, 2026, 7:11 PM GMT+5
+Emulated Moto G Power with Lighthouse 13.0.1
+Single page session
+Initial page load
+Slow 4G throttling
+Using HeadlessChromium 146.0.7680.153 with lr
+View Treemap
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Screenshot
+Show audits relevant to:
+
+All
+
+FCP
+
+LCP
+
+TBT
+
+CLS
+Insights
+Render blocking requests Est savings of 620 ms
+Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored
+URL
+Transfer Size
+Duration
+Shopify hosting
+14.4 KiB	1,350 ms
+…assets/appio-reviews.min.css(cdn.shopify.com)
+14.4 KiB
+1,350 ms
+wavesrx.com 1st party
+2.8 KiB	470 ms
+…latest/accelerated-checkout-backwards-compat.css(www.wavesrx.com)
+2.8 KiB
+470 ms
+Improve image delivery Est savings of 105 KiB
+Reducing the download time of images can improve the perceived load time of the page and LCP. Learn more about optimizing image sizeLCPFCPUnscored
+URL
+Resource Size
+Est Savings
+Shopify hosting
+163.4 KiB	84.2 KiB
+Hero video poster
+<img id="PosterOverlay-template--20864825163954__73e1f8b8-90c9-4aab-8c1e-545bec7ebb…" class="hero__poster-overlay" src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-…" srcset="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-…" sizes="100vw" alt="Hero video poster" loading="eager" fetchpriority="high" width="1200" height="675">
+…files/Screensho….24.29_AM.png?v=177…&width=800(cdn.shopify.com)
+61.9 KiB
+34.8 KiB
+Increasing the image compression factor could improve this image's download size.
+34.8 KiB
+ANCHORING
+<div class="box-container box-shop mt-4" style="padding-inline:0 !important">
+…files/Artboard_1_13.jpg?v=174…&width=400(cdn.shopify.com)
+30.4 KiB
+17.4 KiB
+Increasing the image compression factor could improve this image's download size.
+17.4 KiB
+SAFETY
+<div class="box-container box-shop1-buttom mt-4" style="padding-inline:0 !important">
+…files/Artboard_2_1_1.jpg?v=174…&width=400(cdn.shopify.com)
+25.1 KiB
+12.1 KiB
+Increasing the image compression factor could improve this image's download size.
+12.1 KiB
+CLEANING
+<div class="box-container box-shop-buttom mt-4" style="padding-inline:0 !important">
+…files/Artboard_1_copy_2_4.jpg?v=174…&width=400(cdn.shopify.com)
+24.1 KiB
+11.0 KiB
+Increasing the image compression factor could improve this image's download size.
+11.0 KiB
+DOCKING
+<div class="box-container box-shop1 mt-4" style="padding-inline:0 !important">
+…files/Artboard_1_copy_3.jpg?v=174…&width=400(cdn.shopify.com)
+21.9 KiB
+8.9 KiB
+Increasing the image compression factor could improve this image's download size.
+8.9 KiB
+wavesrx.com 1st party
+34.2 KiB	20.6 KiB
+Life By The Bow
+<img src="https://www.wavesrx.com/cdn/shop/files/channels4_profile1.png?v=1702897680…" alt="Life By The Bow" srcset="//www.wavesrx.com/cdn/shop/files/channels4_profile1.png?v=1702897680&amp;width…" loading="lazy" class="logo-bar__image image-element" sizes="(min-width: 769px) 80px, 80px">
+…files/channels4_profile1.png?v=170…&width=160(www.wavesrx.com)
+10.1 KiB
+6.0 KiB
+Increasing the image compression factor could improve this image's download size.
+6.0 KiB
+Tommy Ts Adventures
+<img src="https://www.wavesrx.com/cdn/shop/files/Tommy_T_s_Adventures_098bb85d-a042-…" alt="Tommy Ts Adventures" srcset="//www.wavesrx.com/cdn/shop/files/Tommy_T_s_Adventures_098bb85d-a042-46e0-b…" loading="lazy" class="logo-bar__image image-element" sizes="(min-width: 769px) 80px, 80px">
+…files/Tommy_T_s….png?v=169…&width=160(www.wavesrx.com)
+7.8 KiB
+5.4 KiB
+Increasing the image compression factor could improve this image's download size.
+5.4 KiB
+Alvean Logo
+<img src="https://www.wavesrx.com/cdn/shop/files/Alvean_Logo_10b92b2a-8628-4f34-bab7…" alt="Alvean Logo" srcset="//www.wavesrx.com/cdn/shop/files/Alvean_Logo_10b92b2a-8628-4f34-bab7-c4812…" loading="lazy" class="logo-bar__image image-element" sizes="(min-width: 769px) 80px, 80px">
+…files/Alvean_Logo_10b92b2a-8628-4f34-bab7-c4812efc5327.png?v=…(www.wavesrx.com)
+6.7 KiB
+5.0 KiB
+Increasing the image compression factor could improve this image's download size.
+5.0 KiB
+WavesRx Logo
+<img src="//www.wavesrx.com/cdn/shop/files/PNG.png?v=1750414896&amp;width=180" alt="WavesRx Logo" srcset="//www.wavesrx.com/cdn/shop/files/PNG.png?v=1750414896&amp;width=90 90w, //www.…" width="90" height="90.0" loading="eager" class="medium-up--hide image-element" sizes="90px" style="max-height: 90.0px;max-width: 90px;">
+…files/PNG.png?v=175…&width=180(www.wavesrx.com)
+9.5 KiB
+4.3 KiB
+Increasing the image compression factor could improve this image's download size.
+4.3 KiB
+Use efficient cache lifetimes Est savings of 85 KiB
+Legacy JavaScript Est savings of 25 KiB
+Forced reflow
+Network dependency tree
+Warnings: More than 4 preconnect connections were found. These should be used sparingly and only to the most important origins.
+Layout shift culprits
+LCP breakdown
+3rd parties
+These insights are also available in the Chrome DevTools Performance Panel - record a trace to view more detailed information.
+Diagnostics
+Reduce JavaScript execution time 1.8 s
+Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to reduce Javascript execution time.TBTUnscored
+URL
+Total CPU Time
+Script Evaluation
+Script Parse
+wavesrx.com 1st party
+1,967 ms	937 ms	96 ms
+…wpm/b30a0f1a9w3a5b5c97p56b2491cm03d75fc0m.js(www.wavesrx.com)
+724 ms
+397 ms
+24 ms
+https://www.wavesrx.com
+688 ms
+164 ms
+35 ms
+…assets/shop_events_listener-3da45d37.js(www.wavesrx.com)
+250 ms
+203 ms
+2 ms
+…assets/theme.js?v=6573147…(www.wavesrx.com)
+123 ms
+67 ms
+16 ms
+…perf-kit/shopify-perf-kit-3.3.1.min.js(www.wavesrx.com)
+74 ms
+63 ms
+8 ms
+…assets/usf-boot.js?v=3233642…(www.wavesrx.com)
+54 ms
+3 ms
+2 ms
+…s/trekkie.storefront.e683ac0….min.js(www.wavesrx.com)
+53 ms
+40 ms
+9 ms
+Unattributable
+688 ms	26 ms	0 ms
+Unattributable
+688 ms
+26 ms
+0 ms
+Google Tag Manager tag-manager
+687 ms	351 ms	333 ms
+/gtag/js?id=AW-598…(www.googletagmanager.com)
+237 ms
+148 ms
+88 ms
+/gtag/js?id=G-LR3TBTCQTR(www.googletagmanager.com)
+162 ms
+91 ms
+70 ms
+/gtag/js?id=GT-WV3CP7G(www.googletagmanager.com)
+142 ms
+89 ms
+53 ms
+/gtag/js?id=G-LR3TBTCQTR&cx=c&gtm=4e6431(www.googletagmanager.com)
+87 ms
+12 ms
+76 ms
+/gtag/js?id=GT-WV3CP7G&cx=c&gtm=4e6431(www.googletagmanager.com)
+58 ms
+12 ms
+46 ms
+Shopify hosting
+113 ms	53 ms	51 ms
+…assets/shopifyCh….js(cdn.shopify.com)
+113 ms
+53 ms
+51 ms
+Minimize main-thread work 4.1 s
+Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored
+Category
+Time Spent
+Script Evaluation
+1,718 ms
+Other
+844 ms
+Script Parsing & Compilation
+677 ms
+Style & Layout
+388 ms
+Garbage Collection
+279 ms
+Rendering
+156 ms
+Parse HTML & CSS
+66 ms
+Minify CSS Est savings of 110 KiB
+Minifying CSS files can reduce network payload sizes. Learn how to minify CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+wavesrx.com 1st party
+167.4 KiB	109.6 KiB
+…assets/theme.css?v=3540419…(www.wavesrx.com)
+167.4 KiB
+109.6 KiB
+Reduce unused CSS Est savings of 198 KiB
+Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+wavesrx.com 1st party
+185.3 KiB	174.8 KiB
+…assets/theme.css?v=3540419…(www.wavesrx.com)
+166.0 KiB
+156.1 KiB
+…assets/bootstrap.min.css?v=2919550…(www.wavesrx.com)
+19.2 KiB
+18.7 KiB
+Shopify hosting
+13.1 KiB	12.8 KiB
+…assets/appio-reviews.min.css(cdn.shopify.com)
+13.1 KiB
+12.8 KiB
+Unattributable
+10.5 KiB	10.1 KiB
+@keyframes fadeInPC{0%{opacity:.01} …
+10.5 KiB
+10.1 KiB
+Reduce unused JavaScript Est savings of 633 KiB
+Image elements do not have explicit width and height
+Minify JavaScript Est savings of 9 KiB
+Minifying JavaScript files can reduce payload sizes and script parse time. Learn how to minify JavaScript.LCPFCPUnscored
+URL
+Transfer Size
+Est Savings
+Unattributable
+7.4 KiB	3.6 KiB
+inline: /** * Author: Md Hasanuzzamna …
+7.4 KiB
+3.6 KiB
+Cloudflare CDN cdn
+5.5 KiB	2.9 KiB
+…3.1.0/mustache.js(cdnjs.cloudflare.com)
+5.5 KiB
+2.9 KiB
+Mailchimp marketing
+5.1 KiB	2.8 KiB
+…5968d0a…/f4b8b2c….js?shop=wavesrx.myshopify.com(chimpstatic.com)
+5.1 KiB
+2.8 KiB
+Avoid enormous network payloads Total size was 3,851 KiB
+Large network payloads cost users real money and are highly correlated with long load times. Learn how to reduce payload sizes.Unscored
+URL
+Transfer Size
+Google Tag Manager tag-manager
+750.9 KiB
+/gtag/js?id=G-LR3TBTCQTR&cx=c&gtm=4e6431(www.googletagmanager.com)
+171.8 KiB
+/gtag/js?id=G-LR3TBTCQTR(www.googletagmanager.com)
+171.7 KiB
+/gtag/js?id=AW-598…(www.googletagmanager.com)
+141.0 KiB
+/gtag/js?id=GT-WV3CP7G(www.googletagmanager.com)
+133.3 KiB
+/gtag/js?id=GT-WV3CP7G&cx=c&gtm=4e6431(www.googletagmanager.com)
+133.1 KiB
+wavesrx.com 1st party
+692.2 KiB
+…c1/hooks-But….BS-QmNv3.js(www.wavesrx.com)
+346.3 KiB
+…assets/theme.css?v=3540419…(www.wavesrx.com)
+167.4 KiB
+…c1/approval-….BMvb4DkL.js(www.wavesrx.com)
+108.7 KiB
+https://www.wavesrx.com
+69.8 KiB
+Shopify hosting
+265.4 KiB
+…assets/shopifyCh….js(cdn.shopify.com)
+265.4 KiB

@@ -91,7 +91,7 @@
       {%- if section.settings.poster_image -%}
         <link rel="preload" as="image" href="{{ section.settings.poster_image | image_url: width: 800 }}" fetchpriority="high" imagesrcset="{{ section.settings.poster_image | image_url: width: 400 }} 400w, {{ section.settings.poster_image | image_url: width: 800 }} 800w, {{ section.settings.poster_image | image_url: width: 1200 }} 1200w" imagesizes="100vw">
       {%- else -%}
-        {%- assign poster_fallback_base = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310' -%}
+        {%- assign poster_fallback_base = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&format=pjpg' -%}
         <link rel="preload" as="image" href="{{ poster_fallback_base }}&width=800" fetchpriority="high" imagesrcset="{{ poster_fallback_base }}&width=400 400w, {{ poster_fallback_base }}&width=800 800w, {{ poster_fallback_base }}&width=1200 1200w" imagesizes="100vw">
       {%- endif -%}
     {% endif %}
@@ -145,7 +145,7 @@
           {%- assign poster_src = section.settings.poster_image | image_url: width: 800 -%}
           {%- capture poster_srcset -%}{{ section.settings.poster_image | image_url: width: 400 }} 400w, {{ section.settings.poster_image | image_url: width: 800 }} 800w, {{ section.settings.poster_image | image_url: width: 1200 }} 1200w{%- endcapture -%}
         {%- else -%}
-          {%- assign poster_fallback = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310' -%}
+          {%- assign poster_fallback = 'https://cdn.shopify.com/s/files/1/0269/9198/4729/files/Screenshot_2026-03-16_at_11.24.29_AM.png?v=1773642310&format=pjpg' -%}
           {%- assign poster_src = poster_fallback | append: '&width=800' -%}
           {%- capture poster_srcset -%}{{ poster_fallback }}&width=400 400w, {{ poster_fallback }}&width=800 800w, {{ poster_fallback }}&width=1200 1200w{%- endcapture -%}
         {%- endif -%}

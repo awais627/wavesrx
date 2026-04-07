@@ -105,4 +105,5 @@
   </script>
   
 {% if shop.metafields.pagefly.globalSetting %}{{ shop.metafields.pagefly.globalSetting }}{% endif %}
-{{ 'pagefly-main.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="{{ 'pagefly-main.css' | asset_url }}" media="print" onload="this.media='all'">
+<noscript>{{ 'pagefly-main.css' | asset_url | stylesheet_tag }}</noscript>
