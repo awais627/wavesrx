@@ -242,9 +242,21 @@
 <article class="card-wide" style="align-items:center; position: relative;">
   <a class="photo" href="{{ product.url }}">
     {% if product.featured_image %}
-      <img src="{{ product.featured_image | img_url: '700x' }}" alt="{{ product.title | escape }}" height="700" width="700" loading="lazy">
+      <img
+        src="{{ product.featured_image | img_url: '700x' }}"
+        alt="{{ product.title | escape }}"
+        height="700"
+        width="700"
+        loading="lazy"
+      >
     {% else %}
-      <img src="{{ 'placeholder-image.png' | asset_url }}" alt="{{ product.title | escape }}" height="700" width="700" loading="lazy">
+      <img
+        src="{{ 'placeholder-image.png' | asset_url }}"
+        alt="{{ product.title | escape }}"
+        height="700"
+        width="700"
+        loading="lazy"
+      >
     {% endif %}
   </a>
 
@@ -263,25 +275,27 @@
     {% endif %}
 
     <h4 style="letter-spacing: 0.025rem;">{{ product.title }}</h4>
-    {% comment %} <div class="sub">
-      {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
-    </div> {% endcomment %}
+    {% comment %}
+      <div class="sub">
+        {{ product.metafields.custom.subtile | default: product.description | strip_html | truncate: 80 }}
+      </div>
+    {% endcomment %}
 
-      <!-- Features -->
-{% if product.metafields.custom.ads_features_list %}
-  {% assign features = product.metafields.custom.ads_features_list.value %}
-  {% if features and features.size > 0 %}
-    <ul style="margin-bottom:10px; padding-left:24px; font-weight:normal; list-style-type:disc; list-style-position:outside; line-height:1.4;">
-      {% for feature in features %}
-        <li style="display:list-item; list-style-type:disc; margin:4px 0;">
-          {{ feature }}
-        </li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endif %}
+    <!-- Features -->
+    {% if product.metafields.custom.ads_features_list %}
+      {% assign features = product.metafields.custom.ads_features_list.value %}
+      {% if features and features.size > 0 %}
+        <ul style="margin-bottom:10px; padding-left:24px; font-weight:normal; list-style-type:disc; list-style-position:outside; line-height:1.4;">
+          {% for feature in features %}
+            <li style="display:list-item; list-style-type:disc; margin:4px 0;">
+              {{ feature }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endif %}
 
-    {% assign v = product.first_available_variant %}
+    {% assign v = product.selected_or_first_available_variant %}
 
     <div class="price-row">
       <span class="price-now">{{ product.price | money }}</span>
@@ -298,10 +312,17 @@
     </div>
 
     <div class="actions">
-      <form method="post" action="/cart/add" class="d-inline">
-        <input type="hidden" name="id" value="{{ product.first_available_variant.id }}">
-        <button type="submit" class="btn-yellow">ADD TO CART</button>
-      </form>
+      {% form 'product', product, class: 'd-inline' %}
+        <input type="hidden" name="id" value="{{ v.id }}">
+        <input type="hidden" name="quantity" value="1">
+
+        {% if v and v.available %}
+          <button type="submit" name="add" class="btn-yellow">ADD TO CART</button>
+        {% else %}
+          <button type="button" class="btn-yellow" disabled>SOLD OUT</button>
+        {% endif %}
+      {% endform %}
+
       <a class="btn-outline" href="{{ product.url }}">CUSTOMIZE</a>
     </div>
   </div>

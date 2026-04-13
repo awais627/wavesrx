@@ -1,5 +1,5 @@
 {% assign best_sellers = collections['best-selling-aus2'] %}
-{% assign main_product = all_products.wrx_ssta_7 %}
+{% assign main_product = all_products.wrx_ssta_5 %}
 {% assign variant_id = main_product.metafields.custom.hero_variant_id %}
 
 {% if variant_id %}
@@ -541,23 +541,64 @@
     <!-- LEFT: Video -->
     <div class="hero-left" style="flex:1; min-width:300px;">
       {% if main_product.metafields.custom.ads_short_video %}
-        {% assign video_url = main_product.metafields.custom.ads_short_video %}
-        {% if video_url contains '?' %}
-          {% assign joiner = '&' %}
-        {% else %}
-          {% assign joiner = '?' %}
-        {% endif %}
+        {% assign video_url = main_product.metafields.custom.ads_short_video | strip %}
 
-        <iframe
-          src="{{ video_url }}{{ joiner }}playsinline=1&controls=1&rel=0"
-          frameborder="0"
-          allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
-          allowfullscreen
-          style="width:100%; height:400px; border-radius:14px;"
-        ></iframe>
+        {% if video_url contains 'youtube.com/embed/' %}
+          <iframe
+            src="{{ video_url }}{% if video_url contains '?' %}&{% else %}?{% endif %}playsinline=1&controls=1&rel=0"
+            frameborder="0"
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="width:100%; height:400px; border-radius:14px;"
+          ></iframe>
+
+        {% elsif video_url contains 'youtube.com/watch?v=' %}
+          {% assign youtube_id = video_url | split: 'v=' | last | split: '&' | first %}
+          <iframe
+            src="https://www.youtube.com/embed/{{ youtube_id }}?playsinline=1&controls=1&rel=0"
+            frameborder="0"
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="width:100%; height:400px; border-radius:14px;"
+          ></iframe>
+
+        {% elsif video_url contains 'youtu.be/' %}
+          {% assign youtube_id = video_url | split: 'youtu.be/' | last | split: '?' | first %}
+          <iframe
+            src="https://www.youtube.com/embed/{{ youtube_id }}?playsinline=1&controls=1&rel=0"
+            frameborder="0"
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+            allowfullscreen
+            style="width:100%; height:400px; border-radius:14px;"
+          ></iframe>
+
+        {% elsif video_url contains 'facebook.com/plugins/video.php' %}
+          <iframe
+            src="{{ video_url }}"
+            width="100%"
+            height="400"
+            style="border:none; overflow:hidden; border-radius:14px; width:100%;"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          ></iframe>
+
+        {% elsif video_url contains 'facebook.com/reel/' or video_url contains 'facebook.com/watch/' or video_url contains 'facebook.com/' %}
+          <iframe
+            src="https://www.facebook.com/plugins/video.php?show_text=false&href={{ video_url | url_encode }}"
+            width="100%"
+            height="400"
+            style="border:none; overflow:hidden; border-radius:14px; width:100%;"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+          ></iframe>
+
+        {% endif %}
       {% endif %}
     </div>
-
 
     <!-- RIGHT: Info -->
     <div class="hero-right" style="flex:1; min-width:300px; position:relative;">
@@ -582,7 +623,7 @@
 
       <!-- Title -->
       <h2 style="font-size:28px; font-weight:900; margin-bottom:6px;">
-        <a href="https://www.wavesrx.com/collections/deep-anchors/products/wrx_ssta_7">7LB FOLDING TRIANCHOR</a>
+        <a href="https://www.wavesrx.com/collections/deep-anchors/products/wrx_ssta_7">5LB FOLDING TRIANCHOR</a>
       </h2>
 
       <!-- Sub Title -->
@@ -1479,7 +1520,7 @@
   </div>
 </section>
 
-<!-- =================== NEW ARRIVALS with SMART LOAD MORE =================== -->
+{% comment %} <!-- =================== NEW ARRIVALS with SMART LOAD MORE =================== -->
 <style>
     #new-arrivals .product-card {
       display: flex;
@@ -1644,7 +1685,7 @@
       });
     </script>
   </div>
-</section>
+</section> {% endcomment %}
 
 <!-- =================== STORY =================== -->
 <style>
@@ -1689,22 +1730,24 @@
     border-radius: 14px;
     overflow: hidden;
     box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-    max-width: 270px;
   }
 
   .story-images img {
     width: 100%;
+    height: auto; /* Ensure the aspect ratio is maintained */
     display: block;
   }
 
   /* Top image */
   .image-1 {
     width: 100%;
+    max-width: 360px; /* Set max width for the first image */
   }
 
   /* Bottom image (overlapping) */
   .image-2 {
-    width: 75%;
+    width: 100%;
+    max-width: 400px; /* Set max width for the second image */
     margin-top: -80px;
     margin-left: auto;
   }
@@ -1722,6 +1765,8 @@
     }
   }
 </style>
+
+
 <section class="wavesrx-story">
   <div class="container">
     <!-- Title -->
