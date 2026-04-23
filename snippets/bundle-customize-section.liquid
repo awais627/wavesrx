@@ -1,0 +1,363 @@
+{%- comment -%}
+  Inline "Customize Your Kit" section, rendered on a bundle product page
+  below the Add to Wishlist button.
+  Params:
+    product: the bundle Product (must have custom.bundle_default_items metafield)
+{%- endcomment -%}
+
+{%- assign default_items = product.metafields.custom.bundle_default_items.value -%}
+
+{% if default_items and default_items.size > 0 %}
+  <section class="bundle-kit" data-bundle-kit data-bundle-id="{{ product.id }}" aria-labelledby="bundle-kit-heading-{{ product.id }}">
+    <header class="bundle-kit__header">
+      <div class="bundle-kit__heading-row">
+        <h3 class="bundle-kit__heading" id="bundle-kit-heading-{{ product.id }}">Customize Your Kit</h3>
+        <span class="bundle-kit__count" data-bundle-count>{{ default_items.size }} items</span>
+      </div>
+      <p class="bundle-kit__subheading">What's included in this kit — uncheck anything you don't need or pick a different option.</p>
+    </header>
+
+    <div class="bundle-kit__items" role="list">
+      {% for item in default_items %}
+        {% render 'bundle-component-card', component: item, checked: true %}
+      {% endfor %}
+    </div>
+
+    <footer class="bundle-kit__footer">
+      <div class="bundle-kit__total-row">
+        <div class="bundle-kit__total-meta">
+          <span class="bundle-kit__total-label">Kit total</span>
+          <span class="bundle-kit__total-sub" data-bundle-count-sub>{{ default_items.size }} items selected</span>
+        </div>
+        <span class="bundle-kit__total-value" data-bundle-total>{{ 0 | money }}</span>
+      </div>
+      <button type="button" class="btn bundle-kit__add-btn" data-bundle-add>
+        <span data-bundle-add-text>Add Kit to Cart</span>
+      </button>
+      <div class="bundle-kit__error" data-bundle-error hidden role="alert"></div>
+    </footer>
+  </section>
+
+  <style>
+    .bundle-kit {
+      margin: 24px 0;
+      padding: 24px;
+      border: 1px solid var(--colorBorder, #e6e6e6);
+      border-radius: 14px;
+      background: var(--colorBody, #fff);
+      font-family: var(--typeBasePrimary), var(--typeBaseFallback, sans-serif);
+      color: var(--colorTextBody, #1c1d1d);
+    }
+    .bundle-kit *,
+    .bundle-kit *::before,
+    .bundle-kit *::after { box-sizing: border-box; }
+
+    .bundle-kit__header { margin-bottom: 18px; }
+    .bundle-kit__heading-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+    .bundle-kit__heading {
+      font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback, sans-serif);
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: 0.02em;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .bundle-kit__count {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--colorTextBody, #1c1d1d);
+      opacity: 0.6;
+    }
+    .bundle-kit__subheading {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+      opacity: 0.75;
+    }
+
+    .bundle-kit__items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .bundle-kit__item {
+      display: grid;
+      grid-template-columns: auto 84px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      padding: 12px 14px;
+      background: var(--colorBody, #fff);
+      border: 1px solid var(--colorBorder, #e6e6e6);
+      border-radius: 10px;
+      transition: border-color 0.18s ease, background-color 0.18s ease, opacity 0.18s ease;
+    }
+    .bundle-kit__item:hover { border-color: rgba(0,0,0,0.35); }
+    .bundle-kit__item.is-selected {
+      border-color: var(--colorTextBody, #1c1d1d);
+      background: var(--colorBodyLightDim, #fafafa);
+    }
+    .bundle-kit__item.is-unavailable { opacity: 0.5; }
+
+    .bundle-kit__check-label {
+      display: inline-flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .bundle-kit__checkbox {
+      position: absolute;
+      width: 1px; height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .bundle-kit__check-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--colorBorder, #c0c0c0);
+      border-radius: 5px;
+      background: #fff;
+      color: transparent;
+      transition: all 0.15s ease;
+    }
+    .bundle-kit__checkbox:checked + .bundle-kit__check-box {
+      background: var(--colorTextBody, #1c1d1d);
+      border-color: var(--colorTextBody, #1c1d1d);
+      color: #fff;
+    }
+    .bundle-kit__checkbox:focus-visible + .bundle-kit__check-box {
+      outline: 2px solid var(--colorTextBody, #1c1d1d);
+      outline-offset: 2px;
+    }
+    .bundle-kit__checkbox:disabled + .bundle-kit__check-box {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .bundle-kit__thumb {
+      display: block;
+      width: 84px;
+      height: 84px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .bundle-kit__thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .bundle-kit__info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+    .bundle-kit__title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--colorTextBody, #1c1d1d);
+      text-decoration: none;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .bundle-kit__title:hover { text-decoration: underline; }
+
+    .bundle-kit__variant {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .bundle-kit__variant-label {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--colorTextBody, #1c1d1d);
+      opacity: 0.55;
+      font-weight: 600;
+    }
+    .bundle-kit__select-wrap {
+      position: relative;
+      flex: 1;
+      max-width: 220px;
+    }
+    .bundle-kit__variant-select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      width: 100%;
+      padding: 7px 28px 7px 10px;
+      border: 1px solid var(--colorBorder, #d0d0d0);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--colorTextBody, #1c1d1d);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.2;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .bundle-kit__variant-select:focus {
+      outline: none;
+      border-color: var(--colorTextBody, #1c1d1d);
+    }
+    .bundle-kit__select-caret {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--colorTextBody, #1c1d1d);
+      opacity: 0.6;
+    }
+
+    .bundle-kit__price-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      min-width: 80px;
+    }
+    .bundle-kit__price {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: var(--colorTextBody, #1c1d1d);
+      white-space: nowrap;
+    }
+    .bundle-kit__sold-out {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #c0392b;
+    }
+
+    .bundle-kit__footer {
+      border-top: 1px solid var(--colorBorder, #e6e6e6);
+      padding-top: 18px;
+    }
+    .bundle-kit__total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .bundle-kit__total-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .bundle-kit__total-label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.65;
+    }
+    .bundle-kit__total-sub {
+      font-size: 12px;
+      opacity: 0.6;
+    }
+    .bundle-kit__total-value {
+      font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback, sans-serif);
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1;
+      color: var(--colorTextBody, #1c1d1d);
+      transition: transform 0.18s ease;
+    }
+    .bundle-kit__total-value.is-pulse { transform: scale(1.06); }
+
+    .bundle-kit__add-btn {
+      width: 100%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .bundle-kit__add-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .bundle-kit__add-btn.is-loading { pointer-events: none; }
+    .bundle-kit__add-btn.is-loading::after {
+      content: "";
+      width: 14px;
+      height: 14px;
+      border: 2px solid currentColor;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: bundleSpin 0.7s linear infinite;
+    }
+    @keyframes bundleSpin { to { transform: rotate(360deg); } }
+
+    .bundle-kit__error {
+      margin-top: 12px;
+      padding: 10px 12px;
+      background: #fdecea;
+      border: 1px solid #f5c2c0;
+      border-radius: 6px;
+      color: #a33232;
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 640px) {
+      .bundle-kit { padding: 18px; }
+      .bundle-kit__item {
+        grid-template-columns: auto 64px 1fr;
+        grid-template-areas:
+          "check thumb info"
+          "check thumb price";
+        row-gap: 6px;
+        column-gap: 12px;
+        padding: 12px;
+      }
+      .bundle-kit__check-label { grid-area: check; align-self: start; margin-top: 6px; }
+      .bundle-kit__thumb { grid-area: thumb; width: 64px; height: 64px; }
+      .bundle-kit__info { grid-area: info; }
+      .bundle-kit__price-col {
+        grid-area: price;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+      }
+      .bundle-kit__select-wrap { max-width: 100%; }
+      .bundle-kit__heading { font-size: 18px; }
+      .bundle-kit__total-value { font-size: 20px; }
+    }
+  </style>
+
+  <script src="{{ 'bundle-builder.js' | asset_url }}" defer></script>
+{% endif %}

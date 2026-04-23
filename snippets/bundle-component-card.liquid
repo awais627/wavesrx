@@ -1,0 +1,76 @@
+{%- comment -%}
+  Single component row inside the Customize Your Kit section.
+  Params:
+    component: Product (from bundle_default_items metafield)
+    checked:   Boolean — whether the checkbox starts checked
+{%- endcomment -%}
+
+{%- assign default_variant = component.selected_or_first_available_variant -%}
+{%- assign has_multiple_variants = false -%}
+{%- if component.variants.size > 1 -%}
+  {%- assign has_multiple_variants = true -%}
+{%- endif -%}
+
+<div class="bundle-kit__item{% if checked and default_variant.available %} is-selected{% endif %}{% unless default_variant.available %} is-unavailable{% endunless %}"
+     data-bundle-item
+     data-product-id="{{ component.id }}">
+  <label class="bundle-kit__check-label">
+    <input type="checkbox"
+           class="bundle-kit__checkbox"
+           data-bundle-checkbox
+           {% if checked and default_variant.available %}checked{% endif %}
+           {% unless default_variant.available %}disabled{% endunless %}>
+    <span class="bundle-kit__check-box" aria-hidden="true">
+      <svg viewBox="0 0 16 16" width="12" height="12"><path d="M2.5 8.5l3.5 3.5 7.5-7.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </label>
+
+  <a class="bundle-kit__thumb" href="{{ component.url }}" tabindex="-1" aria-hidden="true">
+    {% if component.featured_image %}
+      <img src="{{ component.featured_image | img_url: '200x' }}"
+           alt="{{ component.title | escape }}"
+           loading="lazy" width="84" height="84">
+    {% else %}
+      <img src="{{ 'placeholder-image.png' | asset_url }}"
+           alt="{{ component.title | escape }}"
+           loading="lazy" width="84" height="84">
+    {% endif %}
+  </a>
+
+  <div class="bundle-kit__info">
+    <a class="bundle-kit__title" href="{{ component.url }}">{{ component.title }}</a>
+
+    {% if has_multiple_variants %}
+      <div class="bundle-kit__variant">
+        <label class="bundle-kit__variant-label">Variant</label>
+        <div class="bundle-kit__select-wrap">
+          <select class="bundle-kit__variant-select" data-bundle-variant-select aria-label="Choose variant for {{ component.title | escape }}">
+            {% for variant in component.variants %}
+              <option value="{{ variant.id }}"
+                      data-price="{{ variant.price }}"
+                      {% unless variant.available %}disabled{% endunless %}
+                      {% if variant == default_variant %}selected{% endif %}>
+                {{ variant.title }}
+              </option>
+            {% endfor %}
+          </select>
+          <svg class="bundle-kit__select-caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    {% else %}
+      <input type="hidden"
+             data-bundle-variant-input
+             value="{{ default_variant.id }}"
+             data-price="{{ default_variant.price }}">
+    {% endif %}
+  </div>
+
+  <div class="bundle-kit__price-col">
+    <span class="bundle-kit__price" data-bundle-item-price>{{ default_variant.price | money }}</span>
+    {% unless default_variant.available %}
+      <span class="bundle-kit__sold-out">Sold out</span>
+    {% endunless %}
+  </div>
+</div>

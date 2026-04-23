@@ -1,0 +1,220 @@
+<style>
+.hero-landing {
+  padding: 22px 20px 50px;
+  background: #EEEEEE;
+}
+
+/* Header */
+.hero-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.hero-header h1 {
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.hero-header p {
+  font-size: 18px;
+  color: #555;
+  font-weight: 600;
+}
+
+/* Layout */
+.hero-banner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: flex-start;
+  max-width: 1300px;
+  margin: auto;
+}
+
+/* LEFT */
+.hero-left {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Video wrapper */
+.video-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #000; /* 👈 helps smooth edges */
+}
+
+
+/* 16:9 */
+.video-16x9 {
+  padding-bottom: 56.25%;
+}
+
+/* 9:16 (REELS - smaller width) */
+.video-9x16 {
+  padding-bottom: 67.78%;
+  max-width: 240px;
+  width: 100%;
+}
+
+.mobile-break {
+  display: none;
+}
+
+/* iframe */
+.video-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 14px; /* 👈 add this */
+}
+
+/* RIGHT */
+.hero-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.hero-right h2 {
+  font-size: 28px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.btn-yellow {
+  background: #ffb800;
+  color: #000;
+  font-weight: 700;
+  border-radius: 100px;
+  padding: 14px 26px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-outline {
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  padding: 14px 26px;
+  border-radius: 100px;
+  font-weight: 700;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .mobile-break {
+    display: block;
+  }
+  .hero-banner {
+    flex-direction: column;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+  }
+
+  .video-9x16 {
+    max-width: 100%;
+  }
+}
+</style>
+
+<section class="hero-landing">
+
+  <!-- HEADER -->
+  <div class="hero-header">
+    <h1>
+      Premium Gear <br class="mobile-break">
+      for Boats & PWC
+    </h1>
+    <p>Amazon Top-Rated Marine Products</p>
+  </div>
+
+  <!-- MAIN -->
+  <div class="hero-banner">
+
+    <!-- LEFT VIDEO -->
+    <div class="hero-left">
+      {% if main_product.metafields.custom.ads_short_video %}
+        {% assign video_url = main_product.metafields.custom.ads_short_video | strip %}
+
+        <!-- YOUTUBE -->
+        {% if video_url contains 'youtube.com' or video_url contains 'youtu.be' %}
+
+          {% if video_url contains 'watch?v=' %}
+            {% assign youtube_id = video_url | split: 'v=' | last | split: '&' | first %}
+          {% elsif video_url contains 'youtu.be/' %}
+            {% assign youtube_id = video_url | split: 'youtu.be/' | last | split: '?' | first %}
+          {% else %}
+            {% assign youtube_id = video_url | split: '/embed/' | last | split: '?' | first %}
+          {% endif %}
+
+          <div class="video-wrap video-16x9">
+            <iframe
+              src="https://www.youtube.com/embed/{{ youtube_id }}?playsinline=1&controls=1&rel=0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+        <!-- FACEBOOK -->
+        {% elsif video_url contains 'facebook.com' %}
+
+          {% if video_url contains '/reel/' %}
+            <!-- REEL -->
+            <div class="video-wrap video-9x16">
+              <iframe
+                src="https://www.facebook.com/plugins/video.php?show_text=false&href={{ video_url | url_encode }}"
+                allowfullscreen>
+              </iframe>
+            </div>
+          {% else %}
+            <!-- NORMAL FB VIDEO -->
+            <div class="video-wrap video-16x9">
+              <iframe
+                src="https://www.facebook.com/plugins/video.php?show_text=false&href={{ video_url | url_encode }}"
+                allowfullscreen>
+              </iframe>
+            </div>
+          {% endif %}
+
+        {% endif %}
+      {% endif %}
+    </div>
+
+    <!-- RIGHT CONTENT -->
+    <div class="hero-right">
+
+      <h2>{{ main_product.title }}</h2>
+
+      {% if main_product.metafields.custom.ads_features_list %}
+        {% assign features = main_product.metafields.custom.ads_features_list.value %}
+        <ul>
+          {% for feature in features %}
+            <li>{{ feature }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      <div style="display:flex; gap:12px;">
+        <form method="post" action="/cart/add">
+          <input type="hidden" name="id" value="{{ main_product.selected_or_first_available_variant.id }}">
+          <button class="btn-yellow">BUY NOW</button>
+        </form>
+
+        <a href="{{ main_product.url }}" class="btn-outline">LEARN MORE</a>
+      </div>
+
+    </div>
+  </div>
+</section>
