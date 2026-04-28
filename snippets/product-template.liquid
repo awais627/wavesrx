@@ -33,6 +33,12 @@
 -%}
 
 {%- liquid
+  assign is_bundle = false
+  assign bundle_defaults = product.metafields.custom.bundle_default_items.value
+  if template.suffix == 'kit' and bundle_defaults != blank and bundle_defaults.size > 0
+    assign is_bundle = true
+  endif
+
   assign connect_to_sizechart = false
 
   for block in section.blocks
@@ -138,6 +144,11 @@
                   {%- endunless -%}
                 </h1>
               {%- endif -%}
+
+              {%- if is_bundle -%}
+                {% render 'bundle-customize-section', product: product %}
+              {%- endif -%}
+
               <div class="custom-subtitle-products">
           {% unless product.metafields.custom.subtile  == blank %}
                     <p class="subtitle mb-4 ">
@@ -189,6 +200,7 @@
                       {%- render 'product-description', id: id, product: product, is_tab: block.settings.is_tab -%}
                     </div>
                   {%- when 'price' -%}
+                    {%- unless is_bundle -%}
                     <div class="product-block product-block--price" {{ block.shopify_attributes }}>
                       {%- assign hide_sale_price = true -%}
                       {%- if product.compare_at_price_max > product.price -%}
@@ -314,6 +326,7 @@
                         </div>
                       {%- endif -%}
                     </div>
+                    {%- endunless -%}
                   {%- when 'quantity_selector' -%}
                     <div class="product-block" {{ block.shopify_attributes }}>
                       <div class="product__quantity">
@@ -392,24 +405,26 @@
                     </div>
                   {%- when 'buy_buttons' -%}
                     <div class="product-block" {{ block.shopify_attributes }}>
-                      {%- unless product.empty? -%}
-                        <div class="product-block">
-                          {%- render 'product-form',
-                            form_id: form_id,
-                            product: product,
-                            show_dynamic_checkout: block.settings.show_dynamic_checkout,
-                            current_variant: current_variant,
-                            block: block,
-                          -%}
-                        </div>
-                      {%- endunless -%}
+                      {%- unless is_bundle -%}
+                        {%- unless product.empty? -%}
+                          <div class="product-block">
+                            {%- render 'product-form',
+                              form_id: form_id,
+                              product: product,
+                              show_dynamic_checkout: block.settings.show_dynamic_checkout,
+                              current_variant: current_variant,
+                              block: block,
+                            -%}
+                          </div>
+                        {%- endunless -%}
 
-                      {%- if block.settings.surface_pickup_enable -%}
-                        <div data-store-availability-holder
-                          data-product-name="{{ product.title | escape }}"
-                          data-base-url="{{ shop.url }}{{ routes.root_url }}"
-                          ></div>
-                      {%- endif -%}
+                        {%- if block.settings.surface_pickup_enable -%}
+                          <div data-store-availability-holder
+                            data-product-name="{{ product.title | escape }}"
+                            data-base-url="{{ shop.url }}{{ routes.root_url }}"
+                            ></div>
+                        {%- endif -%}
+                      {%- endunless -%}
                     </div>
                           <div class="custom-subtitle-products">
           {% unless product.metafields.custom.short_description  == blank %}

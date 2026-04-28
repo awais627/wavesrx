@@ -6,10 +6,29 @@
 {%- endcomment -%}
 
 {%- assign default_variant = component.selected_or_first_available_variant -%}
-{%- assign has_multiple_variants = false -%}
-{%- if component.variants.size > 1 -%}
-  {%- assign has_multiple_variants = true -%}
-{%- endif -%}
+
+{%- liquid
+  assign show_variants = true
+  if component.metafields.custom.bundle_show_variants == false
+    assign show_variants = false
+  endif
+
+  assign filter_option = component.metafields.custom.bundle_variant_option | strip
+  assign filter_index = -1
+  if filter_option != blank
+    for opt_name in component.options
+      if opt_name == filter_option
+        assign filter_index = forloop.index0
+        break
+      endif
+    endfor
+  endif
+
+  assign use_dropdown = false
+  if show_variants and component.variants.size > 1
+    assign use_dropdown = true
+  endif
+-%}
 
 <div class="bundle-kit__item{% if checked and default_variant.available %} is-selected{% endif %}{% unless default_variant.available %} is-unavailable{% endunless %}"
      data-bundle-item
@@ -40,31 +59,51 @@
   <div class="bundle-kit__info">
     <a class="bundle-kit__title" href="{{ component.url }}">{{ component.title }}</a>
 
-    {% if has_multiple_variants %}
+    {%- if use_dropdown -%}
       <div class="bundle-kit__variant">
-        <label class="bundle-kit__variant-label">Variant</label>
+        <label class="bundle-kit__variant-label">{% if filter_index >= 0 %}{{ filter_option }}{% else %}Variant{% endif %}</label>
         <div class="bundle-kit__select-wrap">
-          <select class="bundle-kit__variant-select" data-bundle-variant-select aria-label="Choose variant for {{ component.title | escape }}">
-            {% for variant in component.variants %}
-              <option value="{{ variant.id }}"
-                      data-price="{{ variant.price }}"
-                      {% unless variant.available %}disabled{% endunless %}
-                      {% if variant == default_variant %}selected{% endif %}>
-                {{ variant.title }}
-              </option>
-            {% endfor %}
+          <select class="bundle-kit__variant-select" data-bundle-variant-select aria-label="Choose option for {{ component.title | escape }}">
+            {%- if filter_index >= 0 -%}
+              {%- assign seen_values = '|' -%}
+              {%- for variant in component.variants -%}
+                {%- assign vval = variant.option1 -%}
+                {%- if filter_index == 1 -%}{%- assign vval = variant.option2 -%}{%- endif -%}
+                {%- if filter_index == 2 -%}{%- assign vval = variant.option3 -%}{%- endif -%}
+                {%- assign marker = '|' | append: vval | append: '|' -%}
+                {%- unless seen_values contains marker -%}
+                  {%- if variant.available -%}
+                    {%- assign seen_values = seen_values | append: vval | append: '|' -%}
+                    <option value="{{ variant.id }}"
+                            data-price="{{ variant.price }}"
+                            {% if variant == default_variant %}selected{% endif %}>
+                      {{ vval }}
+                    </option>
+                  {%- endif -%}
+                {%- endunless -%}
+              {%- endfor -%}
+            {%- else -%}
+              {%- for variant in component.variants -%}
+                <option value="{{ variant.id }}"
+                        data-price="{{ variant.price }}"
+                        {% unless variant.available %}disabled{% endunless %}
+                        {% if variant == default_variant %}selected{% endif %}>
+                  {{ variant.title }}
+                </option>
+              {%- endfor -%}
+            {%- endif -%}
           </select>
           <svg class="bundle-kit__select-caret" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
             <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       </div>
-    {% else %}
+    {%- else -%}
       <input type="hidden"
              data-bundle-variant-input
              value="{{ default_variant.id }}"
              data-price="{{ default_variant.price }}">
-    {% endif %}
+    {%- endif -%}
   </div>
 
   <div class="bundle-kit__price-col">

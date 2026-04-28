@@ -31,7 +31,7 @@
         </div>
         <span class="bundle-kit__total-value" data-bundle-total>{{ 0 | money }}</span>
       </div>
-      <button type="button" class="btn bundle-kit__add-btn" data-bundle-add>
+      <button type="button" class="bundle-kit__add-btn" data-bundle-add>
         <span data-bundle-add-text>Add Kit to Cart</span>
       </button>
       <div class="bundle-kit__error" data-bundle-error hidden role="alert"></div>
@@ -296,13 +296,21 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 14px 20px;
+      padding: 14px 22px;
+      background: #FFD200;
+      color: #000;
+      border: 0;
+      border-radius: 30px;
+      font-family: var(--typeBasePrimary), var(--typeBaseFallback, sans-serif);
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
+      transition: filter 0.15s ease, transform 0.05s ease;
     }
+    .bundle-kit__add-btn:hover:not(:disabled) { filter: brightness(0.95); }
+    .bundle-kit__add-btn:active:not(:disabled) { transform: translateY(1px); }
     .bundle-kit__add-btn:disabled {
       opacity: 0.5;
       cursor: not-allowed;

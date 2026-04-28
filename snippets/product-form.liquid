@@ -95,8 +95,3 @@
 <!-- BEGIN SPT.WISHLIST -->
 <div class="spt-wishlist-button__wrapper"><button class="spt-wishlist-button"><span class="spt-wishlist-element spt-std spt-icon spt-icon-heart-empty" data-spt-params="{productId:{{product.id}},urlName:'{{product.handle}}'}"></span></button></div>
 <!-- END SPT.WISHLIST -->
-
-{%- if product.metafields.custom.bundle_default_items.value.size > 0 -%}
-  {% render 'bundle-customize-section', product: product %}
-{%- endif -%}
-
