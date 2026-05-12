@@ -239,8 +239,8 @@
   }
 </style>
 
-<article class="card-wide" style="align-items:center; position: relative;">
-  <a class="photo" href="{{ product.url }}">
+{% comment %} <article class="card-wide" style="align-items:center; position: relative;">
+  <a class="photo" href="{{ product.url }}?view=kit">
     {% if product.featured_image %}
       <img
         src="{{ product.featured_image | img_url: '700x' }}"
@@ -258,8 +258,25 @@
         loading="lazy"
       >
     {% endif %}
+  </a> {% endcomment %}
+<article class="card-wide" style="align-items:center; position: relative; display: flex; flex-direction: row;">
+  <a class="photo" href="{{ product.url }}?view=kit" style="flex: 0 0 40%; width: 40%; line-height: 0; display: block;">
+    {% if product.featured_image %}
+      <img
+        src="{{ product.featured_image | img_url: '800x' }}"
+        alt="{{ product.title | escape }}"
+        loading="lazy"
+        style="width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: 8px 0 0 8px;"
+      >
+    {% else %}
+      <img
+        src="{{ 'placeholder-image.png' | asset_url }}"
+        alt="{{ product.title | escape }}"
+        loading="lazy"
+        style="width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block;">
+      
+    {% endif %}
   </a>
-
   <div class="content">
     <!-- Rating -->
     {% assign r = product.metafields.custom.rating_count | default: 0 %}

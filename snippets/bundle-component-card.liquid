@@ -61,7 +61,7 @@
 
     {%- if use_dropdown -%}
       <div class="bundle-kit__variant">
-        <label class="bundle-kit__variant-label">{% if filter_index >= 0 %}{{ filter_option }}{% else %}Variant{% endif %}</label>
+        {% comment %} <label class="bundle-kit__variant-label">{% if filter_index >= 0 %}{{ filter_option }}{% else %}Variant{% endif %}</label> {% endcomment %}
         <div class="bundle-kit__select-wrap">
           <select class="bundle-kit__variant-select" data-bundle-variant-select aria-label="Choose option for {{ component.title | escape }}">
             {%- if filter_index >= 0 -%}

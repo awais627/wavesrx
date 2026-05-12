@@ -6,15 +6,16 @@
 {%- endcomment -%}
 
 {%- assign default_items = product.metafields.custom.bundle_default_items.value -%}
-
+{%- assign unsorted_items = product.metafields.custom.bundle_default_items.value -%}
+{%- assign default_items = unsorted_items | sort: 'price' | reverse -%}
 {% if default_items and default_items.size > 0 %}
   <section class="bundle-kit" data-bundle-kit data-bundle-id="{{ product.id }}" aria-labelledby="bundle-kit-heading-{{ product.id }}">
     <header class="bundle-kit__header">
       <div class="bundle-kit__heading-row">
-        <h3 class="bundle-kit__heading" id="bundle-kit-heading-{{ product.id }}">Customize Your Kit</h3>
-        <span class="bundle-kit__count" data-bundle-count>{{ default_items.size }} items</span>
+        <h3 class="bundle-kit__heading" id="bundle-kit-heading-{{ product.id }}">Customize Your Kit<span class="bundle-kit__optional-text">(OPTIONAL)</span></h3>
+        {% comment %} <span class="bundle-kit__count" data-bundle-count>{{ default_items.size }} items</span> {% endcomment %}
       </div>
-      <p class="bundle-kit__subheading">What's included in this kit — uncheck anything you don't need or pick a different option.</p>
+   
     </header>
 
     <div class="bundle-kit__items" role="list">
@@ -32,7 +33,7 @@
         <span class="bundle-kit__total-value" data-bundle-total>{{ 0 | money }}</span>
       </div>
       <button type="button" class="bundle-kit__add-btn" data-bundle-add>
-        <span data-bundle-add-text>Add Kit to Cart</span>
+        <span data-bundle-add-text>Add to Cart</span>
       </button>
       <div class="bundle-kit__error" data-bundle-error hidden role="alert"></div>
     </footer>
@@ -63,7 +64,7 @@
     .bundle-kit__heading {
       font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback, sans-serif);
       font-size: 20px;
-      font-weight: 700;
+      font-weight: 500;
       line-height: 1.2;
       letter-spacing: 0.02em;
       margin: 0;
@@ -180,6 +181,13 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
+    .bundle-kit__optional-text {
+  font-size: 0.85em; /* Makes it slightly smaller than the heading */
+  font-weight: 400;   /* Makes it thinner than the "Customize" text */
+  opacity: 0.7;      /* Softens the color slightly */
+  margin-left: 4px;  /* Adds a little breathing room */
+  text-transform: uppercase;
+}
     .bundle-kit__title:hover { text-decoration: underline; }
 
     .bundle-kit__variant {
@@ -200,6 +208,7 @@
       flex: 1;
       max-width: 220px;
     }
+
     .bundle-kit__variant-select {
       appearance: none;
       -webkit-appearance: none;
@@ -300,7 +309,7 @@
       background: #FFD200;
       color: #000;
       border: 0;
-      border-radius: 30px;
+      border-radius: 10px;
       font-family: var(--typeBasePrimary), var(--typeBaseFallback, sans-serif);
       font-size: 14px;
       font-weight: 800;

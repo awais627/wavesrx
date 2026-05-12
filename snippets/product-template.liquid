@@ -532,12 +532,13 @@
         {%- endunless -%}
       </div>
     </div>
+  
   </div>
 </div>
 
 
 <!-- code for sticky bar -->
- <div class="sticky-bar-form" style="{% if section.settings.enable_sticky_bar %}display:block; {% else %} display:none; {% endif %}">
+ {% comment %} <div class="sticky-bar-form" style="{% if section.settings.enable_sticky_bar %}display:block; {% else %} display:none; {% endif %}">
    {% form 'product', product, class: product_form_class, data-product-form: '' %}
             <div class="sticky-bar" style="display:none;">
               <div class="product-title-sticky">
@@ -586,9 +587,11 @@
 {% endfor %}
 </select>
 <input type="submit" value="Add To Cart" class="variant-button" />
-</form></div>
+</form>
+</div>
 </div>
 {% endform %}
   </div>
      </div>             
-            <!-- code for sticky bar -->
+            <!-- code for sticky bar --> 
+             {% endcomment %}

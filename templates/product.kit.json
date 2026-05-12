@@ -386,6 +386,7 @@
     },
     "product-recommendations": {
       "type": "product-recommendations",
+      "disabled": true,
       "custom_css": [
         ".mb-4 {margin-bottom: 0px !important;}",
         "form.custom-add-to-cart {order: 3 !important; position: relative !important; bottom: 0 !important; text-align: center !important;}",

@@ -1,9 +1,11 @@
+
+
 {% assign best_sellers = collections['best-selling'] %}
 {% assign new_arrivals = collections['new-arrivals'] %}
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
 <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
-
+<h2 class="bundle-main-title">VALUE BUNDLES</h2>
 <style>
     {% comment %} header.site-header,
   .shopify-section-header,
@@ -14,8 +16,23 @@
   } {% endcomment %}
 
   /* Generic sections */
+  .bundle-main-title {
+    font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 48px;
+  text-align: center;
+  font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback, sans-serif);
+ 
+  text-transform: uppercase;
+
+  margin: 50px 0 0px 0; /* Adds breathing room at the top of the page */
+  color: #1c1d1d;
+}
   .section-pad {
-    padding: 60px 0;
+    padding:60px 0;
   }
 
   .section-title {
@@ -298,6 +315,7 @@
     }
   }
 </style>
+
 
 <div id="shopify-section-template--16192486637746__54193021-7121-4d26-ba0f-39b6dfdfd3ac" class="shopify-section">
   <div class="container">
@@ -1087,6 +1105,22 @@
 
 <!-- =================== NEW ARRIVALS with SMART LOAD MORE =================== -->
 <style>
+  /* Add this to your existing <style> section */
+#new-arrivals .product-card .photo {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1; /* Forces the container to be square */
+  overflow: hidden;
+
+}
+
+#new-arrivals .product-card .photo img {
+  width: 100%;
+  height: 100%;
+ 
+  padding-bottom: 10px;    
+  box-sizing: border-box;
+}
     #new-arrivals .product-card {
       display: flex;
       flex-direction: column;
@@ -1267,6 +1301,42 @@
 
 <!-- =================== STORY =================== -->
 <style>
+/* Image stack */
+  .story-images {
+    position: relative;
+    width: 100%;
+  }
+
+  .story-images .image {
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    /* Set a fixed square aspect ratio */
+    aspect-ratio: 1 / 1; 
+    width: 100%;
+    max-width: 270px;
+  }
+
+  .story-images img {
+    width: 100%;
+    height: 100%; /* Important: Must be 100% for object-fit to work */
+    display: block;
+    /* This prevents skewing by cropping the image instead of stretching it */
+    object-fit: cover; 
+  }
+
+  /* Top image */
+  .image-1 {
+    margin-left: 0;
+  }
+
+  /* Bottom image (overlapping) */
+  .image-2 {
+    width: 75% !important; /* Overriding the base image width for the stack effect */
+    margin-top: -120px; /* Adjusted to look better with squares */
+    margin-left: auto;
+  }
+
   .wavesrx-story {
     padding: 80px 20px;
     background: #fff;

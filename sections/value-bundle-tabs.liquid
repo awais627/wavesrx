@@ -18,9 +18,9 @@
     <section class="bundle-section" id="{{ category | handle }}">
       <div class="bundle-layout">
         <!-- Vertical Category Title -->
-        <div class="bundle-category-vertical">
+        {% comment %} <div class="bundle-category-vertical">
           <span>{{ category }}</span>
-        </div>
+        </div> {% endcomment %}
 
         <!-- Products Grid -->
         <div class="bundle-grid">
@@ -38,7 +38,7 @@
 {% endfor %}
 
 <style>
-    .bundle-section { padding:50px 0; }
+    .bundle-section { padding:0 0 50px 0; }
     .section-header h2 { font-size:28px; margin-bottom:30px; text-align:center; }
     .bundle-layout {
       display: flex;
