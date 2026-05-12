@@ -150,6 +150,7 @@
     },
     "3c78ebb6-71ef-47e4-a50b-14142e71f159": {
       "type": "brand-promotion",
+      "disabled": true,
       "custom_css": [],
       "settings": {
         "image1": "shopify://shop_images/Cash_price_tag-01.png",

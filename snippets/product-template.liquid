@@ -108,6 +108,9 @@
               fallback: fallback,
               mobile_layout: mobile_layout,
             -%}
+            {%- unless isModal -%}
+              {%- render 'product-trust-badges' -%}
+            {%- endunless -%}
           </div>
         {%- endif -%}
 
@@ -528,6 +531,9 @@
               fallback: fallback,
               mobile_layout: mobile_layout,
             -%}
+            {%- unless isModal -%}
+              {%- render 'product-trust-badges' -%}
+            {%- endunless -%}
           </div>
         {%- endunless -%}
       </div>

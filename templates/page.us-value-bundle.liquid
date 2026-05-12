@@ -25,14 +25,29 @@
     font-size: 48px;
   text-align: center;
   font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback, sans-serif);
- 
+
   text-transform: uppercase;
 
   margin: 50px 0 0px 0; /* Adds breathing room at the top of the page */
   color: #1c1d1d;
 }
+
+  @media (max-width: 991.98px) {
+    .bundle-main-title { font-size: 36px; margin: 32px 0 0; }
+  }
+  @media (max-width: 575.98px) {
+    .bundle-main-title { font-size: 28px; margin: 24px 0 0; letter-spacing: 0.3px; }
+  }
+
   .section-pad {
     padding:60px 0;
+  }
+
+  @media (max-width: 991.98px) {
+    .section-pad { padding: 40px 0; }
+  }
+  @media (max-width: 575.98px) {
+    .section-pad { padding: 28px 0; }
   }
 
   .section-title {
@@ -42,6 +57,13 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-size: 48px;
+  }
+
+  @media (max-width: 991.98px) {
+    .section-title { font-size: 32px; }
+  }
+  @media (max-width: 575.98px) {
+    .section-title { font-size: 24px; }
   }
 
   .section-sub {
@@ -298,6 +320,9 @@
 
   /* Optional: add subtle border between stacked items on mobile */
   @media (max-width: 575px) {
+    .icons-lists .col-sm-3 {
+      margin-bottom: 0;
+    }
     .icon-shop {
       width: 100%;
       justify-content: flex-start;
@@ -305,13 +330,19 @@
       padding: 12px 10px;
     }
 
-    .icon-shop:last-child {
+    .icons-lists .col-sm-3:last-child .icon-shop {
       border-bottom: none;
     }
 
     .icon-text h4 {
       text-align: left;
       font-size: 14px;
+      line-height: 1.3 !important;
+    }
+
+    .icon-shop .icons img {
+      width: auto;
+      max-width: 48px;
     }
   }
 </style>
@@ -597,6 +628,33 @@
       justify-content: center;
       margin-top: 15px;
       gap: 15px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .reviews-section {
+      padding: 32px 12px;
+    }
+    .reviews-badge {
+      padding: 0 10px;
+    }
+    .reviews-badge h3 {
+      font-size: 1.25rem;
+    }
+    .review {
+      padding: 16px;
+    }
+    .review .review-header {
+      flex-wrap: wrap;
+      font-size: 0.8125rem;
+      gap: 6px;
+    }
+    .review p {
+      font-size: 14px;
+      line-height: 1.55;
+    }
+    .review h4 {
+      font-size: 0.95rem;
     }
   }
 </style>
@@ -1012,6 +1070,54 @@
       font-size: 16px;
     }
   }
+
+  @media (max-width: 575.98px) {
+    .card-wide {
+      padding: 14px;
+      border-radius: 18px;
+    }
+    .card-wide .photo {
+      padding: 12px;
+      border-radius: 14px;
+    }
+    .card-wide .actions {
+      gap: 8px;
+    }
+    .card-wide .actions .btn-yellow,
+    .card-wide .actions .btn-outline {
+      flex: 1 1 auto;
+      padding: 10px 12px;
+      font-size: 13px;
+      text-align: center;
+    }
+    .card-wide .sale-percentage {
+      top: 10px !important;
+      right: 10px !important;
+      font-size: 11px !important;
+    }
+  }
+
+  /* New arrivals card spacing/sizing */
+  @media (max-width: 575.98px) {
+    #new-arrivals .product-card {
+      padding: 12px;
+    }
+    #new-arrivals .product-card h4 {
+      font-size: 16px;
+    }
+    #new-arrivals .product-card .sub {
+      font-size: 13px;
+    }
+    #new-arrivals .product-card .actions {
+      flex-direction: column;
+      gap: 8px;
+    }
+    #new-arrivals .product-card .actions .btn-yellow,
+    #new-arrivals .product-card .actions .btn-outline {
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+  }
 </style>
 <section class="section-pad">
   <div class="container">
@@ -1402,12 +1508,43 @@
   @media (max-width: 900px) {
     .story-grid {
       grid-template-columns: 1fr;
+      gap: 30px;
     }
 
+    .story-images {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .story-images .image,
     .image-1,
     .image-2 {
-      width: 100%;
-      margin: 0 0 20px 0;
+      max-width: 100%;
+      width: 100% !important;
+      margin: 0 0 20px 0 !important;
+    }
+
+    .wavesrx-story {
+      padding: 50px 16px;
+    }
+
+    .story-title {
+      font-size: 32px;
+      margin-bottom: 30px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .wavesrx-story {
+      padding: 32px 12px;
+    }
+    .story-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .story-text p {
+      font-size: 15px;
+      line-height: 1.6;
     }
   }
 </style>
