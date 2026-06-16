@@ -1,6 +1,11 @@
 (function () {
   'use strict';
 
+  // Bundle pricing rules. Keep in sync with the Shopify automatic discount
+  // (10% off the "Bundle Eligible" collection, minimum 2 items).
+  var BUNDLE_DISCOUNT = 0.10;
+  var MIN_ITEMS_FOR_DISCOUNT = 2;
+
   function formatMoney(cents) {
     if (window.theme && theme.Currency && typeof theme.Currency.formatMoney === 'function') {
       return theme.Currency.formatMoney(cents, theme.moneyFormat);
@@ -17,17 +22,23 @@
     var select = itemEl.querySelector('[data-bundle-variant-select]');
     if (select) {
       var opt = select.options[select.selectedIndex];
+      var price = parseInt(opt.getAttribute('data-price'), 10) || 0;
+      var compare = parseInt(opt.getAttribute('data-compare'), 10) || 0;
       return {
         id: parseInt(opt.value, 10),
-        price: parseInt(opt.getAttribute('data-price'), 10) || 0,
+        price: price,
+        compareAt: compare > price ? compare : price,
         available: !opt.disabled
       };
     }
     var hidden = itemEl.querySelector('[data-bundle-variant-input]');
     if (hidden) {
+      var hPrice = parseInt(hidden.getAttribute('data-price'), 10) || 0;
+      var hCompare = parseInt(hidden.getAttribute('data-compare'), 10) || 0;
       return {
         id: parseInt(hidden.value, 10),
-        price: parseInt(hidden.getAttribute('data-price'), 10) || 0,
+        price: hPrice,
+        compareAt: hCompare > hPrice ? hCompare : hPrice,
         available: true
       };
     }
@@ -56,22 +67,72 @@
 
   function updateTotal(kitEl) {
     var items = kitEl.querySelectorAll('[data-bundle-item]');
-    var total = 0;
+    var priceTotal = 0;
+    var compareTotal = 0;
     var checkedCount = 0;
     items.forEach(function (item) {
       var checkbox = item.querySelector('[data-bundle-checkbox]');
       if (!checkbox || !checkbox.checked || checkbox.disabled) return;
       var v = getSelectedVariant(item);
       if (v) {
-        total += v.price;
+        priceTotal += v.price;
+        compareTotal += v.compareAt;
         checkedCount += 1;
       }
     });
+
+    // The 10% bundle discount only applies with 2+ items selected.
+    var discountApplies = checkedCount >= MIN_ITEMS_FOR_DISCOUNT;
+    var sellingTotal = discountApplies
+      ? Math.round(priceTotal * (1 - BUNDLE_DISCOUNT))
+      : priceTotal;
+
     var totalEl = kitEl.querySelector('[data-bundle-total]');
     if (totalEl) {
-      totalEl.innerHTML = formatMoney(total);
+      totalEl.innerHTML = formatMoney(sellingTotal);
       pulseTotal(totalEl);
     }
+
+    // Crossed-out compare-at total (only when there's something to save).
+    var compareEl = kitEl.querySelector('[data-bundle-compare]');
+    if (compareEl) {
+      if (compareTotal > sellingTotal) {
+        compareEl.innerHTML = formatMoney(compareTotal);
+        compareEl.hidden = false;
+      } else {
+        compareEl.innerHTML = '';
+        compareEl.hidden = true;
+      }
+    }
+
+    // Savings badge.
+    var savingsEl = kitEl.querySelector('[data-bundle-savings]');
+    if (savingsEl) {
+      if (compareTotal > sellingTotal) {
+        var pct = Math.round((compareTotal - sellingTotal) / compareTotal * 100);
+        savingsEl.textContent = 'Save ' + pct + '%';
+        savingsEl.hidden = false;
+      } else {
+        savingsEl.textContent = '';
+        savingsEl.hidden = true;
+      }
+    }
+
+    // Discount messaging.
+    var noteEl = kitEl.querySelector('[data-bundle-discount-note]');
+    if (noteEl) {
+      if (discountApplies) {
+        noteEl.textContent = '10% bundle discount applied at checkout.';
+        noteEl.removeAttribute('hidden');
+      } else if (checkedCount === 1) {
+        noteEl.textContent = 'Add 1 more item to unlock 10% bundle savings.';
+        noteEl.removeAttribute('hidden');
+      } else {
+        noteEl.textContent = '';
+        noteEl.setAttribute('hidden', '');
+      }
+    }
+
     var countSub = kitEl.querySelector('[data-bundle-count-sub]');
     if (countSub) {
       countSub.textContent = checkedCount + (checkedCount === 1 ? ' item selected' : ' items selected');

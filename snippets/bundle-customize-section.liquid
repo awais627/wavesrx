@@ -30,8 +30,13 @@
           <span class="bundle-kit__total-label">Kit total</span>
           <span class="bundle-kit__total-sub" data-bundle-count-sub>{{ default_items.size }} items selected</span>
         </div>
-        <span class="bundle-kit__total-value" data-bundle-total>{{ 0 | money }}</span>
+        <div class="bundle-kit__price-block">
+          <span class="bundle-kit__compare" data-bundle-compare hidden></span>
+          <span class="bundle-kit__total-value" data-bundle-total>{{ 0 | money }}</span>
+          <span class="bundle-kit__savings" data-bundle-savings hidden></span>
+        </div>
       </div>
+      <p class="bundle-kit__discount-note" data-bundle-discount-note hidden></p>
       <button type="button" class="bundle-kit__add-btn" data-bundle-add>
         <span data-bundle-add-text>Add to Cart</span>
       </button>
@@ -298,6 +303,44 @@
       transition: transform 0.18s ease;
     }
     .bundle-kit__total-value.is-pulse { transform: scale(1.06); }
+
+    .bundle-kit__price-block {
+      display: flex;
+      align-items: baseline;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .bundle-kit__compare {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--colorTextBody, #1c1d1d);
+      opacity: 0.55;
+      text-decoration: line-through;
+      white-space: nowrap;
+    }
+    .bundle-kit__compare[hidden] { display: none; }
+    .bundle-kit__savings {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      background: #ff4d4f;
+      padding: 4px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .bundle-kit__savings[hidden] { display: none; }
+    .bundle-kit__discount-note {
+      margin: 0 0 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #2e7d32;
+      text-align: right;
+    }
+    .bundle-kit__discount-note[hidden] { display: none; }
 
     .bundle-kit__add-btn {
       width: 100%;

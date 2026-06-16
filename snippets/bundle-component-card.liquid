@@ -76,6 +76,7 @@
                     {%- assign seen_values = seen_values | append: vval | append: '|' -%}
                     <option value="{{ variant.id }}"
                             data-price="{{ variant.price }}"
+                            data-compare="{{ variant.compare_at_price }}"
                             {% if variant == default_variant %}selected{% endif %}>
                       {{ vval }}
                     </option>
@@ -86,6 +87,7 @@
               {%- for variant in component.variants -%}
                 <option value="{{ variant.id }}"
                         data-price="{{ variant.price }}"
+                        data-compare="{{ variant.compare_at_price }}"
                         {% unless variant.available %}disabled{% endunless %}
                         {% if variant == default_variant %}selected{% endif %}>
                   {{ variant.title }}
@@ -102,7 +104,8 @@
       <input type="hidden"
              data-bundle-variant-input
              value="{{ default_variant.id }}"
-             data-price="{{ default_variant.price }}">
+             data-price="{{ default_variant.price }}"
+             data-compare="{{ default_variant.compare_at_price }}">
     {%- endif -%}
   </div>
 

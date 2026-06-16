@@ -367,33 +367,132 @@
 
     {% assign v = product.selected_or_first_available_variant %}
 
-    <div class="price-row">
-      <span class="price-now">{{ product.price | money }}</span>
+    {%- comment -%}
+      Price is calculated from the sum of the bundle's component products so it
+      always stays in sync with live product prices. Selling price = sum of
+      component prices, with 10% off when the kit has 2+ items (matching the
+      Shopify automatic discount). Compare-at = sum of component compare-at prices.
+    {%- endcomment -%}
+    {%- assign bundle_items = product.metafields.custom.bundle_default_items.value -%}
+    {%- assign sum_price = 0 -%}
+    {%- assign sum_compare = 0 -%}
+    {%- if bundle_items and bundle_items.size > 0 -%}
+      {%- for item in bundle_items -%}
+        {%- assign iv = item.selected_or_first_available_variant -%}
+        {%- assign sum_price = sum_price | plus: iv.price -%}
+        {%- if iv.compare_at_price > iv.price -%}
+          {%- assign sum_compare = sum_compare | plus: iv.compare_at_price -%}
+        {%- else -%}
+          {%- assign sum_compare = sum_compare | plus: iv.price -%}
+        {%- endif -%}
+      {%- endfor -%}
+    {%- else -%}
+      {%- assign sum_price = product.price -%}
+      {%- assign sum_compare = product.compare_at_price | default: product.price -%}
+    {%- endif -%}
+    {%- assign selling = sum_price -%}
+    {%- if bundle_items and bundle_items.size >= 2 -%}
+      {%- comment -%} times: 0.9 | round matches the Math.round in bundle-builder.js so the grid and the customize page show the same figure {%- endcomment -%}
+      {%- assign selling = sum_price | times: 0.9 | round -%}
+    {%- endif -%}
 
-      {% if product.compare_at_price > product.price %}
-        <span class="price-compare">{{ product.compare_at_price | money }}</span>
+    <div class="price-row">
+      <span class="price-now">{{ selling | money }}</span>
+
+      {% if sum_compare > selling %}
+        <span class="price-compare">{{ sum_compare | money }}</span>
         <span
           class="sale-percentage"
-          data-sale-price="{{ product.price | divided_by: 100.0 }}"
-          data-sale-old-price="{{ product.compare_at_price | divided_by: 100.0 }}"
+          data-sale-price="{{ selling | divided_by: 100.0 }}"
+          data-sale-old-price="{{ sum_compare | divided_by: 100.0 }}"
           style="position: relative; background-color:#ff4d4f;color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
         ></span>
       {% endif %}
     </div>
 
     <div class="actions">
-      {% form 'product', product, class: 'd-inline' %}
-        <input type="hidden" name="id" value="{{ v.id }}">
-        <input type="hidden" name="quantity" value="1">
+      {%- if bundle_items and bundle_items.size > 0 -%}
+        {%- capture default_item_ids -%}{% for item in bundle_items %}{{ item.selected_or_first_available_variant.id }}{% unless forloop.last %},{% endunless %}{% endfor %}{%- endcapture -%}
+        <button type="button" class="btn-yellow" data-bundle-quick-add data-bundle-items="[{{ default_item_ids | strip }}]">ADD TO CART</button>
+      {%- else -%}
+        {% form 'product', product, class: 'd-inline' %}
+          <input type="hidden" name="id" value="{{ v.id }}">
+          <input type="hidden" name="quantity" value="1">
 
-        {% if v and v.available %}
-          <button type="submit" name="add" class="btn-yellow">ADD TO CART</button>
-        {% else %}
-          <button type="button" class="btn-yellow" disabled>SOLD OUT</button>
-        {% endif %}
-      {% endform %}
+          {% if v and v.available %}
+            <button type="submit" name="add" class="btn-yellow">ADD TO CART</button>
+          {% else %}
+            <button type="button" class="btn-yellow" disabled>SOLD OUT</button>
+          {% endif %}
+        {% endform %}
+      {%- endif -%}
 
       <a class="btn-outline" href="{{ product.url }}?view=kit">CUSTOMIZE</a>
     </div>
   </div>
 </article>
+
+<script>
+  // Quick-add for bundle cards: adds the bundle's default component products
+  // (not a fixed bundle product) so the Shopify automatic 10% discount applies.
+  // Guarded + delegated so it registers once even though this snippet renders per card.
+  (function () {
+    if (window.__bundleQuickAddInit) return;
+    window.__bundleQuickAddInit = true;
+
+    function addUrl() {
+      return (window.theme && theme.routes && theme.routes.cartAdd) ? theme.routes.cartAdd : '/cart/add.js';
+    }
+
+    function notifyCart() {
+      var form = document.createElement('form');
+      var input = document.createElement('input');
+      input.setAttribute('name', 'id');
+      input.value = '0';
+      form.appendChild(input);
+      document.body.appendChild(form);
+      var evt;
+      try {
+        evt = new CustomEvent('ajaxProduct:added', { bubbles: true });
+      } catch (e) {
+        evt = document.createEvent('CustomEvent');
+        evt.initCustomEvent('ajaxProduct:added', true, true, null);
+      }
+      form.dispatchEvent(evt);
+      setTimeout(function () { form.remove(); }, 0);
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest('[data-bundle-quick-add]');
+      if (!btn) return;
+      e.preventDefault();
+
+      var ids;
+      try { ids = JSON.parse(btn.getAttribute('data-bundle-items') || '[]'); } catch (err) { ids = []; }
+      ids = ids.filter(function (id) { return id; });
+      if (!ids.length) return;
+
+      var items = ids.map(function (id) { return { id: id, quantity: 1 }; });
+      var original = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Adding…';
+
+      fetch(addUrl(), {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ items: items })
+      })
+        .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+        .then(function (res) {
+          if (res.ok) {
+            notifyCart();
+          } else {
+            alert((res.body && (res.body.description || res.body.message)) || 'Sorry, we couldn\'t add this bundle to your cart.');
+          }
+        })
+        .catch(function () { alert('Network error. Please try again.'); })
+        .then(function () { btn.disabled = false; btn.textContent = original; });
+    });
+  })();
+</script>
