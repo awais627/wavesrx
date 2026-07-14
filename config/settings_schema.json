@@ -1041,5 +1041,24 @@
         "label": "t:settings_schema.extras.settings.disable_animations.label"
       }
     ]
+  },
+  {
+    "name": "Bundle Kits",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Kit discount"
+      },
+      {
+        "type": "paragraph",
+        "content": "Hidden 10% kit discount code, applied automatically when a customer adds a kit (2+ items) from the Bundles/Kits pages. Must exactly match a Shopify discount code (Amount off products → Bundle Eligible collection, min 2 items, no combinations). Leave blank to disable."
+      },
+      {
+        "type": "text",
+        "id": "kit_discount_code",
+        "label": "Kit discount code",
+        "info": "Example: KIT10-9F3KQ2XZ7M"
+      }
+    ]
   }
 ]

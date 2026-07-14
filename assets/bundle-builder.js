@@ -18,6 +18,12 @@
     return '/cart/add.js';
   }
 
+  // Apply the hidden kit discount code to the current cart via Shopify's
+  // discount permalink, then land on the cart with the code applied/visible.
+  function applyDiscountAndGo(code) {
+    window.location.href = '/discount/' + encodeURIComponent(code) + '?redirect=/cart';
+  }
+
   function getSelectedVariant(itemEl) {
     var select = itemEl.querySelector('[data-bundle-variant-select]');
     if (select) {
@@ -217,6 +223,9 @@
     var addBtn = kitEl.querySelector('[data-bundle-add]');
     setLoading(addBtn, true);
 
+    var discountCode = (kitEl.getAttribute('data-bundle-discount-code') || '').trim();
+    var willRedirect = false;
+
     fetch(getCartAddUrl(), {
       method: 'POST',
       credentials: 'same-origin',
@@ -238,12 +247,19 @@
           showError(kitEl, msg);
           return;
         }
+        // Only apply the 10% kit code when the bundle qualifies (2+ items).
+        if (discountCode && items.length >= MIN_ITEMS_FOR_DISCOUNT) {
+          willRedirect = true;
+          applyDiscountAndGo(discountCode);
+          return;
+        }
         dispatchAjaxAdded();
       })
       .catch(function () {
         showError(kitEl, 'Network error. Please try again.');
       })
       .then(function () {
+        if (willRedirect) return; // navigating away — keep the button in its loading state
         setLoading(addBtn, false);
         updateTotal(kitEl);
       });

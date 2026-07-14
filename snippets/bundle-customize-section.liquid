@@ -9,7 +9,7 @@
 {%- assign unsorted_items = product.metafields.custom.bundle_default_items.value -%}
 {%- assign default_items = unsorted_items | sort: 'price' | reverse -%}
 {% if default_items and default_items.size > 0 %}
-  <section class="bundle-kit" data-bundle-kit data-bundle-id="{{ product.id }}" aria-labelledby="bundle-kit-heading-{{ product.id }}">
+  <section class="bundle-kit" data-bundle-kit data-bundle-id="{{ product.id }}" data-bundle-discount-code="{{ settings.kit_discount_code | escape }}" aria-labelledby="bundle-kit-heading-{{ product.id }}">
     <header class="bundle-kit__header">
       <div class="bundle-kit__heading-row">
         <h3 class="bundle-kit__heading" id="bundle-kit-heading-{{ product.id }}">Customize Your Kit<span class="bundle-kit__optional-text">(OPTIONAL)</span></h3>
