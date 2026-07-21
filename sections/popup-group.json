@@ -17,7 +17,7 @@
         "reminder-block": {
           "type": "header",
           "settings": {
-            "reminder_label": "Get 10% off"
+            "reminder_label": "Get 15% off"
           }
         }
       },
@@ -28,8 +28,8 @@
         "disable_for_account_holders": true,
         "popup_seconds": 2,
         "popup_days": 30,
-        "popup_title": "10% OFF YOUR FIRST PURCHASE",
-        "popup_text": "<p>Sign Up Today for Exclusive Access to Members-Only Special Offers, Videos, Tutorials & New Product Releases</p>",
+        "popup_title": "GET 15% OFF YOUR NEXT ORDER",
+        "popup_text": "<p>Join the WavesRx VIP list to receive 15% off your next order, plus exclusive offers, new product launches and helpful boating tips.</p>",
         "popup_image": "shopify://shop_images/Artboard_1_copy3.jpg",
         "image_position": "right",
         "show_social_icons": true,

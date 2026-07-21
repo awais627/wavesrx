@@ -422,5 +422,46 @@
   {%- if request.page_type == 'product' or request.page_type == 'collection' -%}
     {% include 'subscribe-it-helper' %}
   {%- endif -%}
+
+    <script>
+      (function () {
+        var newHeading = 'YOU’RE IN!';
+        var newDescription = 'Your 15% off code is on its way. Please allow a few minutes for the email to arrive, and check your Promotions or Spam folder if you do not see it in your inbox.';
+        var newSuccessMessage = 'Success! Your discount is on the way.';
+
+        function updateNewsletterPopupSuccess() {
+          var popupContent = document.querySelector('.newsletter-popup__content');
+
+          if (!popupContent) return false;
+
+          var successElement = popupContent.querySelector('.note.note--success');
+
+          if (!successElement) return false;
+
+          var headingElement = popupContent.querySelector('h3');
+          var descriptionElement = popupContent.querySelector('.rte');
+
+          if (headingElement) {
+            headingElement.textContent = newHeading;
+          }
+
+          if (descriptionElement) {
+            descriptionElement.innerHTML = '<p>' + newDescription + '</p>';
+          }
+
+          successElement.textContent = newSuccessMessage;
+
+          return true;
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+          updateNewsletterPopupSuccess();
+        });
+
+        document.addEventListener('shopify:section:load', function () {
+          updateNewsletterPopupSuccess();
+        });
+      })();
+    </script>
   </body>
 </html>

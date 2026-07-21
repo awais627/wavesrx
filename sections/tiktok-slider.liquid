@@ -251,7 +251,7 @@
         },
     });
 
-    function loadAndPlayAll() {
+    {% comment %} function loadAndPlayAll() {
         var videos = document.querySelectorAll('.swiper-slide video');
         videos.forEach(function(video) {
             video.preload = 'auto';
@@ -270,7 +270,22 @@
         if (activeVideo) {
             activeVideo.parentElement.classList.add('active-slide');
         }
+    } {% endcomment %}
+
+    function loadAndPlayAll() {
+    var videos = document.querySelectorAll('.swiper-slide video');
+
+    videos.forEach(function(video) {
+        video.preload = 'auto';
+        video.load();
+        video.pause(); // Prevent autoplay
+    });
+
+    var activeVideo = document.querySelector('.swiper-slide.swiper-slide-active video');
+    if (activeVideo) {
+        activeVideo.parentElement.classList.add('active-slide');
     }
+}
 
     mySwiper.on('transitionEnd', function () {
         var videos = document.querySelectorAll('.swiper-slide video');

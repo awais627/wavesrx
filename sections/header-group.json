@@ -30,9 +30,9 @@
         "announcement-0": {
           "type": "announcement",
           "settings": {
-            "text": "NEW LOCKNDOCK™ CLEATS NOW IN STOCK",
+            "text": "SUMMER DEALS ARE LIVE",
             "link_text": "",
-            "link": "https://www.wavesrx.com/products/lockndock?variant=47057476649138"
+            "link": "shopify://collections"
           }
         }
       },
@@ -40,7 +40,7 @@
         "announcement-0"
       ],
       "custom_css": [
-        ".announcement-bar {background-color: #800000 !important; color: #000 !important; font-size: 18px !important; text-align: center !important; line-height: 1.4 !important;}",
+        ".announcement-bar {background-color: #800000 !important; color: #000 !important; font-size: 22px !important; text-align: center !important; line-height: 1.4 !important;}",
         ".page-width {display: block;}",
         ".page-width {flex-wrap: nowrap; align-items: center; min-height: 0px;}"
       ],

@@ -24,7 +24,9 @@
         "link_second": "shopify://collections/pwc",
         "link_text_third": "SHOP KAYAK",
         "link_third": "shopify://collections/kayak",
-        "color_accent": "#277eb9",
+        "link_text_fourth": "SHOP KITS",
+        "link_fourth": "https://www.wavesrx.com/pages/us-value-bundle",
+        "color_accent": "#060505",
         "text_align": "vertical-bottom horizontal-center",
         "video_url": "https://cdn.shopify.com/videos/c/o/v/ccc02a6fea9b45c0af2771f96bd3a9a0.mp4",
         "overlay_opacity": 0,
@@ -47,85 +49,13 @@
         "height": 750
       }
     },
-    "9852bc6b-2cb6-49c9-905a-521c26424bc8": {
-      "type": "logo-list",
-      "blocks": {
-        "da3441b6-b549-41dd-935c-ce40ce1efe85": {
-          "type": "logo_image",
-          "settings": {
-            "image": "shopify://shop_images/Alvean_Logo_10b92b2a-8628-4f34-bab7-c4812efc5327.png",
-            "link": "https://www.youtube.com/watch?v=_lnCCo9CWjk"
-          }
-        },
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-3": {
-          "type": "logo_image",
-          "settings": {
-            "image": "shopify://shop_images/DrDemp_Transparent_Logo_6c7b0921-b14a-4ffe-9012-129e6b0856e0.png",
-            "link": "https://www.youtube.com/watch?v=4Zr1aZjs0_4"
-          }
-        },
-        "207d0e9f-d341-45cb-9655-289d2ac789dd": {
-          "type": "logo_image",
-          "settings": {
-            "image": "shopify://shop_images/JD_s_WaterWorld_0ca71350-e4fa-46ce-bff1-fd615ebfdf24.png",
-            "link": "https://youtu.be/T1ytIkJ2l6s?si=e55v8NCYgLYKC7Yw"
-          }
-        },
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-1": {
-          "type": "logo_image",
-          "settings": {
-            "image": "shopify://shop_images/channels4_profile1.png",
-            "link": "https://youtu.be/emRRuv0ekhM?si=FRCHQR8GIZHy8QHx&t=235"
-          }
-        },
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-2": {
-          "type": "logo_image",
-          "settings": {
-            "image": "shopify://shop_images/THE_ADVENTURE_CREWS_LOGO_490434f0-821d-4802-bea1-1d00bbd17554.png",
-            "link": "https://youtu.be/42Mogj56INg?si=qcUt2OgdDZLJc-wE&t=596"
-          }
-        },
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-4": {
-          "type": "logo_image",
-          "settings": {
-            "image": "shopify://shop_images/Tommy_T_s_Adventures_098bb85d-a042-46e0-bdb6-e95eb0fed71a.png",
-            "link": "https://www.youtube.com/watch?v=0bhEw2KuKd0"
-          }
-        },
-        "314c9042-3720-4565-993c-2f80cb19c0b0": {
-          "type": "logo_image",
-          "settings": {
-            "image": "shopify://shop_images/WatercraftShack.png",
-            "link": "https://www.youtube.com/watch?v=NITuuGQFqc8"
-          }
-        }
-      },
-      "block_order": [
-        "da3441b6-b549-41dd-935c-ce40ce1efe85",
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-3",
-        "207d0e9f-d341-45cb-9655-289d2ac789dd",
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-1",
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-2",
-        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-4",
-        "314c9042-3720-4565-993c-2f80cb19c0b0"
-      ],
-      "custom_css": [
-        "@media (max-width: 768px) {.logo-bar__item {margin: 10px; margin-bottom: 15px; }}",
-        ".logo-bar {margin-bottom: 0px;}"
-      ],
-      "settings": {
-        "title": "",
-        "logo_opacity": 100,
-        "divider": false
-      }
-    },
     "5716dab2-dfd5-4901-a9ab-0478d62aebb3": {
       "type": "rich-text",
       "blocks": {
         "template--16192486637746__5716dab2-dfd5-4901-a9ab-0478d62aebb3-heading-1": {
           "type": "heading",
           "settings": {
-            "title": "BOAT AND PWC GEAR"
+            "title": "BOAT & PWC GEAR"
           }
         }
       },
@@ -144,7 +74,7 @@
         "heading1": "Anchoring",
         "heading2": "Docking",
         "heading3": "Cleaning",
-        "heading4": "sAFETY",
+        "heading4": "Safety",
         "heading5": "Value Bundle",
         "link1": "shopify://collections/beach-anchors",
         "link1text": "Shop Now",
@@ -156,6 +86,85 @@
         "link4text": "Shop Now",
         "link5": "",
         "link5text": "Shop Now"
+      }
+    },
+    "promo_grid_BQYm3b": {
+      "type": "promo-grid",
+      "blocks": {
+        "simple_PQfjD6": {
+          "type": "simple",
+          "settings": {
+            "link": "https://www.wavesrx.com/pages/us-value-bundle",
+            "text": "",
+            "image": "shopify://shop_images/01_35419c5f-7537-4234-b95b-6f0f8a5385e9.jpg",
+            "width": "100",
+            "height": 300,
+            "color_tint": "#000000",
+            "color_tint_opacity": 0,
+            "framed": false
+          }
+        },
+        "advanced_N8ebVD": {
+          "type": "advanced",
+          "disabled": true,
+          "settings": {
+            "subheading": "",
+            "heading": "",
+            "textarea": "",
+            "cta_text1": "",
+            "cta_link1": "",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify://shop_images/02_ee910172-fc5e-4a4f-b078-c2ccb0c31f00.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 100,
+            "text_size": 100,
+            "text_align": "vertical-center horizontal-center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        },
+        "advanced_kr8CBz": {
+          "type": "advanced",
+          "disabled": true,
+          "settings": {
+            "subheading": "",
+            "heading": "",
+            "textarea": "",
+            "cta_text1": "",
+            "cta_link1": "",
+            "cta_text2": "",
+            "cta_link2": "",
+            "image": "shopify://shop_images/01_35419c5f-7537-4234-b95b-6f0f8a5385e9.jpg",
+            "video_url": "",
+            "width": "50",
+            "height": 240,
+            "text_size": 100,
+            "text_align": "vertical-center horizontal-center",
+            "color_accent": "rgba(0,0,0,0)",
+            "boxed": false,
+            "framed": false
+          }
+        }
+      },
+      "block_order": [
+        "simple_PQfjD6",
+        "advanced_N8ebVD",
+        "advanced_kr8CBz"
+      ],
+      "custom_css": [
+        ".page-width {padding: 0px;}",
+        ".promo-grid--space-top {padding-top: 32px;}"
+      ],
+      "name": "t:sections.promo-grid.presets.promotional_grid.name",
+      "settings": {
+        "full_width": false,
+        "gutter_size": 0,
+        "space_above": true,
+        "space_below": false,
+        "lazyload_images": false
       }
     },
     "featured-collections": {
@@ -311,6 +320,152 @@
         "video10": ""
       }
     },
+    "9852bc6b-2cb6-49c9-905a-521c26424bc8": {
+      "type": "logo-list",
+      "blocks": {
+        "da3441b6-b549-41dd-935c-ce40ce1efe85": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Alvean_Logo_10b92b2a-8628-4f34-bab7-c4812efc5327.png",
+            "link": "https://www.youtube.com/watch?v=_lnCCo9CWjk"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-3": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/DrDemp_Transparent_Logo_6c7b0921-b14a-4ffe-9012-129e6b0856e0.png",
+            "link": "https://www.youtube.com/watch?v=4Zr1aZjs0_4"
+          }
+        },
+        "207d0e9f-d341-45cb-9655-289d2ac789dd": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/JD_s_WaterWorld_0ca71350-e4fa-46ce-bff1-fd615ebfdf24.png",
+            "link": "https://youtu.be/T1ytIkJ2l6s?si=e55v8NCYgLYKC7Yw"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-1": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/channels4_profile1.png",
+            "link": "https://youtu.be/emRRuv0ekhM?si=FRCHQR8GIZHy8QHx&t=235"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-2": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/THE_ADVENTURE_CREWS_LOGO_490434f0-821d-4802-bea1-1d00bbd17554.png",
+            "link": "https://youtu.be/42Mogj56INg?si=qcUt2OgdDZLJc-wE&t=596"
+          }
+        },
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-4": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Tommy_T_s_Adventures_098bb85d-a042-46e0-bdb6-e95eb0fed71a.png",
+            "link": "https://www.youtube.com/watch?v=0bhEw2KuKd0"
+          }
+        },
+        "314c9042-3720-4565-993c-2f80cb19c0b0": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/WatercraftShack.png",
+            "link": "https://www.youtube.com/watch?v=NITuuGQFqc8"
+          }
+        }
+      },
+      "block_order": [
+        "da3441b6-b549-41dd-935c-ce40ce1efe85",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-3",
+        "207d0e9f-d341-45cb-9655-289d2ac789dd",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-1",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-2",
+        "template--16192486637746__9852bc6b-2cb6-49c9-905a-521c26424bc8-logo_image-4",
+        "314c9042-3720-4565-993c-2f80cb19c0b0"
+      ],
+      "disabled": true,
+      "custom_css": [
+        "@media (max-width: 768px) {.logo-bar__item {margin: 10px; margin-bottom: 15px; }}",
+        ".logo-bar {margin-bottom: 0px;}"
+      ],
+      "settings": {
+        "title": "",
+        "logo_opacity": 100,
+        "divider": false
+      }
+    },
+    "logo_list_RUrhrk": {
+      "type": "logo-list",
+      "blocks": {
+        "logo_image_xgFBPK": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/WatercraftShack.png",
+            "link": "https://www.youtube.com/watch?v=NITuuGQFqc8"
+          }
+        },
+        "logo_image_69aVgj": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Tommy_T_s_Adventures_098bb85d-a042-46e0-bdb6-e95eb0fed71a.png",
+            "link": "https://www.youtube.com/watch?v=0bhEw2KuKd0"
+          }
+        },
+        "logo_image_kAQHAd": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/THE_ADVENTURE_CREWS_LOGO_490434f0-821d-4802-bea1-1d00bbd17554.png",
+            "link": "https://youtu.be/42Mogj56INg?si=qcUt2OgdDZLJc-wE&t=596"
+          }
+        },
+        "logo_image_QRTjjV": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/channels4_profile1.png",
+            "link": "https://youtu.be/emRRuv0ekhM?si=FRCHQR8GIZHy8QHx&t=235"
+          }
+        },
+        "logo_image_y6FKQf": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/DrDemp_Transparent_Logo_6c7b0921-b14a-4ffe-9012-129e6b0856e0.png",
+            "link": "https://www.youtube.com/watch?v=4Zr1aZjs0_4"
+          }
+        },
+        "logo_image_FTRdNV": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/Alvean_Logo_10b92b2a-8628-4f34-bab7-c4812efc5327.png",
+            "link": "https://www.youtube.com/watch?v=_lnCCo9CWjk"
+          }
+        },
+        "logo_image_KXqbdm": {
+          "type": "logo_image",
+          "settings": {
+            "image": "shopify://shop_images/JD_s_WaterWorld_0ca71350-e4fa-46ce-bff1-fd615ebfdf24.png",
+            "link": "https://youtu.be/T1ytIkJ2l6s?si=e55v8NCYgLYKC7Yw"
+          }
+        }
+      },
+      "block_order": [
+        "logo_image_xgFBPK",
+        "logo_image_69aVgj",
+        "logo_image_kAQHAd",
+        "logo_image_QRTjjV",
+        "logo_image_y6FKQf",
+        "logo_image_FTRdNV",
+        "logo_image_KXqbdm"
+      ],
+      "custom_css": [
+        ".logo-bar {margin-bottom: 0;}",
+        ".page-width {max-width: 1500px;}"
+      ],
+      "name": "t:sections.logo-list.presets.logo_list.name",
+      "settings": {
+        "title": "",
+        "logo_opacity": 100,
+        "divider": false
+      }
+    },
     "rich_text_4JkYUp": {
       "type": "rich-text",
       "blocks": {
@@ -378,9 +533,9 @@
   "order": [
     "73e1f8b8-90c9-4aab-8c1e-545bec7ebb15",
     "c817f3c5-afbb-4d72-a4d6-7313cdfb7d8b",
-    "9852bc6b-2cb6-49c9-905a-521c26424bc8",
     "5716dab2-dfd5-4901-a9ab-0478d62aebb3",
     "7234bd63-4e77-418c-b202-8679c0569061",
+    "promo_grid_BQYm3b",
     "featured-collections",
     "cafcff97-901a-476d-ac02-6040a3a9b082",
     "0b73b726-ea38-4c1f-a16d-d2ad48528ca4",
@@ -389,6 +544,8 @@
     "54193021-7121-4d26-ba0f-39b6dfdfd3ac",
     "b2e2bb32-7f41-4716-b733-9effabe45301",
     "5e5b47e1-9afe-4a6c-8fa1-69269e691ac7",
+    "9852bc6b-2cb6-49c9-905a-521c26424bc8",
+    "logo_list_RUrhrk",
     "rich_text_4JkYUp",
     "63bca261-4e8c-4df8-a05f-1c2f9f2a03e6",
     "71215e60-7155-47d9-a008-e42284fcd09f"

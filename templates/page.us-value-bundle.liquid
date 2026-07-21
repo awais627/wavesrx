@@ -5,7 +5,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
 <link rel="icon" href="{{ 'favicon.ico' | asset_url }}" type="image/x-icon">
-<h2 class="bundle-main-title">VALUE BUNDLES</h2>
+<h2 class="bundle-main-title">COMPLETE BOAT & PWC KITS</h2>
+<h4 class="bundle-sub-title">Everything you need. Pre-configured for your setup.</h4>
 <style>
     {% comment %} header.site-header,
   .shopify-section-header,
@@ -18,19 +19,30 @@
   /* Generic sections */
   .bundle-main-title {
     font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback);
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    font-size: 48px;
+    font-size: 32px;
   text-align: center;
   font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback, sans-serif);
-
-  text-transform: uppercase;
 
   margin: 50px 0 0px 0; /* Adds breathing room at the top of the page */
   color: #1c1d1d;
 }
+.bundle-sub-title {
+    {% comment %} font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback); {% endcomment %}
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+    font-size: 24px;
+  text-align: center;
+  /*font-family: var(--typeHeaderPrimary), var(--typeHeaderFallback, sans-serif);*/
+  text-transform: none !important;
+  margin: 20px 0 0px 0; /* Adds breathing room at the top of the page */
+  color: #1c1d1d;
+}
+
 
   @media (max-width: 991.98px) {
     .bundle-main-title { font-size: 36px; margin: 32px 0 0; }

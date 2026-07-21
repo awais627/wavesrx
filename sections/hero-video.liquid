@@ -16,6 +16,33 @@
     opacity: 0;
     pointer-events: none;
   }
+
+
+
+   #fourth-btn-gold {
+    color: #ffb700 !important;
+    border-color: #ffb700 !important;
+  }
+  /* Targets any inner span, text links, or typography elements inside the button */
+  #fourth-btn-gold, 
+  #fourth-btn-gold * {
+    color: #ffb700 !important;
+  }
+  #fourth-btn-gold:hover {
+    opacity: 0.8;
+  }
+  #shopify-section-template--21290552885426__73e1f8b8-90c9-4aab-8c1e-545bec7ebb15 #fourth-btn-gold,
+  #shopify-section-template--21290552885426__73e1f8b8-90c9-4aab-8c1e-545bec7ebb15 a#fourth-btn-gold {
+    color: #ffb700 !important;
+    border-color: #ffb700 !important;
+  }
+
+  #shopify-section-template--21290552885426__73e1f8b8-90c9-4aab-8c1e-545bec7ebb15 #fourth-btn-gold:hover,
+#shopify-section-template--21290552885426__73e1f8b8-90c9-4aab-8c1e-545bec7ebb15 #fourth-btn-gold:hover {
+  color: #ffffff !important;        /* Force Yellow text on hover */
+  border-color: #ffffff !important;   /* Force Yellow border on hover */
+  background-color: #1a1b1f !important; /* Keep solid dark background */
+}
 </style>
 {%- style -%}
   .hero--{{ section.id }} .hero__title {
@@ -65,6 +92,20 @@
       opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
     }
   {% endif %}
+
+  /* Move all four hero buttons downward */
+  /* Move the complete button container downward */
+.hero--{{ section.id }} .hero__text-shadow {
+  position: relative;
+  top: -25px;
+}
+
+@media only screen and (max-width: 768px) {
+  .hero--{{ section.id }} .hero__text-shadow {
+    /* top: 25px; */
+  }
+}
+
 {%- endstyle -%}
 
 <div
@@ -247,9 +288,9 @@
     </div> {% endcomment %}
   </div>
 
-  <div class="hero__text-wrap">
+  <div class="hero__text-wrap" >
     <div class="page-width">
-      <div class="hero__text-content {{ section.settings.text_align }}">
+      <div class="hero__text-content vertical-bottom horizontal-center {{ section.settings.text_align }}">
         <div class="hero__text-shadow">
           {%- if section.settings.video_url contains 'vimeo.com' -%}
             <button type="button" id="VimeoTrigger-{{ section.id }}" class="vimeo-mobile-trigger medium-up--hide">
@@ -292,9 +333,9 @@
               <div class="hero__link">
                 <div class="animation-cropper">
                   <div class="animation-contents">
-                    <a
+                    {% comment %} <a
                       href="{{ link_href }}"
-                      class="btn{% if section.settings.color_accent and section.settings.color_accent == 'rgba(0,0,0,0)' %} btn--inverse{% endif %}"
+                      class="btn{% if section.settings.color_accent and section.settings.color_accent == 'rgba(0,0,0,0)' %} btn--inverse{% endif %} btn-color"
                       {%- if section.settings.video_url contains 'vimeo.com' -%}
                         data-video-id="{{ video_id }}"
                       {%- endif -%}
@@ -311,6 +352,22 @@
                         </svg>
                       {%- endif -%}
                       {{ section.settings.link_text }}
+                    </a> {% endcomment %}
+                    <a
+                      href="{{ link_href }}"
+                      class="btn{% if section.settings.color_accent and section.settings.color_accent == 'rgba(0,0,0,0)' %} btn--inverse{% endif %} btn-color"
+                      {%- if section.settings.video_url contains 'vimeo.com' -%}
+                        data-video-id="{{ video_id }}"
+                      {%- endif -%}
+                    >
+                      <img 
+                        src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/03_ac382aa0-cbf1-4194-b381-da41c7779132.png?v=1784287494" 
+                        alt="Play" 
+                        class="icon icon-play"
+                        loading="lazy"
+                        style="width: 25px; height: auto; display: inline-block; vertical-align: middle; "
+                      >
+                      {{ section.settings.link_text }}
                     </a>
                     <a
                       href="{{ section.settings.link_second }}"
@@ -319,17 +376,13 @@
                         data-video-id="{{ video_id }}"
                       {%- endif -%}
                     >
-                      {%- if link_href contains 'youtube.com/watch' or link_href contains 'youtu.be/' -%}
-                        <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          role="presentation"
-                          class="icon icon-play"
-                          viewBox="18.24 17.35 24.52 28.3"
-                        >
-                          <path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/>
-                        </svg>
-                      {%- endif -%}
+                                <img 
+                        src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/04.png?v=1784287494" 
+                        alt="Play" 
+                        class="icon icon-play"
+                        loading="lazy"
+                        style="width: 25px; height: auto; display: inline-block; vertical-align: middle;"
+                      >
                       {{ section.settings.link_text_second }}
                     </a>
                     <a
@@ -339,19 +392,37 @@
                         data-video-id="{{ video_id }}"
                       {%- endif -%}
                     >
-                      {%- if link_href contains 'youtube.com/watch' or link_href contains 'youtu.be/' -%}
-                        <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          role="presentation"
-                          class="icon icon-play"
-                          viewBox="18.24 17.35 24.52 28.3"
-                        >
-                          <path fill="#323232" d="M22.1 19.151v25.5l20.4-13.489-20.4-12.011z"/>
-                        </svg>
-                      {%- endif -%}
+        <img 
+    src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/02.png?v=1784287494" 
+    alt="Play" 
+    class="icon icon-play"
+    loading="lazy"
+    style="width: 25px; height: auto; display: inline-block; vertical-align: middle; "
+  >
                       {{ section.settings.link_text_third }}
                     </a>
+                                        
+
+
+<a
+  id="fourth-btn-gold"
+  {% comment %} href="{{ section.settings.fourth }}" {% endcomment %}
+  href="{{ section.settings.link_fourth }}"
+  class="custom-btn btn{% if section.settings.color_accent and section.settings.color_accent == 'rgba(0,0,0,0)' %} btn--inverse{% endif %}"
+  {%- if section.settings.video_url contains 'vimeo.com' -%}
+    data-video-id="{{ video_id }}"
+  {%- endif -%}
+  style="display: inline-flex; align-items: center; justify-content: center; gap: 8px;"
+>
+  <img 
+    src="https://cdn.shopify.com/s/files/1/0269/9198/4729/files/01_8883b9a5-aa6c-45ac-929c-dd2d2f7a9294.png?v=1784287494" 
+    alt="Play" 
+    class="icon icon-play"
+    loading="lazy"
+    style="width: 25px; height: auto; display: inline-block; vertical-align: middle;"
+  >
+  {{ section.settings.link_text_fourth }}
+</a>
                   </div>
                 </div>
               </div>
@@ -417,11 +488,23 @@
       "type": "text",
       "id": "link_text_third",
       "label": "t:sections.hero-video.settings.link_text.label",
-      "default": "Optional button second"
+      "default": "Optional button third"
     },
     {
       "type": "url",
       "id": "link_third",
+      "label": "t:sections.hero-video.settings.link.label",
+      "info": "t:sections.hero-video.settings.link.info"
+    },
+        {
+      "type": "text",
+      "id": "link_text_fourth",
+      "label": "t:sections.hero-video.settings.link_text.label",
+      "default": "Optional button fourth"
+    },
+    {
+      "type": "url",
+      "id": "link_fourth",
       "label": "t:sections.hero-video.settings.link.label",
       "info": "t:sections.hero-video.settings.link.info"
     },
@@ -558,3 +641,4 @@
   }
 }
 {% endschema %}
+

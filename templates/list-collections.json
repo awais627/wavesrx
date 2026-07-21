@@ -9,59 +9,6 @@
  */
 {
   "sections": {
-    "rich_text_MPMwfQ": {
-      "type": "rich-text",
-      "blocks": {
-        "heading_KYyHd7": {
-          "type": "heading",
-          "settings": {
-            "title": "SHOP COLLECTIONS"
-          }
-        }
-      },
-      "block_order": [
-        "heading_KYyHd7"
-      ],
-      "settings": {
-        "align_text": "center",
-        "narrow_column": true,
-        "divider": false
-      }
-    },
-    "main": {
-      "type": "list-collections-template",
-      "blocks": {
-        "collection_czEHLV": {
-          "type": "collection",
-          "settings": {
-            "collection": "boats"
-          }
-        },
-        "collection_4ELyBM": {
-          "type": "collection",
-          "settings": {
-            "collection": "pwc"
-          }
-        },
-        "collection_MnWaJG": {
-          "type": "collection",
-          "settings": {
-            "collection": "kayak"
-          }
-        }
-      },
-      "block_order": [
-        "collection_czEHLV",
-        "collection_4ELyBM",
-        "collection_MnWaJG"
-      ],
-      "settings": {
-        "title_enable": false,
-        "display_type": "selected",
-        "sort": "date_reversed",
-        "grid": "3"
-      }
-    },
     "rich_text_NpLQ7b": {
       "type": "rich-text",
       "blocks": {
@@ -105,12 +52,99 @@
         "link5": "",
         "link5text": "Shop Now"
       }
+    },
+    "promo_grid_pMtRJb": {
+      "type": "promo-grid",
+      "blocks": {
+        "simple_NVxb3j": {
+          "type": "simple",
+          "settings": {
+            "link": "https://www.wavesrx.com/pages/us-value-bundle",
+            "text": "",
+            "image": "shopify://shop_images/01_d0509906-7d3f-4abf-b493-13354028603e.jpg",
+            "width": "100",
+            "height": 300,
+            "color_tint": "#000000",
+            "color_tint_opacity": 0,
+            "framed": false
+          }
+        }
+      },
+      "block_order": [
+        "simple_NVxb3j"
+      ],
+      "custom_css": [
+        ".page-width {padding: 0px;}",
+        ".promo-grid--space-top {padding-top: 32px;}"
+      ],
+      "name": "t:sections.promo-grid.presets.promotional_grid.name",
+      "settings": {
+        "full_width": false,
+        "gutter_size": 0,
+        "space_above": false,
+        "space_below": true,
+        "lazyload_images": true
+      }
+    },
+    "rich_text_MPMwfQ": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_rw4N3a": {
+          "type": "heading",
+          "settings": {
+            "title": "SHOP COLLECTIONS"
+          }
+        }
+      },
+      "block_order": [
+        "heading_rw4N3a"
+      ],
+      "settings": {
+        "align_text": "center",
+        "narrow_column": true,
+        "divider": false
+      }
+    },
+    "main": {
+      "type": "list-collections-template",
+      "blocks": {
+        "collection_czEHLV": {
+          "type": "collection",
+          "settings": {
+            "collection": "boats"
+          }
+        },
+        "collection_4ELyBM": {
+          "type": "collection",
+          "settings": {
+            "collection": "pwc"
+          }
+        },
+        "collection_MnWaJG": {
+          "type": "collection",
+          "settings": {
+            "collection": "kayak"
+          }
+        }
+      },
+      "block_order": [
+        "collection_czEHLV",
+        "collection_4ELyBM",
+        "collection_MnWaJG"
+      ],
+      "settings": {
+        "title_enable": false,
+        "display_type": "selected",
+        "sort": "date_reversed",
+        "grid": "3"
+      }
     }
   },
   "order": [
-    "rich_text_MPMwfQ",
-    "main",
     "rich_text_NpLQ7b",
-    "four_category_section_MWayEi"
+    "four_category_section_MWayEi",
+    "promo_grid_pMtRJb",
+    "rich_text_MPMwfQ",
+    "main"
   ]
 }

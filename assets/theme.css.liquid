@@ -8814,6 +8814,53 @@ padding-bottom:40px;
 .hero__text-shadow{
 display:inline-block;
 position:relative;
+background-color: #252628;
+padding:10px;
+border-radius:14px;
+border:1px solid #ffffff;
+opacity:85%;
+
+}
+/* Fix the first button's default state to match the others */
+.hero__link .btn.btn-color {
+  background-color: transparent !important;
+  border: 1px solid #ffffff !important;
+  border-radius: 8px !important;
+}
+/* This forces the yellow color on hover, overriding the problematic section link rule */
+#shopify-section-template--21290552885426__73e1f8b8-90c9-4aab-8c1e-545bec7ebb15 a.btn:hover,
+#shopify-section-template--21290552885426__73e1f8b8-90c9-4aab-8c1e-545bec7ebb15 a.custom-btn.btn:hover {
+  color: #f5c400 !important;        /* Force Yellow text on hover */
+  border-color: #f5c400 !important;   /* Force Yellow border on hover */
+  background-color: #1a1b1f !important; /* Keep solid dark background */
+}
+.hero__link .btn,
+.hero__link .custom-btn.btn {
+  background-color: rgba(18, 18, 18, 0.65) !important; /* Translucent dark background */
+  color: #ffffff !important;
+  border: 1px solid #ffffff !important; /* Solid White Border */
+  border-radius: 8px !important; /* Semi-rounded elegant corners to match the image */
+
+ 
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  /* gap: 10px !important; */
+  /* transition: all 0.25s ease-in-out !important; */
+  /* text-decoration: none !important; */
+  /* min-width: 170px; */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Hover state: changes both the text and the border color to yellow */
+.hero__link .btn:hover,
+.hero__link .custom-btn.btn:hover {
+  border-color: #f5c400 !important; /* Bright Yellow border on hover */
+  color: #f5c400 !important;        /* Bright Yellow text on hover */
+ 
 }
 
 .hero__text-shadow:before{
@@ -8863,13 +8910,13 @@ pointer-events:auto;
 }
 
 .hero__link .btn{
-margin:4px 3px 2px 0;
+/* margin:4px 3px 2px 0; */
 }
 
 @media only screen and (min-width:769px){
 
 .hero__link .btn{
-margin-right:5px;
+/* margin-right:5px; */
 margin-top:0;
 }
 }
@@ -8908,13 +8955,13 @@ display:table-cell;
 }
 
 .hero__text-content .hero__link{
-margin-top:7.5px;
+/* margin-top:7.5px; */
 }
 
 @media only screen and (min-width:769px){
 
 .hero__text-content .hero__link{
-margin-top:15px;
+/* margin-top:15px; */
 }
 }
 
@@ -11269,25 +11316,36 @@ display:none;
 }
 }
 
-.modal__centered-content.newsletter--has-image .newsletter-popup__image{
-height:100%;
--o-object-fit:cover;
-object-fit:cover;
-position:absolute;
-width:100%;
+.modal__centered-content.newsletter--has-image .newsletter-popup__image {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover !important;
+  object-position: center center;
+  display: block;
 }
-
 .modal__centered-content.newsletter--has-image .newsletter-popup__content{
 padding:40px;
 width:50%;
 }
 
 @media only screen and (max-width:768px){
+  .modal__centered-content.newsletter--has-image .newsletter-popup__content{
+    padding:0 0 20px;
+    width:100%;
+  }
 
-.modal__centered-content.newsletter--has-image .newsletter-popup__content{
-padding:0 0 20px;
-width:100%;
+  .modal__centered-content.newsletter--has-image .newsletter-popup__image-wrapper{
+      display:none;
+  }
 }
+
+.modal__centered-content.newsletter--has-image .newsletter-popup__image{
+    height:100%;
+    -o-object-fit:cover;
+    object-fit:cover;
+    position:absolute;
+    width:100%;
 }
 
 newsletter-reminder{
@@ -13440,7 +13498,7 @@ padding: 12px 0;
 ul.site-navigation li a {
 font-size: 16px;
 text-transform: inherit!important;
-padding: 10px 22px;
+padding: 10px 20px;
 }
 
 @media(max-width: 1440px){
@@ -13756,7 +13814,29 @@ padding: 0 40px;
 }
 header#SiteHeader {
 background: #005DAB;
+}
 
+.newsletter-popup__content .social-icons a {
+    color: rgb(11, 115, 174);
+}
+/* Instagram */
+.newsletter-popup__content .social-icons a[href*="instagram"] {
+  color: #E4405F !important;
+}
+
+/* Facebook */
+.newsletter-popup__content .social-icons a[href*="facebook"] {
+  color: #1877F2 !important;
+}
+
+/* YouTube */
+.newsletter-popup__content .social-icons a[href*="youtube"] {
+  color: #FF0000 !important;
+}
+
+/* TikTok */
+.newsletter-popup__content .social-icons a[href*="tiktok"] {
+  color: #000000 !important;
 }
 
 @media only screen and (min-width:769px) {
@@ -14375,6 +14455,7 @@ color: #fff;
 background-color: #005DAB;
 box-shadow: inset 0 1px 2px rgba(0,0,0,.2), 0 1px 2px rgba(0,0,0,.12) !important;
 }
+.dropdown-list li:nth-child(1){z-index:5;}
 .dropdown-list li:nth-child(1){z-index:4;}
 .dropdown-list li:nth-child(2){z-index:3;}
 .dropdown-list li:nth-child(3){z-index:2;}
@@ -14409,6 +14490,9 @@ transform: translateY(300%);
 }
 .dropdown.active .dropdown-list li:nth-child(4) {
 transform: translateY(400%);
+}
+.dropdown.active .dropdown-list li:nth-child(5) {
+transform: translateY(500%);
 }
 .dropdown-list li:hover a {
 color: #fff;
@@ -14903,3 +14987,114 @@ object-fit: cover;
 }
 }
 
+
+.promo-grid__bg p {
+      display: none !important;
+    }
+    @media only screen and (max-width: 589px) {
+        .flex-grid--template--21290552885426__promo_grid_BQYm3b {
+          margin-top: -0px;
+          margin-left: -0px;
+          padding-left: 15px !important;
+          padding-right: 15px !important;
+          box-sizing: border-box !important;
+        }
+
+        .flex-grid--template--21290552885426__promo_grid_BQYm3b .flex-grid--gutters {
+          margin-top: -0px;
+          margin-left: -0px;
+        }
+
+        .flex-grid--template--21290552885426__promo_grid_BQYm3b .flex-grid__item {
+          padding-top: 0px;
+          padding-left: 0px;
+        }
+      }
+
+@media only screen and (min-width: 769px) {
+  .modal__centered-content.newsletter--has-image {
+    overflow: hidden;
+  }
+
+  .modal__centered-content.newsletter--has-image .newsletter-popup {
+    display: flex !important;
+    align-items: stretch !important;
+    min-height: 380px;
+  }
+
+  .modal__centered-content.newsletter--has-image .newsletter-popup__content {
+    width: 50% !important;
+    flex: 0 0 50% !important;
+  }
+
+  .modal__centered-content.newsletter--has-image .newsletter-popup__image-wrapper {
+    display: block !important;
+    width: 50% !important;
+    flex: 0 0 50% !important;
+    min-height: 380px !important;
+    overflow: hidden !important;
+    position: relative;
+  }
+
+  .modal__centered-content.newsletter--has-image .newsletter-popup__image-wrapper image-element {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 380px !important;
+  }
+
+  .modal__centered-content.newsletter--has-image .newsletter-popup__image {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 380px !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    object-position: center center !important;
+  }
+
+  .modal__centered-content.newsletter--has-image .newsletter-popup-image-reversed .newsletter-popup__content {
+    order: 1;
+  }
+
+  .modal__centered-content.newsletter--has-image .newsletter-popup-image-reversed .newsletter-popup__image-wrapper {
+    order: 2;
+  }
+}
+
+@media only screen and (max-width: 789px) {
+  /* 1. Force the parent container to turn into a flex grid layout */
+  .hero__link .animation-contents {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important; /* Spacing between the 2x2 rows and columns */
+    padding: 0 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 2. Force every button to take up exactly 2 columns per row */
+  .hero__link .animation-contents a.btn,
+  .hero__link .animation-contents a.custom-btn {
+    flex: 0 0 calc(50% - 5px) !important;
+    width: calc(50% - 5px) !important;
+    max-width: calc(50% - 5px) !important;
+    margin: 0 !important; /* Strips theme block margins */
+    padding: 12px 4px !important;
+    font-size: 12px !important; /* Optimizes text layout size */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+  }
+
+  /* 3. Scale down the inline vector icons so they stay balanced */
+  .hero__link .animation-contents a img,
+  .hero__link .animation-contents a .icon {
+    width: 18px !important;
+    height: auto !important;
+    margin-right: 6px !important;
+  }
+}

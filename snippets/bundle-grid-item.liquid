@@ -319,14 +319,14 @@
         src="{{ product.featured_image | img_url: '800x' }}"
         alt="{{ product.title | escape }}"
         loading="lazy"
-        style="width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; border-radius: 8px 0 0 8px;"
+        style="width: 100%; height: auto; object-position: center top; object-fit:cover ; display: block; border-radius: 8px 0 0 8px;"
       >
     {% else %}
       <img
         src="{{ 'placeholder-image.png' | asset_url }}"
         alt="{{ product.title | escape }}"
         loading="lazy"
-        style="width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block;">
+        style="width: 100%; height: auto;object-position: center top; object-fit:cover ; display: block;">
       
     {% endif %}
   </a>

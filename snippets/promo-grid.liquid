@@ -338,13 +338,13 @@
 
               <div class="promo-grid__content">
                 <div class="promo-grid__text text-center">
-                  <p class="promo-grid__title h2">
+                  {% comment %} <p class="promo-grid__title h2">
                     {%- if block_text != blank -%}
                       {{ block_text | newline_to_br }}
                     {%- else -%}
                       Simple promotion
                     {%- endif -%}
-                  </p>
+                  </p> {% endcomment %}
                 </div>
               </div>
             </a>

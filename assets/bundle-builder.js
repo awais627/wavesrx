@@ -128,7 +128,8 @@
     var noteEl = kitEl.querySelector('[data-bundle-discount-note]');
     if (noteEl) {
       if (discountApplies) {
-        noteEl.textContent = '10% bundle discount applied at checkout.';
+        // noteEl.textContent = '10% bundle discount applied at checkout.';
+        noteEl.textContent = 'Bundle discount applied.';
         noteEl.removeAttribute('hidden');
       } else if (checkedCount === 1) {
         noteEl.textContent = 'Add 1 more item to unlock 10% bundle savings.';

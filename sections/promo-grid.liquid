@@ -22,6 +22,20 @@
   {%- endunless -%}
 </div>
 
+<style>
+  /* Rounded corners for the Complete Kits banner */
+  [data-section-id="{{ section.id }}"] a[href*="/pages/us-value-bundle"] {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  [data-section-id="{{ section.id }}"] a[href*="/pages/us-value-bundle"] img,
+  [data-section-id="{{ section.id }}"] a[href*="/pages/us-value-bundle"] .promo-grid__bg,
+  [data-section-id="{{ section.id }}"] a[href*="/pages/us-value-bundle"]::after {
+    border-radius: 10px;
+  }
+</style>
+
 {% schema %}
 {
   "name": "t:sections.promo-grid.name",

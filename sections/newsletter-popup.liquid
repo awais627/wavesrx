@@ -83,6 +83,22 @@
 
 {% endunless %}
 
+<style>
+  @media screen and (max-width: 768px) {
+    #NewsletterPopup-{{ section.id }} .modal__inner {
+      background: #e8f6ff;
+      background: linear-gradient(180deg, rgb(0 148 209) 0%, rgba(201, 240, 255, 1) 50%, rgba(255, 255, 255, 1) 100%);
+      box-shadow: 0 0 12px 12px #00000026;
+    }
+
+    #NewsletterPopup-{{ section.id }} .social-icons a{
+      color: #121358;
+    }
+
+    #NewsletterPopup-{{ section.id }} input{border-color: #000;}
+  }
+</style>
+
 {% schema %}
   {
     "name": "t:sections.newsletter-popup.name",
@@ -202,7 +218,7 @@
             "type": "text",
             "id": "reminder_label",
             "label": "t:sections.newsletter-popup.blocks.header.settings.text.label",
-            "default": "Get 10% off",
+            "default": "Get 15% off",
             "info": "t:sections.newsletter-popup.blocks.header.settings.text.info"
           }
         ]
