@@ -371,7 +371,9 @@
       Price is calculated from the sum of the bundle's component products so it
       always stays in sync with live product prices. Selling price = sum of
       component prices, with 10% off when the kit has 2+ items (matching the
-      Shopify automatic discount). Compare-at = sum of component compare-at prices.
+      Shopify automatic discount). The crossed-out price is that same component
+      total before the 10% — not the compare-at sum — so it matches the
+      customize page footer and checkout.
     {%- endcomment -%}
     {%- assign bundle_items = product.metafields.custom.bundle_default_items.value -%}
     {%- assign sum_price = 0 -%}
@@ -391,20 +393,22 @@
       {%- assign sum_compare = product.compare_at_price | default: product.price -%}
     {%- endif -%}
     {%- assign selling = sum_price -%}
+    {%- assign compare_total = sum_compare -%}
     {%- if bundle_items and bundle_items.size >= 2 -%}
       {%- comment -%} times: 0.9 | round matches the Math.round in bundle-builder.js so the grid and the customize page show the same figure {%- endcomment -%}
       {%- assign selling = sum_price | times: 0.9 | round -%}
+      {%- assign compare_total = sum_price -%}
     {%- endif -%}
 
     <div class="price-row">
       <span class="price-now">{{ selling | money }}</span>
 
-      {% if sum_compare > selling %}
-        <span class="price-compare">{{ sum_compare | money }}</span>
+      {% if compare_total > selling %}
+        <span class="price-compare">{{ compare_total | money }}</span>
         <span
           class="sale-percentage"
           data-sale-price="{{ selling | divided_by: 100.0 }}"
-          data-sale-old-price="{{ sum_compare | divided_by: 100.0 }}"
+          data-sale-old-price="{{ compare_total | divided_by: 100.0 }}"
           style="position: relative; background-color:#ff4d4f;color:#fff;font-size:12px;font-weight:600;padding:4px 8px;border-radius:12px;text-transform:uppercase;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-left:6px;"
         ></span>
       {% endif %}
