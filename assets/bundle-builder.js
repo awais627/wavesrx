@@ -53,8 +53,19 @@
 
   function syncItemPrice(itemEl) {
     var v = getSelectedVariant(itemEl);
+    if (!v) return;
     var priceEl = itemEl.querySelector('[data-bundle-item-price]');
-    if (v && priceEl) priceEl.innerHTML = formatMoney(v.price);
+    if (priceEl) priceEl.innerHTML = formatMoney(v.price);
+    var compareEl = itemEl.querySelector('[data-bundle-item-compare]');
+    if (compareEl) {
+      if (v.compareAt > v.price) {
+        compareEl.innerHTML = formatMoney(v.compareAt);
+        compareEl.hidden = false;
+      } else {
+        compareEl.innerHTML = '';
+        compareEl.hidden = true;
+      }
+    }
   }
 
   function syncItemSelectedState(itemEl) {
@@ -74,7 +85,6 @@
   function updateTotal(kitEl) {
     var items = kitEl.querySelectorAll('[data-bundle-item]');
     var priceTotal = 0;
-    var compareTotal = 0;
     var checkedCount = 0;
     items.forEach(function (item) {
       var checkbox = item.querySelector('[data-bundle-checkbox]');
@@ -82,7 +92,6 @@
       var v = getSelectedVariant(item);
       if (v) {
         priceTotal += v.price;
-        compareTotal += v.compareAt;
         checkedCount += 1;
       }
     });
@@ -99,11 +108,13 @@
       pulseTotal(totalEl);
     }
 
-    // Crossed-out compare-at total (only when there's something to save).
+    // Crossed-out pre-discount total: the sum of the row prices, so it always
+    // matches what the shopper gets by adding the rows up. Per-item compare-at
+    // savings are shown on each row instead.
     var compareEl = kitEl.querySelector('[data-bundle-compare]');
     if (compareEl) {
-      if (compareTotal > sellingTotal) {
-        compareEl.innerHTML = formatMoney(compareTotal);
+      if (priceTotal > sellingTotal) {
+        compareEl.innerHTML = formatMoney(priceTotal);
         compareEl.hidden = false;
       } else {
         compareEl.innerHTML = '';
@@ -114,8 +125,8 @@
     // Savings badge.
     var savingsEl = kitEl.querySelector('[data-bundle-savings]');
     if (savingsEl) {
-      if (compareTotal > sellingTotal) {
-        var pct = Math.round((compareTotal - sellingTotal) / compareTotal * 100);
+      if (priceTotal > sellingTotal) {
+        var pct = Math.round((priceTotal - sellingTotal) / priceTotal * 100);
         savingsEl.textContent = 'Save ' + pct + '%';
         savingsEl.hidden = false;
       } else {

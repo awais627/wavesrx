@@ -110,6 +110,11 @@
   </div>
 
   <div class="bundle-kit__price-col">
+    {%- if default_variant.compare_at_price > default_variant.price -%}
+      <span class="bundle-kit__item-compare" data-bundle-item-compare>{{ default_variant.compare_at_price | money }}</span>
+    {%- else -%}
+      <span class="bundle-kit__item-compare" data-bundle-item-compare hidden></span>
+    {%- endif -%}
     <span class="bundle-kit__price" data-bundle-item-price>{{ default_variant.price | money }}</span>
     {% unless default_variant.available %}
       <span class="bundle-kit__sold-out">Sold out</span>
