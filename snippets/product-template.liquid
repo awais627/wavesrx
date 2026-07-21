@@ -148,6 +148,16 @@
                 </h1>
               {%- endif -%}
 
+              {%- if template.suffix == 'kit' -%}
+                {%- comment -%} Hide the app-injected "Notify when available" edge button on the kit view; it overlaps the customize UI. The app sets display:block inline, hence !important. {%- endcomment -%}
+                <style>
+                  .si-reset,
+                  .SI_trigger {
+                    display: none !important;
+                  }
+                </style>
+              {%- endif -%}
+
               {%- if is_bundle -%}
                 {% render 'bundle-customize-section', product: product %}
               {%- endif -%}
