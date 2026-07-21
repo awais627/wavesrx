@@ -56,6 +56,14 @@
     "promo_grid_pMtRJb": {
       "type": "promo-grid",
       "blocks": {
+        "image_WgUQyD": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Mobile-version2_cfd78ded-c1bf-4afa-a99e-69f680079ea0.jpg",
+            "link": "",
+            "width": "100"
+          }
+        },
         "simple_NVxb3j": {
           "type": "simple",
           "settings": {
@@ -71,6 +79,7 @@
         }
       },
       "block_order": [
+        "image_WgUQyD",
         "simple_NVxb3j"
       ],
       "custom_css": [

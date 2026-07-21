@@ -15098,3 +15098,53 @@ object-fit: cover;
     margin-right: 6px !important;
   }
 }
+
+
+/* ============================================================
+   HIDE MOBILE IMAGE ON TABLET, LAPTOP & DESKTOP (769px and above)
+   ============================================================ */
+/* Hide the first image item on desktop screens (769px and wider) */
+/* @media screen and (min-width: 769px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--image_AW3MEH {
+    display: none !important;
+  }
+}
+
+/* Ensure it remains visible on mobile screens (768px and smaller) */
+/* @media screen and (max-width: 768px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--image_AW3MEH {
+    display: block !important;
+  }
+} */ 
+
+/* ==========================================
+   1. FIRST IMAGE (.flex-grid__item--image_AW3MEH)
+   Hide on Desktop, Show on Mobile
+   ========================================== */
+@media screen and (min-width: 769px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--image_AW3MEH {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--image_AW3MEH {
+    display: block !important;
+  }
+}
+
+/* ==========================================
+   2. SECOND IMAGE (.flex-grid__item--simple_PQfjD6)
+   Show on Desktop, Hide on Mobile
+   ========================================== */
+@media screen and (max-width: 768px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 {
+    display: block !important;
+  }
+}

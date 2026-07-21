@@ -500,3 +500,202 @@
     {%- endfor -%}
   </div>
 </div>
+
+<style>/* Hide the first image item on desktop screens (769px and wider) */
+/* ==========================================
+   1. FIRST IMAGE (.flex-grid__item--image_AW3MEH)
+   Hide on Desktop, Show on Mobile
+   ========================================== */
+@media screen and (min-width: 569px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--image_AW3MEH {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--image_AW3MEH {
+    display: block !important;
+  border-radius:10px!important;
+  }
+}
+
+/* ==========================================
+   2. SECOND IMAGE (.flex-grid__item--simple_PQfjD6)
+   Show on Desktop, Hide on Mobile
+   ========================================== */
+@media screen and (max-width: 568px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 569px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 {
+    display: block !important;
+  }
+}
+@media screen and (min-width: 500px) and (max-width: 1219px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 {
+    display: block !important;
+    padding: 0px 40px !important;
+  }
+}
+
+/* Explicitly reset padding at 1220px and above to default */
+@media screen and (min-width: 1220px) {
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 {
+    padding: 0px !important; /* or padding: unset !important; */
+  }
+}
+
+
+/* Clean desktop fit: 100% full width + full natural height */
+@media screen and (min-width: 569px) {
+  /* Reset outer block height constraints */
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 {
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  /* Reset inner link container */
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 .promo-grid__container {
+    display: block !important;
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+
+  /* Strip absolute positioning on background wrapper */
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 .promo-grid__bg {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Reset image element wrapper */
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 image-element {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Force image to span 100% width and retain natural aspect ratio */
+  #shopify-section-template--21290552885426__promo_grid_BQYm3b .flex-grid__item--simple_PQfjD6 img {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    display: block !important;
+    object-fit: contain !important;
+  }
+}/* Remove the dark text-shadow overlay from the promo grid banner */
+#shopify-section-template--21290552885426__promo_grid_BQYm3b .promo-grid__container::after,
+.flex-grid__item--simple_PQfjD6 .promo-grid__container::after {
+  background: none !important;
+  background-image: none !important;
+  display: none !important;
+}
+
+/* ==========================================
+   1. FIRST IMAGE (.flex-grid__item--image_WgUQyD)
+   Hide on Desktop, Show on Mobile
+   ========================================== */
+@media screen and (min-width: 569px) {
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--image_WgUQyD {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--image_WgUQyD {
+    display: block !important;
+    border-radius:10px!important;
+  }
+}
+
+/* ==========================================
+   2. SECOND IMAGE (.flex-grid__item--simple_NVxb3j)
+   Show on Desktop, Hide on Mobile
+   ========================================== */
+@media screen and (max-width: 568px) {
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 569px) {
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j {
+    display: block !important;
+    padding: 0px 40px !important;
+  }
+}
+/* Apply padding ONLY between 500px and 1219px */
+@media screen and (min-width: 500px) and (max-width: 1219px) {
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j {
+    display: block !important;
+    padding: 0px 40px !important;
+  }
+}
+
+/* Explicitly reset padding at 1220px and above to default */
+@media screen and (min-width: 1220px) {
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j {
+    padding: 0px !important; /* or padding: unset !important; */
+  }
+}
+/* ==========================================
+   3. DESKTOP IMAGE FIT (100% Full Width + Auto Height)
+   ========================================== */
+@media screen and (min-width: 569px) {
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j {
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+  }
+
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j .promo-grid__container {
+    display: block !important;
+    min-height: 0 !important;
+    height: auto !important;
+    width: 100% !important;
+    position: relative !important;
+  }
+
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j .promo-grid__bg {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j image-element {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  [data-section-id="template--21290552918194__promo_grid_pMtRJb"] .flex-grid__item--simple_NVxb3j img {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    display: block !important;
+    object-fit: contain !important;
+  }
+}
+
+/* ==========================================
+   4. REMOVE DARK BACKGROUND OVERLAY
+   ========================================== */
+.type-simple .promo-grid__content:not(.promo-grid__content--boxed):not(.promo-grid__content--sale):after {
+    background:none!important;
+</style>

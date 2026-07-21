@@ -91,6 +91,22 @@
     "promo_grid_BQYm3b": {
       "type": "promo-grid",
       "blocks": {
+        "image_AW3MEH": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/Mobile-version2_cfd78ded-c1bf-4afa-a99e-69f680079ea0.jpg",
+            "link": "",
+            "width": "100"
+          }
+        },
+        "image_xqMnt7": {
+          "type": "image",
+          "disabled": true,
+          "settings": {
+            "link": "",
+            "width": "100"
+          }
+        },
         "simple_PQfjD6": {
           "type": "simple",
           "settings": {
@@ -150,6 +166,8 @@
         }
       },
       "block_order": [
+        "image_AW3MEH",
+        "image_xqMnt7",
         "simple_PQfjD6",
         "advanced_N8ebVD",
         "advanced_kr8CBz"
@@ -399,35 +417,35 @@
         "logo_image_xgFBPK": {
           "type": "logo_image",
           "settings": {
-            "image": "shopify://shop_images/WatercraftShack.png",
+            "image": "shopify://shop_images/01_22577153-4074-47d7-9abe-84c47ac17b1a.jpg",
             "link": "https://www.youtube.com/watch?v=NITuuGQFqc8"
           }
         },
         "logo_image_69aVgj": {
           "type": "logo_image",
           "settings": {
-            "image": "shopify://shop_images/Tommy_T_s_Adventures_098bb85d-a042-46e0-bdb6-e95eb0fed71a.png",
+            "image": "shopify://shop_images/02_1.jpg",
             "link": "https://www.youtube.com/watch?v=0bhEw2KuKd0"
           }
         },
         "logo_image_kAQHAd": {
           "type": "logo_image",
           "settings": {
-            "image": "shopify://shop_images/THE_ADVENTURE_CREWS_LOGO_490434f0-821d-4802-bea1-1d00bbd17554.png",
+            "image": "shopify://shop_images/03_6.jpg",
             "link": "https://youtu.be/42Mogj56INg?si=qcUt2OgdDZLJc-wE&t=596"
           }
         },
         "logo_image_QRTjjV": {
           "type": "logo_image",
           "settings": {
-            "image": "shopify://shop_images/channels4_profile1.png",
+            "image": "shopify://shop_images/04_1_8b410411-1878-4164-9083-5a50a9c2ffb4.jpg",
             "link": "https://youtu.be/emRRuv0ekhM?si=FRCHQR8GIZHy8QHx&t=235"
           }
         },
         "logo_image_y6FKQf": {
           "type": "logo_image",
           "settings": {
-            "image": "shopify://shop_images/DrDemp_Transparent_Logo_6c7b0921-b14a-4ffe-9012-129e6b0856e0.png",
+            "image": "shopify://shop_images/05_bf6001e4-16f6-464c-a5f8-d0245745ed47.jpg",
             "link": "https://www.youtube.com/watch?v=4Zr1aZjs0_4"
           }
         },
@@ -441,7 +459,7 @@
         "logo_image_KXqbdm": {
           "type": "logo_image",
           "settings": {
-            "image": "shopify://shop_images/JD_s_WaterWorld_0ca71350-e4fa-46ce-bff1-fd615ebfdf24.png",
+            "image": "shopify://shop_images/07_4f2366d3-b575-4dee-9eb6-919295e7da16.jpg",
             "link": "https://youtu.be/T1ytIkJ2l6s?si=e55v8NCYgLYKC7Yw"
           }
         }
