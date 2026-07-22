@@ -48,7 +48,7 @@
     .bundle-main-title { font-size: 36px; margin: 32px 0 0; }
   }
   @media (max-width: 575.98px) {
-    .bundle-main-title { font-size: 28px; margin: 24px 0 0; letter-spacing: 0.3px; }
+    .bundle-main-title { font-size: 23px; margin: 24px 0 0; letter-spacing: 0.3px; }
   }
 
   .section-pad {
@@ -1374,13 +1374,13 @@
                   <input type="hidden" name="quantity" value="1">
 
                   {% if card_variant.available %}
-                    <button type="submit" name="add" class="btn-yellow">BUY NOW</button>
+                    <button type="submit" name="add" class="btn-yellow">ADD TO CART</button>
                   {% else %}
                     <button type="button" class="btn-yellow" disabled>SOLD OUT</button>
                   {% endif %}
                 {% endform %}
 
-                <a class="btn-outline" href="{{ product.url }}">Learn More</a>
+                <a class="btn-outline" href="{{ product.url }}">LEARN MORE</a>
               </div>
             </div>
           </div>

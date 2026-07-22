@@ -245,7 +245,7 @@
         },
         "video_url": {
           "label": "Background video link",
-          "info": "Supports YouTube, .MP4 and Vimeo. Not all features supported by Vimeo. [Learn more](https://archetypethemes.co/blogs/impulse/how-do-i-add-background-videos)"
+          "info": "Supports YouTube, .MP4 and Vimeo. Not all features supported by Vimeo. [LEARN MORE](https://archetypethemes.co/blogs/impulse/how-do-i-add-background-videos)"
         },
         "color_border": {
           "label": "Video color",
@@ -406,7 +406,7 @@
     "contact-form": {
       "name": "Contact form",
       "settings": {
-        "content": "All submissions are sent to the customer email address of your store. [Learn more](https://help.shopify.com/en/manual/using-themes/change-the-layout/add-contact-form#view-contact-form-submissions).",
+        "content": "All submissions are sent to the customer email address of your store. [LEARN MORE](https://help.shopify.com/en/manual/using-themes/change-the-layout/add-contact-form#view-contact-form-submissions).",
         "title": {
           "label": "Title"
         },
@@ -589,7 +589,7 @@
           "label": "Show SKU"
         },
         "header_media": "Media",
-        "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)",
+        "content": "LEARN MORE about [media types](https://help.shopify.com/en/manual/products/product-media)",
         "image_position": {
           "label": "Position",
           "options": {
@@ -1015,7 +1015,7 @@
         },
         "video_url": {
           "label": "Background video link",
-          "info": "Supports YouTube, .MP4 and Vimeo. Not all features supported by Vimeo. [Learn more](https://archetypethemes.co/blogs/impulse/how-do-i-add-background-videos)"
+          "info": "Supports YouTube, .MP4 and Vimeo. Not all features supported by Vimeo. [LEARN MORE](https://archetypethemes.co/blogs/impulse/how-do-i-add-background-videos)"
         },
         "overlay_opacity": {
           "label": "Text protection",
@@ -1462,7 +1462,7 @@
         "subcollections": {
           "name": "Subcollections",
           "settings": {
-            "content": "Links to collections from your menu will appear here. [Learn more](https://archetypethemes.co/blogs/impulse/how-do-i-create-subcollections)",
+            "content": "Links to collections from your menu will appear here. [LEARN MORE](https://archetypethemes.co/blogs/impulse/how-do-i-create-subcollections)",
             "subcollections_per_row": {
               "label": "Subcollections per row"
             }
@@ -1483,7 +1483,7 @@
           "label": "Show SKU"
         },
         "header_media": "Media",
-        "content": "Learn more about [media types](https://help.shopify.com/en/manual/products/product-media)",
+        "content": "LEARN MORE about [media types](https://help.shopify.com/en/manual/products/product-media)",
         "image_position": {
           "label": "Position",
           "options": {
@@ -1927,7 +1927,7 @@
         "contact_form": {
           "name": "Contact form",
           "settings": {
-            "content": "All submissions are sent to the customer email address of your store. [Learn more](https://help.shopify.com/en/manual/using-themes/change-the-layout/add-contact-form#view-contact-form-submissions).",
+            "content": "All submissions are sent to the customer email address of your store. [LEARN MORE](https://help.shopify.com/en/manual/using-themes/change-the-layout/add-contact-form#view-contact-form-submissions).",
             "title": {
               "label": "Heading"
             },
@@ -1951,7 +1951,7 @@
       "name": "Complementary products",
       "settings": {
         "paragraph": {
-          "content": "To select complementary products, add the Search & Discovery app. [Learn more](https:\/\/help.shopify.com\/manual\/online-store\/search-and-discovery\/product-recommendations#complementary-products)"
+          "content": "To select complementary products, add the Search & Discovery app. [LEARN MORE](https:\/\/help.shopify.com\/manual\/online-store\/search-and-discovery\/product-recommendations#complementary-products)"
         },
         "product_complementary_heading": {
           "label": "Heading"
@@ -1994,7 +1994,7 @@
       "settings": {
         "show_product_recommendations": {
           "label": "Show dynamic recommendations",
-          "info": "Dynamic recommendations use order and product information to change and improve over time. [Learn more](https://help.shopify.com/en/themes/development/recommended-products)"
+          "info": "Dynamic recommendations use order and product information to change and improve over time. [LEARN MORE](https://help.shopify.com/en/themes/development/recommended-products)"
         },
         "product_recommendations_heading": {
           "label": "Heading"
@@ -3620,7 +3620,7 @@
         "header_predictive_search": "Predictive search",
         "predictive_search_enabled": {
           "label": "Enable predictive search",
-          "info": "Live search results. Not available in all languages. [Learn more](https://help.shopify.com/en/themes/development/search/predictive-search#general-requirements-and-limitations)"
+          "info": "Live search results. Not available in all languages. [LEARN MORE](https://help.shopify.com/en/themes/development/search/predictive-search#general-requirements-and-limitations)"
         },
         "predictive_search_show_vendor": {
           "label": "Show vendor"
@@ -3680,7 +3680,7 @@
         "skip_to_content": "Skip to content",
         "close_modal": "Close (esc)",
         "close": "Close",
-        "learn_more": "Learn more"
+        "learn_more": "LEARN MORE"
       },
       "meta": {
         "tags": "Tagged \"{{ tags }}\"",
@@ -4081,7 +4081,7 @@
       "settings": {
         "show_dynamic_checkout": {
           "label": "Show dynamic checkout button",
-          "info": "Lets customers check out directly using a familiar payment method. [Learn more](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
+          "info": "Lets customers check out directly using a familiar payment method. [LEARN MORE](https://help.shopify.com/manual/using-themes/change-the-layout/dynamic-checkout)"
         },
         "surface_pickup_enable": {
           "label": "Enable pickup availability feature",
@@ -4192,7 +4192,7 @@
     "contact_form": {
       "name": "Contact form",
       "settings": {
-        "content": "All submissions are sent to the customer email address of your store. [Learn more](https://help.shopify.com/en/manual/using-themes/change-the-layout/add-contact-form#view-contact-form-submissions).",
+        "content": "All submissions are sent to the customer email address of your store. [LEARN MORE](https://help.shopify.com/en/manual/using-themes/change-the-layout/add-contact-form#view-contact-form-submissions).",
         "title": {
           "label": "Heading"
         },
@@ -4231,7 +4231,7 @@
   },
   "lazyload_images": {
     "label": "Lazy load images",
-    "info": "Lazy loading should be enabled when section images are below the fold. [Learn more](https://archetypethemes.co/blogs/support/what-is-lazyloading)"
+    "info": "Lazy loading should be enabled when section images are below the fold. [LEARN MORE](https://archetypethemes.co/blogs/support/what-is-lazyloading)"
   },
   "subheading": {
     "label": "Subheading"
@@ -4442,13 +4442,13 @@
   "gift_card": {
     "show_gift_card_recipient": {
       "label": "Show recipient information form for gift card products",
-      "info": "Gift card products can optionally be sent direct to a recipient on a scheduled date along with a personal message. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
+      "info": "Gift card products can optionally be sent direct to a recipient on a scheduled date along with a personal message. [LEARN MORE](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
     }
   },
   "follow_shop_cta": {
     "name": "Follow on Shop",
     "paragraph": {
-      "content": "To allow customers to follow your store on the Shop app from your storefront, Shop Pay must be enabled. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/follow-on-shop)"
+      "content": "To allow customers to follow your store on the Shop app from your storefront, Shop Pay must be enabled. [LEARN MORE](https://help.shopify.com/manual/online-store/themes/customizing-themes/follow-on-shop)"
     },
     "button": {
       "label": "Enable Follow on Shop"
