@@ -39,6 +39,15 @@
     assign is_bundle = true
   endif
 
+  assign recent_url = product.url | within: collection
+  if bundle_defaults != blank and bundle_defaults.size > 0
+    if recent_url contains '?'
+      assign recent_url = recent_url | append: '&view=kit'
+    else
+      assign recent_url = recent_url | append: '?view=kit'
+    endif
+  endif
+
   assign connect_to_sizechart = false
 
   for block in section.blocks
@@ -69,7 +78,7 @@
   data-section-type="product"
   data-product-handle="{{ product.handle }}"
   data-product-title="{{ product.title | escape }}"
-  data-product-url="{{ product.url | within: collection }}"
+  data-product-url="{{ recent_url }}"
   data-aspect-ratio="{{ 100 | divided_by: product.featured_media.aspect_ratio }}"
   data-img-url="{{ product_img_structure }}"
   {% unless isModal %}
