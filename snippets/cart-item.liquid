@@ -1,7 +1,18 @@
+{%- liquid
+  assign item_url = product.url
+  assign bundle_defaults = product.product.metafields.custom.bundle_default_items.value
+  if bundle_defaults != blank and bundle_defaults.size > 0
+    if item_url contains '?'
+      assign item_url = item_url | append: '&view=kit'
+    else
+      assign item_url = item_url | append: '?view=kit'
+    endif
+  endif
+-%}
 <div class="cart__item" data-key="{{ product.key }}">
   <div class="cart__image">
     {% if product.image != blank %}
-      <a href="{{ product.url }}" class="image-wrap">
+      <a href="{{ item_url }}" class="image-wrap">
         {%- render 'image-element',
           img: product,
           alt: product.product.title,
@@ -15,7 +26,7 @@
   </div>
   <div class="cart__item-details">
     <div class="cart__item-title">
-      <a href="{{ product.url }}" class="cart__item-name">
+      <a href="{{ item_url }}" class="cart__item-name">
         {{ product.product.title }}
       </a>
       {% for p in item.properties %}

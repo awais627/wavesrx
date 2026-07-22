@@ -231,6 +231,23 @@
       })();
     </script>
     {% render 'usf' %}
+    {%- if request.page_type == 'collection' or request.page_type == 'search' -%}
+    <script>
+      // USF filters: "COMPLETE KITS" category facet navigates to the bundle page instead of filtering.
+      // Capture phase so this runs before the USF Vue click handler; app files (usf.js) are
+      // overwritten on app sync, so this must live in the theme.
+      document.addEventListener('click', function (e) {
+        if (!e.target.closest) return;
+        var value = e.target.closest('.usf-facets .usf-facet-value');
+        if (!value) return;
+        var label = value.querySelector('.usf-label');
+        if (!label || label.textContent.trim().toUpperCase() !== 'COMPLETE KITS') return;
+        e.preventDefault();
+        e.stopPropagation();
+        window.location.href = '/pages/us-value-bundle';
+      }, true);
+    </script>
+    {%- endif -%}
 
     <script src="{{ 'vendor-scripts-v11.js' | asset_url | split: '?' | first }}" defer="defer"></script>
 
